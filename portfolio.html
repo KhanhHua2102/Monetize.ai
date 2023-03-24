@@ -10,6 +10,59 @@
 		<link rel="stylesheet" href="assets/css/portfolio.css" />
 	</head>
 	<body>
+        <!-- create table for managing stock assets -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center my-5">
+                    <h1 class="text-primary">Portfolio Management</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table id="portfolio-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Bougth Price</th>
+                                <th scope="col">Current Price</th>
+                                <th scope="col">Return (%)</th>
+                                <th scope="col">Return ($)</th>
+                                <th scope="col">Totals</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>APPL</td>
+                            <td>2022-01-01</td>
+                            <td>100</td>
+                            <td>10.00</td>
+                            <td>12.50</td>
+                            <td>25%</td>
+                            <td>250.00</td>
+                            <td>1250</td>
+                            </tr>
+                            <tr>
+                            <td>GOOGL</td>
+                            <td>2022-01-01</td>
+                            <td>50</td>
+                            <td>20.00</td>
+                            <td>18.50</td>
+                            <td>-7.5%</td>
+                            <td>-75.00</td>
+                            <td>925</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-4 offset my-5 mx-3">
+                    <canvas id="portfolio-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/portfolio.js"></script>
 	</body>
 </html>
