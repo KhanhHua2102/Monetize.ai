@@ -1,0 +1,115 @@
+/* default screen */
+#logo {
+    height: 70px;
+    margin-left: 36%;
+}
+
+#logo-title {
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+#conversation-window {
+    height: 690px;
+    border: 2px solid green;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    z-index: -1;
+}
+
+.chat-window {
+    position: relative;
+    top: -60px;
+}
+
+#chat-input {
+    height: 45px;
+    width: 139%;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+#submit-input {
+    height: 40px;
+}
+
+/* tablet screen */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    body {
+        font-size: 22px;
+    }
+
+    #logo {
+        height: 70px;
+        margin-left: 34%;
+    }
+    
+    #conversation-window {
+        /* height: 760px; */
+        height: 88vh;
+        border: 2px solid green;
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+        z-index: -1;
+    }
+
+    .chat-window {
+        position: relative;
+        top: -60px;
+    }
+
+    #chat-input {
+        height: 45px;
+        width: 139%;
+        border-radius: 10px;
+        margin-left: 20px;
+    }
+
+    #submit-input {
+        height: 40px;
+    }
+}
+
+/* phone screen */
+@media only screen and (min-device-width: 400px) and (max-device-width: 700px) and (orientation: portrait) {
+    body {
+        font-size: 32px;
+    }
+
+    #logo {
+        height: 70px;
+        margin-left: 34%;
+    }
+
+    #conversation-window {
+        /* height: 730px; */
+        height: 92vh;
+        border: 5px solid green;
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+        z-index: -1;
+    }
+
+    .chat-window {
+        position: relative;
+        top: -70px;
+    }
+
+    #chat-input {
+        height: 50px;
+        width: 130%;
+        border-radius: 10px;
+        margin-left: 10px;
+    }
+
+    #submit-input {
+        font-size: 30px;
+        height: 55px;
+        width: 70px;
+        margin-left: -30px;
+        margin-bottom: 20px;
+    }
+}
