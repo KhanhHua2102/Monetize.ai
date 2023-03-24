@@ -1,45 +1,40 @@
-// Generate random colors as HexCode
-function randomColor() {
-    let letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
 // Convert portfolioData to CSV
 function convertToCSV(data) {
-    let csv = "Stock,Date,Quantity,Bought Price,Current Price,Returns Percent,Returns Dollar,Totals";
-    data.forEach(function(row) {
-        csv += row.stocks + ',' + row.dates + ',' + row.quantities + ',' + row.bougthPrice + ',' + row.currentPrice + ',' + row.returnsPercent + ',' + row.returnsDollar + ',' + row.totals + "\r";
-    });
+    let csv = "Stock,Date,Quantity,Bought Price,Current Price,Returns Percent,Returns Dollar,Totals\r";
+    for (let i = 0; i < data.stocks.length; i++) {
+        csv +=
+					data.stocks[i] +
+					"," +
+					data.dates[i] +
+					"," +
+					data.quantities[i] +
+					"," +
+					data.bougthPrice[i] +
+					"," +
+					data.currentPrice[i] +
+					"," +
+					data.returnsPercent[i] +
+					"," +
+					data.returnsDollar[i] +
+					"," +
+					data.totals[i] +
+					"\r";
+    }
     return csv;
-}
-
-// Download CSV file
-function downloadCSV(data) {
-    let csv = convertToCSV(data);
-    let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = 'portfolio.csv';
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 }
 
 // Export CSV file when button is clicked
 function exportCSV() {
-    let exportButton = document.getElementById("export-button");
-    exportButton.addEventListener("click", function() {
-        downloadCSV(portfolioData);
-    });
+    let csv = convertToCSV(portfolioData);
+    let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "portfolio.csv";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
-
-// Get the canvas element
-let ctx = document.getElementById("portfolio-chart").getContext("2d");
 
 let portfolioData = {
     stocks: [],
@@ -81,7 +76,16 @@ let defaultColors = [
 	"rgb(128, 0, 0)",
 ];
 
-// Create the pie chart
+// Get the canvas element
+let ctx = document.getElementById("portfolio-chart").getContext("2d");
+
+// Remove the $ from return ($) and totals
+let totals = [];
+for (let i = 0; i < portfolioData.stocks.length; i++) {
+    totals[i] = portfolioData.totals[i].substring(1,);
+}
+
+// Create the pie chart 
 let myChart = new Chart(ctx, {
 	type: "pie",
 	data: {
@@ -89,7 +93,7 @@ let myChart = new Chart(ctx, {
 		datasets: [
 			{
 				label: " totals",
-				data: portfolioData.totals,
+				data: totals,
 				backgroundColor: defaultColors,
 			},
 		],
