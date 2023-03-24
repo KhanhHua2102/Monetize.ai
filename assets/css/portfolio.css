@@ -1,0 +1,11 @@
+/* default screen */
+
+/* tablet screen */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+
+}
+
+/* phone screen */
+@media only screen and (min-device-width: 400px) and (max-device-width: 700px) and (orientation: portrait) {
+
+}
