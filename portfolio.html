@@ -17,8 +17,9 @@
                     <h1 class="text-primary">Portfolio Management</h1>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row text-center">
+                <!-- TODO: risk tolerance feature -->
+                <div class="col-12 col-sm-12 col-lg-8">
                     <table id="portfolio-table" class="table table-striped">
                         <thead>
                             <tr>
@@ -56,15 +57,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-4 offset my-5 mx-3">
+                <div id class="col-sm-8 offset-sm-2 col-lg-3 my-sm-4 mx-lg-4">
                     <canvas id="portfolio-chart"></canvas>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 text-center my-5">
-                    <h4 class="text-info">Download portfolio as CSV</h4>
-                    <button class="btn btn-info" onclick="exportCSV()">Download</button>
-                </div>
+            <div class="download-csv col-12 text-center my-5">
+                <h4 id="export-text" class="text-info my-sm-5 my-lg-4">Download portfolio as CSV</h4>
+                <button class="btn btn-info" onclick="exportCSV()">Export</button>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

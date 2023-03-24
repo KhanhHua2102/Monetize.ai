@@ -1,15 +1,45 @@
 /* default screen */
- canvas {
-    width: 100px;
-    height: 100px;
+ #portfolio-chart {
+    margin-left: 30px;
  }
 
-/* tablet screen */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
 
+/* tablet screen */
+@media only screen and (min-device-width: 740px) and (max-device-width: 1024px) and (orientation: portrait) {
+    body {
+            font-size: 21px;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    button {
+        margin-top: -70px;
+    }
+
+    #portfolio-chart {
+    }
+
+    #export-text {
+    }
 }
 
 /* phone screen */
-@media only screen and (min-device-width: 400px) and (max-device-width: 700px) and (orientation: portrait) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 500px) and (orientation: portrait) {
+    body {
+        font-size: 21px;
+    }
 
+    h1 {
+        font-size: 60px;
+    }
+
+    .download-csv h4, .download-csv button {
+        font-size: 35px;
+    }
+    
+    #portfolio-chart {
+        margin-left: 0px;
+    }
 }
