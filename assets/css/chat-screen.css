@@ -18,20 +18,26 @@
     z-index: -1;
 }
 
+#conversation-window input {
+    width: 90%;
+}
+
 .chat-window {
-    position: relative;
-    top: -60px;
+    position: fixed;
+    /* top: -60px; */
+    bottom: 10%;
 }
 
 #chat-input {
     height: 45px;
-    width: 139%;
     border-radius: 10px;
     margin-left: 20px;
 }
 
 #submit-input {
     height: 40px;
+    right: 0%;
+    position: fixed;
 }
 
 /* tablet screen */
