@@ -139,10 +139,9 @@
     }
 
     .menu {
-        position: fixed;
-        float: left;
+        position: absolute;
         top: 10%;
-        margin-left: 6%;
+        margin-left: 10%;
         font-family: 'Inter';
         font-style: normal;
         font-weight: bold;
@@ -151,14 +150,16 @@
         display: flex;
         align-items: center;
         text-align: center;
-        justify-content: space-between;
     }
 
     .menu button {
+        position: relative;
         display: none;
-        width: 100px;
-        height: 34px;
-        margin-top: 15px;
+        z-index: 1;
+        width: 170px;
+        height: auto;
+        font-size: 30px;
+        margin-top: 17px;
         background: #75C9B7;
         border-radius: 12px;
     }
@@ -170,6 +171,7 @@
 
     #conversation-window {
         position: fixed;
+        z-index: 0;
         top: 13%;
         left: 8%;
         width: 85%;
