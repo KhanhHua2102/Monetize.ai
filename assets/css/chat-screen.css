@@ -1,37 +1,81 @@
 /* default screen */
-#logo {
-    height: 70px;
-    margin-left: 36%;
+#menu-icon {
+    display: none;
 }
 
-#logo-title {
-    font-weight: bolder;
-    font-size: xx-large;
+#logo {
+    position: fixed;
+    float: left;
+    top: 5%;
+    width: 108px;
+    height: 103px;
+    margin-left: 6%;
+    border-radius: 30px;
+}
+
+.menu {
+    position: fixed;
+    float: left;
+    top: 20%;
+    margin-left: 6%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.menu button {
+    width: 100px;
+    height: 34px;
+    margin-top: 15px;
+    background: #75C9B7;
+    border-radius: 12px;
+}
+
+.text {
+    font-size: 21px;
+    margin: 30px;
 }
 
 #conversation-window {
-    height: 690px;
-    border: 2px solid green;
-    border-radius: 10px;
-    padding: 20px;
     position: relative;
-    z-index: -1;
+    left: 20%;
+    width: 75%;
+    height: 715px;
+    margin-top: 3%;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    border: 4px solid #ABD699;
+    border-radius: 19px;
 }
 
-.chat-window {
-    position: relative;
-    top: -60px;
+.chat-window input {
+    position: fixed;
+    top: 86%;
+    height: 50px;
+    width: 72%;
+    margin-left: 1%;
+    background: rgba(199, 221, 204, 0.48);
+    border: 0px;
+    border-radius: 19px;
 }
 
-#chat-input {
-    height: 45px;
-    width: 139%;
-    border-radius: 10px;
-    margin-left: 20px;
-}
-
-#submit-input {
-    height: 40px;
+.chat-window button {
+    position: fixed;
+    top: 87%;
+    height: 35px;
+    margin-left: 69%;
+    background: rgba(255, 226, 106, 0.71);
+    border: 0px;
+    border-radius: 9px;
 }
 
 /* tablet screen */
@@ -44,7 +88,7 @@
         height: 70px;
         margin-left: 34%;
     }
-    
+
     #conversation-window {
         /* height: 760px; */
         height: 88vh;
@@ -73,43 +117,91 @@
 }
 
 /* phone screen */
-@media only screen and (min-device-width: 375px) and (max-device-width: 500px) and (orientation: portrait) {
-    body {
-        font-size: 32px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
+    #menu-icon {
+        display: block;
+        position: fixed;
+        top: 5%;
+        left: 5%;
+        width: 40px;
+        height: 40px;
+        margin-left: 6%;
     }
 
     #logo {
-        height: 70px;
-        margin-left: 34%;
+        position: relative;
+        left: 35%;
+        float: left;
+        width: 170px;
+        height: auto;
+        margin-top: 35px;
+        border-radius: 30px;
+    }
+
+    .menu {
+        position: fixed;
+        float: left;
+        top: 10%;
+        margin-left: 6%;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 29px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .menu button {
+        display: none;
+        width: 100px;
+        height: 34px;
+        margin-top: 15px;
+        background: #75C9B7;
+        border-radius: 12px;
+    }
+
+    .text {
+        font-size: 30px;
+        margin: 30px;
     }
 
     #conversation-window {
-        /* height: 730px; */
-        height: 92vh;
-        border: 5px solid green;
-        border-radius: 10px;
-        padding: 20px;
-        position: relative;
-        z-index: -1;
+        position: fixed;
+        top: 13%;
+        left: 8%;
+        width: 85%;
+        height: 80%;
+        margin-bottom: 40px;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        background: #FFFFFF;
+        border: 4px solid #ABD699;
+        border-radius: 19px;
     }
 
-    .chat-window {
-        position: relative;
-        top: -70px;
-    }
-
-    #chat-input {
-        height: 50px;
-        width: 130%;
-        border-radius: 10px;
-        margin-left: 10px;
-    }
-
-    #submit-input {
+    .chat-window input {
+        position: fixed;
+        top: 89%;
+        height: 70px;
+        width: 82%;
+        margin-left: 1%;
         font-size: 30px;
+        background: rgba(199, 221, 204, 0.48);
+        border: 0px;
+        border-radius: 19px;
+    }
+
+    .chat-window button {
+        position: fixed;
+        top: 89%;
         height: 55px;
-        width: 70px;
-        margin-left: -30px;
-        margin-bottom: 20px;
+        margin-left: 76%;
+        font-size: 30px;
+        background: rgba(255, 226, 106, 0.71);
+        border: 0px;
+        border-radius: 9px;
     }
 }
