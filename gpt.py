@@ -16,15 +16,30 @@ response = openai.Completion.create(
 
 def generate_text(query):
     openai.api_key = config.OPENAI_API_KEY
-    return openai.Completion.create(
-        model="text-davinci-003", prompt="hello can you introduce yourself", temperature=0, max_tokens=7)["choices"][0]["text"]
+
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="how is your day my friend\n",
+        temperature=0,
+        max_tokens=100,
+        top_p=1,
+        frequency_penalty=0.0,
+        presence_penalty=0.0,
+        stop=["\n"]
+    )
+
+    return response
 
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    query = request.json
+    query = request.json['query']
     print(query)
-    print("test")
-    print(generate_text("hello can you introduce yourself"))
+    result = generate_text(query)
+    print(result)
 
-    return jsonify({'response': generate_text(query)})
+    return jsonify({'response': result})
+
+
+# https://www.youtube.com/watch?v=G3PctszbrrE
+# https: // github.com/OthersideAI/chronology/tree/main/demo
