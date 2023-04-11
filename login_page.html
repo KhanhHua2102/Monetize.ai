@@ -2,24 +2,32 @@
 <html>
 <head>
 	<title>Login Page</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
 </head>
 <body>
 	<div class="container">
-		<img class="logo" src="logo.png" alt="Logo">
+		<img class="logo" src="assets/img/png-clipart-super-mario-icons-super-mario-thumbnail.png" alt="Logo">
+		<div class="member">Member Login</div>
 		<form>
-			<input type="text" placeholder="Username">
-			<input type="password" placeholder="Password">
-			<button type="submit">Log In</button>
-			<div class="social-btns">
-				<button class="facebook-btn"><img src="facebook.png" alt="Facebook logo">Sign in with Facebook</button>
-				<button class="google-btn"><img src="google.png" alt="Google logo">Sign in with Google</button>
-			</div>
+			<input type="text" placeholder="Enter Email Adress Here">
+			<input type="password" placeholder="Enter Your Password Here">
 			<div class="form-footer">
-				<span>Don't have an account?</span>
-	                <a href="signup_page.html">Sign up</a>
-				<span class="forgot-password">Forgot password?</span>
+				<div class="sign-Up"><a href="SignUp_Page.html"class="no-underline">Dont have an Account?</a></div>
+				<div class="forgot-password">Forgot password?</div>
 			</div>
+			<button type="submit">Login</button>
+		  
+			<div class="line-or-container">
+				<hr class="line">
+				<span class="or">OR</span>
+				<hr class="line">
+			  </div>
+
+			<div class="social-btns">
+				<button class="facebook-btn"><img src="./assets/img/2021_Facebook_icon.svg.png" alt="Facebook logo"><span>Continue with Facebook</span></button>
+				<button class="google-btn"><img src="assets/img/Google__G__Logo.svg.png" alt="Google logo"><span>Continue with Google</span></button>
+			</div>
+			
 		</form>
 	</div>
 </body>

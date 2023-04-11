@@ -15,22 +15,22 @@ body {
 }
 
 .member{
-	width: 260px;
+	width: 400px;
   height: 70px;
     left: 81px;
      top: 192px;
 	font-family: 'Arial';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 23px;
     line-height: 44px;
     text-align: center;
 	 /* add text alignment */
 }
 
 .logo {
-	width: 200px;
-
+	width: 100px;
+    margin-top: 10px;
 	margin-bottom: 10px;
 }
 
@@ -40,7 +40,7 @@ input[type="password"] {
 	box-sizing: border-box;
 	display: block;
 	width: 310px;
-height: 48px;
+height: 20px;
 left: calc(50% - 310px/2 + 0.5px);
 top: 371px;
 
@@ -53,7 +53,7 @@ border-radius: 10px;
 font-family: 'Arial';
 font-style: normal;
 
-font-size: 20px;
+font-size: 15px;
 line-height: 25px;
 }
 input::placeholder {
@@ -88,7 +88,7 @@ form input {
 	padding: 20px;
 	border: none;
 	border-bottom: 2px solid #eaeaea;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	width: 100%;
 }
 
@@ -171,7 +171,7 @@ text-transform: none;
     border: 2px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     
@@ -216,11 +216,12 @@ text-transform: none;
 
 
 .form-footer {
-    margin-top: 20px;
-	padding: 0 0 20px 0;
-    display: block;
-    justify-content: space-between;
-    align-items: center;
+    margin-top: 10px;
+	padding: 0 0 10px 0;
+    display: flex;
+    display: flex;
+  justify-content: center;
+  align-items: center;
     font-family: 'Arial';
     font-style: normal;
     font-weight: 700;
@@ -232,19 +233,13 @@ text-transform: none;
 
 .form-footer .sign-Up {
     display: inline-block;
+    color: #0e0e0e;
     
 }
+
 .no-underline{
     text-decoration: none;
-	color: #1276EC;
-}
-
-.form-footer .forgot-password {
-    display: inline-block;
-	font-size: 13px;
     color: #1276EC;
-    margin-left: 45px;
-
 }
 
 
