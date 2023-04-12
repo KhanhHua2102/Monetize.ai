@@ -4,63 +4,101 @@
 }
 
 body {
-    /* background-color: lightblue; */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Inter";
+    src: url("assets/Inter.ttf") format("truetype");
+    font-weight: bold;
+    padding-bottom: 500px;
 }
 
-
-/* nav bar */
-
-.navbar {
-    background-color: aliceblue;
-    width: 100%;
-    position: fixed;
-    height: 8rem;
+.pageheader {
+    color: rgb(101, 187, 114, 60%);
+    text-align: center;
+    margin-top: 25px;
+    font-size: 40px;
 }
 
-.container1 {
+.underheader {
     display: flex;
 }
 
-.container1 i {
-    font-size: 30px;
+.contents {
+    width: 80%;
+    margin: 5% 10% 0 10%;
 }
 
-.navbar ul {
-    list-style-type: none;
+.searchbar {
+    text-align: center;
 }
 
-.container2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 80px;
-    row-gap: 25px;
-    flex-wrap: wrap;
-}
-
-.container2 li a {
-    border-style: outset;
-    border-width: 2px;
-    border-color: beige;
+.searchbar input {
+    background-color: rgb(202, 222, 205, 100%);
+    width: 50%;
     padding: 10px;
+    border: none;
+    border-radius: 10px;
 }
 
-.container2 li a {
-    text-decoration: none;
-    color: dimgray;
+.container {
+    margin-top: 40px;
 }
 
-.container2 li a:link {
-    color: grey;
+.card-body {
+    margin: 20px;
 }
 
-.container2 li a:hover {
-    background-color: grey;
-    /* color: aliceblue; */
-    color: antiquewhite;
-    box-shadow: 2px 2px grey;
+.card {
+    margin: 20px;
 }
 
+.border {
+    border-style: solid;
+    border-radius: 20px;
+    border-color: aliceblue;
+}
 
-/* nav bar  */
+.card-body {
+    display: flex;
+    height: 200px;
+    overflow: hidden;
+    column-gap: 10%;
+    background-color: rgb(202, 222, 205, 100%);
+}
+
+.card-body img {
+    height: 80%;
+    width: 20px;
+}
+
+.card-body div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(111, 205, 125, 50%);
+    border-radius: 30px;
+    box-shadow: 1px 1px;
+    overflow: hidden;
+}
+
+.card-body div p {
+    margin-left: 15px;
+    margin-top: 4px;
+}
+
+.preview p {
+    font-size: 25px;
+}
+
+.time {
+    font-size: 20px;
+}
+
+.paging {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chatnumber button {
+    background-color: rgb(111, 205, 125, 100%);
+    font-size: larger;
+}

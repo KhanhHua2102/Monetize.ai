@@ -3,84 +3,112 @@
     padding: 0;
 }
 
-
-/* nav bar  */
-
 body {
-    /* background-color: lightblue; */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Inter";
+    src: url("assets/Inter.ttf") format("truetype");
+    font-weight: bold;
 }
 
-.navbar {
-    background-color: aliceblue;
-    width: 100%;
-    position: fixed;
-    height: 8rem;
+.allparts {
+    margin-bottom: 200px;
 }
 
-.container1 {
-    display: flex;
-}
-
-.container1 i {
-    font-size: 30px;
-}
-
-.navbar ul {
-    list-style-type: none;
-}
-
-.container2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 80px;
-    row-gap: 25px;
-    flex-wrap: wrap;
-}
-
-.container2 li a {
-    border-style: outset;
-    border-width: 2px;
-    border-color: beige;
-    padding: 10px;
-}
-
-.container2 li a {
-    text-decoration: none;
-    color: dimgray;
-}
-
-.container2 li a:link {
-    color: grey;
-}
-
-.container2 li a:hover {
-    background-color: grey;
-    /* color: aliceblue; */
-    color: antiquewhite;
-    box-shadow: 2px 2px grey;
-}
-
-
-/* nav bar  */
-
-.content {
-    padding-top: 8rem;
-}
-
-.introduction {
-    text-align: center;
-}
-
-.photo {
-    justify-content: center;
-    display: flex;
-    padding-top: 50px;
+.contents {
+    width: 80%;
+    margin: 5% 10% 0 10%;
 }
 
 .photo img {
-    left: 50%;
-    width: 50%;
-    align-items: center;
+    width: 100%;
 }
+
+.underheader {
+    display: flex;
+}
+
+.pageheader {
+    color: rgb(24, 216, 223);
+    text-align: center;
+    margin-top: 25px;
+    font-size: 40px;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.images img {
+    width: 20%;
+    padding: 10px;
+    /* margin: 5px; */
+}
+
+.texts {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 40px;
+}
+
+.intro {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    font-weight: bold;
+}
+
+.instruction {
+    font-weight: lighter;
+    font-size: 40px;
+}
+
+.collapsible {
+    background-color: rgb(116, 206, 206);
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    margin: 5px;
+    border-style: solid;
+    border-color: rgb(116, 206, 206);
+    border-radius: 20px;
+    padding-top: 10px;
+}
+
+.collapsible:hover {
+    background-color: rgb(21, 219, 219);
+    box-shadow: 1px 1px;
+}
+
+.section {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.section p {
+    margin: 10px;
+}
+
+
+/* menu section after collaspe */
+
+.teamImages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.teamImages img {
+    width: 200px;
+    margin: 25px 15px 15px 15px;
+}
+
+.description {
+    margin-top: 15px;
+    padding: 20px;
+}
+
+
+/* menu section after collaspe ends */

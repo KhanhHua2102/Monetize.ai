@@ -6,29 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History</title>
-    <link rel="stylesheet" href="./History.css">
+    <link rel="stylesheet" href="./assets/css/History.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 </head>
 
 <body>
-    <!-- nav bar starts -->
-    <header class="navbar">
-        <div class="container1">
-            <!-- <img src="./logo-placeholder-image.png" alt="" class="logo"> -->
-            <i class='bx bx-money-withdraw'></i>
-            <div class="Name"> MoneyAI</div>
-        </div>
+    <div class="allparts">
+        <h2 class="pageheader">Chat History</h2>
 
-        <ul class="container2">
-            <li><a href="https://www.youtube.com">Profile</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">HelpCenter</a></li>
-            <li><a href="#">Chat</a></li>
-            <li><a href="#">Setting</a></li>
-        </ul>
-    </header>
-    <!-- nav bar ends -->
+        <div class="underheader">
+            <div class="side-bar">
+                <img id="menu-icon" src="assets/img/menu.svg"></img>
+                <img id="logo" class="" src="assets/img/logo.svg" />
+                <table class="menu">
+                    <tr>
+                        <td><button type="button" class="btn">Home</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn">History</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn">Settings</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn">About Us</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn">Log Out</button></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="contents">
+                <form class="searchbar">
+                    <input type="text" placeholder="Search for your history here">
+                </form>
+
+                <div class="container">
+
+                    <div class="card-deck">
+                        <div class="card border">
+                            <div class="card-body">
+                                <p class="time">Last edited: 09/04/2023 15:00
+                                </p>
+                                <img src="assets/img/line.png" alt="">
+                                <div class="preview">
+                                    <p class="preview-title">How to buy crypto</p>
+                                    <p class="preview-content">Some of the stuffs from the chat..</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border">
+                            <div class="card-body">
+                                <p class="time">Last edited: 09/04/2023 22:00
+                                </p>
+                                <img src="assets/img/line.png" alt="">
+                                <div class="preview">
+                                    <p class="preview-title">How to get a girlfriend</p>
+                                    <p class="preview-content">Some of the stuffs from the chat..</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="paging">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+
+                    <div class="chatnumber">
+                        <button class="btn btn-secondary dropdown-toggle" type="button">
+                            Items per Page
+                    </button>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
