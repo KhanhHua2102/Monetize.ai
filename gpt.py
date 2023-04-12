@@ -9,9 +9,6 @@ openai.api_key = config.OPENAI_API_KEY
 app = Flask(__name__)
 CORS(app)
 
-# how can i create virtual enrionment in flask app?
-
-
 @app.route('/generate', methods=['POST'])
 def generate():
     print("received request\n-")
@@ -40,8 +37,3 @@ def generate():
         return jsonify({'response': result})
     else:
         return jsonify({'error': 'Invalid request'})
-
-
-
-# https://www.youtube.com/watch?v=G3PctszbrrE
-# https: // github.com/OthersideAI/chronology/tree/main/demo

@@ -37,9 +37,14 @@
     border-radius: 12px;
 }
 
-.text {
-    font-size: 21px;
-    margin: 30px;
+.messages {
+    visibility: hidden;
+    width: fit-content;
+    font-size: 15px;
+    margin: 15px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
 }
 
 #conversation-window {
@@ -63,6 +68,7 @@
     height: 50px;
     width: 72%;
     margin-left: 1%;
+    padding: 10px;
     background: rgba(199, 221, 204, 0.48);
     border: 0px;
     border-radius: 19px;
@@ -164,7 +170,7 @@
         border-radius: 12px;
     }
 
-    .text {
+    .messages {
         font-size: 30px;
         margin: 30px;
     }
