@@ -11,8 +11,6 @@ CORS(app)
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    print("received request\n-")
-
     def openai_completion(query):
         print("Starting GPT-3\n")
 
@@ -23,6 +21,7 @@ def generate():
         # completion = openai.Completion.create(model="ada", prompt="Hello world")
         # response = completion.choices[0].text
 
+        print("GPT-3 response: " + response)
         return response
 
     if request.is_json:
@@ -32,7 +31,6 @@ def generate():
         print(prompt)
 
         result = openai_completion(prompt)
-        print(result)
 
         return jsonify({'response': result})
     else:

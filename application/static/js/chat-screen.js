@@ -4,28 +4,25 @@ $(document).ready(function () {
         $('.menu button').toggle();
     });
 
-    // Send message
-    // $('#submit-button').click(function (event) {
-    //     event.preventDefault();
-    //     console.log("button clicked");
-    //     let userMessage = $('#chat-input').val();
-    //     console.log(userMessage);
-    //     if (userMessage != '') {
-    //         $("section").append(
-	// 						"<div class=messages>" + userMessage + "</div>");
-    //         $('.messages').css('visibility', 'visible');
-    //     }
-    // });
-
     // Send message and receive response from gpt
     $("#submit-button").click(function (event) {
         event.preventDefault();
         let input = $("#chat-input").val();
         if (input != '') {
-            $("section").append("<div class=messages>" + input + "</div>");
-            $('.messages').css('visibility', 'visible');
+            $("section").append("<div class='messages user-messages'>" + input + "</div>");
+            $(".user-messages").css("visibility", "visible");
         }
         console.log(input);
+
+        // Loading animation
+        var animation = `
+            <div class="loading-messages">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+            `;
+        $('section').append(animation);
 
         // Post request to gpt
         $.post({
@@ -36,8 +33,9 @@ $(document).ready(function () {
         }).done(function (data) {
             console.log("finished query");
             console.log(data);
-            $("section").append("<div class=messages>" + data.response + "</div>");
-            $(".messages").css("visibility", "visible");
+            $(".loading-messages").remove();
+            $("section").append("<div class='messages bot-messages'>" + data.response + "</div>");
+            $(".bot-messages").css("visibility", "visible");
         });
     });
 });
