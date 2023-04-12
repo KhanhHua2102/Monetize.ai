@@ -62,6 +62,7 @@
 
 .bot-messages {
     visibility: hidden;
+    align-self: flex-start;
     border: 2px solid #75C9B7;
     clear: both;
 }
