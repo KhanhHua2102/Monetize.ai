@@ -20,6 +20,13 @@ $(document).ready(function () {
 					sendQuery();
 				}
             });
+
+	$("#portfolio")
+			.click(function (event) {
+                // event.preventDefault();
+                console.log("portfolio page clicked");
+				portfolio();
+			});
 });
 
 function sendQuery() {
@@ -65,5 +72,10 @@ function postRequest(input) {
 			"<div class='messages bot-messages'>" + data.response + "</div>"
 		);
 		$(".bot-messages").css("visibility", "visible");
+	});
+}
+
+function portfolio() {
+	$.get("/portfolio", function (response) {
 	});
 }

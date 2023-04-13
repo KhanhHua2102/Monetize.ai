@@ -6,3 +6,7 @@ from flask import render_template
 @app.route("/home")
 def index():
     return render_template('chat-screen.html')
+
+@app.route("/portfolio")
+def porfolio():
+    return render_template('portfolio.html')

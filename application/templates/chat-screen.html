@@ -12,23 +12,9 @@
                 class=""
                 src="{{ url_for('static', filename='img/logo.svg') }}"
             />
-            <table class="menu">
-                <tr>
-                    <td><button type="button" class="btn">Home</button></td>
-                </tr>
-                <tr>
-                    <td><button type="button" class="btn">History</button></td>
-                </tr>
-                <tr>
-                    <td><button type="button" class="btn">Settings</button></td>
-                </tr>
-                <tr>
-                    <td><button type="button" class="btn">About Us</button></td>
-                </tr>
-                <tr>
-                    <td><button type="button" class="btn">Log Out</button></td>
-                </tr>
-            </table>
+            
+            {% include "includes/menu.html" %}
+
         </div>
         <div id="conversation-window" class="">
             <section class="messages-box"></section>
