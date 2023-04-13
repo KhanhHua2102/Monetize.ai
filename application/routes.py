@@ -8,5 +8,21 @@ def index():
     return render_template('chat-screen.html')
 
 @app.route("/portfolio")
-def porfolio():
+def portfolio():
     return render_template('portfolio.html')
+
+# @app.route("/history")
+# def history():
+#     return render_template('history.html')
+
+# @app.route("/settings")
+# def settings():
+#     return render_template('settings.html')
+
+# @app.route("/aboutUs")
+# def aboutUs():
+#     return render_template('aboutUs.html')
+
+# @app.route("/logOut")
+# def logOut():
+#     return render_template('logOut.html')
