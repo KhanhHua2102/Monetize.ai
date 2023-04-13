@@ -53,7 +53,7 @@ function sendQuery() {
 function postRequest(input) {
 	console.log("posting request");
 	$.post({
-		url: "http://127.0.0.1:8080/generate",
+		url: "/generate",
 		data: JSON.stringify({ prompt: input }),
 		contentType: "application/json",
 		dataType: "json",

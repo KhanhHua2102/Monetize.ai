@@ -3,6 +3,6 @@ from flask import render_template
 
 @app.route("/")
 @app.route("/index")
+@app.route("/home")
 def index():
-    return "<h1>hello world</h1>"
-
+    return render_template('chat-screen.html')
