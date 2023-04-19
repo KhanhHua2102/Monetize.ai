@@ -1,0 +1,2 @@
+FLASK_APP=gpt.py 
+FLASK_DEBUG=True
