@@ -7,9 +7,10 @@
     color: #ff0505;
 }
 
- #portfolio-chart {
-    margin-left: 30px;
- }
+#portfolio-chart {
+    width: 100%;
+    margin-left: 40px;
+}
 
 
 /* tablet screen */
@@ -34,7 +35,7 @@
 }
 
 /* phone screen */
-@media only screen and (min-device-width: 375px) and (max-device-width: 500px) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
     body {
         font-size: 21px;
     }
@@ -49,5 +50,6 @@
     
     #portfolio-chart {
         margin-left: 0px;
+        margin-top: 150px;
     }
 }
