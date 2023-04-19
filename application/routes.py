@@ -9,13 +9,13 @@ def index():
     return render_template('chat-screen.html')
 
 
-@app.route('/aboutus')
-def aboutus():
+@app.route('/aboutUs')
+def aboutUs():
     return render_template('AboutUs.html')
 
 
-@app.route('/helpcenter')
-def helpcenter():
+@app.route('/helpCenter')
+def helpCenter():
     return render_template('HelpCenter.html')
 
 
