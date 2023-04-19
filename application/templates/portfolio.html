@@ -59,11 +59,12 @@
             </div>
             <div class="download-csv col-12 text-center my-5">
                 <h4 id="export-text" class="text-info my-sm-5 my-lg-4">Download portfolio as CSV</h4>
-                <button class="btn btn-info" onclick="exportCSV()">Export</button>
+                <button class="btn btn-info">Export</button>
             </div>
         </div>
 {% endblock %}
 
 {% block script %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
 {% endblock %}
