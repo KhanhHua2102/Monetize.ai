@@ -6,13 +6,16 @@
         <td><button type="button" class="btn"><a href="{{ url_for('portfolio') }}" style="text-decoration: none; color: inherit;">Portfolio</a></button></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn">History</button></td>
+        <td><button type="button" class="btn"><a href="{{ url_for('history') }}" style="text-decoration: none; color: inherit;">History</a></button></td>
     </tr>
     <tr>
         <td><button type="button" class="btn">Settings</button></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn">About Us</button></td>
+        <td><button type="button" class="btn"><a href="{{url_for('aboutus')}}" style="text-decoration: none; color: inherit;">About Us</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{url_for('helpcenter')}}" style="text-decoration: none; color: inherit;">Help</a></button></td>
     </tr>
     <tr>
         <td><button type="button" class="btn">Log Out</button></td>
