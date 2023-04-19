@@ -1,3 +1,8 @@
+{% if not index %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" />
+{% endif %}
+
+<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
 <table class="menu">
     <tr>
         <td><button type="button" class="btn"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Home</a></button></td>
@@ -18,3 +23,6 @@
         <td><button type="button" class="btn">Log Out</button></td>
     </tr>
 </table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
