@@ -127,6 +127,22 @@ body {
     margin-top: 4px;
 }
 
+.pagination .page-item.active .page-link {
+    background-color: rgb(202, 222, 205, 100%);
+    color: black;
+    border-color: white;
+}
+
+.pagination .page-item:hover .page-link {
+    background-color: rgb(111, 205, 125, 50%);
+    color: grey;
+    border-color: rgb(111, 205, 125, 50%);
+}
+
+.pagination .page-item .page-link {
+    color: black;
+}
+
 .preview p {
     font-size: 25px;
 }

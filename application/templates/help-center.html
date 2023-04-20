@@ -5,7 +5,6 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/help-center.css') }}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}" /> -->
 <!-- extra css -->
 {% endblock %}
 
@@ -25,7 +24,7 @@
             <div class="section1">How to log in</div>
 
             <div class="instruct1">
-                <img src="../static/img/Image_placeholder.png" alt="" class="image">
+                <img src="{{ url_for('static', filename='img/Image_placeholder.png') }}" alt="" class="image">
                 <p>1.Lorem ipsum dolor sit amet consectetur adipisicing elit.Cu lpa neque debitis impedit sunt delectus ab voluptatibus, eos cupiditat e magni beatae, odio voluptas minima perspiciatis fuga ipsam obcaecati cum itaque odit. Lorem ipsum dolor
                     sit amet consectetur adipisicing elit. Tempore exercitationem itaque, minima ad, veritatis blanditiis quibusdam distinctio illo quidem, nihil illum! Eos recusandae dignissimos placeat maiores assumenda nostrum est Lorem, ipsum dolor
                     sit amet consectetur adipisicing elit. Voluptatem quae libero porro maiores laboriosam? Id, deleniti fugit? Consequuntur pariatur accusamus odit, delectus quaerat quasi consequatur ipsum. Soluta exercitationem nesciunt nihil.</p>
