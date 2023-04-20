@@ -1,97 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- including the general layout for the page -->
+{% extends 'layout.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="../static/css/AboutUs.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-</head>
+<!-- extra css file for this page -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about-us.css') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+<!-- extra css -->
+{% endblock %}
 
-<body>
+<!-- content of the page here -->
+{% block content %}
+<div class="allparts">
 
-    <div class="allparts">
-
-        <h2 class="pageheader">About Us</h2>
-        <div class="underheader">
-            <div class="side-bar">
-                <img id="menu-icon" src="../static/img/menu.svg"></img>
-                <img id="logo" class="" src="../static/img/logo.svg" />
-                <table class="menu">
-                    <tr>
-                        <td><button type="button" class="btn">Home</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="btn">History</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="btn">Settings</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="btn">About Us</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="btn">Log Out</button></td>
-                    </tr>
-                </table>
+    <h2 class="pageheader">About Us</h2>
+    <div class="underheader">
+        <div class="side-bar">
+            <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
+            <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
+            <!-- implementation for the side bar  -->
+            {% include "includes/menu.html" %}
+        </div>
+        <div class="contents">
+            <div class="images">
+                <img src="{{ url_for('static',filename='img/project.png')}}" alt="">
+                <img src="{{ url_for('static',filename='img/innovation.png')}}" alt="">
+                <img src="{{ url_for('static',filename='img/profits.png')}}" alt="">
+                <img src="{{ url_for('static',filename='img/third-party.png')}}" alt="">
             </div>
-            <div class="contents">
-                <div class="images">
-                    <img src="../static/img/project.png" alt="">
-                    <img src="../static/img/innovation.png" alt="">
-                    <img src="../static/img/profits.png" alt="">
-                    <img src="../static/img/third-party.png" alt="">
+
+            <div class="texts">
+                <p class="intro">
+                    Some introductory materials introducing our project briefly. More contents will be given by using “collapse” dividing multiple sections of our page including the more descriptive explanation of what our project is and what our target is in completing
+                    this project, also the photos and descriptions of ourselves, etc.
+                </p>
+
+                <p class="instruction">
+                    Click in each section to see more about the topics
+                </p>
+            </div>
+
+            <div class="menus">
+                <button class="collapsible">
+                    <p>About Our Project</p>
+                </button>
+                <div class="section">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus tempore repellat numquam reiciendis neque quo debitis accusantium doloremque magnam praesentium, possimus exercitationem rerum in necessitatibus accusamus et voluptatem
+                        quos libero.</p>
                 </div>
 
-                <div class="texts">
-                    <p class="intro">
-                        Some introductory materials introducing our project briefly. More contents will be given by using “collapse” dividing multiple sections of our page including the more descriptive explanation of what our project is and what our target is in completing
-                        this project, also the photos and descriptions of ourselves, etc.
-                    </p>
-
-                    <p class="instruction">
-                        Click in each section to see more about the topics
-                    </p>
+                <button class="collapsible">
+                    <p>The aim and target of the Project</p>
+                </button>
+                <div class="section">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita necessitatibus repellendus similique sapiente iure velit numquam rem repellat dolor, dolore nemo enim dolorum voluptate, officia cupiditate saepe unde autem!</p>
                 </div>
 
-                <div class="menus">
-                    <button class="collapsible">
-                        <p>About Our Project</p>
-                    </button>
-                    <div class="section">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus tempore repellat numquam reiciendis neque quo debitis accusantium doloremque magnam praesentium, possimus exercitationem rerum in necessitatibus accusamus et
-                            voluptatem quos libero.</p>
+                <button class="collapsible">
+                    <p>About Our Team</p>
+                </button>
+                <div class="section">
+                    <div class="teamImages">
+                        <!-- {{ url_for('static',filename='img/')}} -->
+                        <img src="{{ url_for('static',filename='img/image 5.svg')}}" alt="">
+                        <img src="{{ url_for('static',filename='img/image 6.svg')}}" alt="">
+                        <img src="{{ url_for('static',filename='img/image 7.svg')}}" alt="">
                     </div>
-
-                    <button class="collapsible">
-                        <p>The aim and target of the Project</p>
-                    </button>
-                    <div class="section">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita necessitatibus repellendus similique sapiente iure velit numquam rem repellat dolor, dolore nemo enim dolorum voluptate, officia cupiditate saepe unde autem!</p>
-                    </div>
-
-                    <button class="collapsible">
-                        <p>About Our Team</p>
-                    </button>
-                    <div class="section">
-                        <div class="teamImages">
-                            <img src="../static/img/image 5.svg" alt="">
-                            <img src="../static/img/image 6.svg" alt="">
-                            <img src="../static/img/image 7.svg" alt="">
-                        </div>
-                        <p class="description">Some more descriptions about our team</p>
-                    </div>
-
+                    <p class="description">Some more descriptions about our team</p>
                 </div>
 
             </div>
+
         </div>
     </div>
+</div>
+{% endblock %}
 
-    <script src="../static/js/AboutUs.js"></script>
-</body>
+<!-- adding javascript for the side bar -->
+{% block script %}
+<script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
+<script src="{{ url_for('static', filename='js/aboutUs.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-</html>
+{% endblock %}

@@ -1,14 +1,14 @@
-var collaspe = document.getElementsByClassName("collapsible");
-var i;
+$(document).ready(function() {
+    // Your jQuery code goes here
+    $(".collapsible").click(function() {
+        console.log("Clicked on collapsible element");
 
-for (i = 0; i < collaspe.length; i++) {
-    collaspe[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var section = this.nextElementSibling;
-        if (section.style.maxHeight) {
-            section.style.maxHeight = null;
+        $(this).toggleClass("active");
+        var section = $(this).next();
+        if (section.css("max-height") !== "0px") {
+            section.css("max-height", "0px");
         } else {
-            section.style.maxHeight = section.scrollHeight + "px";
+            section.css("max-height", section.prop("scrollHeight") + "px");
         }
     });
-}
+});

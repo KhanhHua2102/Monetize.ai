@@ -11,17 +11,17 @@ def index():
 
 @app.route('/aboutUs')
 def aboutUs():
-    return render_template('AboutUs.html')
+    return render_template('about-us.html')
 
 
 @app.route('/helpCenter')
 def helpCenter():
-    return render_template('HelpCenter.html')
+    return render_template('help-center.html')
 
 
 @app.route('/history')
 def history():
-    return render_template('History.html')
+    return render_template('history.html')
 
 
 @app.route("/portfolio")
