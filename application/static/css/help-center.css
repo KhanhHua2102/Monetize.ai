@@ -26,7 +26,6 @@ body {
 }
 
 #logo {
-    /* position: fixed; */
     float: left;
     top: 5%;
     width: 108px;
@@ -36,7 +35,6 @@ body {
 }
 
 .menu {
-    /* position: fixed; */
     float: left;
     top: 25%;
     margin-left: 6%;
