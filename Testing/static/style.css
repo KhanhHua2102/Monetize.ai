@@ -1,0 +1,84 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+header a {
+  color: #333;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+/* Add styles to the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+thead {
+  background-color: #f9f9f9;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 16px;
+}
+
+td input {
+  font-size: 16px;
+}
+
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(8) {
+  text-align: right;
+}
+
+td:nth-child(5)::before,
+td:nth-child(6)::before {
+  content: "$";
+}
+
+td:nth-child(8)::before {
+  content: "$";
+  font-weight: bold;
+}
+
+/* Add styles to the buttons */
+button {
+  background-color: #008cba;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005b80;
+}
+
+#total-profit {
+  font-weight: bold;
+  font-size: 24px;
+}

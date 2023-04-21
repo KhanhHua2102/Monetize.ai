@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block stylesheet %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-screen.css') }}" />
+{% endblock %}
+
+{% block content %}
+        <div class="side-bar">
+            <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
+            <img
+                id="logo"
+                class=""
+                src="{{ url_for('static', filename='img/logo.svg') }}"
+            />
+            
+            {% include "includes/menu.html" %}
+
+        </div>
+        <div id="conversation-window" class="">
+            <section class="messages-box"></section>
+            <div class="chat-window">
+                <input id="chat-input"/>
+                <button
+                    id="submit-button"
+                    type="button">GO
+                </button>
+            </div>
+        </div>
+{% endblock %}
+
+{% block script %}
+        <script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
+{% endblock %}

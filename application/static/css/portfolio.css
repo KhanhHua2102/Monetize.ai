@@ -1,0 +1,55 @@
+/* default screen */
+#title {
+    color: #ABD699;
+}
+
+#risk-tolerance {
+    color: #ff0505;
+}
+
+#portfolio-chart {
+    width: 100%;
+    margin-left: 40px;
+}
+
+
+/* tablet screen */
+@media only screen and (min-device-width: 740px) and (max-device-width: 1024px) and (orientation: portrait) {
+    body {
+            font-size: 21px;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    button {
+        margin-top: -70px;
+    }
+
+    #portfolio-chart {
+    }
+
+    #export-text {
+    }
+}
+
+/* phone screen */
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
+    body {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    .download-csv h4, .download-csv button {
+        font-size: 35px;
+    }
+    
+    #portfolio-chart {
+        margin-left: 0px;
+        margin-top: 150px;
+    }
+}

@@ -1,16 +1,17 @@
-from flask import Flask, render_template
-import pandas as pd
-import matplotlib.pyplot as plt
-from datetime import datetime
-plt.style.use('seaborn')    
-
-import yfinance as yf
-
-appl = yf.Ticker("AAPL")
-
+from application import app
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 import yfinance as yf
 
 
-date = "2022-04-10"
-data = yf.download("AAPL", start = date, end="2023-04-12")
-print(appl.info['longName'])
+CORS(app)
+
+
+@app.route('/get_stock_data1111', methods=['POST'])
+def get_stock_data():
+    prompt = request.get_json()['prompt']
+    ticker = prompt # Convert ticker to uppercase for consistency
+    stock_info = yf.Ticker(ticker).info
+    company_name = stock_info['longName']
+    response = {'response': company_name}
+    return jsonify(response)
