@@ -1,0 +1,41 @@
+<!-- including the general layout for the page -->
+{% extends 'layout.html' %}
+
+<!-- extra css file for this page -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<!-- extra css -->
+{% endblock %}
+
+<!-- content of the page here -->
+{% block content %}
+<div class="allparts">
+    <h2 class="pageheader">Help Center</h2>
+    <div class="underheader">
+
+        <div class="side-bar">
+            <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
+            <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
+            <!-- inserts shared code for the side bar -->
+            {% include "includes/menu.html" %}
+        </div>
+        <div class="contents">
+            <div class="section1">How to log in</div>
+
+            <div class="instruct1">
+                <img src="{{ url_for('static', filename='img/Image_placeholder.png') }}" alt="" class="image">
+                <p>1.Lorem ipsum dolor sit amet consectetur adipisicing elit.Cu lpa neque debitis impedit sunt delectus ab voluptatibus, eos cupiditat e magni beatae, odio voluptas minima perspiciatis fuga ipsam obcaecati cum itaque odit. Lorem ipsum dolor
+                    sit amet consectetur adipisicing elit. Tempore exercitationem itaque, minima ad, veritatis blanditiis quibusdam distinctio illo quidem, nihil illum! Eos recusandae dignissimos placeat maiores assumenda nostrum est Lorem, ipsum dolor
+                    sit amet consectetur adipisicing elit. Voluptatem quae libero porro maiores laboriosam? Id, deleniti fugit? Consequuntur pariatur accusamus odit, delectus quaerat quasi consequatur ipsum. Soluta exercitationem nesciunt nihil.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- adding javascript for the side bar -->
+{% block script %}
+<script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
+{% endblock %}
