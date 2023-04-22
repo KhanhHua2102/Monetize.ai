@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block stylesheet %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/Signup.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}" />
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
             <input type="password" placeholder="Enter Password">
             <input type="password" placeholder="Re-enter Password">
             <div class="form-footer">
-                <div class="sign-Up">Already have an account? <a href="login_page.html" class="no-underline">Log In</a></div>
+                <div class="sign-Up">Already have an account? <a href="login-page.html" class="no-underline">Log In</a></div>
                 
             </div>
             <button type="submit">Sign Up</button>
@@ -36,5 +36,5 @@
     {% endblock %}
 
     {% block script %}
-            <script src="{{ url_for('static', filename='js/signUp.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/sign-up.js') }}"></script>
     {% endblock %}
