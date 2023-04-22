@@ -1,5 +1,6 @@
-{% if not index %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" /> {% endif %}
+{% if menuCss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" /> 
+{% endif %}
 
 <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
 <table class="menu">
@@ -13,16 +14,16 @@
         <td><button type="button" class="btn"><a href="{{ url_for('history') }}" style="text-decoration: none; color: inherit;">History</a></button></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn">Settings</button></td>
+        <td><button type="button" class="btn"><a href="{{ url_for('settings') }}" style="text-decoration: none; color: inherit;">Settings</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('help') }}" style="text-decoration: none; color: inherit;">Help</a></button></td>
     </tr>
     <tr>
         <td><button type="button" class="btn"><a href="{{ url_for('aboutUs') }}" style="text-decoration: none; color: inherit;">About Us</a></button></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('helpCenter') }}" style="text-decoration: none; color: inherit;">Help</a></button></td>
-    </tr>
-    <tr>
-        <td><button type="button" class="btn">Log Out</button></td>
+        <td><button type="button" class="btn"><a href="{{ url_for('logOut') }}" style="text-decoration: none; color: inherit;">History</a></button></td>
     </tr>
 </table>
 

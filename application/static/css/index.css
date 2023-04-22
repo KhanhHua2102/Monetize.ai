@@ -38,6 +38,7 @@
 }
 
 .messages-box {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -99,6 +100,7 @@
 }
 
 #conversation-window {
+    overflow-y: auto;
     position: relative;
     left: 20%;
     width: 75%;

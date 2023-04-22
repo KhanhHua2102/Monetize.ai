@@ -9,14 +9,9 @@ def index():
     return render_template('index.html', index=True)
 
 
-@app.route('/aboutUs')
-def aboutUs():
-    return render_template('about-us.html')
-
-
-@app.route('/helpCenter')
-def helpCenter():
-    return render_template('help-center.html')
+@app.route("/portfolio")
+def portfolio():
+    return render_template('portfolio.html', menuCss=True)
 
 
 @app.route('/history')
@@ -24,15 +19,21 @@ def history():
     return render_template('history.html')
 
 
-@app.route("/portfolio")
-def portfolio():
-    return render_template('portfolio.html')
+@app.route("/settings")
+def settings():
+    return render_template('settings.html')
 
 
-# @app.route("/settings")
-# def settings():
-#     return render_template('settings.html')
+@app.route('/help')
+def help():
+    return render_template('help.html')
 
-# @app.route("/logOut")
-# def logOut():
-#     return render_template('logOut.html')
+
+@app.route('/about-us')
+def aboutUs():
+    return render_template('about-us.html')
+
+
+@app.route("/logOut")
+def logOut():
+    return render_template('login.html')

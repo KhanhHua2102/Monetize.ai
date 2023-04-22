@@ -62,7 +62,7 @@ function postRequest(input) {
 	console.log("posting request");
 	$.post({
 		url: "/generate",
-		data: JSON.stringify({ prompt: input }),
+		data: JSON.stringify({ prompt: input}),
 		contentType: "application/json",
 		dataType: "json",
 	}).done(function (data) {
