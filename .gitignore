@@ -1,5 +1,7 @@
 *.pyc
 **./.pyc
+**/*.pyc
 env/
 __pycache__/
 application/__pycache__/
+
