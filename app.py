@@ -7,10 +7,10 @@ import yfinance as yf
 from datetime import datetime
 from dateutil import parser
 import re
+
 openai.api_key = config.OPENAI_API_KEY
 
 CORS(app)
-
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -47,4 +47,21 @@ def generate():
 
     return jsonify({'response': response})
 
-    
+
+# @app.route('/generate', methods=['POST'])
+# def generate():
+#     print("prompt received")
+#     data = request.get_json()
+#     prompt = data['prompt']
+#     print(prompt)
+
+#     def openai_completion(query):
+#         print("Starting GPT-3\n")
+#         completion = openai.ChatCompletion.create(
+#             model="gpt-3.5-turbo", messages=[{"role": "user", "content": query}])
+#         response = completion.choices[0].message.content
+#         print("GPT-3 response: " + response)
+#         return response
+
+#     result = openai_completion(prompt)
+#     return jsonify({'response': result})
