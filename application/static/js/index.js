@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // Toggle menu
-    $('#menu-icon').click(function () {
+	$('#menu-icon').click(function () {
+		console.log('menu button clicked');
         $('.menu button').toggle();
     });
 

@@ -37,7 +37,7 @@
     border-radius: 12px;
 }
 
-.messages-box { 
+.messages-box {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
