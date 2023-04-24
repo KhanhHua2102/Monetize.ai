@@ -1,5 +1,10 @@
-{% extends 'layout.html' %} {% block stylesheet %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}" /> {% endblock %} {% block content %}
+{% extends 'layout.html' %} 
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}" /> 
+{% endblock %} 
+
+{% block content %}
 <!-- create table for managing stock assets -->
 <div class="container">
     <div class="row">
@@ -54,7 +59,9 @@
         <button class="btn btn-info">Export</button>
     </div>
 </div>
-{% endblock %} {% block script %}
+{% endblock %} 
+
+{% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
 {% endblock %}

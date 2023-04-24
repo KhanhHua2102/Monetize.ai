@@ -1,4 +1,4 @@
-from application import app,models
+from application import app
 from flask import render_template
 
 @app.route("/")
@@ -6,6 +6,10 @@ from flask import render_template
 @app.route("/home")
 def index():
     return render_template('index.html')
+
+@app.route('/portfolio')
+def portfolio():
+    return render_template('portfolio.html')
 
 @app.route('/history')
 def history():
