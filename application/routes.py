@@ -19,9 +19,9 @@ def history():
 def settings():
     return render_template('settings.html', menuCss=True)
 
-@app.route('/helpCenter')
-def helpCenter():
-    return render_template('help-center.html')
+@app.route('/help')
+def help():
+    return render_template('help.html')
 
 @app.route('/about-us')
 def aboutUs():
