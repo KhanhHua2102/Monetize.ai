@@ -1,5 +1,6 @@
-from application import app
+from application import app,models
 from flask import render_template
+# from app import portfolio1
 
 
 @app.route("/")
@@ -24,10 +25,12 @@ def history():
     return render_template('history.html')
 
 
-@app.route("/portfolio")
+@app.route("/portfolio",methods = ['GET'])
 def portfolio():
-    return render_template('portfolio.html')
+    myportfolio = models.portfolio1.query.order_by(models.portfolio1.date_added).all()
+    return render_template('portfolio.html',myportfolio=myportfolio)
 
+# myportfolio = portfolio1.query.order_by(portfolio1.date_added).all()
 
 # @app.route("/settings")
 # def settings():
