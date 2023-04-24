@@ -18,9 +18,13 @@ def portfolio():
     myportfolio = models.portfolio1.query.order_by(models.portfolio1.date_added).all()
     return render_template('portfolio.html',myportfolio=myportfolio,menuCss=True)
 
-# @app.route("/settings")
-# def settings():
-#     return render_template('settings.html')
+@app.route("/settings")
+def settings():
+    return render_template('settings.html', menuCss=True)
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 @app.route('/aboutUs')
 def aboutUs():
@@ -33,3 +37,6 @@ def help():
 # @app.route("/logOut")
 # def logOut():
 #     return render_template('logOut.html')
+@app.route("/logOut")
+def logOut():
+    return render_template('signup.html')

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block stylesheet %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
+		<div class="member">Member Login</div>
+		<form>
+			<input type="text" placeholder="Enter Email Adress Here">
+			<input type="password" placeholder="Enter Your Password Here">
+			<div class="form-footer">
+				<div class="sign-Up"><a href="{{ url_for('logOut') }}"class="no-underline">Dont have an Account?</a></div>
+				<div class="forgot-password">Forgot password?</div>
+			</div>
+			<button type="submit">Login</button>
+		  
+			<div class="line-or-container">
+				<hr class="line">
+				<span class="or">OR</span>
+				<hr class="line">
+			  </div>
+
+			<div class="social-btns">
+				<button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}" alt="Facebook logo"><span>Continue with Facebook</span></button>
+				<button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
+			</div>
+			
+		</form>
+	</div>
+	{% endblock %}
+
+	{% block script %}
+			<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+	{% endblock %}
