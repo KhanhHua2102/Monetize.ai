@@ -9,21 +9,14 @@ from flask import render_template
 def index():
     return render_template('index.html')
 
-@app.route("/portfolio")
-def portfolio():
-    return render_template('portfolio.html', menuCss=True)
-
 @app.route('/history')
 def history():
     return render_template('history.html')
 
-
 @app.route("/portfolio",methods = ['GET'])
 def portfolio():
     myportfolio = models.portfolio1.query.order_by(models.portfolio1.date_added).all()
-    return render_template('portfolio.html',myportfolio=myportfolio)
-
-# myportfolio = portfolio1.query.order_by(portfolio1.date_added).all()
+    return render_template('portfolio.html',myportfolio=myportfolio,menuCss=True)
 
 # @app.route("/settings")
 # def settings():
