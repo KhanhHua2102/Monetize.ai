@@ -15,6 +15,7 @@ openai.api_key = config.OPENAI_API_KEY
 
 CORS(app)
 
+context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path+"/../", 'test.db')
 
 models.db.init_app(app)
@@ -26,14 +27,26 @@ def generate():
     prompt = data['prompt']
     print(prompt)
 
+    global context_data
+    context_data += 'Q: ' + prompt + '\nA: '
+
     def openai_completion(query):
         print("Starting GPT-3\n")
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo", messages=[{"role": "user", "content": query}])
         response = completion.choices[0].message.content
-        print("GPT-3 response: " + response)
+        global context_data
+        context_data += response + '\n\n'
         return response
     
+    def addingstock(thisprompt):
+        stock_context = "Based on a user's input, you have to determine if they want to add stocks to their portfolio. Return 'False' if they don't want to add stocks if their input is irrelevant to stocks. You should also return 'False' if their information does include the stock name, date added, the quantity of stock and bought price. Otherwise please return 'True'. For all query strictly return either True or False only and nothing else. The user input is:"
+        query = stock_context+'"'+thisprompt+'"'
+        response = openai_completion(query)
+        if response == "True":
+            return True
+        return False
+
     def commit_database_portfolio(formatted_prompt):
         quantity,stock_type,date_added,price_bought,current_price, return_percent,return_amount,total = formatted_prompt.split(" ")
         date_added_format = datetime.strptime(date_added,'%d/%m/20%y').date()
