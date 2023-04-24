@@ -73,25 +73,6 @@ def generate_response(num_shares, ticker, start_date, end_date):
 
     return response
 
-
-# @app.route('/generate', methods=['POST'])
-# def generate():
-#     print("prompt received")
-#     data = request.get_json()
-#     prompt = data['prompt']
-#     print(prompt)
-
-#     num_shares, ticker, start_date, end_date, error_msg = parse_prompt(prompt)
-
-#     if error_msg:
-#         # Return error message for invalid prompt format or date range
-#         response = error_msg
-#     else:
-#         response = generate_response(num_shares, ticker, start_date, end_date)
-
-#     return jsonify({'response': response})
-
-
 context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
 
 @app.route('/generate', methods=['POST'])
