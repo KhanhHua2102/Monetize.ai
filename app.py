@@ -44,6 +44,21 @@ def get_json_object(key,table,column_list=None):
     return jsonify(data)
     # return jsonify({'response',data})
 
+# add new user to user table in database
+
+
+def addUser(userId, email, password):
+    get_json_object()
+
+def addStock(userId, ticker, vol, price, date):
+    pass
+
+def updateStock(user, ticker, vol, price, date):
+    pass
+
+def addMessages():
+    pass
+
 @app.route('/generate', methods=['POST'])
 def generate():
     print("prompt received")
