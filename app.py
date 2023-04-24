@@ -20,7 +20,14 @@ def parse_prompt(prompt):
 
         # Parse start and end dates using dateutil parser
         start_date = parser.parse(start_date_str, fuzzy=True)
-        end_date = parser.parse(end_date_str, fuzzy=True)
+        # Parse start date using dateutil parser
+        start_date = parser.parse(start_date_str, fuzzy=True)
+
+        # Check if end date is "today" and replace with current date
+        if end_date_str.lower() == "today":
+            end_date = datetime.now()
+        else:
+            end_date = parser.parse(end_date_str, fuzzy=True)
 
         # Check if start date is before end date
         if start_date >= end_date:
@@ -85,52 +92,7 @@ def generate_response(num_shares, ticker, start_date, end_date):
 #     return jsonify({'response': response})
 
 
-
-def openai_completion(query):
-    print("Starting GPT-3\n")
-    response = ""
-
-    if "stock price" in query:
-        # Extract stock symbol from user query
-        stock_symbol = query.split()[-1]
-        print(f"Retrieving stock price data for {stock_symbol}")
-        
-        # Use yfinance to retrieve stock price data
-        stock_data = yf.Ticker(stock_symbol).history(period="1d")
-        latest_price = stock_data["Close"].iloc[-1]
-        
-        # Generate response based on stock price data
-        response = f"The latest price for {stock_symbol} is {latest_price:.2f} USD."
-
-    elif "company info" in query:
-        # Extract stock symbol from user query
-        stock_symbol = query.split()[-1]
-        print(f"Retrieving company info for {stock_symbol}")
-        
-        # Use yfinance to retrieve company info data
-        stock_info = yf.Ticker(stock_symbol).info
-        
-        # Generate response based on company info data
-        response = f"Here is some information about {stock_info['longName']} ({stock_symbol}):\n\n" \
-                   f"- Industry: {stock_info['industry']}\n" \
-                   f"- Sector: {stock_info['sector']}\n" \
-                   f"- Market Cap: {stock_info['marketCap']:.2f} USD\n" \
-                   f"- Website: {stock_info['website']}"
-
-    else:
-        # Use OpenAI GPT-3 to generate a response
-        completion = openai.Completion.create(
-            model="text-davinci-002",
-            prompt=query,
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.5,
-        )
-        response = completion.choices[0].text
-
-    print("GPT-3 response: " + response)
-    return response
+context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -139,5 +101,54 @@ def generate():
     prompt = data['prompt']
     print(prompt)
 
-    result = openai_completion(prompt)
+    global context_data
+    
+    context_data += 'Q: ' + prompt + '\nA: '
+    
+    def openai_completion(query):
+        print("Starting GPT-3\n")
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo", messages=[{"role": "user", "content": query}])
+        
+        response = completion.choices[0].message.content
+        global context_data
+        context_data += response + '\n\n'
+        response_values = response.split()
+        if len(response_values) == 4 and response_values[0].isdigit() and all(isinstance(val, str) for val in response_values[1:]):
+         num_shares, ticker, start_date, end_date, error_msg = parse_prompt(response)
+         if error_msg:
+        
+          response = error_msg
+         else:
+          response = generate_response(num_shares, ticker, start_date, end_date)
+          context_data = 'Using this information to give users a message:'+ response
+          response = openai_completion(context_data)
+
+        return response
+    
+    
+    def contains_stock_info(context_data):
+     # check if context_data contains information about stocks, shares, and dates
+     regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"
+     return bool(re.search(regex, context_data, re.IGNORECASE))
+      
+
+    if contains_stock_info(prompt):
+      
+    # perform a specific action for when stock information is present
+     print("Stock information detected in context_data. Performing specific action...")
+     context_data = 'Convert this data so that it is able to input into Yfinance, must not caculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} must not caculate profit, User message: '+prompt+'Response must follow formats of convertsion only no need any comments: No need any Punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume.' '\n'
+     result = openai_completion(context_data)
+    # insert your code here
+    else:
+     result = openai_completion(context_data)
+     print("No stock information detected in context_data.")
+    
     return jsonify({'response': result})
+
+# string="Convert this data so that it is able to input into: 
+# {number of Shares} {Ticker} {Start-Date} {End-Date} User message: 
+# I bought 200 google shares on 14/03/2022, what is my profit? 
+# Noted no need of comment and only pure Convertsion and make sure space in between, 
+# which mean you dont need to comment just the convertsion itself. 
+# The date  must be in dd/mm/yyyy, default endate is today date, Ticker Symbols can be input to Yfinance"
