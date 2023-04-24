@@ -1,4 +1,4 @@
-from application import app,routes
+from application import app,routes,models
 from flask import Flask, jsonify, request, redirect,url_for,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -8,7 +8,6 @@ import openai
 import os
 import yfinance as yf
 from dateutil import parser
-from application import models
 
 
 openai.api_key = config.OPENAI_API_KEY
@@ -19,6 +18,31 @@ context_data = 'You are a friendly financial chatbot. The user will ask you ques
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path+"/../", 'test.db')
 
 models.db.init_app(app)
+
+def get_json_object(key,table,column_list=None):
+    try:
+        get_table = getattr(models,table)
+        result = get_table.query.filter_by(id = key).first()
+        data = {}
+        if column_list is None:
+            column_list = get_table.__table__.columns.keys()
+
+        print(type(column_list))
+        print(column_list)
+
+        for column in column_list:
+            try:
+                get_data =  getattr(result, column)
+                data[column] = get_data
+
+            except AttributeError:
+                return {'error':f"{column} is not a valid column name"}
+
+
+    except AttributeError:
+        return {'error': f"{table} is not a valid table name."}
+    return jsonify(data)
+    # return jsonify({'response',data})
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -57,6 +81,13 @@ def generate():
 
 
     result = openai_completion(prompt)
+
+    # testing = get_json_object("1","portfolio1",["id","date_added","quantity","price_bought"])
+    # testing = get_json_object("1","portfolio1",["id","date_added","quantity","price"])
+    testing = get_json_object("1","portfolio1")
+    print(type(jsonify(testing)))
+    print(testing)
+
 
     return jsonify({'response': result})
 
