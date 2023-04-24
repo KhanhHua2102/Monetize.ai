@@ -82,18 +82,8 @@ def generate():
 
     result = openai_completion(prompt)
 
-    # testing = get_json_object("1","portfolio1",["id","date_added","quantity","price_bought"])
-    # testing = get_json_object("1","portfolio1",["id","date_added","quantity","price"])
-    testing = get_json_object("1","portfolio1")
-    print(type(jsonify(testing)))
-    print(testing)
-
-
     return jsonify({'response': result})
 
 with app.app_context():
     models.db.create_all()
-
-
-
 
