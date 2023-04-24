@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="container">
-        <img class="logo" src="assets/img/png-clipart-super-mario-icons-super-mario-thumbnail.png" alt="Logo">
+        <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
         <div class="member">Create a Monetize.ai account</div>
         <form>
             <input type="text" placeholder="Enter Account Name">
@@ -15,7 +15,7 @@
             <input type="password" placeholder="Enter Password">
             <input type="password" placeholder="Re-enter Password">
             <div class="form-footer">
-                <div class="sign-Up">Already have an account? <a href="login-page.html" class="no-underline">Log In</a></div>
+                <div class="sign-Up">Already have an account? <a href="{{ url_for('login') }}" class="no-underline">Log In</a></div>
                 
             </div>
             <button type="submit">Sign Up</button>
@@ -27,8 +27,8 @@
               </div>
 
             <div class="social-btns">
-                <button class="facebook-btn"><img src="assets/img/2021_Facebook_icon.svg.png" alt="Facebook logo"><span>Continue with Facebook</span></button>
-                <button class="google-btn"><img src="assets/img/Google__G__Logo.svg.png" alt="Google logo"><span>Continue with Google</span></button>
+                <button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}" alt="Facebook logo"><span>Continue with Facebook</span></button>
+                <button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
             </div>
             
         </form>

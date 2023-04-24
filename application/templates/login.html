@@ -6,13 +6,13 @@
 
 {% block content %}
 	<div class="container">
-		<img class="logo" src="assets/img/png-clipart-super-mario-icons-super-mario-thumbnail.png" alt="Logo">
+		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
 		<div class="member">Member Login</div>
 		<form>
 			<input type="text" placeholder="Enter Email Adress Here">
 			<input type="password" placeholder="Enter Your Password Here">
 			<div class="form-footer">
-				<div class="sign-Up"><a href="signup.html"class="no-underline">Dont have an Account?</a></div>
+				<div class="sign-Up"><a href="{{ url_for('logOut') }}"class="no-underline">Dont have an Account?</a></div>
 				<div class="forgot-password">Forgot password?</div>
 			</div>
 			<button type="submit">Login</button>
@@ -24,8 +24,8 @@
 			  </div>
 
 			<div class="social-btns">
-				<button class="facebook-btn"><img src="./assets/img/2021_Facebook_icon.svg.png" alt="Facebook logo"><span>Continue with Facebook</span></button>
-				<button class="google-btn"><img src="assets/img/Google__G__Logo.svg.png" alt="Google logo"><span>Continue with Google</span></button>
+				<button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}" alt="Facebook logo"><span>Continue with Facebook</span></button>
+				<button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
 			</div>
 			
 		</form>
