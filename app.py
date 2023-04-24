@@ -3,10 +3,12 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import config
 import openai
+import os
 import yfinance as yf
 from datetime import datetime
 from dateutil import parser
 import re
+
 
 openai.api_key = config.OPENAI_API_KEY
 
@@ -156,3 +158,8 @@ def generate():
     print(context_data)
     result = openai_completion(prompt)
     return jsonify({'response': result})
+
+
+if __name__ == '__main__':
+    port = os.environ.get('PORT', 5000)
+    app.run(debug=False , host='0.0.0.0', port=port)
