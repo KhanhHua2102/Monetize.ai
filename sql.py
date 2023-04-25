@@ -35,7 +35,7 @@ def getJsonObject(key, table, column_list=None):
     # return jsonify({'response',data})
 
 # add new user to user table in database
-def addUser(userId, email, password):
+def addUser(userId, email,phone, password):
     getJsonObject()
 
 # add new stock to stock table in database

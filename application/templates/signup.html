@@ -9,16 +9,16 @@
         <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
         <div class="member">Create a Monetize.ai account</div>
         <form>
-            <input type="text" placeholder="Enter Account Name">
-            <input type="text" placeholder="Enter Email Adress ">
-            <input type="text" placeholder="Enter Phone Number">
-            <input type="password" placeholder="Enter Password">
-            <input type="password" placeholder="Re-enter Password">
+            <input type="text" id="Account-Name" placeholder="Enter Your Full Name">
+            <input type="text" id="Email-Address" placeholder="Enter Email Address ">
+            <input type="text" id="Phone-Number" placeholder="Enter Phone Number">
+            <input type="password" id="Password" placeholder="Enter Password">
+            <input type="password" id="Re-Password" placeholder="Re-enter Password">
             <div class="form-footer">
                 <div class="sign-Up">Already have an account? <a href="{{ url_for('login') }}" class="no-underline">Log In</a></div>
                 
             </div>
-            <button type="submit">Sign Up</button>
+            <button id="Submit" type="submit">Sign Up</button>
           
             <div class="line-or-container">
                 <hr class="line">

@@ -9,14 +9,14 @@
 		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
 		<div class="member">Member Login</div>
 		<form>
-			<input type="text" placeholder="Enter Email Adress Here">
-			<input type="password" placeholder="Enter Your Password Here">
+			<input type="text" id ="Email-Address" placeholder="Enter Email Adress Here">
+			<input type="password" id="Password" placeholder="Enter Your Password Here">
 			<div class="form-footer">
 				<div class="sign-Up"><a href="{{ url_for('logOut') }}"class="no-underline">Dont have an Account?</a></div>
 				<div class="forgot-password">Forgot password?</div>
 			</div>
-			<button type="submit">Login</button>
-		  
+			<button id ="Submit" type="submit">Login</button>
+		    <div id="message"></div>
 			<div class="line-or-container">
 				<hr class="line">
 				<span class="or">OR</span>
