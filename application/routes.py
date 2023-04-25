@@ -1,4 +1,4 @@
-from application import app
+from application import app, models
 from flask import render_template
 
 @app.route("/")
@@ -9,7 +9,8 @@ def index():
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template('portfolio.html')
+    myportfolio = models.portfolio.query.order_by(models.portfolio.date_added).all()
+    return render_template('portfolio.html', menuCss=True, portfolio=myportfolio)
 
 @app.route('/history')
 def history():

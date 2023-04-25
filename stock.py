@@ -1,7 +1,9 @@
 from datetime import datetime
 from dateutil import parser
 import yfinance as yf
+
 import gpt
+import sql
 
 
 def parseInput(prompt):
@@ -59,23 +61,33 @@ def getStockData(num_shares, ticker, start_date, end_date):
         stock_data = yf.download(ticker, start=start_date, end=end_date)
 
         # Calculate total return
-        start_price = stock_data['Close'][0]
-        end_price = stock_data['Close'][-1]
-        profits = (end_price - start_price) * int(num_shares)
-        profit_loss = 'profit' if profits > 0 else 'loss'
+        start_price = float('{:.2f}'.format(stock_data['Close'][0]))
+        end_price = float('{:.2f}'.format(stock_data['Close'][-1]))
+        return_amount = (end_price - start_price) * int(num_shares)
+        return_amount = float('{:.2f}'.format(return_amount))
+        profit_loss = 'profit' if return_amount > 0 else 'loss'
+
+        # Calculate total return percentage
+        return_percent = (end_price - start_price) / start_price * 100
+        return_percent = float('{:.2f}'.format(return_percent))
+
+        # Calculate total value of shares
+        total = end_price * int(num_shares)
+        total = float('{:.2f}'.format(total))
 
         # Construct response message
-        response = f"{num_shares} shares of {company_name} ({ticker}) from {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}: start price = ${start_price:.2f}, end price = ${end_price:.2f}, {profit_loss} = ${profits:.2f}"
+        response = f"{num_shares} shares of {company_name} ({ticker}) from {start_date.strftime('%d-%m-%Y')} to {end_date.strftime('%d-%m-%Y')}: start price = ${start_price:.2f}, end price = ${end_price:.2f}, {profit_loss} = ${return_amount:.2f}"
     except:
         # Return error message for invalid ticker symbol
         response = f"Invalid ticker symbol: {ticker}"
 
-    return response
+    return response, [start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total]
 
 
 def promptProfit(input):
     input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input).split()
+    response_values = gpt.openAi(input)
+    response_values = response_values.split()
     if response_values == "False":
         checkProfit = False
     else:
@@ -85,7 +97,10 @@ def promptProfit(input):
             response_values)
         if error_msg:
             return error_msg
-        response = getStockData(num_shares, ticker, start_date, end_date)
+        response = getStockData(num_shares, ticker, start_date, end_date)[0]
+        # add stock to database
+        sql.addPortfolio(getStockData(
+            num_shares, ticker, start_date, end_date)[1])
         print(response + '\n')
         response = 'Using this information to give the user a response on their stock details and profit if they sell it on the end date: ' + response
 

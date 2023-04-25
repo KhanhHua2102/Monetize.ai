@@ -22,8 +22,8 @@
             <table id="portfolio-table" class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Stock</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Stock</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Bougth Price</th>
                         <th scope="col">Current Price</th>
@@ -33,18 +33,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    {% for item in myportfolio %}
+                    {% for item in portfolio %}
                     <tr>
-                        <td>{{item.stock_type}}</td>
                         <td>{{item.date_added.date()}}</td>
+                        <td>{{item.stock_type}}</td>
                         <td>{{item.quantity}}</td>
-                        <td>{{item.price_bought}}</td>
-                        <td>{{item.current_price}}</td>
-                        <td>{{item.return_percent}}</td>
-                        <td>{{item.return_amount}}</td>
-                        <td>{{item.total}}</td>
-
+                        <td>$ {{item.price_bought}}</td>
+                        <td>$ {{item.current_price}}</td>
+                        <td>{{item.return_percent}} %</td>
+                        <td>$ {{item.return_amount}}</td>
+                        <td>$ {{item.total}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

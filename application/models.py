@@ -1,7 +1,12 @@
+from application import app
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from datetime import datetime
 
 db = SQLAlchemy()
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
 
 class chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,18 +16,18 @@ class chat(db.Model):
 
     def __repr__(self):
         return '<chat %r>' % self.id
-    
-class portfolio1(db.Model):
+
+
+class portfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    stock_type = db.Column(db.String(10),nullable=False)
-    date_added = db.Column(db.DateTime,nullable=False)
-    current_date = db.Column(db.DateTime,default = datetime.utcnow)
-    quantity = db.Column(db.Integer,nullable=False)
-    price_bought = db.Column(db.Float,nullable=False)
-    current_price = db.Column(db.Float,nullable=False)
-    return_percent = db.Column(db.Float,nullable=False)
-    return_amount = db.Column(db.Float,nullable=False)
-    total = db.Column(db.Float,nullable=False)
+    date_added = db.Column(db.DateTime, nullable=False)
+    stock_type = db.Column(db.String(10), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    price_bought = db.Column(db.Float, nullable=False)
+    current_price = db.Column(db.Float, nullable=False)
+    return_percent = db.Column(db.Float, nullable=False)
+    return_amount = db.Column(db.Float, nullable=False)
+    total = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
         return '<portfolio %r>' % self.id

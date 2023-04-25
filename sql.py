@@ -1,5 +1,6 @@
 from application import app, models
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask import jsonify
 from datetime import datetime
 import os
@@ -9,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
 models.db.init_app(app)
 
 
-def get_json_object(key, table, column_list=None):
+def getJsonObject(key, table, column_list=None):
     try:
         get_table = getattr(models, table)
         result = get_table.query.filter_by(id=key).first()
@@ -37,27 +38,33 @@ def get_json_object(key, table, column_list=None):
 
 
 def addUser(userId, email, password):
-    get_json_object()
+    getJsonObject()
+
+# add new stock to stock table in database
 
 
-def addStock(userId, ticker, vol, price, date):
+def addStock(userId, date, ticker, quantity, start_price, current_price, return_percent, return_amount):
+    pass
+
+# update stock in stock table in database
+
+
+def updateStock(userId, ticker, quantity):
+    pass
+
+# add new message to message table in database
+
+
+def addMessages(messageId, userId, message, date):
     pass
 
 
-def updateStock(user, ticker, vol, price, date):
-    pass
-
-
-def addMessages():
-    pass
-
-
-def commit_database_portfolio(formatted_prompt):
-    quantity, stock_type, date_added, price_bought, current_price, return_percent, return_amount, total = formatted_prompt.split(
-        " ")
-    date_added_format = datetime.strptime(date_added, '%d/%m/20%y').date()
-    new_portfolio = models.portfolio1(stock_type=stock_type, date_added=date_added_format, quantity=quantity, price_bought=float(
-        price_bought), current_price=float(current_price), return_percent=float(return_percent), return_amount=float(return_amount), total=float(total))
+def addPortfolio(formatted_prompt):
+    [date, ticker, quantity, start_price, current_price,
+        return_percent, return_amount, total] = formatted_prompt
+    # date_added_format = datetime.strptime(date, '%d/%m/20%y').date()
+    new_portfolio = models.portfolio(date_added=date, stock_type=ticker, quantity=quantity, price_bought=float(
+        start_price), current_price=float(current_price), return_percent=float(return_percent), return_amount=float(return_amount), total=float(total))
     models.db.session.add(new_portfolio)
     models.db.session.commit()
     models.db.session.close()
@@ -65,4 +72,3 @@ def commit_database_portfolio(formatted_prompt):
 
 with app.app_context():
     models.db.create_all()
-
