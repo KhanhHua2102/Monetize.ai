@@ -35,26 +35,18 @@ def getJsonObject(key, table, column_list=None):
     # return jsonify({'response',data})
 
 # add new user to user table in database
-
-
 def addUser(userId, email, password):
     getJsonObject()
 
 # add new stock to stock table in database
-
-
 def addStock(userId, date, ticker, quantity, start_price, current_price, return_percent, return_amount):
     pass
 
-# update stock in stock table in database
-
-
+# update stock in stock table in database, if quantity is 0, delete stock
 def updateStock(userId, ticker, quantity):
     pass
 
 # add new message to message table in database
-
-
 def addMessages(messageId, userId, message, date):
     pass
 
