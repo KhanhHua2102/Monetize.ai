@@ -1,73 +1,65 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} 
 
 {% block stylesheet %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}" />
-{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}" /> 
+{% endblock %} 
 
 {% block content %}
-        <!-- create table for managing stock assets -->
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center my-5">
-                    <h1 id="title" class="">Portfolio Management</h1>
-                </div>
-            </div>
-
-            {% include "includes/menu.html" %}
-            
-            <h2 id="risk-text" class="text-center mb-4">Risk Tolerance: <span id="risk-tolerance">High</span></h2>
-            <div class="row text-center">
-                <!-- TODO: risk tolerance feature -->
-                <div class="col-12 col-sm-12 col-lg-8">
-                    <table id="portfolio-table" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Bougth Price</th>
-                                <th scope="col">Current Price</th>
-                                <th scope="col">Return (%)</th>
-                                <th scope="col">Return ($)</th>
-                                <th scope="col">Totals</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>APPL</td>
-                            <td>2022-01-01</td>
-                            <td>100</td>
-                            <td>10.00</td>
-                            <td>12.50</td>
-                            <td>25%</td>
-                            <td>$250</td>
-                            <td>$1250</td>
-                            </tr>
-                            <tr>
-                            <td>GOOGL</td>
-                            <td>2022-01-01</td>
-                            <td>50</td>
-                            <td>20.00</td>
-                            <td>18.50</td>
-                            <td>-7.5%</td>
-                            <td>-$75</td>
-                            <td>$925</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id class="col-sm-8 offset-sm-2 col-lg-3 my-sm-4 mx-lg-4">
-                    <canvas id="portfolio-chart"></canvas>
-                </div>
-            </div>
-            <div class="download-csv col-12 text-center my-5">
-                <h4 id="export-text" class="text-info my-sm-5 my-lg-4">Download portfolio as CSV</h4>
-                <button class="btn btn-info">Export</button>
-            </div>
+<!-- create table for managing stock assets -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center my-5">
+            <h1 id="title" class="">Portfolio Management</h1>
         </div>
-{% endblock %}
+    </div>
+
+    {% include "includes/menu.html" %}
+
+    <h2 id="risk-text" class="text-center mb-4">Risk Tolerance: <span id="risk-tolerance">High</span></h2>
+    <div class="row text-center">
+        <!-- TODO: risk tolerance feature -->
+        <div class="col-12 col-sm-12 col-lg-8">
+            <table id="portfolio-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Bougth Price</th>
+                        <th scope="col">Current Price</th>
+                        <th scope="col">Return (%)</th>
+                        <th scope="col">Return ($)</th>
+                        <th scope="col">Totals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in portfolio %}
+                    <tr>
+                        <td>{{item.date_added.date()}}</td>
+                        <td>{{item.stock_type}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>$ {{item.price_bought}}</td>
+                        <td>$ {{item.current_price}}</td>
+                        <td>{{item.return_percent}} %</td>
+                        <td>$ {{item.return_amount}}</td>
+                        <td>$ {{item.total}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id class="col-sm-8 offset-sm-2 col-lg-3 my-sm-4 mx-lg-4">
+            <canvas id="portfolio-chart"></canvas>
+        </div>
+    </div>
+    <div class="download-csv col-12 text-center my-5">
+        <h4 id="export-text" class="text-info my-sm-5 my-lg-4">Download portfolio as CSV</h4>
+        <button class="btn btn-info">Export</button>
+    </div>
+</div>
+{% endblock %} 
 
 {% block script %}
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
 {% endblock %}
