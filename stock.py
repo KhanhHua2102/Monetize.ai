@@ -60,9 +60,13 @@ def getStockData(num_shares, ticker, start_date, end_date):
         # Retrieve historical data for specified dates
         stock_data = yf.download(ticker, start=start_date, end=end_date)
 
-        # Calculate total return
-        start_price = float('{:.2f}'.format(stock_data['Close'][0]))
-        end_price = float('{:.2f}'.format(stock_data['Close'][-1]))
+        # Retrieve start and end prices
+        start_price = stock_data['Close'][0]
+        start_price = float('{:.2f}'.format(start_price))
+        end_price = stock_data['Close'][-1]
+        end_price = float('{:.2f}'.format(end_price))
+
+        # Calculate return amount
         return_amount = (end_price - start_price) * int(num_shares)
         return_amount = float('{:.2f}'.format(return_amount))
         profit_loss = 'profit' if return_amount > 0 else 'loss'
@@ -97,12 +101,12 @@ def promptProfit(input):
             response_values)
         if error_msg:
             return error_msg
-        response = getStockData(num_shares, ticker, start_date, end_date)[0]
+        stock_data = getStockData(num_shares, ticker, start_date, end_date)
+        response = stock_data[0]
         # add stock to database
-        sql.addPortfolio(getStockData(
-            num_shares, ticker, start_date, end_date)[1])
+        sql.addPortfolio(stock_data[1])
         print(response + '\n')
-        response = 'Using this information to give the user a response on their stock details and profit if they sell it on the end date: ' + response
+        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + response
 
         return response, checkProfit
     return 'format error', False
