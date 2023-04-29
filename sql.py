@@ -44,8 +44,8 @@ def addUser(user_name, email, password,phone_number):
     models.db.session.close()
 
 # return user data from user table in database as JSON object
-def getUserData(user_id):
-    user = models.user.query.filter_by(user_id = user_id).first()
+def getUserData(email):
+    user = models.user.query.filter_by(email=email).first()
     if user:
         user_data = {"user_id":user.user_id ,"user_name":user.user_name ,"email":user.email,"phone_number":user.phonenumber,"password":user.password,"risk_tolerence":user.risk_tolerence}
         return jsonify(user_data)
