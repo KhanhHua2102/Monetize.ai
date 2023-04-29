@@ -1,13 +1,23 @@
 from application import app, models
-from flask import render_template
+from flask import render_template, redirect, url_for, session
+from datetime import timedelta
+
 from forms import LoginForm
+import secrets
+
+secrets_key = secrets.token_bytes(32)
+app.config['SECRET_KEY'] = secrets_key
+
 
 
 @app.route("/")
 @app.route("/index")
 @app.route("/home")
 def index():
-    return render_template('index.html')
+    if'Email' in session:
+        return render_template('index.html')
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/portfolio')
 def portfolio():
@@ -30,11 +40,19 @@ def help():
 def aboutUs():
     return render_template('about-us.html')
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        session['Email'] = form.email.data
+        session.permanent = True  # make the session cookie permanent
+        app.permanent_session_lifetime = timedelta(days=1)
+        return redirect(url_for('index'))
     return render_template('login.html',form=form)
 
 @app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
-    return render_template('signup.html')
+    session.pop('email', None)
+    form = LoginForm()
+    
+    return render_template('login.html',form=form)

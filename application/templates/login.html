@@ -8,7 +8,7 @@
 	<div class="container">
 		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
 		<div class="member">Member Login</div>
-		<form method="POST">
+		<form method="POST" action="{{ url_for('login') }}">
 			{{ form.hidden_tag() }}
 			<div class="form-group">
 				{{ form.email.label() }}
