@@ -19,9 +19,6 @@ def getJsonObject(key, table, column_list=None):
         if column_list is None:
             column_list = get_table.__table__.columns.keys()
 
-        print(type(column_list))
-        print(column_list)
-
         for column in column_list:
             try:
                 get_data = getattr(result, column)
@@ -33,7 +30,6 @@ def getJsonObject(key, table, column_list=None):
     except AttributeError:
         return {'error': f"{table} is not a valid table name."}
     return jsonify(data)
-    # return jsonify({'response',data})
 
 # add new user to user table in database
 def addUser(user_name, email, password,phone_number):
@@ -82,7 +78,6 @@ def updateStock(email, ticker, quantity):
     userId = getUserId(email)
     stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
     if stock is None:
-        # return {'error':'No such stock with this userId and ticker. Should add such a data row first'}
         raise ValueError("No such stock with this userId and ticker. Should add such a data row first")
     if quantity == 0:
         models.db.session.delete(stock)
@@ -94,7 +89,7 @@ def updateStock(email, ticker, quantity):
 # return stock data from stock table in database as JSON object
 def getStockData(email):
     userId = getUserId(email)
-    stocks = models.portfolio.query.filter_by(user_id=user_id).all()
+    stocks = models.portfolio.query.filter_by(user_id=userId).all()
     if stocks is None:
         return {'error':'No stocks with this user_id yet.'}
     stock_data = {}
@@ -127,17 +122,6 @@ def addMessages(messageId, email, message, date):
         models.db.session.add(new_Message)
     models.db.session.commit()
     models.db.session.close()
-
-
-#replaced by addStock
-# def addPortfolio(formatted_prompt):
-#     [date, ticker, quantity, start_price, current_price,return_percent, return_amount, total] = formatted_prompt
-#     # date_added_format = datetime.strptime(date, '%d/%m/20%y').date()
-#     new_portfolio = models.portfolio(date_added=date, stock_type=ticker, quantity=quantity, price_bought=float(start_price), current_price=float(current_price), return_percent=float(return_percent), return_amount=float(return_amount), total=float(total))
-#     models.db.session.add(new_portfolio)
-#     models.db.session.commit()
-#     models.db.session.close()
-
 
 with app.app_context():
     models.db.create_all()
