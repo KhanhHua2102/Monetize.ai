@@ -5,6 +5,7 @@ from flask import jsonify
 from datetime import datetime
 import os
 from sqlalchemy import ForeignKey
+import json
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path+"/../", 'test.db')
 models.db.init_app(app)
@@ -51,9 +52,17 @@ def getUserData(email):
         return jsonify(user_data)
     else:
         return jsonify({'error': 'User not found'})
-
-#haven't added the check whether the stock already exist or not
-def addStock(userId, date, ticker, quantity, start_price, current_price, return_percent, return_amount,total):
+    
+def getUserId(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user:
+        return user.user_id
+    else:
+        raise ValueError("User Id with email given is not found")
+        
+def addStock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount,total):
+    userId = getUserId(email)
+    
     stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
     if stock:
         stock.quantity += quantity
@@ -68,7 +77,9 @@ def addStock(userId, date, ticker, quantity, start_price, current_price, return_
     models.db.session.close()
 
 # update stock in stock table in database, if quantity is 0, delete stock
-def updateStock(userId, ticker, quantity):
+#add change stock price if have time?
+def updateStock(email, ticker, quantity):
+    userId = getUserId(email)
     stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
     if stock is None:
         # return {'error':'No such stock with this userId and ticker. Should add such a data row first'}
@@ -81,7 +92,8 @@ def updateStock(userId, ticker, quantity):
     models.db.session.close()
 
 # return stock data from stock table in database as JSON object
-def getStockData(user_id):
+def getStockData(email):
+    userId = getUserId(email)
     stocks = models.portfolio.query.filter_by(user_id=user_id).all()
     if stocks is None:
         return {'error':'No stocks with this user_id yet.'}
@@ -92,8 +104,9 @@ def getStockData(user_id):
     return stock_data
 
 # return message data from message table in database as JSON object
-def getMessages(user_id):
-    messages = models.messages.query.filter_by(user_id = user_id).all()
+def getMessages(email):
+    userId = getUserId(email)
+    messages = models.messages.query.filter_by(user_id = userId).all()
     if messages is None:    
         return {'error':'No messages with this user_id yet.'}
     messages_data = {}
@@ -103,7 +116,8 @@ def getMessages(user_id):
     return messages_data
 
 # add new message to message table in database
-def addMessages(messageId, userId, message, date):
+def addMessages(messageId, email, message, date):
+    userId = getUserId(email)
     existing_message = models.messages.query.filter_by(message_id=messageId).first()
     if existing_message:
         existing_message.body = message
