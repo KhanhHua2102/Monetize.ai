@@ -1,5 +1,7 @@
 from application import app, models
 from flask import render_template
+from forms import LoginForm
+
 
 @app.route("/")
 @app.route("/index")
@@ -30,8 +32,9 @@ def aboutUs():
 
 @app.route("/login")
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html',form=form)
 
-@app.route("/logOut")
+@app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
     return render_template('signup.html')

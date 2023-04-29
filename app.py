@@ -1,12 +1,20 @@
 from application import app
+
 from flask import jsonify, request
+
+
+
+
+
 from flask_cors import CORS
 
 import gpt
 import stock
 import sql
 
+
 CORS(app)
+
 
 
 context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
@@ -56,24 +64,4 @@ def signUp():
     sql.addUser(account_name,email_address,phone_number,password)
 
     return 'Success!'
-    
-   
-@app.route('/logIn', methods=['POST'])
-def logIn():
-    email_address = request.form['Email-Address']
-    password = request.form['Password']
-    
-    user_password = "Wirtemypassword123#"
-    user_email = "hoanglongnt01@gmail.com"
-    if (password == user_password and email_address == user_email):
-        message = 'Correct Password and Correct Email'
-        print(message)
-    elif (email_address == user_email):
-        message = 'Wrong Password'
-        print(message)
-    else:
-        message = 'No such Username'
-        print(message)
-    
-  
-    return message
+
