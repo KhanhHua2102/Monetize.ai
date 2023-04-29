@@ -47,34 +47,44 @@ def addUser(user_name, email, password,phone_number):
 def getUserData(email):
     user = models.user.query.filter_by(email=email).first()
     if user:
-        user_data = {"user_id":user.user_id ,"user_name":user.user_name ,"email":user.email,"phone_number":user.phonenumber,"password":user.password,"risk_tolerence":user.risk_tolerence}
+        user_data = {"user_id":user.user_id ,"user_name":user.user_name ,"email":user.email,"phone_number":user.phone_number,"password":user.password,"risk_tolerence":user.risk_tolerence}
         return jsonify(user_data)
     else:
         return jsonify({'error': 'User not found'})
 
 #haven't added the check whether the stock already exist or not
 def addStock(userId, date, ticker, quantity, start_price, current_price, return_percent, return_amount,total):
-    new_Stock = models.user(user_id = userId,date_added = date, ticker = ticker,quantity = quantity, price_bought = start_price,current_price = current_price, return_percent = return_percent ,return_amount = return_amount,total = total)
-    models.db.session.add(new_Stock)
+    stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
+    if stock:
+        stock.quantity += quantity
+        stock.current_price = current_price
+        stock.return_percent = return_percent
+        stock.return_amount = return_amount
+        stock.total = total
+    else:
+        new_stock = models.portfolio(user_id=userId, date_added=date, ticker=ticker, quantity=quantity, price_bought=start_price, current_price=current_price, return_percent=return_percent, return_amount=return_amount, total=total)
+        models.db.session.add(new_stock)
     models.db.session.commit()
     models.db.session.close()
 
 # update stock in stock table in database, if quantity is 0, delete stock
-#haven't debugged
 def updateStock(userId, ticker, quantity):
     stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
     if stock is None:
-        return {'error':'No such stock with this userId and ticker. Should add such a data row first'}
+        # return {'error':'No such stock with this userId and ticker. Should add such a data row first'}
+        raise ValueError("No such stock with this userId and ticker. Should add such a data row first")
     if quantity == 0:
         models.db.session.delete(stock)
     else:
         stock.quantity = quantity
     models.db.session.commit()
+    models.db.session.close()
 
 # return stock data from stock table in database as JSON object
-#haven't debugged
 def getStockData(user_id):
     stocks = models.portfolio.query.filter_by(user_id=user_id).all()
+    if stocks is None:
+        return {'error':'No stocks with this user_id yet.'}
     stock_data = {}
     for stock in stocks:
         this_stock_id = str(stock.stock_id)
@@ -82,9 +92,10 @@ def getStockData(user_id):
     return stock_data
 
 # return message data from message table in database as JSON object
-#haven't debugged
 def getMessages(user_id):
     messages = models.messages.query.filter_by(user_id = user_id).all()
+    if messages is None:    
+        return {'error':'No messages with this user_id yet.'}
     messages_data = {}
     for message in messages:
         this_message_id = str(message.message_id)
@@ -92,10 +103,14 @@ def getMessages(user_id):
     return messages_data
 
 # add new message to message table in database
-#haven't debugged
 def addMessages(messageId, userId, message, date):
-    new_Message = models.messages(message_id = messageId,user_id = userId,body = message, created_at = date)
-    models.db.session.add(new_Message)
+    existing_message = models.messages.query.filter_by(message_id=messageId).first()
+    if existing_message:
+        existing_message.body = message
+        existing_message.created_at = date
+    else:
+        new_Message = models.messages(message_id=messageId, user_id=userId, body=message, created_at=date)
+        models.db.session.add(new_Message)
     models.db.session.commit()
     models.db.session.close()
 
