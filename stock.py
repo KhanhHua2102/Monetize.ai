@@ -1,6 +1,7 @@
 from datetime import datetime
 from dateutil import parser
 import yfinance as yf
+from flask import request
 
 import gpt
 import sql
@@ -104,12 +105,11 @@ def promptProfit(input):
         stock_data = getStockData(num_shares, ticker, start_date, end_date)
         response = stock_data[0]
         # add stock to database
-        sql.addPortfolio(stock_data[1])
-        print(print(getStockData(1)))
+        print(getStockData(1))
         print(response + '\n')
         response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + response
 
-        return response, checkProfit
+        return response, checkProfit, stock_data[1]
     return 'format error', False
 
 

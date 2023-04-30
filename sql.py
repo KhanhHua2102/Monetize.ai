@@ -33,7 +33,7 @@ def getJsonObject(key, table, column_list=None):
 def addUser(user_name, email, password,phone_number):
     if models.user.query.filter_by(email=email).first():
         raise ValueError("User with provided email already exists")
-    new_user = models.user(user_name=user_name,email = email,password = password,phone_number = phone_number)
+    new_user = models.user(user_name=user_name, email = email, password = password, phone_number = phone_number)
     models.db.session.add(new_user)
     models.db.session.commit()
     models.db.session.close()

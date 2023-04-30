@@ -15,12 +15,9 @@
 
     <h2 class="pageheader">About Us</h2>
     <div class="underheader">
-        <div class="side-bar">
-            <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
-            <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
-            <!-- implementation for the side bar  -->
-            {% include "includes/menu.html" %}
-        </div>
+
+        {% include "includes/menu.html" %}
+        
         <div class="contents">
             <div class="images">
                 <img src="{{ url_for('static',filename='img/project.png')}}" alt="">

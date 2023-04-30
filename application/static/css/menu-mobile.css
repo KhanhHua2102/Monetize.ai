@@ -1,22 +1,18 @@
-#logo {
-    position: fixed;
-    float: left;
-    top: 5%;
-    width: 108px;
-    height: 103px;
-    margin-left: 6%;
-    border-radius: 30px;
-}
-
 #menu-icon {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 30px;
+    height: 30px;
+    margin-left: 6%;
 }
 
 .menu {
     position: fixed;
     float: left;
-    top: 25%;
-    margin-left: 6%;
+    top: 10%;
+    margin-left: 2%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: bold;
@@ -29,6 +25,7 @@
 }
 
 .menu button {
+    display: none;
     width: 100px;
     height: 34px;
     margin-top: 15px;

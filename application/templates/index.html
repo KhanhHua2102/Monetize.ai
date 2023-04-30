@@ -5,12 +5,9 @@
 {% endblock %}
 
 {% block content %}
-        <div class="side-bar">
-            <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
             
-            {% include "includes/menu.html" %}
+        {% include "includes/menu.html" %}
 
-        </div>
         <div id="conversation-window" class="">
             <section class="messages-box"></section>
             <div class="chat-window">

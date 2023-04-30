@@ -27,6 +27,10 @@ def generate():
     if promptResult[1]:
         print("Stock information detected in context_data. Performing specific action...\n")
         context_data += 'Q: ' + promptResult[0] + '\nA: '
+        # add stock to database
+        stock_data = promptResult[2]
+        email = request.COOKIES.get('email')
+        sql.addStock(email, *stock_data[1])
     # normal bot reply
     elif promtRecommendation == True:
         print("Stock recommendation information detected in context_data. Performing specific action...\n")

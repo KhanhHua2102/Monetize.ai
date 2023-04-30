@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = secrets_key
 @app.route("/index")
 @app.route("/home")
 def index():
-    if'Email' in session:
+    if'email' in session:
         return render_template('index.html')
     else:
         return redirect(url_for('login'))
@@ -22,7 +22,7 @@ def index():
 @app.route('/portfolio')
 def portfolio():
     myportfolio = models.portfolio.query.order_by(models.portfolio.date_added).all()
-    return render_template('portfolio.html', menuCss=True, portfolio=myportfolio)
+    return render_template('portfolio.html', mobileCSS=True, portfolio=myportfolio)
 
 @app.route('/history')
 def history():
@@ -30,7 +30,7 @@ def history():
 
 @app.route("/settings")
 def settings():
-    return render_template('settings.html', menuCss=True)
+    return render_template('settings.html')
 
 @app.route('/help')
 def help():
@@ -44,22 +44,22 @@ def aboutUs():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        session['Email'] = form.email.data
+        session['email'] = form.email.data
         session.permanent = True  # make the session cookie permanent
         app.permanent_session_lifetime = timedelta(days=1)
-         # Add the Email cookie
+         # Add the email cookie
         response = make_response(redirect(url_for('index')))
-        response.set_cookie('Email', form.email.data)
+        response.set_cookie('email', form.email.data)
         return response
         
     return render_template('login.html',form=form)
 
 @app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
-    session.pop('Email', None)
+    session.pop('email', None)
     form = LoginForm()
     response = make_response(render_template('login.html',form=form))
-    response.delete_cookie('Email')
+    response.delete_cookie('email')
     return response
 
 
