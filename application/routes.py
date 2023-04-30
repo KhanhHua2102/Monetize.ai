@@ -1,5 +1,5 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session, make_response
+from flask import render_template, redirect, url_for, session, make_response,flash,get_flashed_messages
 from datetime import timedelta
 
 from forms import LoginForm, SignupForm
@@ -44,15 +44,27 @@ def aboutUs():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        session['Email'] = form.email.data
+        email = form.email.data
+        password = form.password.data
+
+        user_data = sql.getUserData(email, password)
+
+        if not user_data:
+            return redirect(url_for('login'))
+
+        session['Email'] = email
         session.permanent = True  # make the session cookie permanent
         app.permanent_session_lifetime = timedelta(days=1)
-         # Add the Email cookie
+
+        # Add the Email cookie
         response = make_response(redirect(url_for('index')))
-        response.set_cookie('Email', form.email.data)
+        response.set_cookie('Email', email)
+
         return response
-        
-    return render_template('login.html',form=form)
+
+    return render_template('login.html', form=form)
+
+
 
 @app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
@@ -67,7 +79,15 @@ def logOut():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
-        
+        name = form.name.data
+        email = form.email.data
+        phone = form.phone.data
+        password = form.password.data
+        try:
+            sql.addUser(name, email, password, phone)
+        except ValueError as e:
+            error_message = str(e)
+            return render_template('signup.html', form=form, error_message=error_message)
         return redirect(url_for('login'))
     return render_template('signup.html', form=form)
 

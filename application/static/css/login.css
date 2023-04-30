@@ -273,3 +273,7 @@ text-transform: none;
   font-weight: 800;
 
   }
+
+  small {
+	font-size: 1em;
+  }

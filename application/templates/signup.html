@@ -44,6 +44,12 @@
             {% if form.confirm_password.errors %}
             <small class="text-danger">Confirm Password must be the same as Password</small>
             {% endif %}
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
+
         </div>
         <div class="form-footer">
             <div class="sign-Up">Already have an account? <a href="{{ url_for('login') }}" class="no-underline">Log
