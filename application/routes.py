@@ -21,8 +21,8 @@ def index():
 
 @app.route('/portfolio')
 def portfolio():
-    myportfolio = models.portfolio.query.order_by(models.portfolio.date_added).all()
-    return render_template('portfolio.html', mobileCSS=True, portfolio=myportfolio)
+    portfolio = models.portfolio.query.order_by(models.portfolio.date_added).all()
+    return render_template('portfolio.html', mobileCSS=True, **locals())
 
 @app.route('/history')
 def history():
