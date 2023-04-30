@@ -10,4 +10,4 @@ recommendations_df = pd.DataFrame(recommendations)
 
 # Print the latest analyst recommendation
 latest_recommendation = recommendations_df['buy'].iloc[-1]
-print("Latest analyst recommendation for MSFT: ", latest_recommendation)
+print("Latest analyst recommendation for MSFT: ", recommendations)

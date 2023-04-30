@@ -9,10 +9,10 @@ from flask_cors import CORS
 
 import gpt
 import stock
-import sql
 
 
-CORS(app)
+
+CORS(app) 
 
 
 
@@ -42,25 +42,5 @@ def generate():
     print(context_data)
     return jsonify({'response': result})
 
-@app.route('/signUp', methods=['POST'])
-def signUp():
-    
-    account_name = request.form['Account-Name']
-    email_address = request.form['Email-Address']
-    phone_number = request.form['Phone-Number']
-    password = request.form['Password']
-    re_password = request.form['Re-Password']
 
-    # Add your validation logic here to ensure password and re_password are the same
-
-    # Perform any other necessary actions with the received data
-    print(f'Account Name: {account_name}')
-    print(f'Email Address: {email_address}')
-    print(f'Phone Number: {phone_number}')
-    print(f'Password: {password}')
-    print(f'Re-entered Password: {re_password}')
-
-    sql.addUser(account_name,email_address,phone_number,password)
-
-    return 'Success!'
 

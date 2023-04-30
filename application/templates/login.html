@@ -8,7 +8,7 @@
 	<div class="container">
 		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
 		<div class="member">Member Login</div>
-		<form method="POST" action="{{ url_for('login') }}">
+		<form method="POST" >
 			{{ form.hidden_tag() }}
 			<div class="form-group">
 				{{ form.email.label() }}
@@ -19,7 +19,7 @@
 				{{ form.password(class_="form-control", placeholder="Enter Your Password Here") }}
 			</div>
 			<div class="form-footer">
-				<div class="sign-Up"><a href="{{ url_for('logOut') }}" class="no-underline">Dont have an Account?</a></div>
+				<div class="sign-Up"><a href="{{ url_for('signup') }}" class="no-underline">Dont have an Account?</a></div>
 				<div class="forgot-password">Forgot password?</div>
 			</div>
 			<button id="Submit" type="submit" class="btn btn-primary">Login</button>

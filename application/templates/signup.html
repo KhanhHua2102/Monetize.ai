@@ -1,40 +1,66 @@
 {% extends 'layout.html' %}
 
 {% block stylesheet %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}" />
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
-        <div class="member">Create a Monetize.ai account</div>
-        <form>
-            <input type="text" id="Account-Name" placeholder="Enter Your Full Name">
-            <input type="text" id="Email-Address" placeholder="Enter Email Address ">
-            <input type="text" id="Phone-Number" placeholder="Enter Phone Number">
-            <input type="password" id="Password" placeholder="Enter Password">
-            <input type="password" id="Re-Password" placeholder="Re-enter Password">
-            <div class="form-footer">
-                <div class="sign-Up">Already have an account? <a href="{{ url_for('login') }}" class="no-underline">Log In</a></div>
-                
-            </div>
-            <button id="Submit" type="submit">Sign Up</button>
-          
-            <div class="line-or-container">
-                <hr class="line">
-                <span class="or">OR</span>
-                <hr class="line">
-              </div>
-
-            <div class="social-btns">
-                <button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}" alt="Facebook logo"><span>Continue with Facebook</span></button>
-                <button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
-            </div>
-            
-        </form>
-    </div>
-    {% endblock %}
-
-    {% block script %}
-            <script src="{{ url_for('static', filename='js/sign-up.js') }}"></script>
-    {% endblock %}
+<div class="container">
+    <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
+    <div class="member">Create a Monetize.ai account</div>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+            {% if form.name.errors %}
+            <small class="text-danger">{{ form.name.errors[0] }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+            {% if form.email.errors %}
+            <small class="text-danger">{{ form.email.errors[0] }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label }}
+            {{ form.phone(class="form-control") }}
+            {% if form.phone.errors %}
+            <small class="text-danger">{{ form.phone.errors[0] }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+            {% if form.password.errors %}
+            <small class="text-danger">{{ form.password.errors[0] }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password(class="form-control") }}
+            {% if form.confirm_password.errors %}
+            <small class="text-danger">Confirm Password must be the same as Password</small>
+            {% endif %}
+        </div>
+        <div class="form-footer">
+            <div class="sign-Up">Already have an account? <a href="{{ url_for('login') }}" class="no-underline">Log
+                    In</a></div>
+        </div>
+        <button id="Submit" type="submit">Sign Up</button>
+        <div class="line-or-container">
+            <hr class="line">
+            <span class="or">OR</span>
+            <hr class="line">
+        </div>
+        <div class="social-btns">
+            <button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}"
+                    alt="Facebook logo"><span>Continue with Facebook</span></button>
+            <button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}"
+                    alt="Google logo"><span>Continue with Google</span></button>
+        </div>
+    </form>
+</div>
+{% endblock %}

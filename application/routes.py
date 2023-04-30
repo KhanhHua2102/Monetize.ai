@@ -1,9 +1,10 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, request
 from datetime import timedelta
 
-from forms import LoginForm
+from forms import LoginForm, SignupForm
 import secrets
+import sql
 
 secrets_key = secrets.token_bytes(32)
 app.config['SECRET_KEY'] = secrets_key
@@ -52,7 +53,16 @@ def login():
 
 @app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
-    session.pop('email', None)
+    session.pop('Email', None)
     form = LoginForm()
     
     return render_template('login.html',form=form)
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignupForm()
+    if form.validate_on_submit():
+        
+        return redirect(url_for('login'))
+    return render_template('signup.html', form=form)
+
