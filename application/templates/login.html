@@ -8,15 +8,22 @@
 	<div class="container">
 		<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
 		<div class="member">Member Login</div>
-		<form>
-			<input type="text" placeholder="Enter Email Adress Here">
-			<input type="password" placeholder="Enter Your Password Here">
+		<form method="POST" >
+			{{ form.hidden_tag() }}
+			<div class="form-group">
+				{{ form.email.label() }}
+				{{ form.email(class_="form-control", placeholder="Enter Email Address Here") }}
+			</div>
+			<div class="form-group">
+				{{ form.password.label() }}
+				{{ form.password(class_="form-control", placeholder="Enter Your Password Here") }}
+			</div>
 			<div class="form-footer">
-				<div class="sign-Up"><a href="{{ url_for('logOut') }}"class="no-underline">Dont have an Account?</a></div>
+				<div class="sign-Up"><a href="{{ url_for('signup') }}" class="no-underline">Dont have an Account?</a></div>
 				<div class="forgot-password">Forgot password?</div>
 			</div>
-			<button type="submit">Login</button>
-		  
+			<button id="Submit" type="submit" class="btn btn-primary">Login</button>
+		    <div id="message"></div>
 			<div class="line-or-container">
 				<hr class="line">
 				<span class="or">OR</span>
@@ -25,13 +32,13 @@
 
 			<div class="social-btns">
 				<button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}" alt="Facebook logo"><span>Continue with Facebook</span></button>
-				<button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
+				 <button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}" alt="Google logo"><span>Continue with Google</span></button>
 			</div>
 			
 		</form>
 	</div>
-	{% endblock %}
+{% endblock %}
 
-	{% block script %}
-			<script src="{{ url_for('static', filename='js/login.js') }}"></script>
-	{% endblock %}
+{% block script %}
+	<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

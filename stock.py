@@ -89,7 +89,7 @@ def getStockData(num_shares, ticker, start_date, end_date):
 
 
 def promptProfit(input):
-    input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
+    input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume, and the default number of shares is 1. Otherwise, please response exactly the word 'False'.\nUser message: " + input
     response_values = gpt.openAi(input)
     response_values = response_values.split()
     if response_values == "False":
@@ -112,6 +112,16 @@ def promptProfit(input):
         return response, checkProfit
     return 'format error', False
 
+
+def promptReccomendation(input):
+    input = "Based on a user's input, you have to determine if they contain the word recommendations in the input or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
+    response_values = gpt.openAi(input)
+    response_values = response_values.split()
+    if response_values == "False":
+        checkProfit = False
+    else:
+        checkProfit = True
+    return checkProfit
 # check if user message contains information about stocks, shares, and dates
 # def containsStockInfo(userMessage):
 #      regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"
