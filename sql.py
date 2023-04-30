@@ -1,7 +1,8 @@
 from application import app, models
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask import jsonify
+from flask import jsonify, flash, render_template
+from datetime import datetime
 import os
 from sqlalchemy import ForeignKey
 
@@ -30,7 +31,7 @@ def getJsonObject(key, table, column_list=None):
     return jsonify(data)
 
 # add new user to user table in database
-def addUser(user_name, email, password,phone_number):
+def addUser(user_name, email, password, phone_number):
     if models.user.query.filter_by(email=email).first():
         raise ValueError("User with provided email already exists")
     new_user = models.user(user_name=user_name, email = email, password = password, phone_number = phone_number)
@@ -41,11 +42,8 @@ def addUser(user_name, email, password,phone_number):
 # return user data from user table in database as JSON object
 def getUserData(email):
     user = models.user.query.filter_by(email=email).first()
-    if user:
-        user_data = {"user_id":user.user_id ,"user_name":user.user_name ,"email":user.email,"phone_number":user.phone_number,"password":user.password,"risk_tolerence":user.risk_tolerence}
-        return jsonify(user_data)
-    else:
-        return jsonify({'error': 'User not found'})
+    return user
+
     
 def getUserId(email):
     user = models.user.query.filter_by(email=email).first()
