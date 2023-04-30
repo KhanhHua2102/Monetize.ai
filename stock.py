@@ -111,6 +111,16 @@ def promptProfit(input):
         return response, checkProfit
     return 'format error', False
 
+
+def promptReccomendation(input):
+    input = "Based on a user's input, you have to determine if they contain the word recommendations in the input or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
+    response_values = gpt.openAi(input)
+    response_values = response_values.split()
+    if response_values == "False":
+        checkProfit = False
+    else:
+        checkProfit = True
+    return checkProfit
 # check if user message contains information about stocks, shares, and dates
 # def containsStockInfo(userMessage):
 #      regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"
