@@ -1,19 +1,12 @@
 from application import app
-
 from flask import jsonify, request
-
-
-
-
 from flask_cors import CORS
 
 import gpt
 import stock
+import sql
 
-
-
-CORS(app) 
-
+CORS(app)
 
 
 context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
@@ -41,6 +34,3 @@ def generate():
     context_data += result + '\n\n'
     print(context_data)
     return jsonify({'response': result})
-
-
-
