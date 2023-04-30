@@ -5,7 +5,6 @@ from flask_cors import CORS
 import gpt
 import stock
 import sql
-import datetime
 # import json
 
 CORS(app)
