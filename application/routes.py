@@ -28,9 +28,11 @@ def portfolio():
 def history():
     return render_template('history.html')
 
-@app.route("/settings")
+@app.route('/settings')
 def settings():
-    return render_template('settings.html', menuCss=True)
+    email = session['Email']
+    user_data = sql.getUserData(email)
+    return render_template('settings.html',menuCss=True, user_data=user_data)
 
 @app.route('/help')
 def help():
@@ -47,10 +49,14 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        user_data = sql.getUserData(email, password)
-
+        user_data = sql.getUserData(email)
         if not user_data:
-            return redirect(url_for('login'))
+         flash('User not found', 'error')
+         return redirect(url_for('login'))
+
+        if password != user_data.password:
+          flash('Incorrect Password', 'error')
+          return redirect(url_for('login'))
 
         session['Email'] = email
         session.permanent = True  # make the session cookie permanent
@@ -90,4 +96,5 @@ def signup():
             return render_template('signup.html', form=form, error_message=error_message)
         return redirect(url_for('login'))
     return render_template('signup.html', form=form)
+
 

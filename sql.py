@@ -1,7 +1,7 @@
 from application import app, models
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask import jsonify, flash
+from flask import jsonify, flash, render_template
 from datetime import datetime
 import os
 from sqlalchemy import ForeignKey
@@ -41,18 +41,9 @@ def addUser(user_name, email, password, phone_number):
     models.db.session.close()
 
 # return user data from user table in database as JSON object
-def getUserData(email, password):
+def getUserData(email):
     user = models.user.query.filter_by(email=email).first()
-    if user:
-        if user.password == password:
-            user_data = {"user_id": user.user_id, "user_name": user.user_name, "email": user.email, "phone_number": user.phone_number, "password": user.password, "risk_tolerence": user.risk_tolerence}
-            return user_data
-        else:
-            flash('Incorrect password', 'error')
-            return {}
-    else:
-        flash('User not found', 'error')
-        return {}
+    return user
 
     
 def getUserId(email):
