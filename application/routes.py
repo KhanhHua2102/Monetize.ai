@@ -1,5 +1,5 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session, request
+from flask import render_template, redirect, url_for, session, make_response
 from datetime import timedelta
 
 from forms import LoginForm, SignupForm
@@ -8,7 +8,6 @@ import sql
 
 secrets_key = secrets.token_bytes(32)
 app.config['SECRET_KEY'] = secrets_key
-
 
 
 @app.route("/")
@@ -48,15 +47,21 @@ def login():
         session['Email'] = form.email.data
         session.permanent = True  # make the session cookie permanent
         app.permanent_session_lifetime = timedelta(days=1)
-        return redirect(url_for('index'))
+         # Add the Email cookie
+        response = make_response(redirect(url_for('index')))
+        response.set_cookie('Email', form.email.data)
+        return response
+        
     return render_template('login.html',form=form)
 
 @app.route("/logOut", methods=['GET', 'POST'])
 def logOut():
     session.pop('Email', None)
     form = LoginForm()
-    
-    return render_template('login.html',form=form)
+    response = make_response(render_template('login.html',form=form))
+    response.delete_cookie('Email')
+    return response
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
