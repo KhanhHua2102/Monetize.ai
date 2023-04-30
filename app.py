@@ -5,6 +5,8 @@ from flask_cors import CORS
 import gpt
 import stock
 import sql
+import datetime
+# import json
 
 CORS(app)
 
@@ -33,4 +35,5 @@ def generate():
     result = gpt.openAi(context_data)
     context_data += result + '\n\n'
     print(context_data)
+
     return jsonify({'response': result})

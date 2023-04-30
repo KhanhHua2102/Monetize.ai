@@ -105,6 +105,7 @@ def promptProfit(input):
         response = stock_data[0]
         # add stock to database
         sql.addPortfolio(stock_data[1])
+        print(print(getStockData(1)))
         print(response + '\n')
         response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + response
 
