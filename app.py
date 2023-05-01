@@ -1,44 +1,36 @@
 from application import app
 from flask import jsonify, request
 from flask_cors import CORS
-from datetime import datetime
 
 import gpt
 import stock
 import sql
-# import json
 
 CORS(app)
 
-
 context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
-
 
 @app.route('/generate', methods=['POST'])
 def generate():
     global context_data
-    print("user message received:")
+    email = request.cookies.get('email')
+
     data = request.get_json()
     userMessage = data['prompt']
+    print("user message received:")
     print(userMessage + '\n')
 
     promptResult = stock.promptProfit(userMessage)
-    promtRecommendation = stock.promptReccomendation(userMessage)
     # perform a specific action for when stock information is present
     if promptResult[1]:
         print("Stock information detected in context_data. Performing specific action...\n")
         context_data += 'Q: ' + promptResult[0] + '\nA: '
         # add stock to database
-        stock_data = promptResult[2]
-        email = request.cookies.get('email')
-        dt = datetime.now()
-        # date, ticker, quantity, start_price, current_price, return_percent, return_amount, total = stock_data[1]
-        sql.addStock(email, dt, 'apple', 20, 20.0,
-                     30.0, 30.0, 20.0, 50.0)
+        start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total = promptResult[2]
+        print(promptResult[2])
+        sql.addStock(email, start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total)
+
     # normal bot reply
-    elif promtRecommendation == True:
-        print("Stock recommendation information detected in context_data. Performing specific action...\n")
-        context_data += 'Q: ' + userMessage + '\nA: '
     else:
         print("No stock information detected in context_data.\n")
         context_data += 'Q: ' + userMessage + '\nA: '
@@ -48,3 +40,5 @@ def generate():
     print(context_data)
 
     return jsonify({'response': result})
+
+# I bought 200 apple shares on 12/12/2020, what is my profit?

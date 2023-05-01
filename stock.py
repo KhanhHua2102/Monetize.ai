@@ -13,8 +13,6 @@ def parseInput(prompt):
 
         # Parse start and end dates using dateutil parser
         start_date = parser.parse(start_date_str, fuzzy=True)
-        # Parse start date using dateutil parser
-        start_date = parser.parse(start_date_str, fuzzy=True)
 
         # Check if end date is "today" and replace with current date
         if end_date_str.lower() == "today":
@@ -43,20 +41,11 @@ def parseInput(prompt):
         # Return error message for invalid prompt format
         return None, None, None, None, "Invalid prompt format: please enter the prompt in the format 'num_shares ticker start_date end_date'."
 
-# def addingStock(userInput):
-#     stock_context = "Based on a user's input, you have to determine if they want to add stocks to their portfolio or calculate profit. Return 'False' if they don't want to add stocks or their input is irrelevant to stocks. You should also return 'True' if their information does include the stock name, date added, the quantity of stock and bought price. Otherwise please return 'True'. For all query strictly return either True or False only and nothing else. The user input is: "
-#     query = stock_context+'"'+userInput+'"'
-#     response = openAi(query)
-#     if response == "True":
-#         return True
-#     return False
-
 
 def getStockData(num_shares, ticker, start_date, end_date):
     try:
         # Retrieve stock info and extract company name
-        stock_info = yf.Ticker(ticker).info
-        company_name = stock_info['longName']
+        company_name = yf.Ticker(ticker).info['longName']
 
         # Retrieve historical data for specified dates
         stock_data = yf.download(ticker, start=start_date, end=end_date)
@@ -86,28 +75,25 @@ def getStockData(num_shares, ticker, start_date, end_date):
         # Return error message for invalid ticker symbol
         response = f"Invalid ticker symbol: {ticker}"
 
-    return response, [start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total]
+    return response, (start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total)
 
 
 def promptProfit(input):
-    input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume, and the default number of shares is 1. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input)
-    response_values = response_values.split()
+    input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
+    response_values = gpt.openAi(input).split()
+
     if response_values == "False":
         checkProfit = False
     else:
         checkProfit = True
+
     if len(response_values) == 4 and response_values[0].isdigit() and all(isinstance(val, str) for val in response_values[1:]):
         num_shares, ticker, start_date, end_date, error_msg = parseInput(
             response_values)
         if error_msg:
             return error_msg
         stock_data = getStockData(num_shares, ticker, start_date, end_date)
-        response = stock_data[0]
-        # add stock to database
-        print(stock_data[1])
-        print(response + '\n')
-        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + response
+        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + stock_data[0]
 
         return response, checkProfit, stock_data[1]
     return 'format error', False
@@ -115,8 +101,8 @@ def promptProfit(input):
 
 def promptReccomendation(input):
     input = "Based on a user's input, you have to determine if they contain the word recommendations in the input or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input)
-    response_values = response_values.split()
+    response_values = gpt.openAi(input).split()
+
     if response_values == "False":
         checkProfit = False
     else:

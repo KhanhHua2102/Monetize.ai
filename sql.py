@@ -52,8 +52,15 @@ def getUserId(email):
     else:
         raise ValueError("User Id with email given is not found")
         
-def addStock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount,total):
+def addStock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
     userId = getUserId(email)
+
+    quantity = float(quantity)
+    start_price = float(start_price)
+    current_price = float(current_price)
+    return_percent = float(return_percent)
+    return_amount = float(return_amount)
+    total = float(total)
     
     stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
     if stock:
