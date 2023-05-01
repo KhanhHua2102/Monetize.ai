@@ -105,7 +105,7 @@ def promptProfit(input):
         stock_data = getStockData(num_shares, ticker, start_date, end_date)
         response = stock_data[0]
         # add stock to database
-        print(getStockData(1))
+        print(stock_data[1])
         print(response + '\n')
         response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + response
 

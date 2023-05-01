@@ -1,6 +1,7 @@
 from application import app
 from flask import jsonify, request
 from flask_cors import CORS
+from datetime import datetime
 
 import gpt
 import stock
@@ -29,8 +30,11 @@ def generate():
         context_data += 'Q: ' + promptResult[0] + '\nA: '
         # add stock to database
         stock_data = promptResult[2]
-        email = request.COOKIES.get('email')
-        sql.addStock(email, *stock_data[1])
+        email = request.cookies.get('email')
+        dt = datetime.now()
+        # date, ticker, quantity, start_price, current_price, return_percent, return_amount, total = stock_data[1]
+        sql.addStock(email, dt, 'apple', 20, 20.0,
+                     30.0, 30.0, 20.0, 50.0)
     # normal bot reply
     elif promtRecommendation == True:
         print("Stock recommendation information detected in context_data. Performing specific action...\n")
