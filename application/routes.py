@@ -1,5 +1,5 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages
+from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages, request
 from datetime import timedelta
 
 from forms import LoginForm, SignupForm
@@ -34,9 +34,9 @@ def history():
 
 @app.route('/settings')
 def settings():
-    email = session['email']
+    email = request.cookies.get('email')
     user_data = sql.getUserData(email)
-    return render_template('settings.html', menuCss=True, user_data=user_data)
+    return render_template('settings.html', menuCss=True, **locals())
 
 
 @app.route('/help')
