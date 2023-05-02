@@ -1,13 +1,9 @@
 from application import app
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from datetime import datetime
 from sqlalchemy import ForeignKey
 
 db = SQLAlchemy()
-
-# Initialize Flask-Migrate
-migrate = Migrate(app, db)
 
 class portfolio(db.Model):
     stock_id = db.Column(db.Integer, primary_key=True)

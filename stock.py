@@ -7,9 +7,9 @@ import gpt
 import sql
 
 
-def parseInput(prompt):
+def parse_input(prompt):
     try:
-        num_shares, ticker, start_date_str, end_date_str = prompt
+        quantity, ticker, start_date_str, end_date_str = prompt
 
         # Parse start and end dates using dateutil parser
         start_date = parser.parse(start_date_str, fuzzy=True)
@@ -33,7 +33,7 @@ def parseInput(prompt):
         # Convert ticker to uppercase for consistency
         ticker = ticker.upper()
 
-        return num_shares, ticker, start_date, end_date, None
+        return quantity, ticker, start_date, end_date, None
     except ValueError as e:
         # Return error message for invalid date range or prompt format
         return None, None, None, None, str(e)
@@ -42,7 +42,7 @@ def parseInput(prompt):
         return None, None, None, None, "Invalid prompt format: please enter the prompt in the format 'num_shares ticker start_date end_date'."
 
 
-def getStockData(num_shares, ticker, start_date, end_date):
+def get_stock_data(num_shares, ticker, start_date, end_date):
     try:
         # Retrieve stock info and extract company name
         company_name = yf.Ticker(ticker).info['longName']
@@ -78,36 +78,39 @@ def getStockData(num_shares, ticker, start_date, end_date):
     return response, (start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total)
 
 
-def promptProfit(input):
-    input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input).split()
+def prompt_profit(input):
+    # input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
+    input = "Based on a user's message, you have to determine if the message does include a stock(share/ticker) name, a quantity of that stock, and a date; convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
+    
+    response_values = gpt.open_ai(input).split()
 
-    if response_values == "False":
-        checkProfit = False
-    else:
-        checkProfit = True
+    print(response_values)
 
-    if len(response_values) == 4 and response_values[0].isdigit() and all(isinstance(val, str) for val in response_values[1:]):
-        num_shares, ticker, start_date, end_date, error_msg = parseInput(
-            response_values)
+    check_profit = (response_values[0] != "False")
+
+    if len(response_values) == 5:
+        buy_sell = response_values[0]
+        num_shares, ticker, start_date, end_date, error_msg = parse_input(response_values[1:])
         if error_msg:
             return error_msg
-        stock_data = getStockData(num_shares, ticker, start_date, end_date)
-        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + stock_data[0]
+        
+        stock_data = get_stock_data(num_shares, ticker, start_date, end_date)
+        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + \
+            stock_data[0]
 
-        return response, checkProfit, stock_data[1]
-    return 'format error', False
+        return response, check_profit, stock_data[1], buy_sell
+    return None, False
 
 
-def promptReccomendation(input):
+def prompt_reccomendation(input):
     input = "Based on a user's input, you have to determine if they contain the word recommendations in the input or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input).split()
+    response_values = gpt.open_ai(input).split()
 
     if response_values == "False":
-        checkProfit = False
+        check_profit = False
     else:
-        checkProfit = True
-    return checkProfit
+        check_profit = True
+    return check_profit
 # check if user message contains information about stocks, shares, and dates
 # def containsStockInfo(userMessage):
 #      regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"

@@ -35,7 +35,7 @@ def history():
 @app.route('/settings')
 def settings():
     email = request.cookies.get('email')
-    user_data = sql.getUserData(email)
+    user_data = sql.get_user_data(email)
     return render_template('settings.html', menuCss=True, **locals())
 
 
@@ -56,7 +56,7 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        user_data = sql.getUserData(email)
+        user_data = sql.get_user_data(email)
         if not user_data:
             flash('User not found', 'error')
             return redirect(url_for('login'))
@@ -96,7 +96,7 @@ def signup():
         phone = form.phone.data
         password = form.password.data
         try:
-            sql.addUser(name, email, password, phone)
+            sql.add_user(name, email, password, phone)
         except ValueError as e:
             error_message = str(e)
             return render_template('signup.html', form=form, error_message=error_message)

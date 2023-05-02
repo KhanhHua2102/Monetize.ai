@@ -1,16 +1,16 @@
 from application import app, models
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask import jsonify, flash, render_template
 from datetime import datetime
 import os
 from sqlalchemy import ForeignKey
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_path+"/../", 'test.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+    os.path.join(app.root_path+"/../", 'test.db')
 models.db.init_app(app)
 
-#query to get data from the database
-def getJsonObject(key, table, column_list=None):
+# query to get data from the database
+def get_json_object(key, table, column_list=None):
     try:
         get_table = getattr(models, table)
         result = get_table.query.filter_by(id=key).first()
@@ -31,29 +31,30 @@ def getJsonObject(key, table, column_list=None):
     return jsonify(data)
 
 # add new user to user table in database
-def addUser(user_name, email, password, phone_number):
+def add_user(user_name, email, password, phone_number):
     if models.user.query.filter_by(email=email).first():
         raise ValueError("User with provided email already exists")
-    new_user = models.user(user_name=user_name, email = email, password = password, phone_number = phone_number)
+    new_user = models.user(user_name=user_name, email=email,
+                           password=password, phone_number=phone_number)
     models.db.session.add(new_user)
     models.db.session.commit()
     models.db.session.close()
 
 # return user data from user table in database as JSON object
-def getUserData(email):
+def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
     return user
 
-    
-def getUserId(email):
+
+def get_user_id(email):
     user = models.user.query.filter_by(email=email).first()
     if user:
         return user.user_id
     else:
         raise ValueError("User Id with email given is not found")
-        
-def addStock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
-    userId = getUserId(email)
+
+def add_stock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
+    userId = get_user_id(email)
 
     quantity = float(quantity)
     start_price = float(start_price)
@@ -61,8 +62,9 @@ def addStock(email, date, ticker, quantity, start_price, current_price, return_p
     return_percent = float(return_percent)
     return_amount = float(return_amount)
     total = float(total)
-    
-    stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
+
+    stock = models.portfolio.query.filter_by(
+        user_id=userId, ticker=ticker).first()
     if stock:
         stock.quantity += quantity
         stock.current_price = current_price
@@ -70,61 +72,69 @@ def addStock(email, date, ticker, quantity, start_price, current_price, return_p
         stock.return_amount = return_amount
         stock.total = total
     else:
-        new_stock = models.portfolio(user_id=userId, date_added=date, ticker=ticker, quantity=quantity, price_bought=start_price, current_price=current_price, return_percent=return_percent, return_amount=return_amount, total=total)
+        new_stock = models.portfolio(user_id=userId, date_added=date, ticker=ticker, quantity=quantity, price_bought=start_price,
+                                     current_price=current_price, return_percent=return_percent, return_amount=return_amount, total=total)
         models.db.session.add(new_stock)
     models.db.session.commit()
     models.db.session.close()
 
 # update stock in stock table in database, if quantity is 0, delete stock
-#add change stock price if have time?
-def updateStock(email, ticker, quantity):
-    userId = getUserId(email)
-    stock = models.portfolio.query.filter_by(user_id=userId, ticker=ticker).first()
+# add change stock price if have time?
+def update_stock(email, ticker, quantity):
+    userId = get_user_id(email)
+    stock = models.portfolio.query.filter_by(
+        user_id=userId, ticker=ticker).first()
     if stock is None:
-        raise ValueError("No such stock with this userId and ticker. Should add such a data row first")
+        raise ValueError(
+            "No such stock with this userId and ticker. Should add such a data row first")
     if quantity == 0:
         models.db.session.delete(stock)
     else:
-        stock.quantity = quantity
+        stock.quantity = str(int(stock.quantity) + int(quantity))
     models.db.session.commit()
     models.db.session.close()
 
 # return stock data from stock table in database as JSON object
-def getStockData(email):
-    userId = getUserId(email)
+def get_stock_data(email):
+    userId = get_user_id(email)
     stocks = models.portfolio.query.filter_by(user_id=userId).all()
     if stocks is None:
-        return {'error':'No stocks with this user_id yet.'}
+        return None
     stock_data = {}
     for stock in stocks:
         this_stock_id = str(stock.stock_id)
-        stock_data[this_stock_id] = {'user_id': stock.user_id,'date_added': str(stock.date_added),'ticker': stock.ticker,'quantity': stock.quantity,'price_bought': stock.price_bought,'current_price': stock.current_price,'return_percent': stock.return_percent,'return_amount': stock.return_amount,'total': stock.total}
+        stock_data[this_stock_id] = {'user_id': stock.user_id, 'date_added': str(stock.date_added), 'ticker': stock.ticker, 'quantity': stock.quantity, 'price_bought': stock.price_bought,
+                                     'current_price': stock.current_price, 'return_percent': stock.return_percent, 'return_amount': stock.return_amount, 'total': stock.total}
     return stock_data
 
 # return message data from message table in database as JSON object
-def getMessages(email):
-    userId = getUserId(email)
-    messages = models.messages.query.filter_by(user_id = userId).all()
-    if messages is None:    
-        return {'error':'No messages with this user_id yet.'}
+def get_messages(email):
+    userId = get_user_id(email)
+    messages = models.messages.query.filter_by(user_id=userId).all()
+    if messages is None:
+        return {'error': 'No messages with this user_id yet.'}
     messages_data = {}
     for message in messages:
         this_message_id = str(message.message_id)
-        messages_data[this_message_id] = {'user_id':message.user_id,'body' : message.body,'created_at':message.created_at}
+        messages_data[this_message_id] = {
+            'user_id': message.user_id, 'body': message.body, 'created_at': message.created_at}
     return messages_data
 
 # add new message to message table in database
-def addMessages(messageId, email, message, date):
-    userId = getUserId(email)
-    existing_message = models.messages.query.filter_by(message_id=messageId).first()
+def add_messages(messageId, email, message, date):
+    userId = get_user_id(email)
+    existing_message = models.messages.query.filter_by(
+        message_id=messageId).first()
     if existing_message:
         existing_message.body = message
         existing_message.created_at = date
     else:
-        new_Message = models.messages(message_id=messageId, user_id=userId, body=message, created_at=date)
+        new_Message = models.messages(
+            message_id=messageId, user_id=userId, body=message, created_at=date)
         models.db.session.add(new_Message)
     models.db.session.commit()
     models.db.session.close()
+
 
 with app.app_context():
     models.db.create_all()
