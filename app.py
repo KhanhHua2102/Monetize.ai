@@ -54,3 +54,4 @@ def generate():
     return jsonify({'response': result})
 
 # I bought 200 apple shares on 12/12/2020, what is my profit?
+# I sold 20 apple shares on 12/12/2021.

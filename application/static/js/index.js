@@ -1,10 +1,6 @@
 $(document).ready(function () {
-    // Toggle menu
-	$('#menu-icon').click(function () {
-		console.log('menu button clicked');
-        $('.menu button').toggle();
-    });
-
+	// Start conversation with welcome message
+	startMessage();
     // Send message and receive response from gpt
     $("#submit-button")
 			.click(function (event) {
@@ -21,14 +17,32 @@ $(document).ready(function () {
 					sendQuery();
 				}
             });
-
-	$("#portfolio")
-			.click(function (event) {
-                // event.preventDefault();
-                console.log("portfolio page clicked");
-				portfolio();
-			});
 });
+
+function startMessage() {
+	// Loading animation
+	var animation = `
+            <div class="loading-messages">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+            `;
+	$("section").append(animation);
+
+	// wait for 1 second
+	function delay(time) {
+		return new Promise((resolve) => setTimeout(resolve, time));
+	}
+
+	delay(1000).then(() => {
+		$(".loading-messages").remove();
+		$("section").append(
+			"<div class='messages bot-messages'>" + 'Hi there, I am Monetize.ai - your personal financial chat bot advisor. I have access to the most recent, accurate and reliable financial data from Yahoo Finance to give you relevant financial information at a glance.' + "</div>"
+		);
+		$(".bot-messages").css("visibility", "visible");
+	});
+}
 
 function sendQuery() {
 	console.log("sending query");
