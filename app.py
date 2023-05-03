@@ -22,31 +22,6 @@ def generate():
     print("user message received:")
     print(user_message + '\n')
 
-    # prompt_result = stock.prompt_profit(user_message)
-    # start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]
-    # buy_sell = prompt_result[3]
-    # # perform a specific action for when stock information is present
-    # # if user's message contain sell or sold keyword, we update their portfolio and reply a normal bot response
-    # if buy_sell == 'sell':
-    #     if sql.get_stock_data(email) is not None:
-    #         sql.update_stock(email, ticker, 0 - quantity)
-    #     context_data += 'Q: ' + user_message + '\nA: '
-    # elif prompt_result[1]:  # add stock to user's portfolio and answer with profit
-    #     print("Stock information detected in context_data. Performing specific action...\n")
-    #     context_data += 'Q: ' + prompt_result[0] + '\nA: '
-
-    #     # add stock to database
-    #     if sql.get_stock_data(email) is None:
-    #         sql.add_stock(email, start_date, ticker, quantity, start_price,
-    #                       end_price, return_percent, return_amount, total)
-    #     else:
-    #         sql.update_stock(email, ticker, quantity)
-
-    # # normal bot reply
-    # else:
-    #     print("No stock information detected in context_data.\n")
-    #     context_data += 'Q: ' + user_message + '\nA: '
-
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
     if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
         print("User message contains buy or bought keyword")
@@ -78,12 +53,11 @@ def generate():
         print("No stock information detected in context_data.\n")
         context_data += 'Q: ' + user_message + '\nA: '
 
-
     result = gpt.open_ai(context_data)
     context_data += result + '\n\n'
     print(context_data)
 
     return jsonify({'response': result})
 
-# I bought 200 apple shares on 12/12/2020, what is my profit?
-# I sold 20 apple shares on 12/12/2021.
+# I bought 200 Apple shares on 12/12/2020, what is my profit?
+# I sold 50 Apple shares on 12/12/2021.
