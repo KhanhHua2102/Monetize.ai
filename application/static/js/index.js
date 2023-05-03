@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	// Start conversation with welcome message
 	startMessage();
+	getRecentMessages();
     // Send message and receive response from gpt
     $("#submit-button")
 			.click(function (event) {
@@ -93,20 +94,29 @@ function postRequest(input) {
 function getRecentMessages() {
 	console.log("getting recent messages");
 	$.get({
+		method: "GET",
 		url: "/get_messages",
 		contentType: "application/json",
 		dataType: "json",
-	}).done(function (messages) {
+	}).done(function (data) {
 		console.log("finished getting recent messages");
-		console.log(messages);
-	});
 
-	if (messages != "") {
-		$("section").append(
-			"<div class='messages user-messages'>" + messages + "</div>"
-		);
-		$(".user-messages").css("visibility", "visible");
-	}
+		for (let i = 0; i < Object.keys(data.messages).length/2; i++) {
+			console.log(data.messages[i]);
+			if (data.messages[i] != "") {
+				$("section").append(
+					"<div class='messages user-messages'>" + data.messages[i] + "</div>"
+				);
+				$(".user-messages").css("visibility", "visible");
+			}
+			if (data.messages[i+1] != "") {
+				$("section").append(
+					"<div class='messages bot-messages'>" + data.messages[i + 1] + "</div>"
+				);
+				$(".bot-messages").css("visibility", "visible");
+			}
+		}
+	});
 }
 
 function portfolio() {

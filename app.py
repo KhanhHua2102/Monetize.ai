@@ -70,17 +70,18 @@ def generate():
 # I bought 200 Apple shares on 12/12/2020, what is my profit?
 # I sold 50 Apple shares on 12/12/2021.
 
-app.route('/get_messages', methods=['GET'])
+@app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)
 
     msg_result = {}
-    for message in range(3):
+    for message in range(4):
         msg_result[str(message)] = messages[str(
             len(messages) - message - 1)]['body']
         
     jsonify(msg_result)
+    print(msg_result)
 
     return jsonify({'messages': msg_result})
 
