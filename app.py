@@ -2,6 +2,8 @@ from application import app
 from flask import jsonify, request
 from flask_cors import CORS
 import re
+from datetime import date
+from datetime import datetime
 
 import gpt
 import stock as stk
@@ -21,6 +23,9 @@ def generate():
     user_message = data['prompt']
     print("user message received:")
     print(user_message + '\n')
+
+    # add user message to database
+    sql.add_message(email, user_message, datetime.now())
 
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
     if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
@@ -56,6 +61,12 @@ def generate():
     result = gpt.open_ai(context_data)
     context_data += result + '\n\n'
     print(context_data)
+
+    # add bot response to database
+    sql.add_message(email, result, datetime.now())
+
+    messages = sql.get_messages(email)
+    print("messages:", messages)
 
     return jsonify({'response': result})
 

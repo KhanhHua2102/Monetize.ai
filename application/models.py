@@ -1,5 +1,5 @@
-from datetime import datetime
 from application import db
+from datetime import datetime
 
 class portfolio(db.Model):
     stock_id = db.Column(db.Integer, primary_key=True)
@@ -18,21 +18,21 @@ class portfolio(db.Model):
     
 class user(db.Model):
     __tablename__ = 'user'
-    user_id = db.Column(db.Integer,primary_key = True)
-    user_name = db.Column(db.String(100),nullable = False)
-    email = db.Column(db.String(10),nullable = False)
+    user_id = db.Column(db.Integer, primary_key = True)
+    user_name = db.Column(db.String(100), nullable = False)
+    email = db.Column(db.String(10), nullable = False)
     phone_number = db.Column(db.Unicode(255))
-    password = db.Column(db.String(20),nullable = False)
-    risk_tolerence = db.Column(db.String(10),default = "Medium")
+    password = db.Column(db.String(20), nullable = False)
+    risk_tolerence = db.Column(db.String(10), default = "Medium")
 
     def __repr__(self):
         return '<user %r>' % self.id
     
 class messages(db.Model):
-    message_id = db.Column(db.Integer,primary_key = True)
-    user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'),nullable = False)
-    body = db.Column(db.Text,nullable = False)
-    created_at = db.Column(db.DateTime,nullable =False)
+    message_id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'), nullable = False)
+    body = db.Column(db.Text, nullable = False)
+    created_at = db.Column(db.DateTime, nullable =False)
 
     def __repr__(self):
         return '<messages %r>' % self.id

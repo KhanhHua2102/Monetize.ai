@@ -48,7 +48,7 @@ def get_user_id(email):
         raise ValueError("User Id with email given is not found")
 
 def add_stock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
-    userId = get_user_id(email)
+    user_id = get_user_id(email)
 
     quantity = float(quantity)
     start_price = float(start_price)
@@ -58,7 +58,7 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
     total = float(total)
 
     stock = models.portfolio.query.filter_by(
-        user_id=userId, ticker=ticker).first()
+        user_id=user_id, ticker=ticker).first()
     if stock:
         stock.quantity += quantity
         stock.current_price = current_price
@@ -66,7 +66,7 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
         stock.return_amount = return_amount
         stock.total = total
     else:
-        new_stock = models.portfolio(user_id=userId, date_added=date, ticker=ticker, quantity=quantity, price_bought=start_price,
+        new_stock = models.portfolio(user_id=user_id, date_added=date, ticker=ticker, quantity=quantity, price_bought=start_price,
                                      current_price=current_price, return_percent=return_percent, return_amount=return_amount, total=total)
         models.db.session.add(new_stock)
     models.db.session.commit()
@@ -75,9 +75,9 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
 # update stock in stock table in database, if quantity is 0, delete stock
 # add change stock price if have time?
 def update_stock(email, ticker, quantity):
-    userId = get_user_id(email)
+    user_id = get_user_id(email)
     stock = models.portfolio.query.filter_by(
-        user_id=userId, ticker=ticker).first()
+        user_id=user_id, ticker=ticker).first()
     if stock is None:
         raise ValueError(
             "No such stock with this userId and ticker. Should add such a data row first")
@@ -90,8 +90,8 @@ def update_stock(email, ticker, quantity):
 
 # return stock data from stock table in database as JSON object
 def get_stock_data(email):
-    userId = get_user_id(email)
-    stocks = models.portfolio.query.filter_by(user_id=userId).all()
+    user_id = get_user_id(email)
+    stocks = models.portfolio.query.filter_by(user_id=user_id).all()
     if stocks is None:
         return None
     stock_data = {}
@@ -103,8 +103,8 @@ def get_stock_data(email):
 
 # return message data from message table in database as JSON object
 def get_messages(email):
-    userId = get_user_id(email)
-    messages = models.messages.query.filter_by(user_id=userId).all()
+    user_id = get_user_id(email)
+    messages = models.messages.query.filter_by(user_id=user_id).all()
     if messages is None:
         return {'error': 'No messages with this user_id yet.'}
     messages_data = {}
@@ -115,16 +115,13 @@ def get_messages(email):
     return messages_data
 
 # add new message to message table in database
-def add_messages(messageId, email, message, date):
-    userId = get_user_id(email)
+def add_message(email, message, date):
+    user_id = get_user_id(email)
     existing_message = models.messages.query.filter_by(
-        message_id=messageId).first()
-    if existing_message:
-        existing_message.body = message
-        existing_message.created_at = date
-    else:
+        user_id=user_id, body=message).first()
+    if not existing_message:
         new_Message = models.messages(
-            message_id=messageId, user_id=userId, body=message, created_at=date)
+            user_id=user_id, body=message, created_at=date)
         models.db.session.add(new_Message)
     models.db.session.commit()
     models.db.session.close()
