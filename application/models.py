@@ -1,9 +1,5 @@
-from application import app
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from sqlalchemy import ForeignKey
-
-db = SQLAlchemy()
+from application import db
 
 class portfolio(db.Model):
     stock_id = db.Column(db.Integer, primary_key=True)

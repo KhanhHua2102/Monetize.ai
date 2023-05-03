@@ -1,13 +1,7 @@
 from application import app, models
-from flask_sqlalchemy import SQLAlchemy
-from flask import jsonify, flash, render_template
+from flask import jsonify
 from datetime import datetime
-import os
-from sqlalchemy import ForeignKey
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(app.root_path+"/../", 'test.db')
-models.db.init_app(app)
 
 # query to get data from the database
 def get_json_object(key, table, column_list=None):
