@@ -65,10 +65,25 @@ def generate():
     # add bot response to database
     sql.add_message(email, result, datetime.now())
 
-    messages = sql.get_messages(email)
-    print("messages:", messages)
-
     return jsonify({'response': result})
 
 # I bought 200 Apple shares on 12/12/2020, what is my profit?
 # I sold 50 Apple shares on 12/12/2021.
+
+app.route('/get_messages', methods=['GET'])
+def get_messages():
+    email = request.cookies.get('email')
+    messages = sql.get_messages(email)
+
+    msg_result = {}
+    for message in range(3):
+        msg_result[str(message)] = messages[str(
+            len(messages) - message - 1)]['body']
+        
+    jsonify(msg_result)
+
+    return jsonify({'messages': msg_result})
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='127.0.0.1:5000')

@@ -90,6 +90,25 @@ function postRequest(input) {
 	});
 }
 
+function getRecentMessages() {
+	console.log("getting recent messages");
+	$.get({
+		url: "/get_messages",
+		contentType: "application/json",
+		dataType: "json",
+	}).done(function (messages) {
+		console.log("finished getting recent messages");
+		console.log(messages);
+	});
+
+	if (messages != "") {
+		$("section").append(
+			"<div class='messages user-messages'>" + messages + "</div>"
+		);
+		$(".user-messages").css("visibility", "visible");
+	}
+}
+
 function portfolio() {
 	$.get("/portfolio", function (response) {
 	});
