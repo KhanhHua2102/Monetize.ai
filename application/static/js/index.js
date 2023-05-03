@@ -101,21 +101,42 @@ function getRecentMessages() {
 	}).done(function (data) {
 		console.log("finished getting recent messages");
 
-		for (let i = 0; i < Object.keys(data.messages).length/2; i++) {
-			console.log(data.messages[i]);
-			if (data.messages[i] != "") {
-				$("section").append(
-					"<div class='messages user-messages'>" + data.messages[i] + "</div>"
-				);
-				$(".user-messages").css("visibility", "visible");
-			}
-			if (data.messages[i+1] != "") {
-				$("section").append(
-					"<div class='messages bot-messages'>" + data.messages[i + 1] + "</div>"
-				);
-				$(".bot-messages").css("visibility", "visible");
-			}
+		messagesLen = Object.keys(data.messages).length - 1;
+		
+		userMessage = data.messages[messagesLen - 3];
+
+		console.log(data.messages[36]);
+		console.log(messagesLen);
+
+		if (userMessage != "") {
+			$("section").append(
+				"<div class='messages user-messages'>" + userMessage + "</div>"
+			);
+			$(".user-messages").css("visibility", "visible");
 		}
+		botMessage = data.messages[messagesLen - 2];
+		if (botMessage != "") {
+			$("section").append(
+				"<div class='messages bot-messages'>" + botMessage + "</div>"
+			);
+			$(".bot-messages").css("visibility", "visible");
+		}
+
+		userMessage = data.messages[messagesLen - 1];
+		if (userMessage != "") {
+			$("section").append(
+				"<div class='messages user-messages'>" + userMessage + "</div>"
+			);
+			$(".user-messages").css("visibility", "visible");
+		}
+		botMessage = data.messages[messagesLen - 0];
+		if (botMessage != "") {
+			$("section").append(
+				"<div class='messages bot-messages'>" + botMessage + "</div>"
+			);
+			$(".bot-messages").css("visibility", "visible");
+		}
+	
 	});
 }
 

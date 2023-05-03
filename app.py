@@ -11,7 +11,7 @@ import sql
 
 CORS(app)
 
-context_data = 'You are a friendly financial chatbot. The user will ask you questions, and you will provide polite responses.\n\n'
+context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
 
 
 @app.route('/generate', methods=['POST'])
@@ -77,7 +77,7 @@ def get_messages():
 
     msg_result = {}
     for message in range(4):
-        msg_result[str(message)] = messages[str(
+        msg_result[str(4 - message - 1)] = messages[str(
             len(messages) - message - 1)]['body']
         
     jsonify(msg_result)
