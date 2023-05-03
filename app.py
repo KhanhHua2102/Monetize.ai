@@ -62,7 +62,7 @@ def generate():
 
     # if user sell stock, we update user's portfolio and reply a normal bot response
     elif re.search(r'\b(sell|sold)\b', user_message, re.IGNORECASE):
-        print("User message does not contain buy or bought keyword")
+        print("User message contains sell or sold keyword")
         
         prompt_result = stk.prompt_profit(user_message)
         start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]

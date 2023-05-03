@@ -95,7 +95,7 @@ def prompt_profit(input):
             return error_msg
         
         stock_data = get_stock_data(num_shares, ticker, start_date, end_date)
-        response = 'Using this information to give the user a response on their stock details including start price, end price and profit if they sell it on the end date: ' + \
+        response = 'Using this information to give me a response on my stock details including start price, end price and profit if they sell it on the end date: ' + \
             stock_data[0]
 
         return response, check_profit, stock_data[1], buy_sell
