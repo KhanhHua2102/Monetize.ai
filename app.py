@@ -1,13 +1,13 @@
-from application import app
+import re
+from datetime import date, datetime
+
 from flask import jsonify, request
 from flask_cors import CORS
-import re
-from datetime import date
-from datetime import datetime
 
 import gpt
-import stock as stk
 import sql
+import stock as stk
+from application import app
 
 CORS(app)
 
@@ -75,12 +75,19 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)
-    messages_len = len(messages)
+    
+    print()
+    print(len(messages))
+    print('messages: ', messages)
+    print()
+
+    if len(messages) < 2:
+        return jsonify({'messages': {}})
         
     # get 4 last messages into a json object
     msg_result = {}
-    for message in range(0, 4):
-        msg_result[str(3 - message)] = messages[str(messages_len - message)]
+    for message in range(4):
+        msg_result[str(3 - message)] = messages[str(len(messages) - message - 1)]
 
 
     print(msg_result)

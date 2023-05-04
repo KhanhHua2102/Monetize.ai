@@ -1,6 +1,9 @@
-from application import app, models
-from flask import jsonify
 from datetime import datetime
+
+from flask import jsonify
+
+from application import app, models
+
 
 # query to get data from the database
 def get_json_object(key, table, column_list=None):
@@ -91,22 +94,27 @@ def update_stock(email, ticker, quantity):
 def get_stock_data(email):
     user_id = get_user_id(email)
     stocks = models.portfolio.query.filter_by(user_id=user_id).order_by(models.portfolio.date_added).all()
-    if stocks is None:
+
+    if stocks == None:
         return None
-    
+
     return stocks
 
 # return message data from message table in database as JSON object
 def get_messages(email):
     user_id = get_user_id(email)
     messages = models.messages.query.filter_by(user_id=user_id).all()
+    
     if messages is None:
         return {'error': 'No messages with this user_id yet.'}
+    
     messages_data = {}
+    idx = 0
     for message in messages:
         this_message_id = str(message.message_id)
-        messages_data[this_message_id] = {
-            'user_id': message.user_id, 'body': message.body, 'created_at': message.created_at}
+        messages_data[str(idx)] = {'body': message.body, 'created_at': message.created_at}
+        idx +=1
+    
     return messages_data
 
 # add new message to message table in database

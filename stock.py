@@ -1,6 +1,7 @@
 from datetime import datetime
-from dateutil import parser
+
 import yfinance as yf
+from dateutil import parser
 from flask import request
 
 import gpt

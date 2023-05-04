@@ -1,5 +1,7 @@
-from application import db
 from datetime import datetime
+
+from application import db
+
 
 class portfolio(db.Model):
     stock_id = db.Column(db.Integer, primary_key=True)

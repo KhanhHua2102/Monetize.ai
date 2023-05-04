@@ -102,7 +102,6 @@ function getRecentMessages() {
 		console.log("finished getting recent messages");
 
 		messagesLen = Object.keys(data.messages).length;
-		userMessage = data.messages[0];
 
 		userMessage = data.messages['0']['body'];
 		if (userMessage != "") {
@@ -118,7 +117,6 @@ function getRecentMessages() {
 			);
 			$(".bot-messages").css("visibility", "visible");
 		}
-
 		userMessage = data.messages['2']['body'];
 		if (userMessage != "") {
 			$("section").append(

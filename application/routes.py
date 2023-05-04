@@ -1,10 +1,12 @@
-from application import app, models
-from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages, request
+import secrets
 from datetime import timedelta
 
-from forms import LoginForm, SignupForm
-import secrets
+from flask import (flash, get_flashed_messages, make_response, redirect,
+                   render_template, request, session, url_for)
+
 import sql
+from application import app, models
+from forms import LoginForm, SignupForm
 
 secrets_key = secrets.token_bytes(32)
 app.config['SECRET_KEY'] = secrets_key
@@ -14,7 +16,8 @@ app.config['SECRET_KEY'] = secrets_key
 @app.route("/index")
 @app.route("/home")
 def index():
-    if 'email' in session:
+    # if 'email' in session:
+    if 'email' in request.cookies:
         return render_template('index.html')
     else:
         return redirect(url_for('login'))
