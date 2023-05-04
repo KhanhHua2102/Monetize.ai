@@ -106,7 +106,7 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
 
 ### Prerequisites
 
-* python 3.0 or newer
+* python 3.8 or newer
 
 ### Installation
 
