@@ -1,7 +1,7 @@
 import openai
+from flask import request
 
 import config
-from flask import request
 import sql
 
 openai.api_key = config.OPENAI_API_KEY

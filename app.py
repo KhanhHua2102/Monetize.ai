@@ -1,9 +1,9 @@
+import os
 import re
 from datetime import date, datetime
 
 from flask import jsonify, request
 from flask_cors import CORS
-import os
 
 import gpt
 import sql
