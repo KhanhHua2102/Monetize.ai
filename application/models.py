@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from application import db
 
 
@@ -38,5 +36,3 @@ class messages(db.Model):
 
     def __repr__(self):
         return '<messages %r>' % self.id
-
-

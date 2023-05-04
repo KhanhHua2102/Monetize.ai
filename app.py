@@ -1,6 +1,5 @@
-import os
 import re
-from datetime import date, datetime
+from datetime import datetime
 
 from flask import jsonify, request
 from flask_cors import CORS

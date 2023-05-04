@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from flask import jsonify
 
 from application import app, models
@@ -95,7 +93,7 @@ def get_stock_data(email):
     user_id = get_user_id(email)
     stocks = models.portfolio.query.filter_by(user_id=user_id).order_by(models.portfolio.date_added).all()
 
-    if stocks == None:
+    if stocks is None:
         return None
 
     return stocks
@@ -111,7 +109,7 @@ def get_messages(email):
     messages_data = {}
     idx = 0
     for message in messages:
-        this_message_id = str(message.message_id)
+        # this_message_id = str(message.message_id)
         messages_data[str(idx)] = {'body': message.body, 'created_at': message.created_at}
         idx +=1
     
@@ -123,9 +121,9 @@ def add_message(email, message, date):
     existing_message = models.messages.query.filter_by(
         user_id=user_id, body=message).first()
     if not existing_message:
-        new_Message = models.messages(
+        new_message = models.messages(
             user_id=user_id, body=message, created_at=date)
-        models.db.session.add(new_Message)
+        models.db.session.add(new_message)
     models.db.session.commit()
     models.db.session.close()
 
