@@ -22,8 +22,8 @@ def index():
 
 @app.route('/portfolio')
 def portfolio():
-    portfolio = models.portfolio.query.order_by(
-        models.portfolio.date_added).all()
+    email = request.cookies.get('email')
+    portfolio = sql.get_stock_data(email)
     return render_template('portfolio.html', mobileCSS=True, **locals())
 
 

@@ -13,8 +13,8 @@ class portfolio(db.Model):
     return_amount = db.Column(db.Float, nullable=False)
     total = db.Column(db.Float, nullable=False)
 
-    def __repr__(self):
-        return '<portfolio %r>' % self.id
+    # def __repr__(self):
+    #     return '<portfolio %r>' % self.id
     
 class user(db.Model):
     __tablename__ = 'user'

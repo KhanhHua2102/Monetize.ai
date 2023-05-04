@@ -34,16 +34,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for item in portfolio %}
+					{% for stock in portfolio %}
 					<tr>
-						<td>{{item.date_added.date()}}</td>
-						<td>{{item.ticker}}</td>
-						<td>{{item.quantity}}</td>
-						<td>$ {{item.price_bought}}</td>
-						<td>$ {{item.current_price}}</td>
-						<td>{{item.return_percent}} %</td>
-						<td>$ {{item.return_amount}}</td>
-						<td>$ {{item.total}}</td>
+						<td>{{stock.date_added.date()}}</td>
+						<td>{{stock.ticker}}</td>
+						<td>{{stock.quantity}}</td>
+						<td>$ {{stock.price_bought}}</td>
+						<td>$ {{stock.current_price}}</td>
+						<td>{{stock.return_percent}} %</td>
+						<td>$ {{stock.return_amount}}</td>
+						<td>$ {{stock.total}}</td>
 					</tr>
 					{% endfor %}
 				</tbody>

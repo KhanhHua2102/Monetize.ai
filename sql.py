@@ -90,15 +90,11 @@ def update_stock(email, ticker, quantity):
 # return stock data from stock table in database as JSON object
 def get_stock_data(email):
     user_id = get_user_id(email)
-    stocks = models.portfolio.query.filter_by(user_id=user_id).all()
+    stocks = models.portfolio.query.filter_by(user_id=user_id).order_by(models.portfolio.date_added).all()
     if stocks is None:
         return None
-    stock_data = {}
-    for stock in stocks:
-        this_stock_id = str(stock.stock_id)
-        stock_data[this_stock_id] = {'user_id': stock.user_id, 'date_added': str(stock.date_added), 'ticker': stock.ticker, 'quantity': stock.quantity, 'price_bought': stock.price_bought,
-                                     'current_price': stock.current_price, 'return_percent': stock.return_percent, 'return_amount': stock.return_amount, 'total': stock.total}
-    return stock_data
+    
+    return stocks
 
 # return message data from message table in database as JSON object
 def get_messages(email):
