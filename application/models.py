@@ -27,8 +27,8 @@ class user(db.Model):
     password = db.Column(db.String(20), nullable = False)
     risk_tolerence = db.Column(db.String(10), default = "Medium")
 
-    def __repr__(self):
-        return '<user %r>' % self.id
+    # def __repr__(self):
+    #     return '<user %r>' % self.id
     
 class messages(db.Model):
     message_id = db.Column(db.Integer, primary_key = True)

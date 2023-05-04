@@ -3,6 +3,7 @@ from datetime import date, datetime
 
 from flask import jsonify, request
 from flask_cors import CORS
+import os
 
 import gpt
 import sql
@@ -12,7 +13,6 @@ from application import app
 CORS(app)
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
-
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -56,7 +56,7 @@ def generate():
         print("No stock information detected in context_data.\n")
         context_data += 'Q: ' + user_message + '\nA: '
 
-    result = gpt.open_ai(context_data)
+    result = gpt.open_ai_with_user_info(context_data)
     context_data += result + '\n\n'
     print(context_data)
 
@@ -75,11 +75,6 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)
-    
-    print()
-    print(len(messages))
-    print('messages: ', messages)
-    print()
 
     if len(messages) < 2:
         return jsonify({'messages': {}})
@@ -89,8 +84,6 @@ def get_messages():
     for message in range(4):
         msg_result[str(3 - message)] = messages[str(len(messages) - message - 1)]
 
-
-    print(msg_result)
     jsonify(msg_result)
 
     return jsonify({'messages': msg_result})

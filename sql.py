@@ -39,7 +39,7 @@ def add_user(user_name, email, password, phone_number):
 # return user data from user table in database as JSON object
 def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
-    return user
+    return [user.user_name, user.email, user.phone_number]
 
 
 def get_user_id(email):
