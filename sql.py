@@ -2,7 +2,6 @@ from application import app, models
 from flask import jsonify
 from datetime import datetime
 
-
 # query to get data from the database
 def get_json_object(key, table, column_list=None):
     try:

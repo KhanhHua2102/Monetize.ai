@@ -24,9 +24,6 @@ def generate():
     print("user message received:")
     print(user_message + '\n')
 
-    # add user message to database
-    sql.add_message(email, user_message, datetime.now())
-
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
     if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
         print("User message contains buy or bought keyword")
@@ -53,6 +50,7 @@ def generate():
         
         context_data += 'Q: ' + prompt_result[0] + '\nA: '
     
+    
     # normal bot response
     else:
         print("No stock information detected in context_data.\n")
@@ -61,6 +59,9 @@ def generate():
     result = gpt.open_ai(context_data)
     context_data += result + '\n\n'
     print(context_data)
+
+    # add user message to database
+    sql.add_message(email, user_message, datetime.now())
 
     # add bot response to database
     sql.add_message(email, result, datetime.now())
@@ -74,14 +75,16 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)
-
-    msg_result = {}
-    for message in range(4):
-        msg_result[str(4 - message - 1)] = messages[str(
-            len(messages) - message - 1)]['body']
+    messages_len = len(messages)
         
-    jsonify(msg_result)
+    # get 4 last messages into a json object
+    msg_result = {}
+    for message in range(0, 4):
+        msg_result[str(3 - message)] = messages[str(messages_len - message)]
+
+
     print(msg_result)
+    jsonify(msg_result)
 
     return jsonify({'messages': msg_result})
 
