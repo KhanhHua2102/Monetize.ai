@@ -1,35 +1,16 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/KhanhHua2102/CITS3403-Project/application/static/img/logo.svg">
-    <img src="https://github.com/KhanhHua2102/CITS3403-Project/application/static/img/logo.svg" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/KhanhHua2102/CITS3403-Project/d312a27dbc964597ef8b4b27ed321710fcc24312/application/static/img/logo.svg?token=ALDJ6W7U3EWQUGTDIIJCTILEKNB4K" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Monetize.ai</h3>
 
   <p align="center">
-    project_description
+    Financial Chat Bot Advisor
     <br />
     <a href="https://github.com/KhanhHua2102/CITS3403-Project"><strong>Explore the docs »</strong></a>
     <br />
@@ -72,8 +53,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 language model and integrates with the Yahoo Finance API to crawl financial data such as stocks and cryptocurrencies. The application is built using the Flask framework and SQLite for the database on the server side. The client side is built using HTML, CSS, JavaScript with Bootstrap framework and jQuery for the client-side rendering.
 
