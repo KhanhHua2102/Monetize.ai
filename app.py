@@ -77,7 +77,7 @@ def generate():
             sql.update_stock(email, ticker, (0 - int(quantity)))
             logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
-        context_data += 'Q: ' + prompt_result[0] + '\nA: '
+        context_data += "Confirmed that the sell action have been recored in user's portfolio.\nQ: " + user_message + '\nA: '
     
     
     # normal bot response
@@ -85,7 +85,7 @@ def generate():
         print("No stock information detected in context_data.\n")
         context_data += 'Q: ' + user_message + '\nA: '
 
-    result = gpt.open_ai_with_user_info(context_data)
+    result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
     print(context_data)
 

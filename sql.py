@@ -95,8 +95,12 @@ def get_stock_data(email):
 
     if stocks is None:
         return None
+    
+    stock_data = []
+    for stock in stocks:
+        stock_data.append([stock.date_added.strftime('%d-%m-%Y'), stock.ticker, stock.quantity, stock.price_bought, stock.current_price, stock.return_percent, stock.return_amount, stock.total])
 
-    return stocks
+    return stocks, stock_data
 
 # return message data from message table in database as JSON object
 def get_messages(email):
