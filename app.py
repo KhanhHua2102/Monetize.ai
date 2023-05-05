@@ -1,5 +1,7 @@
+import logging
 import re
 from datetime import datetime
+from logging.handlers import RotatingFileHandler
 
 from flask import jsonify, request
 from flask_cors import CORS
@@ -10,6 +12,32 @@ import stock as stk
 from application import app
 
 CORS(app)
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler('logs/app.log')
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+# ## LOGGING APP CONFIGURATION
+# file_handler = RotatingFileHandler('logs/app.log', maxBytes=10240, backupCount=10)
+# file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+# file_handler.setFormatter(file_formatter)
+# file_handler.setLevel(logging.INFO)
+# app.logger.addHandler(file_handler)
+
+# # Log that the app is starting up
+# app.logger.info('Monetize.ai startup')
+
+## LOGGING SQL CONFIGURATION
+# sql_file_handler = RotatingFileHandler('logs/sql.log', maxBytes=10240, backupCount=10)
+# sql_file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+# sql_file_handler.setFormatter(sql_file_formatter)
+# sql_file_handler.setLevel(logging.INFO)
+# app.logger.addHandler(sql_file_handler)
+
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
 
@@ -33,7 +61,8 @@ def generate():
         # add or update stock in portfolio
         sql.add_stock(email, start_date, ticker, quantity, start_price,
                           end_price, return_percent, return_amount, total)
-        
+        logger.info('User ' + email + ' bought ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+
         context_data += 'Q: ' + prompt_result[0] + '\nA: '
 
     # if user sell stock, we update user's portfolio and reply a normal bot response
@@ -46,7 +75,8 @@ def generate():
         # update stock in portfolio
         if sql.get_stock_data(email) is not None:
             sql.update_stock(email, ticker, (0 - int(quantity)))
-        
+            logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+
         context_data += 'Q: ' + prompt_result[0] + '\nA: '
     
     
@@ -61,9 +91,11 @@ def generate():
 
     # add user message to database
     sql.add_message(email, user_message, datetime.now())
+    logger.info('User ' + email + ' asked: ' + user_message)
 
     # add bot response to database
     sql.add_message(email, result, datetime.now())
+    logger.info('Bot responded: ' + result)
 
     return jsonify({'response': result})
 
