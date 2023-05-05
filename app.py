@@ -90,11 +90,11 @@ def generate():
     print(context_data)
 
     # add user message to database
-    sql.add_message(email, user_message, datetime.now())
+    sql.add_message(email, user_message, datetime.now(), False)
     logger.info('User ' + email + ' asked: ' + user_message)
 
     # add bot response to database
-    sql.add_message(email, result, datetime.now())
+    sql.add_message(email, result, datetime.now(), True)
     logger.info('Bot responded: ' + result)
 
     return jsonify({'response': result})
@@ -107,8 +107,10 @@ def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)
 
-    if len(messages) < 2:
-        return jsonify({'messages': {}})
+    if messages is None or len(messages) < 2:
+        return jsonify({'messages': ''})
+    
+    print(messages)
         
     # get 4 last messages into a json object
     msg_result = {}

@@ -100,36 +100,43 @@ function getRecentMessages() {
 		dataType: "json",
 	}).done(function (data) {
 		console.log("finished getting recent messages");
+		console.log(data);
+		if (data == null || data == undefined || data.messages == "") {
+			console.log("No recent messages");
+			return;
+		}
+		else {
+			console.log("Recent messages");
+			messagesLen = Object.keys(data.messages).length;
 
-		messagesLen = Object.keys(data.messages).length;
-
-		userMessage = data.messages['0']['body'];
-		if (userMessage != "") {
-			$("#messages-box").append(
-				"<div class='messages user-messages'>" + userMessage + "</div>"
-			);
-			$(".user-messages").css("visibility", "visible");
-		}
-		botMessage = data.messages['1']['body'];
-		if (botMessage != "") {
-			$("#messages-box").append(
-				"<div class='messages bot-messages'>" + botMessage + "</div>"
-			);
-			$(".bot-messages").css("visibility", "visible");
-		}
-		userMessage = data.messages['2']['body'];
-		if (userMessage != "") {
-			$("#messages-box").append(
-				"<div class='messages user-messages'>" + userMessage + "</div>"
-			);
-			$(".user-messages").css("visibility", "visible");
-		}
-		botMessage = data.messages['3']['body'];
-		if (botMessage != "") {
-			$("#messages-box").append(
-				"<div class='messages bot-messages'>" + botMessage + "</div>"
-			);
-			$(".bot-messages").css("visibility", "visible");
+			userMessage = data.messages['0']['body'];
+			if (userMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages user-messages'>" + userMessage + "</div>"
+				);
+				$(".user-messages").css("visibility", "visible");
+			}
+			botMessage = data.messages['1']['body'];
+			if (botMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages bot-messages'>" + botMessage + "</div>"
+				);
+				$(".bot-messages").css("visibility", "visible");
+			}
+			userMessage = data.messages['2']['body'];
+			if (userMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages user-messages'>" + userMessage + "</div>"
+				);
+				$(".user-messages").css("visibility", "visible");
+			}
+			botMessage = data.messages['3']['body'];
+			if (botMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages bot-messages'>" + botMessage + "</div>"
+				);
+				$(".bot-messages").css("visibility", "visible");
+			}
 		}
 	});
 }

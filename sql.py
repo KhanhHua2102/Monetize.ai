@@ -37,7 +37,10 @@ def add_user(user_name, email, password, phone_number):
 # return user data from user table in database as JSON object
 def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
-    return [user.user_name, user.email, user.phone_number]
+    
+    if user is not None:
+        return user, [user.user_name, user.email, user.phone_number]
+    return None
 
 
 def get_user_id(email):
@@ -45,7 +48,7 @@ def get_user_id(email):
     if user:
         return user.user_id
     else:
-        raise ValueError("User Id with email given is not found")
+        return None
 
 def add_stock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
     user_id = get_user_id(email)

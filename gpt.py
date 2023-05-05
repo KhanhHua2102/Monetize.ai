@@ -17,9 +17,8 @@ def open_ai(query, temperature=0.3):
     return response
 
 def open_ai_with_info(query):
-    print("Starting GPT-3...\n")
     email = request.cookies.get('email')
-    user_data = sql.get_user_data(email)
+    user_data = sql.get_user_data(email)[1]
     user_info = "\nUser information: \nUsername: " + user_data[0] + "\nEmail: " + user_data[1] + "\Phone number: " + str(user_data[2])
     
     portfolio_data = sql.get_stock_data(email)[1]

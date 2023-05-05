@@ -32,7 +32,8 @@ class messages(db.Model):
     message_id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'), nullable = False)
     body = db.Column(db.Text, nullable = False)
-    created_at = db.Column(db.DateTime, nullable =False)
+    created_at = db.Column(db.DateTime, nullable = False)
+    is_bot = db.Column(db.Boolean, nullable = True)
 
     def __repr__(self):
         return '<messages %r>' % self.id
