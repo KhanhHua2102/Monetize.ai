@@ -35,3 +35,49 @@
     background: #75C9B7;
     border-radius: 12px;
 }
+
+/* phone screen */
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
+    #logo {
+        position: fixed;
+        width: 150px;
+        height: 150px;
+        border-radius: 30px;
+    }
+
+    #menu-icon {
+        display: block;
+        position: fixed;
+        top: 5%;
+        left: 5%;
+        width: 50px;
+        height: 50px;
+        margin-left: 6%;
+    }
+
+    .menu {
+        z-index: 1;
+        position: fixed;
+        float: left;
+        top: 10%;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .menu button {
+        position: relative;
+        display: none;
+        width: 160px;
+        height: 45px;
+        font-size: 30px;
+        margin-bottom: 10px;
+        background: #75C9B7;
+        border-radius: 12px;
+    }
+}

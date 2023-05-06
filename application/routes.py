@@ -1,6 +1,7 @@
 import secrets
 
-from flask import flash, make_response, redirect, render_template, request, url_for
+from flask import (flash, make_response, redirect, render_template, request,
+                   url_for)
 
 import sql
 from application import app

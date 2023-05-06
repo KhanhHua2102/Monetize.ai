@@ -3,21 +3,19 @@ $(document).ready(function () {
 	startMessage();
 	getRecentMessages();
     // Send message and receive response from gpt
-    $("#submit-button")
-			.click(function (event) {
-                event.preventDefault();
-                console.log("submit button clicked");
-				sendQuery();
-			});
+    $(".chat-action button").click(function (event) {
+			event.preventDefault();
+			console.log("submit button clicked");
+			sendQuery();
+		});
 
-    $("#chat-input")
-			.on("keypress", function (event) {
-                if (event.which === 13) {
-                    event.preventDefault();
-                    console.log("enter pressed");
-					sendQuery();
-				}
-            });
+    $(".chat-action input").on("keypress", function (event) {
+			if (event.which === 13) {
+				event.preventDefault();
+				console.log("enter pressed");
+				sendQuery();
+			}
+		});
 });
 
 function startMessage() {
@@ -48,8 +46,8 @@ function startMessage() {
 function sendQuery() {
 	console.log("sending query");
 
-	let input = $("#chat-input").val().trim();
-	$("#chat-input").val("");
+	let input = $(".chat-action input").val().trim();
+	$(".chat-action input").val("");
 
 	if (input != "") {
 		$("#messages-box").append(

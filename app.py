@@ -1,7 +1,6 @@
 import logging
 import re
 from datetime import datetime
-from logging.handlers import RotatingFileHandler
 
 from flask import jsonify, request
 from flask_cors import CORS
@@ -20,23 +19,6 @@ handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-
-# ## LOGGING APP CONFIGURATION
-# file_handler = RotatingFileHandler('logs/app.log', maxBytes=10240, backupCount=10)
-# file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
-# file_handler.setFormatter(file_formatter)
-# file_handler.setLevel(logging.INFO)
-# app.logger.addHandler(file_handler)
-
-# # Log that the app is starting up
-# app.logger.info('Monetize.ai startup')
-
-## LOGGING SQL CONFIGURATION
-# sql_file_handler = RotatingFileHandler('logs/sql.log', maxBytes=10240, backupCount=10)
-# sql_file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
-# sql_file_handler.setFormatter(sql_file_formatter)
-# sql_file_handler.setLevel(logging.INFO)
-# app.logger.addHandler(sql_file_handler)
 
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
@@ -99,9 +81,6 @@ def generate():
 
     return jsonify({'response': result})
 
-# I bought 200 Apple shares on 12/12/2020, what is my profit?
-# I sold 50 Apple shares on 12/12/2021.
-
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
     email = request.cookies.get('email')
@@ -114,7 +93,7 @@ def get_messages():
         
     # get 4 last messages into a json object
     msg_result = {}
-    for message in range(4):
+    for message in range(len(messages)):
         msg_result[str(3 - message)] = messages[str(len(messages) - message - 1)]
 
     jsonify(msg_result)
@@ -124,3 +103,6 @@ def get_messages():
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1:5000')
+
+# I bought 200 Apple shares on 12/12/2020, what is my profit?
+# I sold 50 Apple shares on 12/12/2021.
