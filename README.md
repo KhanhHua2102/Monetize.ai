@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
@@ -53,6 +54,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+=======
+<<<<<<< HEAD
+# CITS3483-Project
+=======
+# Monetize.ai
+>>>>>>> 88f484c0631df3ba3c7b9645e52510f65c276d30
+Project for Agile Web Development - CITS3403 unit at UWA 2023
+>>>>>>> reccomendation
 
 Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 language model and integrates with the Yahoo Finance API to crawl financial data such as stocks and cryptocurrencies. The application is built using the Flask framework and SQLite for the database on the server side. The client side is built using HTML, CSS, JavaScript with Bootstrap framework and jQuery for the client-side rendering.
 

@@ -63,6 +63,17 @@ def generate():
     
     
     # normal bot response
+    promptResult = stock.promptProfit(userMessage)
+    promptRecomendation = stock.promptReccomendation(userMessage)
+    # perform a specific action for when stock information is present
+    if promptResult[1]:
+        print("Stock information detected in context_data. Performing specific action...\n")
+        context_data += 'Q: ' + promptResult[0] + '\nA: '
+    # normal bot reply
+    elif promptRecomendation[1]:
+        print("Stock recommendation information detected in context_data. Performing specific action...\n")
+        context_data += 'Q: ' + (promptRecomendation[0]) + '\nA: '
+    # normal bot reply
     else:
         print("No stock information detected in context_data.\n")
         context_data += 'Q: ' + user_message + '\nA: '

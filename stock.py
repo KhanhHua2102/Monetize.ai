@@ -1,11 +1,40 @@
 from datetime import datetime
 
+import finnhub
+import pandas as pd
 import yfinance as yf
 from dateutil import parser
 from flask import request
 
 import gpt
 import sql
+from config import Config
+
+CLIENT = finnhub.Client(api_key=Config.FINNHUB_API_KEY)
+
+def analyst(input_symbol):
+   
+    recommendations = CLIENT.recommendation_trends(symbol=input_symbol)
+   
+    recommendations_df = pd.DataFrame(recommendations)
+
+    # Get the latest analyst recommendation
+    latest_recommendation = recommendations_df.iloc[0]
+
+    # Get the date of the latest recommendation
+    latest_date = latest_recommendation['period']
+
+    # Get the values of each element inside the recommendation
+    buy = latest_recommendation['buy']
+    hold = latest_recommendation['hold']
+    sell = latest_recommendation['sell']
+    strong_buy = latest_recommendation['strongBuy']
+    strong_sell = latest_recommendation['strongSell']
+
+    # Print the results
+    response = ("Latest analyst recommendation for" + input_symbol +": Date: {}, Buy: {}, Hold: {}, Sell: {}, Strong Buy: {}, Strong Sell: {}"
+      .format(latest_date, buy, hold, sell, strong_buy, strong_sell))
+    return str(response)
 
 
 def parse_input(prompt):
@@ -102,16 +131,24 @@ def prompt_profit(input):
         return response, check_profit, stock_data[1], buy_sell
     return None, False
 
-
-def prompt_reccomendation(input):
-    input = "Based on a user's input, you have to determine if they contain the word recommendations in the input or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.open_ai(input).split()
-
-    if response_values == "False":
-        check_profit = False
+def prompt_recomendation(prompt_input):
+    prompt_input = "Based on a user's input, you have to determine if the users want to recommendation on a specific stock or not.If yes, should extract the message exactly in to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + prompt_input
+    recommendation_result = gpt.openAi(prompt_input)
+    print(recommendation_result + '\n')
+    
+    
+    if "False" in recommendation_result:
+        check_reccomendation = False
+        result = ""
     else:
-        check_profit = True
-    return check_profit
+        check_reccomendation = True
+        no_spaces = recommendation_result.replace(" ", "")
+        analystical = analyst(no_spaces)
+        result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
+ 
+    return result, check_reccomendation
+    
+
 # check if user message contains information about stocks, shares, and dates
 # def containsStockInfo(userMessage):
 #      regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"
