@@ -37,7 +37,7 @@ def history():
 def settings():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    return render_template("settings.html", menuCss=True, user_data=user_data)
+    return render_template("settings.html", mobileCSS=True, user_data=user_data)
 
 
 @app.route("/help")
