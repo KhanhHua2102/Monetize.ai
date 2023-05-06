@@ -9,26 +9,28 @@ import sql
 client = finnhub.Client(api_key="ch4k2vpr01quc2n4rj5gch4k2vpr01quc2n4rj60")
 
 def analyst(prompt):
-   recommendations = client.recommendation_trends(symbol='MSFT')
-   recommendations_df = pd.DataFrame(recommendations)
+   
+    recommendations = client.recommendation_trends(symbol=prompt)
+   
+    recommendations_df = pd.DataFrame(recommendations)
 
 # Get the latest analyst recommendation
-   latest_recommendation = recommendations_df.iloc[0]
+    latest_recommendation = recommendations_df.iloc[0]
 
 # Get the date of the latest recommendation
-   latest_date = latest_recommendation['period']
+    latest_date = latest_recommendation['period']
 
 # Get the values of each element inside the recommendation
-   buy = latest_recommendation['buy']
-   hold = latest_recommendation['hold']
-   sell = latest_recommendation['sell']
-   strong_buy = latest_recommendation['strongBuy']
-   strong_sell = latest_recommendation['strongSell']
+    buy = latest_recommendation['buy']
+    hold = latest_recommendation['hold']
+    sell = latest_recommendation['sell']
+    strong_buy = latest_recommendation['strongBuy']
+    strong_sell = latest_recommendation['strongSell']
 
 # Print the results
-   response = ("Latest analyst recommendation for MSFT: Date: {}, Buy: {}, Hold: {}, Sell: {}, Strong Buy: {}, Strong Sell: {}"
+    response = ("Latest analyst recommendation for" + prompt+": Date: {}, Buy: {}, Hold: {}, Sell: {}, Strong Buy: {}, Strong Sell: {}"
       .format(latest_date, buy, hold, sell, strong_buy, strong_sell))
-   return response
+    return str(response)
 
 
 def parseInput(prompt):
@@ -136,20 +138,26 @@ def promptProfit(input):
         return response, checkProfit
     return 'format error', False
 
-def promptReccomendation(input):
-    input = "Based on a user's input, you have to determine if the users want to recommendation on a specific stock or not.If yes, should extract the message exactlyin to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    response_values = gpt.openAi(input)
-    analystical = analyst(response_values)
+def promptReccomendation(reccomend):
+    reccomend = "Based on a user's input, you have to determine if the users want to recommendation on a specific stock or not.If yes, should extract the message exactly in to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + reccomend
+    reccomendation_values = gpt.openAi(reccomend)
+    print(reccomendation_values + '\n')
     
-    if "False" in response_values:
-        checkProfit = False
+    
+    if "False" in reccomendation_values:
+        checkReccomendation = False
+        result = ""
     else:
-        checkProfit = True
+        checkReccomendation = True
+        no_spaces = reccomendation_values.replace(" ", "")
+        analystical = analyst(no_spaces)
+        result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
     
-    response = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
-        
-    return response, checkProfit
-  
+
+    
+ 
+    return result, checkReccomendation
+    
 
 # check if user message contains information about stocks, shares, and dates
 # def containsStockInfo(userMessage):
