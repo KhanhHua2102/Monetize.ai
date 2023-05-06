@@ -1,10 +1,10 @@
 import openai
 from flask import request
 
-import config
+from config import Config
 import sql
 
-openai.api_key = config.OPENAI_API_KEY
+openai.api_key = Config.OPENAI_API_KEY
 
 
 def open_ai(query, temperature=0.3):
