@@ -50,3 +50,19 @@
 2023-05-05 18:19:43,407 INFO: Bot responded: Certainly, your portfolio consists of 950 shares of AAPL that you purchased on 01-02-2002 for a starting price of $0.44 per share. The current value of your portfolio is $33,158.00 with an end price of $165.79 per share. Your return percent is 36.14%. Let me know if you have any other questions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
 2023-05-05 18:21:21,971 INFO: User henry@gmail.com asked: can you provide details of my portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:94]
 2023-05-05 18:21:21,980 INFO: Bot responded: Sure, Quang Khanh. Your portfolio includes AAPL with a quantity of 950 shares. You added it on 01-02-2002 with a start price of 0.44 and sold it at an end price of 165.79. Your return percent was 36.14 and your return amount was 8802.0. Your total portfolio value is currently at 33158.0. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
+2023-05-06 23:19:08,519 INFO: User henry@mail.com asked: what is my portfolio details? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:94]
+2023-05-06 23:19:08,525 INFO: Bot responded: I'm sorry, Quang Khanh Hua, but I don't have access to your portfolio details. Please provide me with more information about your portfolio so I can assist you better. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
+2023-05-06 23:21:18,179 INFO: User henry@mail.com asked: what is my portfolio details? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:94]
+2023-05-06 23:21:18,185 INFO: Bot responded: I'm sorry, Quang Khanh Hua, but I do not have access to your portfolio details. Please provide me with more information so I can assist you better. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
+2023-05-06 23:22:57,254 INFO: User henry@mail.com bought 200 shares of AAPL at $121.78 on 12-12-2020 endprice: 173.57 return percent: 42.53 return amount: 10358.0 total: 34714.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:64]
+2023-05-06 23:23:03,159 INFO: User henry@mail.com asked: i bought 200 apple shares on 12/12/2020 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:94]
+2023-05-06 23:23:03,164 INFO: Bot responded: Based on your portfolio information, you have 200 shares of AAPL with a start price of $121.78 and an end price of $173.57. If you were to sell your shares on 06-05-2023, you would make a profit of $10358.00. Congratulations on a successful investment! [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
+2023-05-06 23:23:26,242 INFO: User henry@mail.com asked: what is my portfolio details? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:94]
+2023-05-06 23:23:26,246 INFO: Bot responded: Your portfolio details are as follows: 
+- Ticker: AAPL
+- Quantity: 200
+- Start price: $121.78
+- End price: $173.57
+- Return percent: 42.53%
+- Return amount: $10358.00
+- Total: $34714.00 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]

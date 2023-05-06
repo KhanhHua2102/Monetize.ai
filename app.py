@@ -90,7 +90,7 @@ def generate():
     print(context_data)
 
     # add user message to database
-    sql.add_message(email, user_message, datetime.now(), False)
+    sql.add_message(email, user_message, datetime.now())
     logger.info('User ' + email + ' asked: ' + user_message)
 
     # add bot response to database

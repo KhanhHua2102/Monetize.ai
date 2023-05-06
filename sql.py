@@ -123,13 +123,13 @@ def get_messages(email):
     return messages_data
 
 # add new message to message table in database
-def add_message(email, message, date):
+def add_message(email, message, date, is_bot=False):
     user_id = get_user_id(email)
     existing_message = models.messages.query.filter_by(
         user_id=user_id, body=message).first()
     if not existing_message:
         new_message = models.messages(
-            user_id=user_id, body=message, created_at=date)
+            user_id=user_id, body=message, created_at=date, is_bot=is_bot)
         models.db.session.add(new_message)
     models.db.session.commit()
     models.db.session.close()
