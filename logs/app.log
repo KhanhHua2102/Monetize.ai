@@ -66,3 +66,7 @@
 - Return percent: 42.53%
 - Return amount: $10358.00
 - Total: $34714.00 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:98]
+2023-05-07 20:53:44,296 INFO: User henry@mail.com asked: what is your recommendation on apple currently? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 20:53:44,298 INFO: Bot responded: Based on the latest analyst recommendation for AAPL, it seems that the majority of analysts are recommending a Buy or Strong Buy for the stock. However, it's important to do your own research and consider your own investment goals before making any decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 20:54:41,742 INFO: User henry@mail.com asked: what is your recommendation on apple currently? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 20:54:41,748 INFO: Bot responded: Based on the latest analyst recommendation for AAPL, it seems that the majority of analysts are recommending a Buy or Strong Buy for the stock. However, it's important to do your own research and consider your own investment goals before making any decisions. Additionally, it's always a good idea to diversify your portfolio by investing in multiple stocks across different industries. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]

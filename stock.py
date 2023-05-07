@@ -32,7 +32,7 @@ def analyst(input_symbol):
     strong_sell = latest_recommendation['strongSell']
 
     # Print the results
-    response = ("Latest analyst recommendation for" + input_symbol +": Date: {}, Buy: {}, Hold: {}, Sell: {}, Strong Buy: {}, Strong Sell: {}"
+    response = ("Latest analyst recommendation for " + input_symbol +": Date: {}, Buy: {}, Hold: {}, Sell: {}, Strong Buy: {}, Strong Sell: {}"
       .format(latest_date, buy, hold, sell, strong_buy, strong_sell))
     return str(response)
 
@@ -133,7 +133,7 @@ def prompt_profit(input):
 
 def prompt_recomendation(prompt_input):
     prompt_input = "Based on a user's input, you have to determine if the users want to recommendation on a specific stock or not.If yes, should extract the message exactly in to the format:{Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser message: " + prompt_input
-    recommendation_result = gpt.openAi(prompt_input)
+    recommendation_result = gpt.open_ai(prompt_input)
     print(recommendation_result + '\n')
     
     
