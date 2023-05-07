@@ -1,13 +1,17 @@
 $(document).ready(function () {
-	// Start conversation with welcome message
-	startMessage();
-	getRecentMessages();
+	// // Get 2 recent messages
+	// getRecentMessages();
+	// // Start conversation with welcome message
+	// startMessage();
     // Send message and receive response from gpt
+	$(getRecentMessages).ready(function () {
+		startMessage();
+	});
     $(".chat-action button").click(function (event) {
-			event.preventDefault();
-			console.log("submit button clicked");
-			sendQuery();
-		});
+		event.preventDefault();
+		console.log("submit button clicked");
+		sendQuery();
+	});
 
     $(".chat-action input").on("keypress", function (event) {
 			if (event.which === 13) {
@@ -27,7 +31,7 @@ function startMessage() {
                 <div class="loading-dot"></div>
             </div>
             `;
-	$("#messages-box").append(animation);
+	$('hr').append(animation);
 
 	// wait for 1 second
 	function delay(time) {
@@ -128,7 +132,7 @@ function getRecentMessages() {
 			}
 
 			$("#messages-box").append(
-				"<hr style='border: 2px solid green; width: 40%; margin: 15px auto;'>"
+				"<hr id='hr' style='border: 2px solid green; width: 40%; margin: 15px auto;'>"
 			);
 		}
 	});

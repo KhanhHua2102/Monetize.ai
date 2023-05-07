@@ -90,6 +90,8 @@ def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
 
+    print(messages)
+
     if messages[str(len(messages) - 1)]['is_bot']:
         messages_len = len(messages)
     else:
