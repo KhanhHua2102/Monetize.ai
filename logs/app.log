@@ -72,3 +72,23 @@
 2023-05-07 20:54:41,748 INFO: Bot responded: Based on the latest analyst recommendation for AAPL, it seems that the majority of analysts are recommending a Buy or Strong Buy for the stock. However, it's important to do your own research and consider your own investment goals before making any decisions. Additionally, it's always a good idea to diversify your portfolio by investing in multiple stocks across different industries. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
 2023-05-07 21:18:02,452 INFO: User henry@mail.com asked: what is the recommendation for tesla? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
 2023-05-07 21:18:02,457 INFO: Bot responded: Based on the latest analyst recommendation for TSLA, it seems that there is a majority of "Buy" and "Hold" recommendations. However, it's important to note that past performance is not indicative of future results and it's always recommended to do your own research before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:52:38,868 INFO: User henry@mail.com asked: some recommendation on microsoft [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:52:38,872 INFO: Bot responded: Based on the latest analyst recommendation for MSFT, it seems that the majority of analysts are recommending a "Buy" rating for the stock. However, it's important to note that every individual's investment goals and risk tolerance are unique, so it's always a good idea to do your own research and consult with a financial advisor before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:56:55,458 INFO: User henry@mail.com asked: some recommendation on microsoft [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:56:55,463 INFO: Bot responded: Based on the latest analyst recommendation for MSFT, it seems that the majority of analysts are recommending a Buy or Strong Buy rating. However, it's important to do your own research and make investment decisions based on your personal financial goals and risk tolerance. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:57:22,218 INFO: User henry@mail.com asked: some recommendation on microsoft [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:57:22,226 INFO: Bot responded: Based on the latest analyst recommendation for MSFT, it seems that the stock is currently rated as a "Buy" by 30 analysts and a "Strong Buy" by 21 analysts. However, it's important to note that every investor's situation is unique and it's always recommended to do your own research before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:57:33,785 INFO: User henry@mail.com asked: some recommendation on microsoft [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:57:33,792 INFO: Bot responded: Based on the latest analyst recommendation for MSFT, it seems that the stock is currently rated as a "Buy" by 30 analysts and a "Strong Buy" by 21 analysts. However, it's important to note that every investor's situation is unique and it's always recommended to do your own research before making any investment decisions. Additionally, it's important to consider diversifying your portfolio and not solely relying on one stock recommendation. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:58:03,654 INFO: User henry@mail.com asked: what is my name? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:58:03,658 INFO: Bot responded: Your name is Quang Khanh Hua. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]
+2023-05-07 21:58:31,921 INFO: User henry@mail.com asked: what is my portfolio details? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
+2023-05-07 21:58:31,928 INFO: Bot responded: Your portfolio details are as follows: 
+- Date added: 12-12-2020
+- Ticker: AAPL
+- Quantity: 200
+- Start price: 121.78
+- End price: 173.57
+- Return percent: 42.53%
+- Return amount: 10358.0
+- Total: 34714.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:84]

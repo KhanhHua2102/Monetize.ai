@@ -112,7 +112,7 @@ def prompt_profit(input):
     # input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
     input = "Based on a user's message, you have to determine if the message does include a stock(share/ticker) name, a quantity of that stock, and a date; convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
     
-    response_values = gpt.open_ai(input).split()
+    response_values = gpt.open_ai(input, 1.5).split()
 
     print(response_values)
 
