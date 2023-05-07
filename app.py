@@ -33,9 +33,11 @@ def generate():
     print("user message received:")
     print(user_message + '\n')
 
+    prompt_recommend = stk.prompt_recomendation(user_message)
+
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
     if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
-        print("User message contains buy or bought keyword")
+        print("User message contains buy or bought keyword\n")
         
         prompt_result = stk.prompt_profit(user_message)
         start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]
@@ -49,7 +51,7 @@ def generate():
 
     # if user sell stock, we update user's portfolio and reply a normal bot response
     elif re.search(r'\b(sell|sold)\b', user_message, re.IGNORECASE):
-        print("User message contains sell or sold keyword")
+        print("User message contains sell or sold keyword\n")
         
         prompt_result = stk.prompt_profit(user_message)
         start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]
@@ -60,22 +62,13 @@ def generate():
             logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
         context_data += "Confirmed that the sell action have been recored in user's portfolio.\nQ: " + user_message + '\nA: '
-    
-    
-    # normal bot response
-    promptResult = stock.promptProfit(userMessage)
-    promptRecomendation = stock.promptReccomendation(userMessage)
-    # perform a specific action for when stock information is present
-    if promptResult[1]:
-        print("Stock information detected in context_data. Performing specific action...\n")
-        context_data += 'Q: ' + promptResult[0] + '\nA: '
-    # normal bot reply
-    elif promptRecomendation[1]:
-        print("Stock recommendation information detected in context_data. Performing specific action...\n")
-        context_data += 'Q: ' + (promptRecomendation[0]) + '\nA: '
+    # if user ask for stock recommendation, we reply a bot response with stock recommendation
+    elif prompt_recommend[1]:
+        print("Stock recommendation information detected in context_data\n")
+        context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
     # normal bot reply
     else:
-        print("No stock information detected in context_data.\n")
+        print("No stock information detected in context_data\n")
         context_data += 'Q: ' + user_message + '\nA: '
 
     result = gpt.open_ai_with_info(context_data)
