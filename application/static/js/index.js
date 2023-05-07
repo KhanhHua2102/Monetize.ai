@@ -126,6 +126,10 @@ function getRecentMessages() {
 				);
 				$(".bot-messages").css("visibility", "visible");
 			}
+
+			$("#messages-box").append(
+				"<hr style='border: 2px solid green; width: 40%; margin: 15px auto;'>"
+			);
 		}
 	});
 }
