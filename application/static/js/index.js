@@ -107,6 +107,11 @@ function getRecentMessages() {
 			console.log("Recent messages");
 			messagesLen = Object.keys(data.messages).length;
 
+			if (messagesLen < 2){
+				console.log("No recent messages");
+				return;
+			}
+
 			userMessage = data.messages['0']['body'];
 			if (userMessage != "") {
 				$("#messages-box").append(
@@ -115,20 +120,6 @@ function getRecentMessages() {
 				$(".user-messages").css("visibility", "visible");
 			}
 			botMessage = data.messages['1']['body'];
-			if (botMessage != "") {
-				$("#messages-box").append(
-					"<div class='messages bot-messages'>" + botMessage + "</div>"
-				);
-				$(".bot-messages").css("visibility", "visible");
-			}
-			userMessage = data.messages['2']['body'];
-			if (userMessage != "") {
-				$("#messages-box").append(
-					"<div class='messages user-messages'>" + userMessage + "</div>"
-				);
-				$(".user-messages").css("visibility", "visible");
-			}
-			botMessage = data.messages['3']['body'];
 			if (botMessage != "") {
 				$("#messages-box").append(
 					"<div class='messages bot-messages'>" + botMessage + "</div>"

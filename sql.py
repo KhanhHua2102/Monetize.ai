@@ -117,10 +117,10 @@ def get_messages(email):
     idx = 0
     for message in messages:
         # this_message_id = str(message.message_id)
-        messages_data[str(idx)] = {'body': message.body, 'created_at': message.created_at}
+        messages_data[str(idx)] = {'body': message.body, 'created_at': message.created_at, 'is_bot': message.is_bot}
         idx +=1
     
-    return messages_data
+    return messages, messages_data
 
 # add new message to message table in database
 def add_message(email, message, date, is_bot=False):

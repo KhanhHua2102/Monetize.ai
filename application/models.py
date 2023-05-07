@@ -35,5 +35,5 @@ class messages(db.Model):
     created_at = db.Column(db.DateTime, nullable = False)
     is_bot = db.Column(db.Boolean, nullable = True)
 
-    def __repr__(self):
-        return '<messages %r>' % self.id
+    # def __repr__(self):
+    #     return '<messages %r>' % self.id

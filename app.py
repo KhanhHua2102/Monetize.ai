@@ -76,7 +76,7 @@ def generate():
     print(context_data)
 
     # add user message to database
-    sql.add_message(email, user_message, datetime.now())
+    sql.add_message(email, user_message, datetime.now(), False)
     logger.info('User ' + email + ' asked: ' + user_message)
 
     # add bot response to database
@@ -88,17 +88,20 @@ def generate():
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
     email = request.cookies.get('email')
-    messages = sql.get_messages(email)
+    messages = sql.get_messages(email)[1]
 
-    if messages is None or len(messages) < 2:
+    if messages[str(len(messages) - 1)]['is_bot']:
+        messages_len = len(messages)
+    else:
+        messages_len = len(messages) - 1
+
+    if messages is None or messages_len < 2:
         return jsonify({'messages': ''})
-    
-    print(messages)
-        
-    # get 4 last messages into a json object
+
+    # get 2 last messages into a json object
     msg_result = {}
-    for message in range(len(messages)):
-        msg_result[str(3 - message)] = messages[str(len(messages) - message - 1)]
+    msg_result['0'] = messages[str(messages_len - 2)]
+    msg_result['1'] = messages[str(messages_len - 1)]
 
     jsonify(msg_result)
 
