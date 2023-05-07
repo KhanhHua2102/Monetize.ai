@@ -12,6 +12,7 @@ body {
 	height: 100vh;
 	max-width: 310px; /* add max-width to limit the width of the container */
   margin: 0 auto; 
+  padding-top: 20px;
 }
 
 .member{
@@ -85,7 +86,7 @@ button:hover {
 
 
 form input {
-	padding: 20px;
+	
 	border: none;
 	border-bottom: 2px solid #eaeaea;
 	margin-bottom: 20px;
@@ -277,3 +278,184 @@ text-transform: none;
   small {
 	font-size: 1em;
   }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+   
+	.container {
+		
+		height: 100vh;
+		max-width: 700px; /* add max-width to limit the width of the container */
+	    padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+    .member{
+		width: 700px;
+	  height: 90px;
+		left: 81px;
+		 top: 192px;
+		font-family: 'Arial';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 70px;
+		line-height: 44px;
+		text-align: center;
+		padding-top: 20px;
+		 /* add text alignment */
+	}
+
+	#logo {
+		width: 200px;
+	    margin-top: 40px;
+		margin-bottom: 10px;
+	}
+
+	
+
+
+
+
+	
+
+
+form button[type="submit"] {
+	box-sizing: border-box;
+
+position: block;
+width: 800px;
+height: 100px;
+left: calc(50% - 800px/2);
+top: 558px;
+
+/* Color 5 */
+
+background: #16123F;
+/* Color 5 */
+
+border: 1px solid #16123F;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+
+font-family: 'Arial';
+font-style: normal;
+font-weight: 700;
+font-size: 55px;
+line-height: 25px;
+text-align: center;
+margin-bottom: 30px;
+color: #FFFFFF;
+}
+
+
+.social-btns button {
+	box-sizing: border-box;
+
+display: block;
+width: 800px;
+height: 100px;
+left: calc(50% - 800px/2 - 2px);
+top: 732px;
+
+border: 1px solid #16123F;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 20px;
+font-family: 'Arial';
+font-style: normal;
+font-weight: 700;
+font-size: 50px;
+line-height: 50px;
+text-align: center;
+color: #100e0e;
+text-transform: none;
+clear: both;
+}
+
+.google-btn img, .facebook-btn img {
+   
+    margin-right: 25px;
+	margin-left: 30px;
+	text-align: left;
+	float:left;
+	width: 55px;
+	height: 55px;
+  
+}
+
+.line {
+	height: 2px;
+  border: none;
+  background-color: #a9a9a9;
+  flex-grow: 1;
+  margin-right: 10px;
+  margin-left: 10px;
+	
+  }
+  
+  .or {
+	
+  font-size: 25px;
+  color: #333;
+  font-weight: 800;
+
+  }
+  input[type="text"],
+input[type="password"] {
+	box-sizing: border-box;
+	display: block;
+	width: 800px;
+height: 85px;
+left: calc(50% - 800px/2 + 0.5px);
+top: 371px;
+
+background: #EDEFEE;
+/* Color 1 */
+ 
+border: 1px solid #ABD699;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+font-family: 'Arial';
+font-style: normal;
+
+font-size: 40px;
+line-height: 25px;
+padding-left: 30px;
+}
+
+
+.form-footer .sign-Up {
+    display: inline-block;
+	font-size: 25px;
+	margin-left: 20px;
+    
+}
+.no-underline{
+    text-decoration: none;
+	color: #1276EC;
+}
+
+.form-footer .forgot-password {
+    display: inline-block;
+	font-size: 25px;
+    color: #1276EC;
+    margin-left: 250px;
+
+}
+label{
+ font-size: 30px;
+ margin-bottom: 10px;
+}
+
+form input {
+	
+	
+	margin-bottom: 40px;
+	
+}
+.facebook-btn,.google-btn {
+    margin-top: 40px;
+ }
+ .form-footer {
+    margin-top: 20px;
+	margin-bottom: 30px;
+  }
+}
