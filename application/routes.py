@@ -1,6 +1,7 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages
+from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request
 from datetime import timedelta
+from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
@@ -27,9 +28,50 @@ def portfolio():
     return render_template('portfolio.html', mobileCSS=True, **locals())
 
 
+# @app.route('/history')
+# def history():
+#     # chats_test = models.messages.query.all().paginate(per_page=3)
+#     email = request.cookies.get('email')
+#     page = request.args.get('page',1,type=int)
+#     # mypage_num = int(request.args.get('mypage_num'))
+
+#     if request.args.get('mypage_num') is None:
+#         mypage_num = 5
+#     else:
+#         mypage_num = int(request.args.get('mypage_num'))
+#     print(email)
+#     user_id = sql.getUserId(email)
+#     chats = models.messages.query.filter_by(user_id=user_id)
+#     # chats_test = models.messages.query.all().paginate(per_page=3)
+#     chats_test = models.messages.query.filter_by(user_id=user_id).paginate(page=page,per_page = mypage_num)
+
+#     print(chats_test.items)
+#     return render_template('history.html',chats=chats_test)
+
 @app.route('/history')
 def history():
-    return render_template('history.html')
+    email = request.cookies.get('email')
+    user_id = sql.getUserId(email)
+    page = request.args.get('page', 1, type=int)
+    search_query = request.args.get('contains')
+    chats = models.messages.query.filter_by(user_id=user_id)
+    if search_query is None:
+        search_query = ""
+    if search_query:
+        chats = chats.filter(models.messages.body.contains(search_query))
+    if request.args.get('mypage_num') is None:
+        mypage_num = 5
+    else:
+        mypage_num = int(request.args.get('mypage_num'))
+    print(mypage_num)
+
+
+    # if search_query:
+    #     chats = chats.filter(models.messages.body.contains(search_query))
+
+    chats_paginate = chats.paginate(page=page, per_page=mypage_num)
+
+    return render_template('history.html', chats=chats_paginate, search_query=search_query)
 
 
 @app.route('/settings')
@@ -102,3 +144,15 @@ def signup():
             return render_template('signup.html', form=form, error_message=error_message)
         return redirect(url_for('login'))
     return render_template('signup.html', form=form)
+
+# @app.route('/search')
+# def search():
+#     string = request.args.get('contains')
+
+#     if string:
+#         chats = models.messages.query.filter(models.messages.body.contains(string))
+#     else:
+#         chats = models.messages.query.all()
+#     return render_template('history.html',chats = chats)
+
+

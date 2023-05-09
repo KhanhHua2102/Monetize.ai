@@ -90,7 +90,7 @@ def getStockData(email):
         return {'error':'No stocks with this user_id yet.'}
     stock_data = {}
     for stock in stocks:
-        this_stock_id = str(stock.stock_id)
+        this_stock_id = str(stock.id)
         stock_data[this_stock_id] = {'user_id': stock.user_id,'date_added': str(stock.date_added),'ticker': stock.ticker,'quantity': stock.quantity,'price_bought': stock.price_bought,'current_price': stock.current_price,'return_percent': stock.return_percent,'return_amount': stock.return_amount,'total': stock.total}
     return stock_data
 
@@ -118,6 +118,8 @@ def addMessages(messageId, email, message, date):
         models.db.session.add(new_Message)
     models.db.session.commit()
     models.db.session.close()
+
+# def updateMessages()
 
 with app.app_context():
     models.db.create_all()

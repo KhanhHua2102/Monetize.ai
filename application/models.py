@@ -10,7 +10,7 @@ db = SQLAlchemy()
 migrate = Migrate(app, db)
 
 class portfolio(db.Model):
-    stock_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'),nullable = False)
     date_added = db.Column(db.DateTime, nullable=False)
     ticker = db.Column(db.String(10), nullable=False)
@@ -34,7 +34,7 @@ class user(db.Model):
     risk_tolerence = db.Column(db.String(10),default = "Medium")
 
     def __repr__(self):
-        return '<user %r>' % self.id
+        return '<user %r>' % self.user_id
     
 class messages(db.Model):
     message_id = db.Column(db.Integer,primary_key = True)
@@ -43,6 +43,6 @@ class messages(db.Model):
     created_at = db.Column(db.DateTime,nullable =False)
 
     def __repr__(self):
-        return '<messages %r>' % self.id
+        return '<messages %r>' % self.message_id
 
 

@@ -28,6 +28,8 @@ body {
 
 .searchbar {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .searchbar input {
@@ -36,6 +38,11 @@ body {
     padding: 10px;
     border: none;
     border-radius: 10px;
+}
+
+.searchbar input:nth-child(2) {
+    width: 10%;
+    margin-left: 3px;
 }
 
 .container {
