@@ -8,7 +8,7 @@ openai.api_key = Config.OPENAI_API_KEY
 
 
 def open_ai(query, temperature=0.2):
-    print("Starting GPT-3...\n")
+    print("Starting GPT-3.5-turbo...\n")
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": query}],
@@ -30,7 +30,9 @@ def open_ai_with_info(query, temperature=1):
         for stock in portfolio_data:
             portfolio_info += "\nDate added: " + stock[0] + "\nTicker: " + stock[1] + "\nQuantity: " + str(stock[2]) + "\nStart price: " + str(stock[3]) + "\nEnd price: " + str(stock[4]) + "\nReturn percent: " + str(stock[5]) + "\nReturn amount: " + str(stock[6]) + "\nTotal: " + str(stock[7]) + "\n"
 
-    query = "\nAs a financial chatbot, use these user and their porfolio information to response to queries." + user_info + "\n" + portfolio_info + "\n" + query
+    query = "\n" + user_info + "\n" + portfolio_info + "\n" + query
 
+    print(query)
+    
     response = open_ai(query, temperature=temperature)
     return response

@@ -73,7 +73,6 @@ def generate():
 
     result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
-    print(context_data)
 
     # add user message to database
     sql.add_message(email, user_message, datetime.now(), False)
@@ -89,8 +88,6 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
-
-    print(messages)
 
     if messages[str(len(messages) - 1)]['is_bot']:
         messages_len = len(messages)
