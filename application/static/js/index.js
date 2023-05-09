@@ -1,43 +1,60 @@
 $(document).ready(function () {
-    // Toggle menu
-	$('#menu-icon').click(function () {
-		console.log('menu button clicked');
-        $('.menu button').toggle();
-    });
-
+	// // Get 2 recent messages
+	// getRecentMessages();
+	// // Start conversation with welcome message
+	// startMessage();
     // Send message and receive response from gpt
-    $("#submit-button")
-			.click(function (event) {
-                event.preventDefault();
-                console.log("submit button clicked");
+	$(getRecentMessages).ready(function () {
+		startMessage();
+	});
+    $(".chat-action button").click(function (event) {
+		event.preventDefault();
+		console.log("submit button clicked");
+		sendQuery();
+	});
+
+    $(".chat-action input").on("keypress", function (event) {
+			if (event.which === 13) {
+				event.preventDefault();
+				console.log("enter pressed");
 				sendQuery();
-			});
-
-    $("#chat-input")
-			.on("keypress", function (event) {
-                if (event.which === 13) {
-                    event.preventDefault();
-                    console.log("enter pressed");
-					sendQuery();
-				}
-            });
-
-	$("#portfolio")
-			.click(function (event) {
-                // event.preventDefault();
-                console.log("portfolio page clicked");
-				portfolio();
-			});
+			}
+		});
 });
+
+function startMessage() {
+	// Loading animation
+	var animation = `
+            <div class="loading-messages">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+            `;
+	$('hr').append(animation);
+
+	// wait for 1 second
+	function delay(time) {
+		return new Promise((resolve) => setTimeout(resolve, time));
+	}
+
+	delay(1000).then(() => {
+		$(".loading-messages").remove();
+		$("#messages-box").append(
+			"<div class='messages bot-messages'>" + 'Hi there, I am Monetize.ai - your personal financial chat bot advisor. I have access to the most recent, accurate and reliable financial data from Yahoo Finance to give you relevant financial information at a glance.' + "</div>"
+		);
+		$(".bot-messages").css("visibility", "visible");
+	});
+}
 
 function sendQuery() {
 	console.log("sending query");
 
-	let input = $("#chat-input").val().trim();
-	$("#chat-input").val("");
+	let input = $(".chat-action input").val().trim();
+	$(".chat-action input").val("");
 
 	if (input != "") {
-		$("section").append(
+		$("#messages-box").append(
 			"<div class='messages user-messages'>" + input + "</div>"
 		);
 		$(".user-messages").css("visibility", "visible");
@@ -52,7 +69,7 @@ function sendQuery() {
                 <div class="loading-dot"></div>
             </div>
             `;
-	$("section").append(animation);
+	$("#messages-box").append(animation);
 
 	// Post request to gpt
 	postRequest(input);
@@ -69,10 +86,55 @@ function postRequest(input) {
 		console.log("finished query");
 		console.log(data);
 		$(".loading-messages").remove();
-		$("section").append(
+		$("#messages-box").append(
 			"<div class='messages bot-messages'>" + data.response + "</div>"
 		);
 		$(".bot-messages").css("visibility", "visible");
+	});
+}
+
+function getRecentMessages() {
+	console.log("getting recent messages");
+	$.get({
+		method: "GET",
+		url: "/get_messages",
+		contentType: "application/json",
+		dataType: "json",
+	}).done(function (data) {
+		console.log("finished getting recent messages");
+		console.log(data);
+		if (data == null || data == undefined || data.messages == "") {
+			console.log("No recent messages");
+			return;
+		}
+		else {
+			console.log("Recent messages");
+			messagesLen = Object.keys(data.messages).length;
+
+			if (messagesLen < 2){
+				console.log("No recent messages");
+				return;
+			}
+
+			userMessage = data.messages['0']['body'];
+			if (userMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages user-messages'>" + userMessage + "</div>"
+				);
+				$(".user-messages").css("visibility", "visible");
+			}
+			botMessage = data.messages['1']['body'];
+			if (botMessage != "") {
+				$("#messages-box").append(
+					"<div class='messages bot-messages'>" + botMessage + "</div>"
+				);
+				$(".bot-messages").css("visibility", "visible");
+			}
+
+			$("#messages-box").append(
+				"<hr id='hr' style='border: 2px solid green; width: 40%; margin: 15px auto;'>"
+			);
+		}
 	});
 }
 

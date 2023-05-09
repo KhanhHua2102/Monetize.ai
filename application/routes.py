@@ -5,27 +5,33 @@ from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
+
+from flask import (flash, make_response, redirect, render_template, request,
+                   url_for)
+
 import sql
+from application import app
+from forms import LoginForm, SignupForm
 
 secrets_key = secrets.token_bytes(32)
-app.config['SECRET_KEY'] = secrets_key
+app.config["SECRET_KEY"] = secrets_key
 
 
 @app.route("/")
 @app.route("/index")
 @app.route("/home")
 def index():
-    if 'email' in session:
-        return render_template('index.html')
+    if "email" in request.cookies:
+        return render_template("index.html")
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for("login"))
 
 
-@app.route('/portfolio')
+@app.route("/portfolio")
 def portfolio():
-    portfolio = models.portfolio.query.order_by(
-        models.portfolio.date_added).all()
-    return render_template('portfolio.html', mobileCSS=True, **locals())
+    email = request.cookies.get("email")
+    portfolio = sql.get_stock_data(email)[0]
+    return render_template("portfolio.html", mobileCSS=True, portfolio=portfolio)
 
 
 # @app.route('/history')
@@ -74,21 +80,21 @@ def history():
     return render_template('history.html', chats=chats_paginate, search_query=search_query)
 
 
-@app.route('/settings')
+@app.route("/settings")
 def settings():
-    email = session['email']
-    user_data = sql.getUserData(email)
-    return render_template('settings.html', menuCss=True, user_data=user_data)
+    email = request.cookies.get("email")
+    user_data = sql.get_user_data(email)[0]
+    return render_template("settings.html", menuCss=True, user_data=user_data)
 
 
-@app.route('/help')
+@app.route("/help")
 def help():
-    return render_template('help.html')
+    return render_template("help.html")
 
 
-@app.route('/about-us')
+@app.route("/about-us")
 def aboutUs():
-    return render_template('about-us.html')
+    return render_template("about-us.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -98,38 +104,32 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        user_data = sql.getUserData(email)
-        if not user_data:
-            flash('User not found', 'error')
-            return redirect(url_for('login'))
+        user_data = sql.get_user_data(email)[0]
+        if not user_data or user_data is None:
+            flash("User not found", "error")
+            return redirect(url_for("login"))
 
         if password != user_data.password:
-            flash('Incorrect Password', 'error')
-            return redirect(url_for('login'))
-
-        session['email'] = email
-        session.permanent = True  # make the session cookie permanent
-        app.permanent_session_lifetime = timedelta(days=1)
+            flash("Incorrect Password", "error")
+            return redirect(url_for("login"))
 
         # Add the email cookie
-        response = make_response(redirect(url_for('index')))
-        response.set_cookie('email', email)
+        response = make_response(redirect(url_for("index")))
+        response.set_cookie("email", email)
 
         return response
 
-    return render_template('login.html', form=form)
+    return render_template("login.html", form=form)
 
 
-@app.route("/logOut", methods=['GET', 'POST'])
-def logOut():
-    session.pop('email', None)
-    form = LoginForm()
-    response = make_response(render_template('login.html', form=form))
-    response.delete_cookie('email')
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    response = make_response(redirect(url_for("login")))
+    response.delete_cookie("email")
     return response
 
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
@@ -138,7 +138,7 @@ def signup():
         phone = form.phone.data
         password = form.password.data
         try:
-            sql.addUser(name, email, password, phone)
+            sql.add_user(name, email, password, phone)
         except ValueError as e:
             error_message = str(e)
             return render_template('signup.html', form=form, error_message=error_message)

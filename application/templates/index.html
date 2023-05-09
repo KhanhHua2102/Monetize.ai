@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block stylesheet %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -9,13 +9,10 @@
         {% include "includes/menu.html" %}
 
         <div id="conversation-window" class="">
-            <section class="messages-box"></section>
-            <div class="chat-window">
-                <input id="chat-input"/>
-                <button
-                    id="submit-button"
-                    type="button">GO
-                </button>
+            <div id="messages-box" class="messages-box"></div>
+            <div class="chat-action">
+                <input>
+                <button type="button">GO</button>
             </div>
         </div>
 {% endblock %}

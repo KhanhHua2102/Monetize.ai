@@ -13,27 +13,6 @@
 }
 
 
-/* tablet screen */
-@media only screen and (min-device-width: 740px) and (max-device-width: 1024px) and (orientation: portrait) {
-    body {
-            font-size: 21px;
-    }
-
-    h1 {
-        font-size: 60px;
-    }
-
-    button {
-        margin-top: -70px;
-    }
-
-    #portfolio-chart {
-    }
-
-    #export-text {
-    }
-}
-
 /* phone screen */
 @media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
     body {
@@ -42,6 +21,10 @@
 
     h1 {
         font-size: 60px;
+    }
+
+    #logo {
+        display: none;
     }
 
     .download-csv h4, .download-csv button {
