@@ -1,3 +1,7 @@
+#logo {
+    display: none;
+}
+
 #menu-icon {
     display: block;
     position: fixed;
