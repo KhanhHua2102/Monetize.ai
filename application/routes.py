@@ -25,7 +25,7 @@ def index():
 def portfolio():
     email = request.cookies.get("email")
     portfolio = sql.get_stock_data(email)[0]
-    return render_template("portfolio.html", mobileCSS=True, portfolio=portfolio)
+    return render_template("portfolio.html", mobileCSS=False, portfolio=portfolio)
 
 
 @app.route("/history")

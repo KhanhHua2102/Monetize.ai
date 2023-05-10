@@ -1,9 +1,39 @@
 #logo {
-    display: block;
+    position: fixed;
+    float: left;
+    top: 5%;
+    width: 108px;
+    height: 103px;
+    margin-left: 6%;
+    border-radius: 30px;
 }
 
 #menu-icon {
     display: none;
+}
+
+.menu {
+    position: fixed;
+    float: left;
+    top: 25%;
+    margin-left: 6%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.menu button {
+    width: 100px;
+    height: 34px;
+    margin-top: 15px;
+    background: #75C9B7;
+    border-radius: 12px;
 }
 
 

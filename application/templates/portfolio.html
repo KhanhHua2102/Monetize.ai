@@ -1,8 +1,8 @@
 {% extends 'layout.html' %} {% block stylesheet %}
-<link
+<!-- <link
 	rel="stylesheet"
 	href="{{ url_for('static', filename='css/portfolio.css') }}"
-/>
+/> -->
 {% endblock %} {% block content %}
 <!-- create table for managing stock assets -->
 <div class="container">
@@ -13,6 +13,10 @@
 	</div>
 
 	{% include "includes/menu.html" %}
+		<link
+	rel="stylesheet"
+	href="{{ url_for('static', filename='css/portfolio.css') }}"
+	/>
 
 	<h2 id="risk-text" class="text-center mb-4">
 		Risk Tolerance: <span id="risk-tolerance">High</span>
