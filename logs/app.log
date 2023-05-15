@@ -336,3 +336,15 @@ Of course, these are just suggestions, and you should always do your own researc
 To achieve this, you would need to sell some of your TSLA shares and buy more AAPL and AMZN shares. Specifically, you would need to sell 50 TSLA shares and buy 67 AAPL shares and 33 AMZN shares. This would bring your portfolio to a target allocation of approximately 40% AAPL, 30% AMZN, and 30% TSLA. 
 
 Please note that this is just a suggestion and you should always consult with a financial advisor before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:91]
+2023-05-15 12:28:05,134 INFO: User henry@gmail.com changed risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:90]
+2023-05-15 12:28:09,019 INFO: User henry@gmail.com asked: change my risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:102]
+2023-05-15 12:28:09,021 INFO: Bot responded: I'm sorry, Quang Khanh Hua, but as a chatbot, I don't have access to your account information. Please contact your financial advisor or brokerage firm to make changes to your risk tolerance. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:106]
+2023-05-15 12:34:38,104 INFO: User henry@gmail.com changed risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:89]
+2023-05-15 12:34:40,646 INFO: User henry@gmail.com asked: change my risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:101]
+2023-05-15 12:34:40,656 INFO: Bot responded: Great to hear that the user has updated their risk tolerance! Is there anything specific they would like to know or discuss regarding their portfolio? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:105]
+2023-05-15 12:35:41,436 INFO: User henry@gmail.com changed risk tolerance to low [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:89]
+2023-05-15 12:35:46,068 INFO: User henry@gmail.com asked: change my risk tolerance to low [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:102]
+2023-05-15 12:35:46,071 INFO: Bot responded: Hello Quang Khanh Hua, thank you for sharing your portfolio information with me. I can confirm that your risk tolerance has been updated. Is there anything else I can assist you with? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:106]
+2023-05-15 12:49:16,152 INFO: User henry@mail.com changed risk tolerance to High [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:92]
+2023-05-15 12:49:19,924 INFO: User henry@mail.com asked: change my risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:105]
+2023-05-15 12:49:19,926 INFO: Bot responded: Hello Quang Khanh Hua, thank you for reaching out to Monetize.ai. I can confirm that your risk tolerance has been updated. Is there anything else I can assist you with? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:109]

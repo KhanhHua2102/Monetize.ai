@@ -74,6 +74,24 @@ def generate():
     elif prompt_recommend[1]:
         print("Stock recommendation information detected in context_data\n")
         context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
+
+    # user want to change risk tolerance
+    elif re.search(r'\b(risk tolerance|tolerance)\b', user_message, re.IGNORECASE):
+        print("User message contains risk tolerance keyword\n")
+        if re.search(r'\b(high|aggressive)\b', user_message, re.IGNORECASE):
+            print("User message contains high or aggressive keyword\n")
+            risk_tolerance = 'High'
+        elif re.search(r'\b(moderate|medium)\b', user_message, re.IGNORECASE):
+            print("User message contains moderate or medium keyword\n")
+            risk_tolerance = 'Moderate'
+        elif re.search(r'\b(low|conservative)\b', user_message, re.IGNORECASE):
+            print("User message contains low or conservative keyword\n")
+            risk_tolerance = 'Low'
+        # update user's risk tolerance
+        sql.update_risk_tolerance(email, risk_tolerance)
+        logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
+        context_data += 'Please confirmed to the user that risk tolerance has been changed for them.\nA: '
+
     # normal bot reply
     else:
         print("No stock information detected in context_data\n")

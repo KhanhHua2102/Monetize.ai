@@ -25,17 +25,16 @@
 			type="text"
 			id="firstname"
 			name="firstname"
-			value="{{ user_data.user_name.split()[:-1] }}"
+			value="{{ user_data.user_name.split()[0:-1] }}"
 		/>
 	</div>
-
 	<div class="Lastname">
 		<label for="lastname">Last Name:</label>
 		<input
 			type="text"
 			id="lastname"
 			name="lastname"
-			value="{{ ' '.join(user_data.user_name.split()[-2:]) }}"
+			value="{{ ' '.join(user_data.user_name.split()[-1:]) }}"
 		/>
 	</div>
 	<div class="email">
