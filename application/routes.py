@@ -1,4 +1,5 @@
 import secrets
+import bcrypt
 
 from flask import (flash, make_response, redirect, render_template, request,
                    url_for)
@@ -62,7 +63,10 @@ def login():
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if password != user_data.password:
+        print(user_data.password)
+        print(hash_password(password))
+
+        if hash_password(password) != user_data.password:
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 
@@ -88,12 +92,24 @@ def signup():
     if form.validate_on_submit():
         name = form.name.data
         email = form.email.data
-        phone = form.phone.data
+        phone = form.phone.data 
         password = form.password.data
+        
+        ## HASH PASSWORD
+        hashed_password = hash_password(password)
+        print(hashed_password)
+
         try:
-            sql.add_user(name, email, password, phone)
+            sql.add_user(name, email, hashed_password, phone)
         except ValueError as e:
             error_message = str(e)
             return render_template("signup.html", form=form, error_message=error_message)
         return redirect(url_for("login"))
     return render_template("signup.html", form=form)
+
+## HASH PASSWORD FUNCTION USING BCRYPT
+def hash_password(password):
+    password = bytes(password, 'utf-8')
+    salt = bytes('$2b$12$kfVMHDkl3udwMUIvngFwI.', 'utf-8')
+    hashed = bcrypt.hashpw(password, salt)
+    return hashed.decode('utf-8')
