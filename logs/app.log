@@ -348,3 +348,6 @@ Please note that this is just a suggestion and you should always consult with a 
 2023-05-15 12:49:16,152 INFO: User henry@mail.com changed risk tolerance to High [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:92]
 2023-05-15 12:49:19,924 INFO: User henry@mail.com asked: change my risk tolerance to high [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:105]
 2023-05-15 12:49:19,926 INFO: Bot responded: Hello Quang Khanh Hua, thank you for reaching out to Monetize.ai. I can confirm that your risk tolerance has been updated. Is there anything else I can assist you with? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:109]
+2023-05-15 12:49:58,589 INFO: User henry@mail.com changed risk tolerance to Low [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:92]
+2023-05-15 12:50:01,597 INFO: User henry@mail.com asked: change my risk tolerance to low [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:105]
+2023-05-15 12:50:01,598 INFO: Bot responded: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:109]

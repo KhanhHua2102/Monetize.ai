@@ -170,6 +170,14 @@ You: Can you rebalance my portfolio?
 
 Bot: Sure, I'd be happy to help you rebalance your portfolio. Based on your current holdings, a moderate risk tolerance portfolio would consist of approximately 40% AAPL, 30% AMZN, and 30% TSLA. To achieve this, you would need to sell some of your TSLA shares and buy more AAPL and AMZN shares. Specifically, you would need to sell 50 TSLA shares and buy 67 AAPL shares and 33 AMZN shares. This would bring your portfolio to a target allocation of approximately 40% AAPL, 30% AMZN, and 30% TSLA. Please note that this is just a suggestion and you should always consult with a financial advisor before making any investment decisions.
 
+### Change your risk tolerance:
+
+Ask the chatbot to change your preferred risk tolerance to either low, moderate, or high. For example:
+
+You: Please change my risk tolerance to high.
+
+Bot: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with?
+
 ## Settings
 
 - Display user’s informations

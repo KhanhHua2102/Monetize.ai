@@ -25,7 +25,7 @@
 			type="text"
 			id="firstname"
 			name="firstname"
-			value="{{ user_data.user_name.split()[0:-1] }}"
+			value="{{ ' '.join(user_data.user_name.split()[0:-1]) }}"
 		/>
 	</div>
 	<div class="Lastname">
