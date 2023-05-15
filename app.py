@@ -88,14 +88,15 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
-
-    if messages[str(len(messages) - 1)]['is_bot']:
-        messages_len = len(messages)
-    else:
-        messages_len = len(messages) - 1
+    messages_len = len(messages)
 
     if messages is None or messages_len < 2:
         return jsonify({'messages': ''})
+
+    if messages[str(messages_len - 1)]['is_bot']:
+        messages_len = len(messages)
+    else:
+        messages_len = len(messages) - 1
 
     # get 2 last messages into a json object
     msg_result = {}
