@@ -63,9 +63,6 @@ def login():
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        print(user_data.password)
-        print(hash_password(password))
-
         if hash_password(password) != user_data.password:
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))

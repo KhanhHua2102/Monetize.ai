@@ -62,6 +62,14 @@ def generate():
             logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
         context_data += "Confirmed that the sell action have been recored in user's portfolio.\nQ: " + user_message + '\nA: '
+    
+    # if user want to rebalance portfolio, we reply a suggestion of rebalance
+    elif re.search(r'\b(rebalance|rebalancing)\b', user_message, re.IGNORECASE):
+        print("User message contains rebalance or rebalancing keyword\n")
+        risk_tolerance = 'moderate'
+        context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
+        context_data += 'Q: ' + user_message + '\nA: '
+    
     # if user ask for stock recommendation, we reply a bot response with stock recommendation
     elif prompt_recommend[1]:
         print("Stock recommendation information detected in context_data\n")
