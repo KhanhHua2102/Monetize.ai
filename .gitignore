@@ -77,3 +77,5 @@ venv.bak/
 dmypy.json
 
 # source for the following rules: https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
+logs/app.log
+app.db

@@ -5,6 +5,7 @@ from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
+import bcrypt
 
 from flask import (flash, make_response, redirect, render_template, request,
                    url_for)
@@ -30,8 +31,9 @@ def index():
 @app.route("/portfolio")
 def portfolio():
     email = request.cookies.get("email")
+    user_data = sql.get_user_data(email)[0]
     portfolio = sql.get_stock_data(email)[0]
-    return render_template("portfolio.html", mobileCSS=True, portfolio=portfolio)
+    return render_template("portfolio.html", mobileCSS=False, user_data=user_data, portfolio=portfolio)
 
 
 # @app.route('/history')
@@ -84,7 +86,7 @@ def history():
 def settings():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    return render_template("settings.html", menuCss=True, user_data=user_data)
+    return render_template("settings.html", mobileCSS=True, user_data=user_data)
 
 
 @app.route("/help")
@@ -109,7 +111,7 @@ def login():
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if password != user_data.password:
+        if hash_password(password) != user_data.password:
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 
@@ -135,10 +137,15 @@ def signup():
     if form.validate_on_submit():
         name = form.name.data
         email = form.email.data
-        phone = form.phone.data
+        phone = form.phone.data 
         password = form.password.data
+        
+        ## HASH PASSWORD
+        hashed_password = hash_password(password)
+        print(hashed_password)
+
         try:
-            sql.add_user(name, email, password, phone)
+            sql.add_user(name, email, hashed_password, phone)
         except ValueError as e:
             error_message = str(e)
             return render_template('signup.html', form=form, error_message=error_message)
@@ -156,3 +163,10 @@ def signup():
 #     return render_template('history.html',chats = chats)
 
 
+
+## HASH PASSWORD FUNCTION USING BCRYPT
+def hash_password(password):
+    password = bytes(password, 'utf-8')
+    salt = bytes('$2b$12$kfVMHDkl3udwMUIvngFwI.', 'utf-8')
+    hashed = bcrypt.hashpw(password, salt)
+    return hashed.decode('utf-8')

@@ -1,17 +1,22 @@
-#menu-icon {
-    display: block;
+#logo {
     position: fixed;
-    left: 10px;
-    top: 4%;
-    width: 50px;
-    height: 50px;
+    float: left;
+    top: 5%;
+    width: 108px;
+    height: 103px;
+    margin-left: 6%;
+    border-radius: 30px;
+}
+
+#menu-icon {
+    display: none;
 }
 
 .menu {
     position: fixed;
-    left: 10px;
     float: left;
-    top: 10%;
+    top: 25%;
+    margin-left: 6%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: bold;
@@ -24,10 +29,51 @@
 }
 
 .menu button {
-    display: none;
-    width: 160px;
-    height: 52px;
+    width: 100px;
+    height: 34px;
     margin-top: 15px;
     background: #75C9B7;
     border-radius: 12px;
+}
+
+
+/* mobile screen */
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
+    #logo {
+        display: none;
+    }
+
+    #menu-icon {
+        display: block;
+        position: fixed;
+        left: 10px;
+        top: 4%;
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu {
+        position: fixed;
+        left: 10px;
+        float: left;
+        top: 10%;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 29px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .menu button {
+        display: none;
+        width: 160px;
+        height: 52px;
+        margin-top: 15px;
+        background: #75C9B7;
+        border-radius: 12px;
+    }
 }

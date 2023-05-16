@@ -65,10 +65,36 @@ def generate():
             logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
         context_data += "Confirmed that the sell action have been recored in user's portfolio.\nQ: " + user_message + '\nA: '
+    
+    # if user want to rebalance portfolio, we reply a suggestion of rebalance
+    elif re.search(r'\b(rebalance|rebalancing)\b', user_message, re.IGNORECASE):
+        print("User message contains rebalance or rebalancing keyword\n")
+        risk_tolerance = 'moderate'
+        context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
+        context_data += 'Q: ' + user_message + '\nA: '
+    
     # if user ask for stock recommendation, we reply a bot response with stock recommendation
     elif prompt_recommend[1]:
         print("Stock recommendation information detected in context_data\n")
         context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
+
+    # user want to change risk tolerance
+    elif re.search(r'\b(risk tolerance|tolerance)\b', user_message, re.IGNORECASE):
+        print("User message contains risk tolerance keyword\n")
+        if re.search(r'\b(high|aggressive)\b', user_message, re.IGNORECASE):
+            print("User message contains high or aggressive keyword\n")
+            risk_tolerance = 'High'
+        elif re.search(r'\b(moderate|medium)\b', user_message, re.IGNORECASE):
+            print("User message contains moderate or medium keyword\n")
+            risk_tolerance = 'Moderate'
+        elif re.search(r'\b(low|conservative)\b', user_message, re.IGNORECASE):
+            print("User message contains low or conservative keyword\n")
+            risk_tolerance = 'Low'
+        # update user's risk tolerance
+        sql.update_risk_tolerance(email, risk_tolerance)
+        logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
+        context_data += 'Please confirmed to the user that risk tolerance has been changed for them.\nA: '
+
     # normal bot reply
     else:
         print("No stock information detected in context_data\n")
@@ -76,7 +102,6 @@ def generate():
 
     result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
-    print(context_data)
 
     # sql.addMessages(1,"hoanglongn01@gmail.com","hello man",datetime.datetime.now())
     # sql.addMessages(2,"hoanglongn01@gmail.com","another hello",datetime.datetime.now())
@@ -113,16 +138,15 @@ def generate():
 def get_messages():
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
-
-    print(messages)
-
-    if messages[str(len(messages) - 1)]['is_bot']:
-        messages_len = len(messages)
-    else:
-        messages_len = len(messages) - 1
+    messages_len = len(messages)
 
     if messages is None or messages_len < 2:
         return jsonify({'messages': ''})
+
+    if messages[str(messages_len - 1)]['is_bot']:
+        messages_len = len(messages)
+    else:
+        messages_len = len(messages) - 1
 
     # get 2 last messages into a json object
     msg_result = {}

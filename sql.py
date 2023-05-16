@@ -29,7 +29,7 @@ def add_user(user_name, email, password, phone_number):
     if models.user.query.filter_by(email=email).first():
         raise ValueError("User with provided email already exists")
     new_user = models.user(user_name=user_name, email=email,
-                           password=password, phone_number=phone_number)
+                           password=password, phone_number=phone_number, risk_tolerance='Moderate')
     models.db.session.add(new_user)
     models.db.session.commit()
     models.db.session.close()
@@ -131,6 +131,16 @@ def add_message(email, message, date, is_bot=False):
         new_message = models.messages(
             user_id=user_id, body=message, created_at=date, is_bot=is_bot)
         models.db.session.add(new_message)
+    models.db.session.commit()
+    models.db.session.close()
+
+# update user's risk tolerance in user table in database
+def update_risk_tolerance(email, risk_tolerance):
+    user_id = get_user_id(email)
+    user = models.user.query.filter_by(user_id=user_id).first()
+    if user is None:
+        raise ValueError("No such user with this userId. Should add such a data row first")
+    user.risk_tolerance = risk_tolerance
     models.db.session.commit()
     models.db.session.close()
 
