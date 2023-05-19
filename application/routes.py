@@ -59,12 +59,12 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        user_data = sql.get_user_data(email)[0]
+        user_data = sql.get_user_data(email)
         if not user_data or user_data is None:
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if hash_password(password) != user_data.password:
+        if hash_password(password) != user_data[0].password:
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 

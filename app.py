@@ -36,7 +36,7 @@ def generate():
     prompt_recommend = stk.prompt_recomendation(user_message)
 
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
-    if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
+    if re.search(r'\b(buy|bought|caculate|profit)\b', user_message, re.IGNORECASE):
         print("User message contains buy or bought keyword\n")
         
         prompt_result = stk.prompt_profit(user_message)
@@ -135,7 +135,7 @@ def get_messages():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1:5000')
+    app.run(debug=True, host='127.0.0.1:5001')
 
 # I bought 200 Apple shares on 12/12/2020, what is my profit?
 # I sold 50 Apple shares on 12/12/2021.

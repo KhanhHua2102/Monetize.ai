@@ -122,12 +122,12 @@ s3transfer==0.6.0
 sacremoses==0.0.53
 scikit-learn==1.2.2
 scipy==1.10.1
-sentence-transformers==2.2.2
+transformers==2.1.1
 sentencepiece==0.1.98
 seqeval==1.2.2
 simplejson==3.19.1
 six==1.16.0
-sklearn==0.0.post4
+scikit-learn==1.2.2
 smmap==5.0.0
 soupsieve==2.4
 SQLAlchemy==2.0.10
@@ -143,7 +143,6 @@ tokenizers==0.13.3
 torch==2.0.0
 torchvision==0.15.1
 tqdm==4.65.0
-transformers==2.1.1
 typing_extensions==4.5.0
 tzdata==2023.3
 urllib3==1.26.15
