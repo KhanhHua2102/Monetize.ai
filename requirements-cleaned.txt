@@ -1,0 +1,15 @@
+alembic==1.10.4
+finnhub_python==2.4.18
+Flask==2.2.3
+Flask_Cors==3.0.10
+Flask_Migrate==4.0.4
+flask_sqlalchemy==3.0.3
+Flask_WTF==1.1.1
+openai==0.27.4
+pandas==2.0.0
+python_bcrypt==0.3.2
+python_dateutil==2.8.2
+WTForms==3.0.1
+yfinance==0.2.17
+python-dotenv
+email_validator

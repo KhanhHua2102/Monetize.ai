@@ -101,7 +101,7 @@ form input:focus {
 form button[type="submit"] {
 	box-sizing: border-box;
 
-position: block;
+
 width: 310px;
 height: 52px;
 left: calc(50% - 310px/2);
@@ -166,7 +166,7 @@ text-transform: none;
 .facebook-btn,
 .google-btn {
     display: flex;
-    align-items: left;
+   
     background-color: #fff;
     color: #555;
     border: 2px solid #ccc;
@@ -319,7 +319,7 @@ text-transform: none;
 form button[type="submit"] {
 	box-sizing: border-box;
 
-position: block;
+
 width: 800px;
 height: 100px;
 left: calc(50% - 800px/2);
