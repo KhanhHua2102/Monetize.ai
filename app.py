@@ -82,7 +82,7 @@ def generate():
         context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
 
     # user want to change risk tolerance
-    elif re.search(r'\b(risk tolerance|tolerance)\b', user_message, re.IGNORECASE):
+    elif re.search(r'\b((?!what|[\?\s])risk tolerance)\b', user_message, re.IGNORECASE) and re.search(r'\b(high|aggressive|moderate|medium|low|conservative)\b', user_message, re.IGNORECASE):
         print("User message contains risk tolerance keyword\n")
         if re.search(r'\b(high|aggressive)\b', user_message, re.IGNORECASE):
             print("User message contains high or aggressive keyword\n")

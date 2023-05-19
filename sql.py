@@ -39,7 +39,7 @@ def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
     
     if user is not None:
-        return user, [user.user_name, user.email, user.phone_number]
+        return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
     return None
 
 
