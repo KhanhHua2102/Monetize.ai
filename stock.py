@@ -131,7 +131,7 @@ def prompt_profit(input):
     return None, False
 
 def prompt_recomendation(prompt_input):
-    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
+    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol} Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
     recommendation_result = gpt.open_ai(prompt_input, 0.1)
     
     print(recommendation_result + '\n')
