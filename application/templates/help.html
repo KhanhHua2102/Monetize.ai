@@ -17,14 +17,121 @@
         {% include "includes/menu.html" %}
 
         <div class="contents">
-            <div class="section1">How to log in</div>
 
-            <div class="instruct1">
-                <img src="{{ url_for('static', filename='img/Image_placeholder.png') }}" alt="" class="image">
-                <p>1.Lorem ipsum dolor sit amet consectetur adipisicing elit.Cu lpa neque debitis impedit sunt delectus ab voluptatibus, eos cupiditat e magni beatae, odio voluptas minima perspiciatis fuga ipsam obcaecati cum itaque odit. Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Tempore exercitationem itaque, minima ad, veritatis blanditiis quibusdam distinctio illo quidem, nihil illum! Eos recusandae dignissimos placeat maiores assumenda nostrum est Lorem, ipsum dolor
-                    sit amet consectetur adipisicing elit. Voluptatem quae libero porro maiores laboriosam? Id, deleniti fugit? Consequuntur pariatur accusamus odit, delectus quaerat quasi consequatur ipsum. Soluta exercitationem nesciunt nihil.</p>
-            </div>
+  <h2>Getting Started</h2>
+  <p>
+    To get started with Monetize.ai, follow these steps:
+  </p>
+  <ol>
+    <li>Sign Up: Create an account by providing your email address and password.</li>
+    <li>Login: Use your email and password to log into the application.</li>
+  </ol>
+
+  <h2>Using the Chatbot</h2>
+<p>The Monetize.ai chatbot provides personalized financial advisory services. Here are some tips on using the chatbot effectively:</p>
+<ul>
+  <li>
+    Starting with an Empty Portfolio: You begin with an empty portfolio, and your risk tolerance is set to moderate by default. You can ask the chatbot any questions or seek advice related to investing, financial concepts, or stock markets.
+    <br>
+    <strong>Example:</strong> "What are some common investing strategies?"
+  </li>
+  <li>
+    <button onclick="toggleImageSection(1)">Demonstration Picture</button>
+    <div id="image-section-1" style="display: none;" class="image-section">
+      <img src="{{ url_for('static', filename='img/StartingPortfolio.jpg') }}" alt="Chatbot Image">
+    </div>
+  </li>
+  <li>
+    Updating Your Portfolio: Tell the chatbot when you buy or sell stocks. Provide details like the stock ticker, number of shares, date, and price.
+    <br>
+    <strong>Example:</strong> "I bought 200 shares of Apple (AAPL) on 01/02/2020 at $300 per share."
+  </li>
+  <li>
+    <button onclick="toggleImageSection(2)">Demonstration Picture</button>
+    <div id="image-section-2" style="display: none;"class="image-section">
+      <img src="{{ url_for('static', filename='img/Starting.jpg') }}" alt="Chatbot Image">
+      <img src="{{ url_for('static', filename='img/InvestingStrat.jpg') }}" alt="Chatbot Image">
+    </div>
+  </li>
+  <li>
+    Rebalancing Your Portfolio: Ask the chatbot to rebalance your portfolio using modern portfolio theory. It will adjust the weights of your stock holdings to match your desired risk tolerance.
+    <br>
+    <strong>Example:</strong> "Can you rebalance my portfolio?"
+  </li>
+  <li>
+    <button onclick="toggleImageSection(3)">Demonstration Picture</button>
+    <div id="image-section-3" style="display: none;"class="image-section">
+      <img src="{{ url_for('static', filename='img/Rebalancing.jpg') }}" alt="Chatbot Image">
+    </div>
+  </li>
+  <li>
+    Changing Risk Tolerance: Request the chatbot to change your preferred risk tolerance to low, moderate, or high.
+    <br>
+    <strong>Example:</strong> "Please change my risk tolerance to high."
+  </li>
+  <li>
+    <button onclick="toggleImageSection(4)">Demonstration Picture</button>
+    <div id="image-section-4" style="display: none;"class="image-section">
+      <img src="{{ url_for('static', filename='img/High.jpg') }}" alt="Chatbot Image">
+      <img src="{{ url_for('static', filename='img/HighRisk.jpg') }}" alt="Chatbot Image">
+    </div>
+  </li>
+</ul>
+
+  <h2>Viewing Portfolio and History</h2>
+  <p>
+    Monetize.ai provides features to view your portfolio and conversation history:
+  </p>
+  <ul>
+    <li>
+      Portfolio: Check your investment portfolio, including balances, profits/losses, and other metrics. This information is stored in the Portfolio section for future reference.
+    </li>
+    <li>
+      History: Search for old conversations using keywords to quickly find past interactions with the chatbot.
+    </li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>
+    In the settings page, you can access the following options:
+  </p>
+  <ul>
+    <li>
+      Display User Information: View your account details and make changes if necessary.
+    </li>
+    <li>
+      Change User Information: Update your personal information such as name, email, and password.
+    </li>
+    <li>
+      Upload Profile Picture: Customize your profile by uploading a profile picture.
+    </li>
+    <li>
+      Change to Dark Mode: Switch to a dark mode theme for a different visual experience.
+    </li>
+  </ul>
+
+  <h2>Roadmap</h2>
+  <p>
+    The Monetize.ai team is continuously working on improving the application. Here are some upcoming features:
+  </p>
+  <ul>
+    <li>
+      Change User Information
+in Settings page.
+</li>
+<li>
+Upload Profile Picture.
+</li>
+<li>
+Dark Mode: Enable a dark mode theme for the application.
+</li>
+
+  </ul>
+  <footer>
+    <p>For more information and updates, visit the <a href="https://github.com/KhanhHua2102/CITS3403-Project">Monetize.ai GitHub repository</a>.</p>
+  </footer>
+</body>
+</html>
 
         </div>
     </div>
@@ -33,5 +140,5 @@
 
 <!-- adding javascript for the side bar -->
 {% block script %}
-<script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
+<script src="{{ url_for('static', filename='js/help.js') }}"></script>
 {% endblock %}
