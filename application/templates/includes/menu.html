@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" /> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" > 
 {% if mobileCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}" /> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}" > 
 {% endif %}
 
-<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
-<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
+<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}">
+<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}" alt=""></img>
 <table class="menu">
     <tr>
         <td><button type="button" class="btn"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Home</a></button></td>
