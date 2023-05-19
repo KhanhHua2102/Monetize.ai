@@ -211,7 +211,7 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 ## Contributing
 **Quang Khanh Hua (22928469)**
 
-**Yin Ming Aung (23176841)**
+**Yin Min Aung (23176841)**
 
 **Hoang Long Nguyen (23147438)**
 

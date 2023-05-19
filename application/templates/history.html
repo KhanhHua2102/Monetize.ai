@@ -45,77 +45,10 @@
                     </div>
                     {% endfor %}
 
-                    <!-- <div class="card border ">
-                        <div class="card-body ">
-                            <p class="time ">Last edited: 09/04/2023 15:00
-                            </p>
-                            <img src="{{ url_for( 'static',filename='img/line.png' )}} " alt=" ">
-                            <div class="preview ">
-                                <p class="preview-title ">How to buy crypto</p>
-                                <p class="preview-content ">Some of the stuffs from the chat..</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border ">
-                        <div class="card-body ">
-                            <p class="time ">Last edited: 09/04/2023 22:00
-                            </p>
-                            <img src="{{ url_for( 'static',filename='img/line.png' )}} " alt=" ">
-                            <div class="preview ">
-                                <p class="preview-title ">How to get a girlfriend</p>
-                                <p class="preview-content ">Some of the stuffs from the chat..</p>
-                            </div>
-                        </div>
-                    </div> -->
+
 
                 </div>
             </div>
-            <!-- <div class="paging ">
-                <ul class="pagination justify-content-center ">
-                    <li class="page-item "><a class="page-link " href="# ">Previous</a></li>
-                    <li class="page-item active "><a class="page-link " href="# ">1</a></li>
-                    <li class="page-item "><a class="page-link " href="# ">2</a></li>
-                    <li class="page-item "><a class="page-link " href="# ">Next</a></li>
-                </ul>
-
-                <div class="chatnumber ">
-                    <button class="btn btn-secondary dropdown-toggle " type="button ">
-                        Items per Page : <span id="items-per-page ">10</span>
-                </button>
-
-
-                </div>
-            </div> -->
-
-            <!-- <div>
-
-                {% for page_num in chats.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %} {% if page_num %} {% if chats.page == page_num %}
-                <a class="btn btn-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% else %}
-                <a class="btn btn-outline-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% endif %} {% else %} ... {% endif %} {% endfor %}
-            </div> -->
-            <!-- <div>
-
-                {% for page_num in chats.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %} {% if page_num %} {% if chats.page == page_num %}
-                <a class="btn btn-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% else %}
-                <a class="btn btn-outline-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% endif %} {% else %} ... {% endif %} {% endfor %}
-                <form class="page_number " method="GET ">
-                    <input type="number " name="mypage_num ">
-                </form>
-
-            </div> -->
-
-
-            <!-- working pagination -->
-            <!-- <div>
-                {% for page_num in chats.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %} {% if page_num %} {% if chats.page == page_num %}
-                <a class="btn btn-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% else %}
-                <a class="btn btn-outline-info mb-4 " href="{{ url_for( 'history', page=page_num) }} ">{{ page_num }}</a> {% endif %} {% else %} ... {% endif %} {% endfor %}
-
-                <form class="page_number " method="GET " action="{{ url_for( 'history',page= page_num)}} ">
-                    <input type="number " name="mypage_num">
-                    <button type="submit ">Filter</button>
-                </form>
-            </div> -->
 
 
 

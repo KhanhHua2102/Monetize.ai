@@ -59,7 +59,8 @@ def portfolio():
 @app.route('/history')
 def history():
     email = request.cookies.get('email')
-    user_id = sql.getUserId(email)
+    # user_id = sql.getUserId(email)
+    user_id = sql.get_user_id(email)
     page = request.args.get('page', 1, type=int)
     search_query = request.args.get('contains')
     chats = models.messages.query.filter_by(user_id=user_id)
@@ -74,12 +75,13 @@ def history():
     print(mypage_num)
 
 
-    # if search_query:
-    #     chats = chats.filter(models.messages.body.contains(search_query))
+    if search_query:
+        chats = chats.filter(models.messages.body.contains(search_query))
 
-    chats_paginate = chats.paginate(page=page, per_page=mypage_num)
+    # chats_paginate = chats.paginate(page=page, per_page=mypage_num)
 
-    return render_template('history.html', chats=chats_paginate, search_query=search_query)
+    # return render_template('history.html', chats=chats_paginate, search_query=search_query)
+    return render_template('history.html', chats = chats,search_query=search_query)
 
 
 @app.route("/settings")
@@ -106,12 +108,12 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        user_data = sql.get_user_data(email)[0]
+        user_data = sql.get_user_data(email)
         if not user_data or user_data is None:
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if hash_password(password) != user_data.password:
+        if hash_password(password) != user_data[0].password:
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 

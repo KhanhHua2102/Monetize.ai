@@ -91,6 +91,7 @@ def generate():
             print("User message contains low or conservative keyword\n")
             risk_tolerance = 'Low'
         # update user's risk tolerance
+        # risk_tolerance = 'Moderate'
         sql.update_risk_tolerance(email, risk_tolerance)
         logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
         context_data += 'Please confirmed to the user that risk tolerance has been changed for them.\nA: '
@@ -103,34 +104,34 @@ def generate():
     result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
 
-    # sql.addMessages(1,"hoanglongn01@gmail.com","hello man",datetime.datetime.now())
-    # sql.addMessages(2,"hoanglongn01@gmail.com","another hello",datetime.datetime.now())
-    # sql.addMessages(3,"henry@gmail.com","Message 3 from henry",datetime.datetime.now())
-    # sql.addMessages(4,"henry@gmail.com","Message 4 from henry",datetime.datetime.now())
-    # sql.addMessages(5,"motherfucker123@gmail.com","Message 5 from mother fucker",datetime.datetime.now())
-    sql.addMessages(1,"ivan@gmail.com","hello world",datetime.datetime.now())
-    sql.addMessages(2,"ivan@gmail.com","hello world2",datetime.datetime.now())
-    sql.addMessages(3,"ivan@gmail.com","hello world3",datetime.datetime.now())
-    sql.addMessages(4,"ivan@gmail.com","hello world4",datetime.datetime.now())
-    sql.addMessages(5,"ivan@gmail.com","hello world5",datetime.datetime.now())
-    sql.addMessages(6,"ivan@gmail.com","hello world6",datetime.datetime.now())
-    sql.addMessages(7,"ivan@gmail.com","hello world7",datetime.datetime.now())
-    sql.addMessages(8,"ivan@gmail.com","hello world8",datetime.datetime.now())
-    sql.addMessages(9,"ivan@gmail.com","hello world9",datetime.datetime.now())
-    sql.addMessages(10,"ivan@gmail.com","hello world10",datetime.datetime.now())
-    sql.addMessages(11,"ivan@gmail.com","hello world11",datetime.datetime.now())
-    sql.addMessages(12,"ivan@gmail.com","hello world12",datetime.datetime.now())
-    sql.addMessages(13,"dick@gmail.com","hello world13 from dick",datetime.datetime.now())
-    sql.addMessages(14,"dick@gmail.com","hello world14 from dick",datetime.datetime.now())
-    sql.addMessages(15,"dick@gmail.com","hello world15 from dick",datetime.datetime.now())
+    # sql.add_message(1,"hoanglongn01@gmail.com","hello man",datetime.datetime.now())
+    # sql.add_message(2,"hoanglongn01@gmail.com","another hello",datetime.datetime.now())
+    # sql.add_message(3,"henry@gmail.com","Message 3 from henry",datetime.datetime.now())
+    # sql.add_message(4,"henry@gmail.com","Message 4 from henry",datetime.datetime.now())
+    # sql.add_message(5,"motherfucker123@gmail.com","Message 5 from mother fucker",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world2",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world3",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world4",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world5",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world6",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world7",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world8",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world9",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world10",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world11",datetime.datetime.now())
+    sql.add_message("new@gmail.com","hello world12",datetime.datetime.now())
+    # sql.add_message(13,"dick@gmail.com","hello world13 from dick",datetime.datetime.now())
+    # sql.add_message(14,"dick@gmail.com","hello world14 from dick",datetime.datetime.now())
+    # sql.add_message(15,"dick@gmail.com","hello world15 from dick",datetime.datetime.now())
 
     # add user message to database
-    sql.add_message(email, user_message, datetime.now(), False)
-    logger.info('User ' + email + ' asked: ' + user_message)
+    # sql.add_message(email, user_message, datetime.now(), False)
+    # logger.info('User ' + email + ' asked: ' + user_message)
 
     # add bot response to database
-    sql.add_message(email, result, datetime.now(), True)
-    logger.info('Bot responded: ' + result)
+    # sql.add_message(email, result, datetime.now(), True)
+    # logger.info('Bot responded: ' + result)
 
     return jsonify({'response': result})
 
