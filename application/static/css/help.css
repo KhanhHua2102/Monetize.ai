@@ -33,3 +33,23 @@ body {
 .image {
     width: 50%;
 }
+.image-section img {
+    max-width: 600px;
+    max-height: 600px;
+  }
+
+
+
+  button {
+    background-color: rgb(101, 187, 114, 60%);;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;}
