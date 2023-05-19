@@ -25,6 +25,12 @@ context_data = 'You are a friendly financial chatbot named Monetize.ai. The user
 
 @app.route('/generate', methods=['POST'])
 def generate():
+    """Generates a response to a user message from chat screen
+
+    Returns:
+        response: The response from the API in JSON format
+    """
+
     global context_data
     email = request.cookies.get('email')
 
@@ -36,7 +42,7 @@ def generate():
     prompt_recommend = stk.prompt_recomendation(user_message)
 
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
-    if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
+    if re.search(r'\b(buy|bought|profit)\b', user_message, re.IGNORECASE):
         print("User message contains buy or bought keyword\n")
         
         prompt_result = stk.prompt_profit(user_message)
@@ -112,6 +118,12 @@ def generate():
 
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
+    """Get recent messages from database and return to frontend
+
+    Returns:
+        json: recent messages
+    """
+
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
     messages_len = len(messages)

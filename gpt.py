@@ -8,6 +8,17 @@ openai.api_key = Config.OPENAI_API_KEY
 
 
 def open_ai(query, temperature=0.2):
+    """Uses OpenAI's GPT-3 API to generate a response to a query
+
+    Args:
+    query (str): The query to be sent to the API
+    temperature (float): The temperature of the response, which controls randomness. Higher values make the response more random and vice versa.
+        (default is 0.3)
+
+    Returns:
+        response: The response from the API
+    """
+
     print("Starting GPT-3.5-turbo...\n")
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -17,6 +28,17 @@ def open_ai(query, temperature=0.2):
     return response
 
 def open_ai_with_info(query, temperature=1):
+    """Uses OpenAI's GPT-3 API to generate a response to a query, with user information and portfolio information appended to the query
+
+    Args:
+    query (str): The query to be sent to the API
+    temperature (float): The temperature of the response, which controls randomness. Higher values make the response more random and vice versa.
+        (default is 1)
+
+    Returns:
+        response: The response from the API
+    """
+
     email = request.cookies.get('email')
     user_data = sql.get_user_data(email)[1]
     user_info = "\nUser information: \nUsername: " + user_data[0] + "\nEmail: " + user_data[1] + "\nPhone number: " + str(user_data[2])

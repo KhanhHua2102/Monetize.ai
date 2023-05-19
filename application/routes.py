@@ -32,7 +32,7 @@ def portfolio():
 
 @app.route("/history")
 def history():
-    return render_template("history.html")
+    return render_template("history.html", mobileCSS=True)
 
 
 @app.route("/settings")
@@ -44,12 +44,12 @@ def settings():
 
 @app.route("/help")
 def help():
-    return render_template("help.html")
+    return render_template("help.html", mobileCSS=True)
 
 
 @app.route("/about-us")
 def aboutUs():
-    return render_template("about-us.html")
+    return render_template("about-us.html", mobileCSS=True)
 
 
 @app.route("/login", methods=["GET", "POST"])
