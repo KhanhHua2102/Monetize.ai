@@ -1,17 +1,17 @@
-<<<<<<< HEAD
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/KhanhHua2102/CITS3403-Project/application/static/img/logo.svg">
-    <img src="https://raw.githubusercontent.com/KhanhHua2102/CITS3403-Project/d312a27dbc964597ef8b4b27ed321710fcc24312/application/static/img/logo.svg?token=ALDJ6W7U3EWQUGTDIIJCTILEKNB4K" alt="Logo" width="80" height="80">
+  <a>
+    <img src="application/static/img/MonetizeAI-logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Monetize.ai</h3>
 
   <p align="center">
     Financial Chat Bot Advisor
+    Project for Agile Web Development - CITS3403 unit at UWA 2023
     <br />
     <a href="https://github.com/KhanhHua2102/CITS3403-Project"><strong>Explore the docs »</strong></a>
     <br />
@@ -53,16 +53,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-=======
-<<<<<<< HEAD
-# CITS3483-Project
-=======
-# Monetize.ai
->>>>>>> 88f484c0631df3ba3c7b9645e52510f65c276d30
-Project for Agile Web Development - CITS3403 unit at UWA 2023
->>>>>>> reccomendation
-
+# About The Project
 Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 language model and integrates with the Yahoo Finance API to crawl financial data such as stocks and cryptocurrencies. The application is built using the Flask framework and SQLite for the database on the server side. The client side is built using HTML, CSS, JavaScript with Bootstrap framework and jQuery for the client-side rendering.
 
 The main objective of this project is to provide users with a personalized financial advisory service that can help them manage their investment portfolios in an efficient and effective manner. Users can declare their investment portfolios to the chat bot and receive advice on how to balance their portfolios using modern portfolio theory. The chat bot can also calculate profits/losses and provide other useful metrics related to the user's portfolio. All of the user's portfolio data is stored in the Portfolio section for future reference.
@@ -90,7 +81,7 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+# Getting Started
 
 ### Prerequisites
 
@@ -136,7 +127,7 @@ This will run the Flask app on your local host, typically http://127.0.0.1:5000.
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+# Usage
 
 ## Sign Up and Login
 

@@ -4,11 +4,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-#logo {
-  display: none;
-}
-
-
 .title {
   position: absolute;
   left: 38.19%;

@@ -148,6 +148,3 @@ def get_messages():
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1:5001')
-
-# I bought 200 Apple shares on 12/12/2020, what is my profit?
-# I sold 50 Apple shares on 12/12/2021.

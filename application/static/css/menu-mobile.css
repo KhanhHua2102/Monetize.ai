@@ -28,7 +28,8 @@
     justify-content: space-between;
 }
 
-.menu button {
+.menu a {
+    display: none;
     width: 100px;
     height: 34px;
     margin-top: 15px;
@@ -68,7 +69,7 @@
         justify-content: space-between;
     }
 
-    .menu button {
+    .menu a {
         display: none;
         width: 160px;
         height: 52px;

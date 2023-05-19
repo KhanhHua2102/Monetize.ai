@@ -27,29 +27,29 @@ def portfolio():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
     portfolio = sql.get_stock_data(email)[0]
-    return render_template("portfolio.html", mobileCSS=False, user_data=user_data, portfolio=portfolio)
+    return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
 
 
 @app.route("/history")
 def history():
-    return render_template("history.html", mobileCSS=True)
+    return render_template("history.html", mobileCSS=False)
 
 
 @app.route("/settings")
 def settings():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    return render_template("settings.html", mobileCSS=True, user_data=user_data)
+    return render_template("settings.html", mobileCSS=False, user_data=user_data)
 
 
 @app.route("/help")
 def help():
-    return render_template("help.html", mobileCSS=True)
+    return render_template("help.html", mobileCSS=False)
 
 
 @app.route("/about-us")
 def aboutUs():
-    return render_template("about-us.html", mobileCSS=True)
+    return render_template("about-us.html", mobileCSS=False)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -95,7 +95,6 @@ def signup():
         
         ## HASH PASSWORD
         hashed_password = hash_password(password)
-        print(hashed_password)
 
         try:
             sql.add_user(name, email, hashed_password, phone)

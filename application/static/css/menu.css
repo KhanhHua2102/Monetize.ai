@@ -28,7 +28,7 @@
     justify-content: space-between;
 }
 
-.menu button {
+.menu a {
     width: 100px;
     height: 34px;
     margin-top: 15px;
@@ -39,10 +39,7 @@
 /* phone screen */
 @media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
     #logo {
-        position: fixed;
-        width: 150px;
-        height: 150px;
-        border-radius: 30px;
+        display: none;
     }
 
     #menu-icon {
@@ -70,7 +67,8 @@
         justify-content: space-between;
     }
 
-    .menu button {
+    .menu a {
+        display: none;
         position: relative;
         display: none;
         width: 160px;

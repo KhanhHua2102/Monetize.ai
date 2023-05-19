@@ -1,9 +1,5 @@
 $(document).ready(function () {
-	// // Get 2 recent messages
-	// getRecentMessages();
-	// // Start conversation with welcome message
-	// startMessage();
-    // Send message and receive response from gpt
+	// Get 2 recent messages
 	$(getRecentMessages).ready(function () {
 		startMessage();
 	});

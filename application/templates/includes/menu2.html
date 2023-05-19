@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}"/> 
+{% if mobileCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}"/> 
+{% endif %}
+
+<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo"/>
+<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}" alt="menu-icon">
+<table class="menu">
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Home</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('portfolio') }}" style="text-decoration: none; color: inherit;">Portfolio</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('history') }}" style="text-decoration: none; color: inherit;">History</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('settings') }}" style="text-decoration: none; color: inherit;">Settings</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('help') }}" style="text-decoration: none; color: inherit;">Help</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('aboutUs') }}" style="text-decoration: none; color: inherit;">About Us</a></button></td>
+    </tr>
+    <tr>
+        <td><button type="button" class="btn"><a href="{{ url_for('logout') }}" style="text-decoration: none; color: inherit;">Logout</a></button></td>
+    </tr>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
