@@ -89,6 +89,7 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
 
 ### Installation
 
+#### Running the app locally by cloning the Github repo
 1. Get a free OpenAI API Key at [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
 2. Clone the repo
    ```sh
@@ -116,11 +117,23 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
     ```sh
     pip install -r requirements.txt
     ```
-6. Run the app on your local host:
+6. Activate the virtual environment again
+7. Run the app on your local host:
     ```sh
     flask run
     ```
 This will run the Flask app on your local host, typically http://127.0.0.1:5000.
+
+#### Running the app locally by using Docker
+1. Pull the docker image from Docker Hub:
+    ```sh
+    docker pull khanhhua2102/cits3403-project
+    ```
+2. Run the docker image:
+    ```sh
+    docker run -p 5000:5000 khanhhua2102/cits3403-project
+    ```
+This will run the Flask app on your local host, typically http://
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
