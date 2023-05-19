@@ -1,31 +1,31 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" /> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}"> 
 {% if mobileCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}" /> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}"> 
 {% endif %}
 
-<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}"/>
-<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}"></img>
+<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
+<img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}" alt="menu-icon">
 <table class="menu">
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Home</a></button></td>
+        <td><a href="{{ url_for('index') }}" class="btn" style="text-decoration: none; color: inherit;">Home</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('portfolio') }}" style="text-decoration: none; color: inherit;">Portfolio</a></button></td>
+        <td><a href="{{ url_for('portfolio') }}" class="btn" style="text-decoration: none; color: inherit;">Portfolio</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('history') }}" style="text-decoration: none; color: inherit;">History</a></button></td>
+        <td><a href="{{ url_for('history') }}" class="btn" style="text-decoration: none; color: inherit;">History</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('settings') }}" style="text-decoration: none; color: inherit;">Settings</a></button></td>
+        <td><a href="{{ url_for('settings') }}" class="btn" style="text-decoration: none; color: inherit;">Settings</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('help') }}" style="text-decoration: none; color: inherit;">Help</a></button></td>
+        <td><a href="{{ url_for('help') }}" class="btn" style="text-decoration: none; color: inherit;">Help</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('aboutUs') }}" style="text-decoration: none; color: inherit;">About Us</a></button></td>
+        <td><a href="{{ url_for('aboutUs') }}" class="btn" style="text-decoration: none; color: inherit;">About Us</a></td>
     </tr>
     <tr>
-        <td><button type="button" class="btn"><a href="{{ url_for('logout') }}" style="text-decoration: none; color: inherit;">Logout</a></button></td>
+        <td><a href="{{ url_for('logout') }}" class="btn" style="text-decoration: none; color: inherit;">Logout</a></td>
     </tr>
 </table>
 

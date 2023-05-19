@@ -105,7 +105,7 @@ body {
 }
 
 .teamImages img {
-    width: 200px;
+    width: 400px;
     margin: 25px 15px 15px 15px;
 }
 
@@ -113,6 +113,7 @@ body {
     margin-top: 15px;
     padding: 20px;
 }
+
 
 
 /* menu section after collaspe ends */

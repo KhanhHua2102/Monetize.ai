@@ -6,5 +6,4 @@ COPY requirements.txt /app
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . /app
-# ENV LISTEN_PORT=5000
 CMD flask run --host=0.0.0.0

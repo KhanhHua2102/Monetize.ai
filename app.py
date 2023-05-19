@@ -28,6 +28,12 @@ context_data = 'You are a friendly financial chatbot named Monetize.ai. The user
 
 @app.route('/generate', methods=['POST'])
 def generate():
+    """Generates a response to a user message from chat screen
+
+    Returns:
+        response: The response from the API in JSON format
+    """
+
     global context_data
     email = request.cookies.get('email')
 
@@ -39,7 +45,7 @@ def generate():
     prompt_recommend = stk.prompt_recomendation(user_message)
 
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
-    if re.search(r'\b(buy|bought)\b', user_message, re.IGNORECASE):
+    if re.search(r'\b(buy|bought|caculate|profit)\b', user_message, re.IGNORECASE):
         print("User message contains buy or bought keyword\n")
         
         prompt_result = stk.prompt_profit(user_message)
@@ -73,13 +79,21 @@ def generate():
         context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
         context_data += 'Q: ' + user_message + '\nA: '
     
+    
+    # if user want to rebalance portfolio, we reply a suggestion of rebalance
+    elif re.search(r'\b(rebalance|rebalancing)\b', user_message, re.IGNORECASE):
+        print("User message contains rebalance or rebalancing keyword\n")
+        risk_tolerance = 'moderate'
+        context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
+        context_data += 'Q: ' + user_message + '\nA: '
+    
     # if user ask for stock recommendation, we reply a bot response with stock recommendation
     elif prompt_recommend[1]:
         print("Stock recommendation information detected in context_data\n")
         context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
 
     # user want to change risk tolerance
-    elif re.search(r'\b(risk tolerance|tolerance)\b', user_message, re.IGNORECASE):
+    elif re.search(r'\b((?!what|[\?\s])risk tolerance)\b', user_message, re.IGNORECASE) and re.search(r'\b(high|aggressive|moderate|medium|low|conservative)\b', user_message, re.IGNORECASE):
         print("User message contains risk tolerance keyword\n")
         if re.search(r'\b(high|aggressive)\b', user_message, re.IGNORECASE):
             print("User message contains high or aggressive keyword\n")
@@ -91,7 +105,6 @@ def generate():
             print("User message contains low or conservative keyword\n")
             risk_tolerance = 'Low'
         # update user's risk tolerance
-        # risk_tolerance = 'Moderate'
         sql.update_risk_tolerance(email, risk_tolerance)
         logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
         context_data += 'Please confirmed to the user that risk tolerance has been changed for them.\nA: '
@@ -121,6 +134,15 @@ def generate():
     sql.add_message("new@gmail.com","hello world10",datetime.datetime.now())
     sql.add_message("new@gmail.com","hello world11",datetime.datetime.now())
     sql.add_message("new@gmail.com","hello world12",datetime.datetime.now())
+
+    sql.add_message("new@gmail.com","heyy",datetime.datetime.now())
+    sql.add_message("new@gmail.com","Hello! How can I assist you today?",datetime.datetime.now(),True)
+    sql.add_message("new@gmail.com","I want you to have a look at here",datetime.datetime.now())
+    sql.add_message("new@gmail.com","Sure, what would you like me to look at?",datetime.datetime.now(),True)
+
+    sql.add_message("new@gmail.com","can you write me a paragraph on a topic with at least 100 words",datetime.datetime.now())
+    sql.add_message("new@gmail.com","Certainly! How about we discuss the importance of financial planning? Financial planning is a crucial aspect of anyone's life, regardless of their income or financial status. It involves setting financial goals, creating a budget, and making investments that align with those goals. By creating a financial plan, individuals can ensure that they are making the most of their money and working towards a secure financial future. One of the key benefits of financial planning is that it allows individuals to prioritize their spending. By creating a budget, individuals can track their expenses and identify areas where they may be overspending. This can help them make adjustments and allocate their money more effectively. Additionally, financial planning can help individuals save for important milestones, such as retirement or a child's education. Another important aspect of financial planning is investing. By making smart investments, individuals can grow their wealth and achieve their financial goals more quickly. However, investing can be complex, and it's important to seek guidance from a financial advisor or do thorough research before making any investment decisions. In conclusion, financial planning is a crucial aspect of anyone's life. By setting financial goals, creating a budget, and making smart investments, individuals can ensure that they are making the most of their money and working towards a secure financial future.",datetime.datetime.now(),True)
+
     # sql.add_message(13,"dick@gmail.com","hello world13 from dick",datetime.datetime.now())
     # sql.add_message(14,"dick@gmail.com","hello world14 from dick",datetime.datetime.now())
     # sql.add_message(15,"dick@gmail.com","hello world15 from dick",datetime.datetime.now())
@@ -137,6 +159,12 @@ def generate():
 
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
+    """Get recent messages from database and return to frontend
+
+    Returns:
+        json: recent messages
+    """
+
     email = request.cookies.get('email')
     messages = sql.get_messages(email)[1]
     messages_len = len(messages)
@@ -158,9 +186,21 @@ def get_messages():
 
     return jsonify({'messages': msg_result})
 
+# @app.route('/get_history')
+# def get_history():
+#     email = request.cookies.get('email')
+#     user_id = sql.get_user_id(email)
+#     search_query = request.args.get('contains')
+#     chats = models.messages.query.filter_by(user_id=user_id)
+#     if search_query is None:
+#         search_query = ""
+#     if search_query:
+#         chats = chats.filter(models.messages.body.contains(search_query))
+
+
+#     if search_query:
+#         chats = chats.filter(models.messages.body.contains(search_query))
+#     return jsonify(chats)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1:5000')
-
-# I bought 200 Apple shares on 12/12/2020, what is my profit?
-# I sold 50 Apple shares on 12/12/2021.
+    app.run(debug=True, host='127.0.0.1:5001')

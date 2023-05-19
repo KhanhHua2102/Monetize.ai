@@ -1,11 +1,12 @@
 from application import app, models
-from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request
+from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request,jsonify
 from datetime import timedelta
 from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
 import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask import (flash, make_response, redirect, render_template, request,
                    url_for)
@@ -33,7 +34,7 @@ def portfolio():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
     portfolio = sql.get_stock_data(email)[0]
-    return render_template("portfolio.html", mobileCSS=False, user_data=user_data, portfolio=portfolio)
+    return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
 
 
 # @app.route('/history')
@@ -56,49 +57,58 @@ def portfolio():
 #     print(chats_test.items)
 #     return render_template('history.html',chats=chats_test)
 
+
 @app.route('/history')
 def history():
     email = request.cookies.get('email')
-    # user_id = sql.getUserId(email)
     user_id = sql.get_user_id(email)
-    page = request.args.get('page', 1, type=int)
     search_query = request.args.get('contains')
     chats = models.messages.query.filter_by(user_id=user_id)
     if search_query is None:
         search_query = ""
     if search_query:
         chats = chats.filter(models.messages.body.contains(search_query))
-    if request.args.get('mypage_num') is None:
-        mypage_num = 5
-    else:
-        mypage_num = int(request.args.get('mypage_num'))
-    print(mypage_num)
 
 
     if search_query:
         chats = chats.filter(models.messages.body.contains(search_query))
+    return render_template('history.html',chats=chats)
 
-    # chats_paginate = chats.paginate(page=page, per_page=mypage_num)
+@app.route('/get_history', methods=['GET']) 
+def get_history():
+    email = request.cookies.get('email')
+    user_id = sql.get_user_id(email)
+    search_query = request.args.get('contains')
+    chats = models.messages.query.filter_by(user_id=user_id)
+    if search_query is None:
+        search_query = ""
+    if search_query:
+        chats = chats.filter(models.messages.body.contains(search_query))
 
-    # return render_template('history.html', chats=chats_paginate, search_query=search_query)
-    return render_template('history.html', chats = chats,search_query=search_query)
+
+    if search_query:
+        chats = chats.filter(models.messages.body.contains(search_query))
+    chats_data = [{'created_at': chat.created_at, 'body': chat.body} for chat in chats]
+    return jsonify(chats_data)
+
+
 
 
 @app.route("/settings")
 def settings():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    return render_template("settings.html", mobileCSS=True, user_data=user_data)
+    return render_template("settings.html", mobileCSS=False, user_data=user_data)
 
 
 @app.route("/help")
 def help():
-    return render_template("help.html")
+    return render_template("help.html", mobileCSS=False)
 
 
 @app.route("/about-us")
 def aboutUs():
-    return render_template("about-us.html")
+    return render_template("about-us.html", mobileCSS=False)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -113,7 +123,7 @@ def login():
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if hash_password(password) != user_data[0].password:
+        if not check_password_hash(user_data[0].password, password):
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 
@@ -143,18 +153,17 @@ def signup():
         password = form.password.data
         
         ## HASH PASSWORD
-        hashed_password = hash_password(password)
-        print(hashed_password)
+        hashed_password = generate_password_hash(password)
 
         try:
             sql.add_user(name, email, hashed_password, phone)
+            sql.add_user(name, email, hashed_password, phone)
         except ValueError as e:
             error_message = str(e)
-            return render_template('signup.html', form=form, error_message=error_message)
-        return redirect(url_for('login'))
-    return render_template('signup.html', form=form)
+            return render_template("signup.html", form=form, error_message=error_message)
+        return redirect(url_for("login"))
+    return render_template("signup.html", form=form)
 
-# @app.route('/search')
 # def search():
 #     string = request.args.get('contains')
 
@@ -172,3 +181,4 @@ def hash_password(password):
     salt = bytes('$2b$12$kfVMHDkl3udwMUIvngFwI.', 'utf-8')
     hashed = bcrypt.hashpw(password, salt)
     return hashed.decode('utf-8')
+

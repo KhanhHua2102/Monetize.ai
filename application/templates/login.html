@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-	<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
+	<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
 	<div class="member">Member Login</div>
 	<form method="POST">
 		{{ form.hidden_tag() }}
@@ -33,8 +33,6 @@
     </div>
   {% endif %}
 {% endwith %}
-
-
 
 		</div>
 		<div class="form-footer">

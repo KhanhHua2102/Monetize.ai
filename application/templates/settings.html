@@ -1,69 +1,47 @@
 {% extends 'layout.html' %} {% block stylesheet %}
-<link
-	rel="stylesheet"
-	href="{{ url_for('static', filename='css/settings.css') }}"
-/>
-{% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}"> {% endblock %} {% block content %}
 <div class="Header">
-	<div class="title">Account Settings</div>
+    <div class="title">Account Settings</div>
 </div>
 
 {% include "includes/menu.html" %}
 
 <form>
-	<div class="picture">
-		<label for="profilepic">Profile Picture:</label>
-		<img
-			src="{{ url_for('static', filename='img/Frame 1.png') }}"
-			alt="profile picture"
-		/>
-		<button class="Change-Profile">Change Profile Picture</button>
-	</div>
-	<div class="Firstname">
-		<label for="firstname">First Name:</label>
-		<input
-			type="text"
-			id="firstname"
-			name="firstname"
-			value="{{ ' '.join(user_data.user_name.split()[0:-1]) }}"
-		/>
-	</div>
-	<div class="Lastname">
-		<label for="lastname">Last Name:</label>
-		<input
-			type="text"
-			id="lastname"
-			name="lastname"
-			value="{{ ' '.join(user_data.user_name.split()[-1:]) }}"
-		/>
-	</div>
-	<div class="email">
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" value="{{ user_data.email }}" />
-	</div>
-	<div class="Phone">
-		<label for="phone">Phone:</label>
-		<input
-			type="text"
-			id="phone"
-			name="phone"
-			value="{{ user_data.phone_number }}"
-		/>
-	</div>
-	<div class="Lighting">
-		<label for="Mode">Lighting Mode:</label>
-		<button class="Light">
-			<img src="{{ url_for('static', filename='img/831682.png') }}" alt="sun" />
+    <div class="picture">
+        <label id="profilepic">Profile Picture:</label>
+        <img src="{{ url_for('static', filename='img/Frame 1.png') }}" alt="profile picture">
+        <button class="Change-Profile">Change Profile Picture</button>
+    </div>
+    <div class="Firstname">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" value="{{ ' '.join(user_data.user_name.split()[0:-1]) }}" />
+    </div>
+    <div class="Lastname">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" value="{{ ' '.join(user_data.user_name.split()[-1:]) }}" />
+    </div>
+    <div class="email">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user_data.email }}">
+    </div>
+    <div class="Phone">
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="{{ user_data.phone_number }}">
+    </div>
+    <div class="Lighting">
+        <label id="Mode">Lighting Mode:</label>
+        <button class="Light">
+			<img src="{{ url_for('static', filename='img/831682.png') }}" alt="sun">
 		</button>
-		<button class="Dark">
+        <button class="Dark">
 			<img
 				src="{{ url_for('static', filename='img/180700.png') }}"
 				alt="profile picture"
-			/>
+			>
 		</button>
-	</div>
+    </div>
 
-	<a href="{{ url_for('logout') }}" class="logout">Log Out</a>
+    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
 </form>
 {% endblock %} {% block script %}
 <script src="{{ url_for('static', filename='js/settings.js') }}"></script>

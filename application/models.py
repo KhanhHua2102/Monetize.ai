@@ -1,4 +1,5 @@
 from application import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class portfolio(db.Model):
@@ -24,6 +25,12 @@ class user(db.Model):
     phone_number = db.Column(db.Unicode(255))
     password = db.Column(db.String(100), nullable = False)
     risk_tolerance = db.Column(db.String(10), default = "Moderate")
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password,password)
 
     # def __repr__(self):
     #     return '<user %r>' % self.user_id
