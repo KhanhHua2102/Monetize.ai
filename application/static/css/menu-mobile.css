@@ -1,3 +1,5 @@
+/* For desktop devices
+    Toggle dropdown menu */
 #logo {
     position: fixed;
     float: left;
@@ -38,7 +40,7 @@
 }
 
 
-/* mobile screen */
+/* For mobile devices */
 @media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
     #logo {
         display: none;

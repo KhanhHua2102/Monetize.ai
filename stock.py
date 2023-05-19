@@ -6,7 +6,6 @@ import yfinance as yf
 from dateutil import parser
 
 import gpt
-import sql
 from config import Config
 
 CLIENT = finnhub.Client(api_key=Config.FINNHUB_API_KEY)
