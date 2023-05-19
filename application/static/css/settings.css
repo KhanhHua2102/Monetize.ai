@@ -172,7 +172,7 @@ input[type="email"] {
   margin-right: 145px;
 }
 
-label[for="profilepic"] {
+#profilepic {
   margin-left: 100px;
   padding-right: 100px;
 }
@@ -232,7 +232,7 @@ label[for="profilepic"] {
 
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
 
   .title {
     left: 27.19%;
@@ -252,7 +252,8 @@ label[for="profilepic"] {
   
     color: #ABD699;
   }
-  label[for="profilepic"] {
+
+  #profilepic {
     display: none;
   }
 

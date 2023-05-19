@@ -1,5 +1,5 @@
 import secrets
-import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask import (flash, make_response, redirect, render_template, request,
                    url_for)
@@ -64,7 +64,7 @@ def login():
             flash("User not found", "error")
             return redirect(url_for("login"))
 
-        if hash_password(password) != user_data[0].password:
+        if not check_password_hash(user_data[0].password, password):
             flash("Incorrect Password", "error")
             return redirect(url_for("login"))
 
@@ -94,7 +94,7 @@ def signup():
         password = form.password.data
         
         ## HASH PASSWORD
-        hashed_password = hash_password(password)
+        hashed_password = generate_password_hash(password)
 
         try:
             sql.add_user(name, email, hashed_password, phone)
@@ -103,10 +103,3 @@ def signup():
             return render_template("signup.html", form=form, error_message=error_message)
         return redirect(url_for("login"))
     return render_template("signup.html", form=form)
-
-## HASH PASSWORD FUNCTION USING BCRYPT
-def hash_password(password):
-    password = bytes(password, 'utf-8')
-    salt = bytes('$2b$12$kfVMHDkl3udwMUIvngFwI.', 'utf-8')
-    hashed = bcrypt.hashpw(password, salt)
-    return hashed.decode('utf-8')

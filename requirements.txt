@@ -5,7 +5,6 @@ appdirs==1.4.4
 async-timeout==4.0.2
 attrs==23.1.0
 beautifulsoup4==4.12.2
-bcrypt==3.2.0
 certifi==2023.5.7
 cffi==1.15.1
 charset-normalizer==3.1.0
@@ -32,7 +31,6 @@ numpy==1.24.3
 openai==0.27.4
 pandas==2.0.0
 pycparser==2.21
-python-bcrypt==0.3.2
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 pytz==2023.3

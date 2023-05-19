@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" />
+    <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt ="">
     <div class="member">Create a Monetize.ai account</div>
     <form method="POST">
         {{ form.csrf_token }}

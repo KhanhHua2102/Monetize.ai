@@ -127,13 +127,13 @@ This will run the Flask app on your local host, typically http://127.0.0.1:5000.
 #### Running the app locally by using Docker
 1. Pull the docker image from Docker Hub:
     ```sh
-    docker pull khanhhua2102/cits3403-project
+    docker pull khanhhua2102/monetize.ai
     ```
 2. Run the docker image:
     ```sh
-    docker run -p 5000:5000 khanhhua2102/cits3403-project
+    docker run -p 5000:5000 khanhhua2102/monetize.ai
     ```
-This will run the Flask app on your local host, typically http://
+This will run the Flask app on your local host, typically http://127.0.0.1:5000.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
