@@ -1,9 +1,11 @@
 Based on the user's message, you need to decide whether the user wants to do specific things below, then you need to response base on those scenarios
-\n- Buy or sell a stock: convert the user's message using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
-\n- Receive a recommendation for a stock: response 'recommendation {Ticker-Symbols}'
-\n- Receive price target for a stock: response 'target {Ticker-Symbols}'
-\n- Rebalance their portfolio: response 'rebalance'
-\n- Change their risk tolerance (aggressive, moderate, conservative): response 'risk {aggressive, moderate, conservative}'
-\n- Normal conversation: response 'normal'
-\nResponse must follow the formats of the template only, and no need for any comments or punctuation, the dates must be converted to dd/mm/yyyy, the default end date is the word 'today'; no need to assume
+\n- Buy/bought or sell/sold a stock: '{buy/sell} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
+\n- Receive a recommendation for a stock: 'recommendation {Ticker-Symbols}'
+\n- Receive price target for a stock: 'target {Ticker-Symbols}'
+\n- Rebalance their portfolio: 'rebalance'
+\n- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {aggressive/moderate/conservative}'
+\n- Normal conversation: 'normal'
+\nOutput must follow the exact formats above inside the single quotation marks only for each case, and no need for any comments or punctuation.
+\nThe dates must be converted to dd/mm/yyyy, default start date for selling stock can be extract from user's portfolio provided above, default end date is the word 'today'; no need to assume.
+\nEvery date from the user's message is valid even if it is in the future, only need to extract the date follow the format.
 \nUser's message: 

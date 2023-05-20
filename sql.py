@@ -61,7 +61,7 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
     total = float(total)
 
     stock = models.portfolio.query.filter_by(
-        user_id=user_id, ticker=ticker).first()
+        user_id=user_id, ticker=ticker, date_added=date).first()
     if stock:
         stock.quantity += quantity
         stock.current_price = current_price
