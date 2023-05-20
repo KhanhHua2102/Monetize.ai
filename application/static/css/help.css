@@ -24,6 +24,7 @@ body {
 .contents {
     width: 80%;
     margin: 5% 10% 0 25%;
+    text-align: justify;
 }
 
 .container {
@@ -34,8 +35,8 @@ body {
     width: 50%;
 }
 .image-section img {
-    max-width: 600px;
-    max-height: 600px;
+    max-width: 1000px;
+    max-height: 1000px;
   }
 
 
@@ -53,3 +54,54 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 4px;}
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+        #logo {
+            position: fixed;
+            left: 35%;
+            width: 25%;
+            height: 90%;
+            border-radius: 30px;
+            
+        }
+
+        .contents {
+            width: 90%;
+            margin-left: 8%;
+            margin-top: 20%;
+        }
+        .image-section img {
+            max-width: 1000px;
+            max-height: 1000px;
+          }
+          h2 {
+            font-size: 48px;
+          }
+          
+          /* Increase font size for paragraphs */
+          p {
+            font-size: 24px;
+          }
+          
+          /* Increase font size for list items */
+          li {
+            font-size: 24px;
+          }
+          
+          /* Increase font size for strong tags */
+          strong {
+            font-size: 20px;
+          }
+          
+          /* Increase font size for buttons */
+          button {
+            font-size: 20px;
+          }
+          .image-section img {
+            max-width: 100%;
+             height: auto;
+          }
+        
+        
+        
+        }
