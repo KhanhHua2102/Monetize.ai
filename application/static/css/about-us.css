@@ -20,6 +20,7 @@ body {
 .contents {
     width: 70%;
     margin: 5% 10% 0 20%;
+    text-align: justify;
 }
 
 .photo img {
@@ -41,13 +42,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .images img {
     width: 20%;
     padding: 10px;
-    /* margin: 5px; */
 }
 
 .texts {
@@ -57,7 +56,7 @@ body {
 }
 
 .intro {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 50px;
     margin-bottom: 100px;
     font-weight: bold;
@@ -88,32 +87,62 @@ body {
 .section {
     max-height: 0;
     overflow: hidden;
+    
 }
 
 .section p {
     margin: 10px;
+    font-size: 20px;
 }
-
-
-/* menu section after collaspe */
-
-.teamImages {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: center;
-}
-
 .teamImages img {
-    width: 400px;
-    margin: 25px 15px 15px 15px;
+    width: 600px; /* Adjust the width to your desired size */
+    height: auto; /* Let the height adjust proportionally */
+    margin-left: 20%;
 }
+/* Mobile Styles */
 
-.description {
-    margin-top: 15px;
-    padding: 20px;
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+    #logo {
+		position: fixed;
+        left: 35%;
+		width: 25%;
+		height: 90%;
+		border-radius: 30px;
+	}
+
+    .contents {
+        width: 90%;
+        margin-left: 8%;
+        margin-top: 20%;
+    }
+    
+    .intro {
+        font-size: 35px;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        font-weight: bold;
+  
+    }
+    
+    .instruction {
+        font-weight: lighter;
+        font-size: 40px;
+    }
+    .section img {
+        width: 50%;
+        padding: 10px;
+    }
+    .section h2{
+        font-size: 50px; 
+    }
+    .section p{
+        font-size: 30px; 
+    }.teamImages img {
+        width: 800px; /* Adjust the width to your desired size */
+        height: auto; /* Let the height adjust proportionally */
+        margin-left: 0%;
+    }
+
+
 }
-
-
-
-/* menu section after collaspe ends */

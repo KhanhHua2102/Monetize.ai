@@ -458,4 +458,11 @@
 		margin-top: 20px;
 		margin-bottom: 30px;
 	}
+	small {
+		font-size: 2em;
+		
+	}
+	.alert-danger {
+		font-size: 30px;
+	  }
 	}
