@@ -58,7 +58,7 @@ body {
 }
 
 .border {
-    border-style: solid;
+    border-style: dotted;
     border-radius: 20px;
     border-color: aliceblue;
 }
@@ -116,7 +116,7 @@ body {
     visibility: visible;
 } */
 
-.time {
+.times {
     font-size: 20px;
 }
 

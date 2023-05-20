@@ -117,44 +117,6 @@ def generate():
     result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
 
-    # sql.add_message(1,"hoanglongn01@gmail.com","hello man",datetime.datetime.now())
-    # sql.add_message(2,"hoanglongn01@gmail.com","another hello",datetime.datetime.now())
-    # sql.add_message(3,"henry@gmail.com","Message 3 from henry",datetime.datetime.now())
-    # sql.add_message(4,"henry@gmail.com","Message 4 from henry",datetime.datetime.now())
-    # sql.add_message(5,"motherfucker123@gmail.com","Message 5 from mother fucker",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world2",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world3",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world4",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world5",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world6",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world7",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world8",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world9",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world10",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world11",datetime.datetime.now())
-    sql.add_message("new@gmail.com","hello world12",datetime.datetime.now())
-
-    sql.add_message("new@gmail.com","heyy",datetime.datetime.now())
-    sql.add_message("new@gmail.com","Hello! How can I assist you today?",datetime.datetime.now(),True)
-    sql.add_message("new@gmail.com","I want you to have a look at here",datetime.datetime.now())
-    sql.add_message("new@gmail.com","Sure, what would you like me to look at?",datetime.datetime.now(),True)
-
-    sql.add_message("new@gmail.com","can you write me a paragraph on a topic with at least 100 words",datetime.datetime.now())
-    sql.add_message("new@gmail.com","Certainly! How about we discuss the importance of financial planning? Financial planning is a crucial aspect of anyone's life, regardless of their income or financial status. It involves setting financial goals, creating a budget, and making investments that align with those goals. By creating a financial plan, individuals can ensure that they are making the most of their money and working towards a secure financial future. One of the key benefits of financial planning is that it allows individuals to prioritize their spending. By creating a budget, individuals can track their expenses and identify areas where they may be overspending. This can help them make adjustments and allocate their money more effectively. Additionally, financial planning can help individuals save for important milestones, such as retirement or a child's education. Another important aspect of financial planning is investing. By making smart investments, individuals can grow their wealth and achieve their financial goals more quickly. However, investing can be complex, and it's important to seek guidance from a financial advisor or do thorough research before making any investment decisions. In conclusion, financial planning is a crucial aspect of anyone's life. By setting financial goals, creating a budget, and making smart investments, individuals can ensure that they are making the most of their money and working towards a secure financial future.",datetime.datetime.now(),True)
-
-    # sql.add_message(13,"dick@gmail.com","hello world13 from dick",datetime.datetime.now())
-    # sql.add_message(14,"dick@gmail.com","hello world14 from dick",datetime.datetime.now())
-    # sql.add_message(15,"dick@gmail.com","hello world15 from dick",datetime.datetime.now())
-
-    # add user message to database
-    # sql.add_message(email, user_message, datetime.now(), False)
-    # logger.info('User ' + email + ' asked: ' + user_message)
-
-    # add bot response to database
-    # sql.add_message(email, result, datetime.now(), True)
-    # logger.info('Bot responded: ' + result)
-
     return jsonify({'response': result})
 
 @app.route('/get_messages', methods=['GET', 'POST'])

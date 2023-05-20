@@ -31,38 +31,34 @@
 
             <div class="container ">
 
-                <div class="card-deck " id="hello">
-                    <!-- {% for chat in chats %} -->
+                <div class="card-deck " id="hey">
+
+
+                    {% for i in range(0,chats|length,2) %}
+
                     <div class="card border " id="card-border">
-                        <div class="card-body " id="body">
-                            <!-- <p class="time ">{{chat.created_at}} -->
-                            <!-- </p> -->
-                            <!-- <img src="{{ url_for( 'static',filename='img/line.png' )}} " alt=" "> -->
-                            <!-- <div class="preview "> -->
-                            <!-- <p class="preview-content ">{{chat.body}}</p> -->
-                            <!-- </div> -->
+                        <div class="card-body">
+                            <p class="time">{{ chats[i].created_at }}</p>
+                            <img src="{{ url_for('static', filename='img/line.png') }}" alt="">
+                            <div class="preview">
+                                {% if chats[i] is not none and chats[i+1] is not none %}
+                                <p class="preview-content">Q: {{ chats[i].body[:50] }} ...<br>A: {{ chats[i+1].body[:50] }} ... </p>
+                                {% else %} {% if chats[i] is not none %}
+                                <p class="preview-content">{{ chats[i].body[:50] }} ...</p>
+                                {% else %}
+                                <p class="preview-content">{{ chats[i+1].body[:50] }}...</p>
+
+                                {% endif %} {% endif %}
+                            </div>
                         </div>
                     </div>
-                    <!-- {% endfor %} -->
-
-
-
+                    {% endfor %}
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
 
     {% endblock %}
 
     <!-- adding javascript for the side bar -->
-    {% block script %}
-    <script src="{{ url_for( 'static', filename='js/history.js' ) }} "></script>
-    <!-- <script src="{{ url_for( 'static', filename='js/chat-screen.js' ) }} "></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js "></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js "></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js "></script>
-    {% endblock %}
+    {% block script %} {% endblock %}

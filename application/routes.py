@@ -63,18 +63,57 @@ def history():
     email = request.cookies.get('email')
     user_id = sql.get_user_id(email)
     search_query = request.args.get('contains')
-    chats = models.messages.query.filter_by(user_id=user_id)
+    all_chats = models.messages.query.filter_by(user_id=user_id)
+    
     if search_query is None:
         search_query = ""
     if search_query:
-        chats = chats.filter(models.messages.body.contains(search_query))
+        chats = all_chats.filter(models.messages.body.contains(search_query))
 
+        # print(chat.body)
+    chats_data = []
+    filtered_chats = chats.all()
+    complete_chat = all_chats.all()
+    for i in range(len(all_chats.all())):
+        chat = complete_chat[i]
+    
+        # Check if the current chat is a bot message
+        if not chat.is_bot:
+            # Print the current user message
+            print("User Message:", chat.body,"\n")
+            
+            next_bot_message = "No message from bot is stored yet..."
+            # Find the next bot message from the same user
+            for j in range(i+1, len(all_chats.all())):
+                next_message = all_chats[j]
+                print(next_message)
+                if next_message.is_bot and next_message.user_id == user_id:
+                    print("Next Bot Message:", next_message.body)
+                    next_bot_message = next_message.body
+                    break  # Stop searching for next user message
+            chats_data.append({'created_at': chat.created_at, 'body': chat.body})
+            chats_data.append({'created_at': chat.created_at, 'body': next_bot_message})
 
-    if search_query:
-        chats = chats.filter(models.messages.body.contains(search_query))
-    return render_template('history.html',chats=chats)
+        elif chat.is_bot:
+            # Print the current user message
+            print("Bot Message:", chat.body,"\n")
 
-@app.route('/get_history', methods=['GET']) 
+            previous_user_message = "No message from user is stored yet..."
+            #Find the previous user message from the same user
+            for j in range(i-1,0,-1):
+                previous_message = all_chats[j]
+                print("Previous Message from user : ",previous_message)
+                if previous_message.is_bot and previous_message.user_id == user_id:
+                    print("Previous User Message:", previous_message.body)
+                    previous_user_message = previous_message.body
+                    break
+            
+            chats_data.append({'created_at': chat.created_at, 'body': previous_user_message})
+            chats_data.append({'created_at': chat.created_at, 'body': chat.body})
+
+    return render_template('history.html',chats=chats_data)
+
+# @app.route('/get_history', methods=['GET']) 
 def get_history():
     email = request.cookies.get('email')
     user_id = sql.get_user_id(email)
@@ -88,8 +127,13 @@ def get_history():
 
     if search_query:
         chats = chats.filter(models.messages.body.contains(search_query))
+
+    print(chats[-1].body)
     chats_data = [{'created_at': chat.created_at, 'body': chat.body} for chat in chats]
-    return jsonify(chats_data)
+
+
+    # image_url = url_for('static', filename='img/line.png')
+    return jsonify(chats_data = chats_data)
 
 
 
