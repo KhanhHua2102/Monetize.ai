@@ -39,7 +39,11 @@ def generate():
     print("user message received:")
     print(user_message + '\n')
 
-    prompt_recommend = stk.prompt_recomendation(user_message)
+    # decide which prompt to use based on user message
+    with open('prompt.txt', 'r') as prompt:
+        prompt_input = prompt.read()
+        prompt_output = gpt.open_ai(prompt_input + user_message, 0.1)
+        print("\nprompt output:", prompt_output + '\n')
 
     # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
     if re.search(r'\b(buy|bought|caculate|profit)\b', user_message, re.IGNORECASE):
@@ -77,9 +81,17 @@ def generate():
         context_data += 'Q: ' + user_message + '\nA: '
     
     # if user ask for stock recommendation, we reply a bot response with stock recommendation
-    elif prompt_recommend[1]:
+    elif re.search(r'\b(recommend|recommendation|analysis)\b', user_message, re.IGNORECASE):
         print("Stock recommendation information detected in context_data\n")
-        context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
+        prompt_recommend = stk.prompt_recomendation(user_message)
+        context_data += 'Q: ' + (prompt_recommend) + '\nA: '
+        print(context_data)
+
+    elif re.search(r'\b(price target|target)\b', user_message, re.IGNORECASE):
+        print("User message contains price target or target keyword\n")
+        price_target = stk.prompt_price_target(user_message)
+        context_data += f'Using this price target to answer user message: {price_target}\nQ: {user_message}\nA: '
+        print(context_data)
 
     # user want to change risk tolerance
     elif re.search(r'\b((?!what|[\?\s])risk tolerance)\b', user_message, re.IGNORECASE) and re.search(r'\b(high|aggressive|moderate|medium|low|conservative)\b', user_message, re.IGNORECASE):
@@ -102,7 +114,7 @@ def generate():
     else:
         print("No stock information detected in context_data\n")
         context_data += 'Q: ' + user_message + '\nA: '
-
+    
     result = gpt.open_ai_with_info(context_data)
     context_data += result + '\n\n'
 

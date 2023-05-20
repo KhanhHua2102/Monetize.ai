@@ -1,0 +1,9 @@
+Based on the user's message, you need to decide whether the user wants to do specific things below, then you need to response base on those scenarios
+\n- Buy or sell a stock: convert the user's message using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
+\n- Receive a recommendation for a stock: response 'recommendation {Ticker-Symbols}'
+\n- Receive price target for a stock: response 'target {Ticker-Symbols}'
+\n- Rebalance their portfolio: response 'rebalance'
+\n- Change their risk tolerance (aggressive, moderate, conservative): response 'risk {aggressive, moderate, conservative}'
+\n- Normal conversation: response 'normal'
+\nResponse must follow the formats of the template only, and no need for any comments or punctuation, the dates must be converted to dd/mm/yyyy, the default end date is the word 'today'; no need to assume
+\nUser's message: 

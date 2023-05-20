@@ -2,6 +2,7 @@ from datetime import datetime
 
 import finnhub
 import pandas as pd
+import requests
 import yfinance as yf
 from dateutil import parser
 
@@ -108,7 +109,7 @@ def get_stock_data(num_shares, ticker, start_date, end_date):
 
 def prompt_profit(input):
     # input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    input = "Based on a user's message, you have to determine if the users want to caculate profit or want to buy the stocks, convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
+    input = "Based on a user's message, you have to determine if the users want to caculate profit or want to buy/sell the stocks, convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
     
     response_values = gpt.open_ai(input, 0.1).split()
 
@@ -130,21 +131,52 @@ def prompt_profit(input):
     return None, False
 
 def prompt_recomendation(prompt_input):
-    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
+    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol} Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
     recommendation_result = gpt.open_ai(prompt_input, 0.1)
     
-    print(recommendation_result + '\n')
+    recommendation_result = recommendation_result.replace(" ", "")
+    recommendation_result = recommendation_result.replace(".", "")
+    analystical = analyst(recommendation_result)
+    result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
+
+    return result
+
+
+def stock_price_target(symbol):
+    # Replace 'YOUR_API_KEY' with your actual Alpha Vantage API key
+    api_key = 'MWQ9WK5A5KFZA5U6'
+
+    # Make a request to the Alpha Vantage API
+    url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={api_key}'
+    response = requests.get(url)
+    data = response.json()
+
+    # Check if the request was successful
+    if 'Error Message' not in data:
+        target_price = data.get('AnalystTargetPrice', 'N/A')
     
-    if "False" in recommendation_result:
-        check_reccomendation = False
-        result = ""
+    if target_price != 'N/A':
+        return target_price
     else:
-        check_reccomendation = True
-        no_spaces = recommendation_result.replace(" ", "")
-        analystical = analyst(no_spaces)
-        result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
+        return 'No price target found for this stock.'
+    
+
+def prompt_price_target(prompt_input):
+    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive price target for a specific stock or not. \
+        If the user want stock price target, extract the message exactly in to this format: {Ticker Symbol} \
+            Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
+    
+    ticker = gpt.open_ai(prompt_input, 0.1)
+    
+    print(ticker + '\n')
+    
+    ticker = ticker.replace(" ", "")
+    ticker = ticker.replace(".", "")
+    ticker = stock_price_target(ticker)
+    
+    price_target = 'Using this information to give the user an appropriate stocks price target: ' + ticker
  
-    return result, check_reccomendation
+    return price_target
     
 
 # check if user message contains information about stocks, shares, and dates
