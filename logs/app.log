@@ -417,3 +417,17 @@ Please note that this is just a suggestion and it's important to consider your p
 2023-05-19 22:50:27,582 INFO: Bot responded: Based on the latest analyst recommendation for TSLA, it seems that the majority of analysts are recommending a buy or hold position. However, it's important to do your own research and consider your own investment goals before making any decisions. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
 2023-05-19 22:57:55,911 INFO: User hoanglongnt@gmail.com asked: Please give me stock recommendation of Tesla. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:105]
 2023-05-19 22:57:55,918 INFO: Bot responded: Based on the latest analyst recommendation for TSLA, it seems that there are more "Buy" and "Strong Buy" recommendations than "Hold" and "Sell" recommendations. However, it's important to note that past performance does not guarantee future results and it's always important to do your own research and consult with a financial advisor before making any investment decisions. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
+2023-05-20 21:23:06,369 INFO: User hoanglongnt@gmail.com changed risk tolerance to Low [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:92]
+2023-05-20 21:23:09,737 INFO: User hoanglongnt@gmail.com asked: Change my risk tolerance to low [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:105]
+2023-05-20 21:23:09,749 INFO: Bot responded: Hello Thai Thi Bao, I can confirm that your risk tolerance has been updated. Is there anything else I can assist you with? [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
+2023-05-20 21:23:28,480 INFO: User hoanglongnt@gmail.com changed risk tolerance to High [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:92]
+2023-05-20 21:23:31,346 INFO: User hoanglongnt@gmail.com asked: change my risk tolerance to high [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:105]
+2023-05-20 21:23:31,348 INFO: Bot responded: Hello Thai Thi Bao, I can confirm that your risk tolerance has been updated. Is there anything else I can assist you with? [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
+2023-05-20 21:24:39,841 INFO: User hoanglongnt@gmail.com asked: please rebalance my portfolio [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:105]
+2023-05-20 21:24:39,848 INFO: Bot responded: Based on your current holdings and moderate risk tolerance, I suggest the following rebalance:
+
+GOOGL: 30%
+AAPL: 40%
+TSLA: 30%
+
+To achieve this, you would need to sell 300 shares of GOOGL, buy 360 shares of AAPL, and buy 40 shares of TSLA. This will bring your portfolio to the target percentages and help manage your risk. Let me know if you have any questions or if there's anything else I can assist you with. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
