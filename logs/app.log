@@ -721,3 +721,5 @@ A: Stocks represent ownership in a company, while bonds represent a loan to a co
 2023-05-20 22:16:00,051 INFO: User hoanglong@gmail.com asked: change my risk to Aggressive [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:133]
 2023-05-20 22:16:00,058 INFO: Bot responded: Q: Can you recommend any budgeting apps?
 A: Sure, some popular budgeting apps include Mint, YNAB (You Need a Budget), and Personal Capital. It's important to find one that works best for your individual needs and preferences. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:137]
+2023-05-20 23:04:42,456 INFO: User hoanglong@gmail.com asked: hi [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:134]
+2023-05-20 23:04:42,464 INFO: Bot responded: Hello Thai Thi Bao! How can I assist you today? [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:138]

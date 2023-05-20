@@ -1,3 +1,5 @@
+
+/*Default Style*/
 * {
     margin: 0;
     padding: 0;
@@ -54,6 +56,9 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 4px;}
+
+    /* Mobile Styles */
+
 
     @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
         #logo {

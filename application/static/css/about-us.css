@@ -1,3 +1,5 @@
+
+/*Default Style*/
 * {
     margin: 0;
     padding: 0;
@@ -95,8 +97,8 @@ body {
     font-size: 20px;
 }
 .teamImages img {
-    width: 600px; /* Adjust the width to your desired size */
-    height: auto; /* Let the height adjust proportionally */
+    width: 600px; 
+    height: auto; 
     margin-left: 20%;
 }
 /* Mobile Styles */
@@ -139,8 +141,8 @@ body {
     .section p{
         font-size: 30px; 
     }.teamImages img {
-        width: 800px; /* Adjust the width to your desired size */
-        height: auto; /* Let the height adjust proportionally */
+        width: 800px; 
+        height: auto;
         margin-left: 0%;
     }
 

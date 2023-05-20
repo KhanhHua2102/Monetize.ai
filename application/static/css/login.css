@@ -1,3 +1,4 @@
+/*Default Style*/
 body {
 	margin: 0;
 	padding: 0;
@@ -260,6 +261,8 @@ form button[type="submit"]:hover {
 small {
 	font-size: 1em;
 }
+
+/* Mobile Styles */
 
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
 	.container {

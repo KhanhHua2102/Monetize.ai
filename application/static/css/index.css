@@ -1,4 +1,4 @@
-/* For desktop devices */
+/* Default Styles */
 .messages-box {
 	overflow-y: auto;
 	display: flex;
@@ -110,7 +110,7 @@
 	border-radius: 10px;
 }
 
-/* For mobile devices */
+/* Mobile Styles */
 @media only screen and (min-width: 320px) and (max-width: 500px) and (orientation: portrait) {
 	#logo {
 		position: fixed;
