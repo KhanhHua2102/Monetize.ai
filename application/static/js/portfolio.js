@@ -1,4 +1,8 @@
+/**
+ * @fileoverview This file provides functions for the portfolio page
+ */
 $(document).ready(function () {	
+	// Download CSV file when button in portfolio page is clicked
 	$('.download-csv button').click(function () {
 		console.log("export csv button clicked");
 		exportCSV();
@@ -70,7 +74,9 @@ let myChart = new Chart(ctx, {
 	},
 });
 
-// Export CSV file when button is clicked
+/**
+ * Export portfolioData to CSV file
+ */
 function exportCSV() {
     let csv = convertToCSV(portfolioData);
     let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -84,7 +90,11 @@ function exportCSV() {
 	$().remove(link);
 }
 
-// Convert portfolioData to CSV
+/**
+ * Convert portfolioData to CSV format
+ * @param data 
+ * @returns csv
+ */
 function convertToCSV(data) {
     let csv = "Stock,Date,Quantity,Bought Price,Current Price,Returns Percent,Returns Dollar,Totals\r";
     for (let i = 0; i < data.stocks.length; i++) {

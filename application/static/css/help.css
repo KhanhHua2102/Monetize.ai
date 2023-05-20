@@ -1,107 +1,115 @@
+/* For desktop devices */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: "Inter";
-    src: url("assets/Inter.ttf") format("truetype");
-    font-weight: bold;
-    padding-bottom: 100px;
+  font-family: "Inter";
+  src: url("assets/Inter.ttf") format("truetype");
+  font-weight: bold;
+  padding-bottom: 100px;
 }
 
 .pageheader {
-    color: rgb(101, 187, 114, 60%);
-    text-align: center;
-    margin-top: 25px;
-    font-size: 40px;
+  color: rgb(101, 187, 114, 60%);
+  text-align: center;
+  margin-top: 25px;
+  font-size: 40px;
 }
 
 .underheader {
-    display: flex;
+  display: flex;
 }
 
 .contents {
-    width: 80%;
-    margin: 5% 10% 0 25%;
-    text-align: justify;
+  width: 80%;
+  margin: 5% 10% 0 25%;
+  text-align: justify;
 }
 
 .container {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .image {
-    width: 50%;
+  width: 50%;
 }
+
 .image-section img {
+  max-width: 1000px;
+  max-height: 1000px;
+}
+
+
+
+button {
+  background-color: rgb(101, 187, 114, 60%);
+  ;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* For mobile devices */
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+  #logo {
+    position: fixed;
+    left: 35%;
+    width: 25%;
+    height: 90%;
+    border-radius: 30px;
+
+  }
+
+  .contents {
+    width: 90%;
+    margin-left: 8%;
+    margin-top: 20%;
+  }
+
+  .image-section img {
     max-width: 1000px;
     max-height: 1000px;
   }
 
+  h2 {
+    font-size: 48px;
+  }
 
+  /* Increase font size for paragraphs */
+  p {
+    font-size: 24px;
+  }
 
+  /* Increase font size for list items */
+  li {
+    font-size: 24px;
+  }
+
+  /* Increase font size for strong tags */
+  strong {
+    font-size: 20px;
+  }
+
+  /* Increase font size for buttons */
   button {
-    background-color: rgb(101, 187, 114, 60%);;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 4px;}
+    font-size: 20px;
+  }
 
-    @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
-        #logo {
-            position: fixed;
-            left: 35%;
-            width: 25%;
-            height: 90%;
-            border-radius: 30px;
-            
-        }
+  .image-section img {
+    max-width: 100%;
+    height: auto;
+  }
 
-        .contents {
-            width: 90%;
-            margin-left: 8%;
-            margin-top: 20%;
-        }
-        .image-section img {
-            max-width: 1000px;
-            max-height: 1000px;
-          }
-          h2 {
-            font-size: 48px;
-          }
-          
-          /* Increase font size for paragraphs */
-          p {
-            font-size: 24px;
-          }
-          
-          /* Increase font size for list items */
-          li {
-            font-size: 24px;
-          }
-          
-          /* Increase font size for strong tags */
-          strong {
-            font-size: 20px;
-          }
-          
-          /* Increase font size for buttons */
-          button {
-            font-size: 20px;
-          }
-          .image-section img {
-            max-width: 100%;
-             height: auto;
-          }
-        
-        
-        
-        }
+
+
+}

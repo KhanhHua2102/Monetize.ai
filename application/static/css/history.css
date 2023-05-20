@@ -1,3 +1,4 @@
+/* For desktop devices */
 * {
     margin: 0;
     padding: 0;
@@ -119,12 +120,14 @@ body {
     font-size: larger;
 }
 
+/* For mobile devices */
 @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
     #menu-icon {
         margin-top: 180px;
     }
-   .menu{
-    margin-top: 180px;
-   }
+
+    .menu {
+        margin-top: 180px;
+    }
 
 }

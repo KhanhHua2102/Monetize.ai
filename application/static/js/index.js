@@ -1,14 +1,20 @@
+/**
+ * @fileoverview This file contains all the javascript functions for the index page.
+ */
 $(document).ready(function () {
-	// Get 2 recent messages
+	// Get 2 recent messages for display when page is loaded
 	$(getRecentMessages).ready(function () {
 		startMessage();
 	});
+
+	// Send query when submit button is clicked
     $(".chat-action button").click(function (event) {
 		event.preventDefault();
 		console.log("submit button clicked");
 		sendQuery();
 	});
 
+	// Send query when enter key is pressed
     $(".chat-action input").on("keypress", function (event) {
 			if (event.which === 13) {
 				event.preventDefault();
@@ -18,6 +24,9 @@ $(document).ready(function () {
 		});
 });
 
+/**
+ * Display welcome message when page is loaded
+ */
 function startMessage() {
 	// Loading animation
 	var animation = `
@@ -43,6 +52,9 @@ function startMessage() {
 	});
 }
 
+/**
+ * Send query to backend and display loading animation when query is being processed
+ */
 function sendQuery() {
 	console.log("sending query");
 
@@ -71,6 +83,10 @@ function sendQuery() {
 	postRequest(input);
 }
 
+/**
+ * Send post request to backend for processing
+ * @param {string} input 
+ */
 function postRequest(input) {
 	console.log("posting request");
 	$.post({
@@ -89,6 +105,9 @@ function postRequest(input) {
 	});
 }
 
+/**
+ * Get 2 recent messages from backend
+ */
 function getRecentMessages() {
 	console.log("getting recent messages");
 	$.get({
@@ -134,6 +153,9 @@ function getRecentMessages() {
 	});
 }
 
+/**
+ * Get portfolio data from backend
+ */
 function portfolio() {
 	$.get("/portfolio", function (response) {
 	});

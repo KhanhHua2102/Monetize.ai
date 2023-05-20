@@ -1,8 +1,8 @@
 import openai
 from flask import request
 
-from config import Config
 import sql
+from config import Config
 
 openai.api_key = Config.OPENAI_API_KEY
 
@@ -13,7 +13,7 @@ def open_ai(query, temperature=0.2):
     Args:
     query (str): The query to be sent to the API
     temperature (float): The temperature of the response, which controls randomness. Higher values make the response more random and vice versa.
-        (default is 0.3)
+        (default is 0.2)
 
     Returns:
         response: The response from the API

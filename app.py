@@ -1,7 +1,6 @@
 import logging
 import re
 from datetime import datetime
-from dateutil.parser import parse as parse_date
 
 import openai
 from flask import jsonify, request
@@ -27,7 +26,11 @@ context_data = 'You are a friendly financial chatbot named Monetize.ai. The user
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    """Generates a response to a user message from chat screen
+    """
+    Generates a response to a user message from chat screen.
+    First use GPT-3.5 to analyze the user's input, then use the output to decide which case scenario.
+    Depend on each case, different processing will be done including calling other APIs for external data.
+    These data will be used to make another GPT-3.5 call to generate a response to the user.
 
     Returns:
         response: The response from the API in JSON format
@@ -144,7 +147,8 @@ def generate():
 
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
-    """Get recent messages from database and return to frontend
+    """
+    Get recent 2 messages from database and return to frontend for display
 
     Returns:
         json: recent messages

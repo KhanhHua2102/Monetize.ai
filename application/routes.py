@@ -1,8 +1,8 @@
 import secrets
-from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask import (flash, make_response, redirect, render_template, request,
                    url_for)
+from werkzeug.security import check_password_hash, generate_password_hash
 
 import sql
 from application import app
@@ -16,6 +16,10 @@ app.config["SECRET_KEY"] = secrets_key
 @app.route("/index")
 @app.route("/home")
 def index():
+    """
+    Renders the index.html template if the user is authenticated, 
+    otherwise redirects to the login page.
+    """
     if "email" in request.cookies:
         return render_template("index.html")
     else:
@@ -24,6 +28,11 @@ def index():
 
 @app.route("/portfolio")
 def portfolio():
+    """
+    Renders the portfolio.html template and fetches user and stock data 
+    to be displayed on the page.
+    This page is using the toggle menu.
+    """
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
     portfolio = sql.get_stock_data(email)[0]
@@ -32,11 +41,17 @@ def portfolio():
 
 @app.route("/history")
 def history():
+    """
+    Renders the history.html template.
+    """
     return render_template("history.html", mobileCSS=False)
 
 
 @app.route("/settings")
 def settings():
+    """
+    Renders the settings.html template and fetches user data to be displayed on the page.
+    """
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
     return render_template("settings.html", mobileCSS=False, user_data=user_data)
@@ -44,16 +59,27 @@ def settings():
 
 @app.route("/help")
 def help():
+    """
+    Renders the help.html template.
+    """
     return render_template("help.html", mobileCSS=False)
 
 
 @app.route("/about-us")
 def aboutUs():
+    """
+    Renders the about-us.html template.
+    """
     return render_template("about-us.html", mobileCSS=False)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Renders the login.html template and handles the login form submission.
+    On successful login, sets an email cookie and redirects to the index page.
+    Password is hashed and checked against the hashed password in the database.
+    """
     form = LoginForm()
     if form.validate_on_submit():
         email = form.email.data
@@ -79,6 +105,9 @@ def login():
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
+    """
+    Handles the logout functionality by deleting the email cookie and redirecting to the login page.
+    """
     response = make_response(redirect(url_for("login")))
     response.delete_cookie("email")
     return response
@@ -86,6 +115,10 @@ def logout():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    """
+    Renders the signup.html template and handles the signup form submission.
+    On successful signup, adds the user to the database (password is hashed before storing) and redirects to the login page.
+    """
     form = SignupForm()
     if form.validate_on_submit():
         name = form.name.data

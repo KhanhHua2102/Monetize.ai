@@ -1,3 +1,4 @@
+/* For desktop devices */
 body {
 	margin: 0;
 	padding: 0;
@@ -10,12 +11,13 @@ body {
 	flex-direction: column;
 	align-items: center;
 	height: 100vh;
-	max-width: 310px; /* add max-width to limit the width of the container */
-	margin: 0 auto; 
+	max-width: 310px;
+	/* add max-width to limit the width of the container */
+	margin: 0 auto;
 	padding-top: 20px;
 }
 
-.member{
+.member {
 	width: 260px;
 	height: 70px;
 	left: 81px;
@@ -55,14 +57,16 @@ input[type="password"] {
 	font-size: 20px;
 	line-height: 25px;
 }
+
 input::placeholder {
 	color: #A6A4A4;
 }
+
 input[type="text"]:focus,
 input[type="password"]:focus {
 	outline: none;
-	box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
-	
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 button {
@@ -127,7 +131,7 @@ form button[type="submit"]:hover {
 }
 
 .social-btns {
-	
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -157,8 +161,10 @@ form button[type="submit"]:hover {
 }
 
 .social-btns button:hover {
-	background-color: #ABD699;;
+	background-color: #ABD699;
+	;
 }
+
 .facebook-btn,
 .google-btn {
 	display: flex;
@@ -169,7 +175,7 @@ form button[type="submit"]:hover {
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 20px;
-	box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -178,32 +184,35 @@ form button[type="submit"]:hover {
 	margin-right: 5px;
 	margin-left: 5px;
 	text-align: left;
-	float:left;
+	float: left;
 	width: 25px;
 	height: 25px;
 
 }
+
 .facebook-btn img {
 	height: 20px;
 	width: 25px;
 	height: 25px;
 	text-align: left;
-	float:left;
+	float: left;
 	margin-right: 5px;
 	margin-left: 5px;
 
 }
+
 .facebook-btn span,
 .google-btn span {
 
 	text-align: left;
-	float:left
+	float: left
 }
+
 .facebook-btn:hover,
 .google-btn:hover {
 	background-color: #3b5998;
 	color: #ececec;
-	box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-footer {
@@ -221,9 +230,10 @@ form button[type="submit"]:hover {
 
 .form-footer .sign-Up {
 	display: inline-block;
-	
+
 }
-.no-underline{
+
+.no-underline {
 	text-decoration: none;
 	color: #1276EC;
 }
@@ -261,15 +271,17 @@ small {
 	font-size: 1em;
 }
 
+/* For mobile devices */
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
 	.container {
 		height: 100vh;
-		max-width: 700px; /* add max-width to limit the width of the container */
+		max-width: 700px;
+		/* add max-width to limit the width of the container */
 		padding-top: 20px;
 		padding-bottom: 20px;
 	}
-	
-	.member{
+
+	.member {
 		width: 700px;
 		height: 90px;
 		left: 81px;
@@ -341,11 +353,12 @@ small {
 		clear: both;
 	}
 
-	.google-btn img, .facebook-btn img {
+	.google-btn img,
+	.facebook-btn img {
 		margin-right: 25px;
 		margin-left: 30px;
 		text-align: left;
-		float:left;
+		float: left;
 		width: 55px;
 		height: 55px;
 
@@ -393,10 +406,10 @@ small {
 		display: inline-block;
 		font-size: 25px;
 		margin-left: 20px;
-		
+
 	}
 
-	.no-underline{
+	.no-underline {
 		text-decoration: none;
 		color: #1276EC;
 	}
@@ -409,7 +422,7 @@ small {
 
 	}
 
-	label{
+	label {
 		font-size: 30px;
 		margin-bottom: 10px;
 	}
@@ -417,18 +430,23 @@ small {
 	form input {
 		margin-bottom: 40px;
 	}
-	.facebook-btn,.google-btn {
+
+	.facebook-btn,
+	.google-btn {
 		margin-top: 40px;
 	}
+
 	.form-footer {
 		margin-top: 20px;
 		margin-bottom: 30px;
 	}
+
 	small {
 		font-size: 2em;
-		
+
 	}
+
 	.alert-danger {
 		font-size: 30px;
-	  }
 	}
+}
