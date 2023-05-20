@@ -127,8 +127,7 @@ sentencepiece==0.1.98
 seqeval==1.2.2
 simplejson==3.19.1
 six==1.16.0
-scikit-learn==1.2.2
-smmap==5.0.0
+smmap==5.0.0x1
 soupsieve==2.4
 SQLAlchemy==2.0.10
 sqlparse==0.4.4
