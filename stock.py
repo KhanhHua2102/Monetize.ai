@@ -108,11 +108,11 @@ def get_stock_data(num_shares, ticker, start_date, end_date):
 
 def prompt_profit(input):
     # input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    input = "Based on a user's message, you have to determine if the users want to caculate profit or want to buy the stocks, convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
+    input = "Based on a user's message, you have to determine if the users want to caculate profit or want to buy the stocks with a date, convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
     
     response_values = gpt.open_ai(input, 0.1).split()
 
-    print(response_values)
+    print(response_values[0])
 
     check_profit = (response_values[0] != "False")
 
@@ -130,7 +130,7 @@ def prompt_profit(input):
     return None, False
 
 def prompt_recomendation(prompt_input):
-    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol}. Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
+    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol} Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
     recommendation_result = gpt.open_ai(prompt_input, 0.1)
     
     print(recommendation_result + '\n')

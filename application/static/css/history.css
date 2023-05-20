@@ -130,3 +130,12 @@ body {
     background-color: rgb(111, 205, 125, 100%);
     font-size: larger;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+    #menu-icon {
+        margin-top: 180px;
+    }
+    .menu {
+        margin-top: 180px;
+    }
+}
