@@ -76,6 +76,19 @@
       <img src="{{ url_for('static', filename='img/HighRisk.jpg') }}" alt="Chatbot Image">
     </div>
   </li>
+  <li>
+    Ask for Recommendations: Inquire about stocks you are interested in or request general stock recommendations, the recommendation is based on analysts either buy, hold or sell the stock. 
+    <br>
+    <strong>Example:</strong> "Please give me stock recommendation of Tesla."
+  </li>
+  <li>
+    <button onclick="toggleImageSection(5)">Demonstration Picture</button>
+    <div id="image-section-5" style="display: none;"class="image-section">
+      <img src="{{ url_for('static', filename='img/StockRecommendation.png') }}" alt="Chatbot Image">
+      
+    </div>
+  </li>
+  
 </ul>
 
   <h2>Viewing Portfolio and History</h2>
