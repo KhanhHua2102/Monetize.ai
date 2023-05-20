@@ -72,7 +72,7 @@ def history():
 
         # print(chat.body)
     chats_data = []
-    filtered_chats = chats.all()
+    filtered_chats = all_chats.all()
     complete_chat = all_chats.all()
     for i in range(len(all_chats.all())):
         chat = complete_chat[i]

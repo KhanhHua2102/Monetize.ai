@@ -132,7 +132,7 @@ body {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
-    #menu-icon {
+    #mymenu-icon {
         margin-top: 180px;
     }
     .menu {
