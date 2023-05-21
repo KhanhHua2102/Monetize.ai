@@ -1,4 +1,4 @@
-/* For desktop devices */
+/* Default Style */
 body {
   margin: 0;
   padding: 0;
@@ -19,7 +19,6 @@ body {
   line-height: 48px;
   width: 250px;
   text-align: center;
-  /* Color 1 */
 
   color: #ABD699;
 }
@@ -38,7 +37,6 @@ body {
 }
 
 .Header img {
-
   position: absolute;
   left: 2.78%;
   right: 94.1%;
@@ -71,7 +69,6 @@ label {
   text-align: right;
   margin-left: 20px;
   padding-right: 20px;
-
 }
 
 .picture {
@@ -92,16 +89,12 @@ label {
   padding-top: 5px;
   box-sizing: border-box;
 
-
   width: 200px;
   height: 30px;
   left: calc(50% - 378px/2);
   top: 558px;
 
-  /* Color 5 */
-
   background: #dfdfe1;
-  /* Color 5 */
 
   border: 0px solid #16123F;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -126,10 +119,7 @@ label {
   margin-top: 40px;
   text-decoration: none;
 
-  /* Color 5 */
-
   background: #16123F;
-  /* Color 5 */
 
   border: 1px solid #16123F;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -234,7 +224,7 @@ input[type="email"] {
 
 }
 
-/* For mobile devices */
+/* Mobile Styles */
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
 
   .title {
@@ -290,7 +280,6 @@ input[type="email"] {
     height: 250px;
     width: 250px;
 
-
     margin-left: 370px;
     margin-bottom: 40px;
 
@@ -299,13 +288,10 @@ input[type="email"] {
     z-index: 1;
   }
 
-
-
   .Change-Profile {
     margin-right: 200px;
     padding-top: 5px;
     box-sizing: border-box;
-
 
     width: 450px;
     height: 70px;
@@ -394,13 +380,10 @@ input[type="email"] {
     margin-left: 80px;
   }
 
-
-
   .Light img,
   .Dark img {
     max-width: 70px;
     max-height: 70px;
 
   }
-
 }

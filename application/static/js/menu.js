@@ -1,9 +1,12 @@
-/**
- * @fileoverview This file contains all client-side functions for the menu.
- */
+/*
+  This is the menu.js file, which contains JavaScript code for handling the menu functionality.
+  It uses jQuery to interact with the DOM and handle events.
+  The code toggles the visibility of menu links when the menu icon is clicked.
+*/
 $(document).ready(function () {
-	// Toggle side menu for portfolio page and mobile interface when menu icon is clicked
+	// Event handler for menu icon click
 	$("#menu-icon").click(function () {
-		$(".menu a").toggle();
+	  $(".menu a").toggle();
 	});
-});
+  });
+  

@@ -1,4 +1,4 @@
-/* For desktop devices */
+/* Default Style */
 * {
     margin: 0;
     padding: 0;
@@ -119,6 +119,8 @@ body {
     background-color: rgb(111, 205, 125, 100%);
     font-size: larger;
 }
+/* Mobile Styles */
+
 
 /* For mobile devices */
 @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
