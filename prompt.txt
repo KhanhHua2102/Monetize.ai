@@ -1,0 +1,13 @@
+Based on the user's message, you need to decide whether the user wants to do specific things below, then you need to response base on those scenarios
+- Buy/bought a stock and checking this stock profit: 'buy {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
+- Sell/sold a stock and checking this stock profit: 'sell {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
+- Receive a recommendation for a stock: 'recommendation {Ticker-Symbols}'
+- Receive price target for a stock: 'target {Ticker-Symbols}'
+- Rebalance their portfolio: 'rebalance'
+- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {Aggressive/Moderate/Conservative}'
+- Reset their portfolio: 'reset_portfolio'
+- Normal conversation: 'normal'
+Output must follow the exact formats above inside the single quotation marks only for each case, and no need for any comments or punctuation.
+The dates must be converted to dd/mm/yyyy, default start date for selling stock can be extract from user's portfolio provided above, default end date is the word 'today'; no need to assume.
+Every date from the user's message is valid even if it is in the future, only need to extract the date follow the format.
+User's message: 

@@ -19,7 +19,7 @@
 .user-messages {
 	visibility: hidden;
 	align-self: flex-end;
-    max-width: 80%;
+	max-width: 80%;
 	text-align: right;
 	border: 2px solid black;
 }
@@ -27,7 +27,7 @@
 .bot-messages {
 	visibility: hidden;
 	align-self: flex-start;
-    max-width: 80%;
+	max-width: 80%;
 	border: 2px solid #75c9b7;
 	clear: both;
 }
@@ -64,8 +64,6 @@
 }
 
 #conversation-window {
-	/* position: relative; */
-	/* height: 715px; */
 	position: fixed;
 	height: 91%;
 	width: 75%;
@@ -83,27 +81,27 @@
 }
 
 .chat-action {
-    position: fixed;
-    bottom: 6%;
-    left: 21%;
-    width: 106%;
-    display: flex;
+	position: fixed;
+	bottom: 6%;
+	left: 21%;
+	width: 106%;
+	display: flex;
 }
 
 .chat-action input {
 	height: 50px;
 	width: 65%;
-    padding-left: 10px;
-    padding-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 	background: rgba(199, 221, 204, 0.48);
 	border: 0px;
 	border-radius: 20px;
 }
 
 .chat-action button {
-    margin-left: 10px;
-    margin-top: 5px;
-    right: 10px;
+	margin-left: 10px;
+	margin-top: 5px;
+	right: 10px;
 	height: 35px;
 	background: rgba(255, 226, 106, 0.71);
 	border: 0px;
@@ -114,7 +112,7 @@
 @media only screen and (min-width: 320px) and (max-width: 500px) and (orientation: portrait) {
 	#logo {
 		position: fixed;
-        left: 38%;
+		left: 38%;
 		width: 25%;
 		height: auto;
 		border-radius: 30px;
@@ -140,32 +138,32 @@
 		border-radius: 19px;
 	}
 
-    .chat-action {
-        position: fixed;
-        font-size: 30px;
-        bottom: 6%;
-        left: 5%;
-        width: 90%;
-        display: flex;
-    }
+	.chat-action {
+		position: fixed;
+		font-size: 30px;
+		bottom: 6%;
+		left: 5%;
+		width: 90%;
+		display: flex;
+	}
 
-    .chat-action input {
-        height: 70px;
-        width: 100%;
-        padding-left: 5px;
-        padding-right: 5px;
-        background: rgba(199, 221, 204, 0.48);
-        border: 0px;
-        border-radius: 20px;
-    }
+	.chat-action input {
+		height: 70px;
+		width: 100%;
+		padding-left: 5px;
+		padding-right: 5px;
+		background: rgba(199, 221, 204, 0.48);
+		border: 0px;
+		border-radius: 20px;
+	}
 
-    .chat-action button {
-        margin-left: 10px;
-        margin-top: 5px;
-        right: 10px;
-        height: 55px;
-        background: rgba(255, 226, 106, 0.71);
-        border: 0px;
-        border-radius: 10px;
-    }
+	.chat-action button {
+		margin-left: 10px;
+		margin-top: 5px;
+		right: 10px;
+		height: 55px;
+		background: rgba(255, 226, 106, 0.71);
+		border: 0px;
+		border-radius: 10px;
+	}
 }

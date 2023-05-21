@@ -1,12 +1,12 @@
 import logging
 import re
 from datetime import datetime
-from dateutil.parser import parse as parse_date
 
+import openai
 from flask import jsonify, request
 from flask_cors import CORS
 
-import gpt
+import open_ai_call
 import sql
 import datetime
 
@@ -27,102 +27,143 @@ logger.addHandler(handler)
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
 
+# Create a message list to pass into GPT-3
+messages = [{}]
+
 @app.route('/generate', methods=['POST'])
 def generate():
-    """Generates a response to a user message from chat screen
+    """
+    Generates a response to a user message from chat screen.
+    First use GPT-3.5 to analyze the user's input, then use the output to decide which case scenario.
+    Depend on each case, different processing will be done including calling other APIs for external data.
+    These data will be used to make another GPT-3.5 call to generate a response to the user.
 
     Returns:
         response: The response from the API in JSON format
     """
+    try:
+        global messages
 
-    global context_data
-    email = request.cookies.get('email')
+        email = request.cookies.get('email')
 
-    data = request.get_json()
-    user_message = data['prompt']
-    print("user message received:")
-    print(user_message + '\n')
+        data = request.get_json()
+        user_message = data['prompt']
+        print("user message received:")
+        print(user_message + '\n')
 
-    prompt_recommend = stk.prompt_recomendation(user_message)
+        # decide which prompt to use based on user message
+        with open('prompt.txt', 'r') as prompt:
+            prompt_input = prompt.read()
+            result = open_ai_call.davinci_003(prompt_input + user_message + "\nOutput: |", 0)
+            
+            output_list = result.split(' ')
+            case = output_list[0]
+            print("case:", case)
+            output_data = output_list[1:]
+            print("output data: ", output_data)
 
-    # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
-    if re.search(r'\b(buy|bought|caculate|profit)\b', user_message, re.IGNORECASE):
-        print("User message contains buy or bought keyword\n")
+        # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
+        if case == 'buy':
+            print("User message contains buy or bought keyword\n")
+            
+            prompt_result = stk.prompt_profit(output_data)
+            start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[1]
+
+            print(start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total)
+
+            # add or update stock in portfolio
+            sql.add_stock(email, start_date, ticker, quantity, start_price,
+                            end_price, return_percent, return_amount, total)
+            logger.info('User ' + email + ' bought ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+
+            record("user", prompt_result[0])
+
+        # if user sell stock, we update user's portfolio and reply a normal bot response
+        elif case == 'sell':
+            print("\nUser message contains sell or sold keyword\n")
+            
+            prompt_result = stk.prompt_profit(output_data)
+            start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[1]
+            
+            # update stock in portfolio
+            if sql.get_stock_data(email) is not None:
+                sql.update_stock(email, ticker, (0 - int(quantity)))
+                logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+
+            record("user", prompt_result[0])
+
+        # user want to receive portfolio rebalancing suggestion
+        elif case == 'rebalance':
+            print("\nSuggest user portfolio rebalancing\n")
+            query = "Using the my portfolio and risk tolerance above, suggest me a rebalance the quantity of stock base on the risk tolerance using only my current holding stocks. Suggest with the target percentage and details the quantity of buy or sell to achieve that rebalancing."
+            record("user", query)
         
-        prompt_result = stk.prompt_profit(user_message)
-        start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]
+        # user want to receive stock recommendation
+        elif case == 'recommendation':
+            print("\nGive user stock recommendations\n")
+            ticker = output_data[0].strip()
+            prompt_recomendation = stk.prompt_recomendation(ticker)
+            record("user", prompt_recomendation)
 
-        # add or update stock in portfolio
-        sql.add_stock(email, start_date, ticker, quantity, start_price,
-                          end_price, return_percent, return_amount, total)
-        logger.info('User ' + email + ' bought ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+        # user want to know stock target price
+        elif case == 'target':
+            print("\nGive user stock price target\n")
+            ticker = output_data[0].strip()
+            price_target = stk.stock_price_target(ticker)
+            query = f'This is the up-to-date price target: {price_target} for {ticker}. Using the price target to give me an answer: {user_message}'
+            record("user", query)
 
-        context_data += 'Q: ' + prompt_result[0] + '\nA: '
+        # user want to change risk tolerance
+        elif case == 'risk':
+            print("\nChange user's risk tolerance\n")
+            risk_tolerance = output_data[0].strip()
+            # update user's risk tolerance
+            sql.update_risk_tolerance(email, risk_tolerance)
+            logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
+            record("user", user_message)
 
-    # if user sell stock, we update user's portfolio and reply a normal bot response
-    elif re.search(r'\b(sell|sold)\b', user_message, re.IGNORECASE):
-        print("User message contains sell or sold keyword\n")
+        # user want to reset portfolio
+        elif case == 'reset_portfolio':
+            print("\nReset user's portfolio\n")
+            # reset user's portfolio
+            sql.reset_portfolio(email)
+            logger.info('User ' + email + ' reset portfolio')
+            return jsonify({'response': "Your portfolio has been reset."})
         
-        prompt_result = stk.prompt_profit(user_message)
-        start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[2]
+        # if user message contains reset, we reset the context
+        elif user_message == 'reset':
+            print("\nReset chatbot's context\n")
+            messages = [{}]
+            logger.info('User ' + email + ' reset context')
+            return jsonify({'response': "Chatbot's context cleared."})
+
+        # normal bot reply
+        else:
+            print("\nReply with normal chatbot response\n")
+            record("user", user_message)
         
-        # update stock in portfolio
-        if sql.get_stock_data(email) is not None:
-            sql.update_stock(email, ticker, (0 - int(quantity)))
-            logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
+        result = open_ai_call.gpt_with_info(messages)
+        record("assistant", result)
 
-        context_data += "Confirmed that the sell action have been recored in user's portfolio.\nQ: " + user_message + '\nA: '
-    
-    # if user want to rebalance portfolio, we reply a suggestion of rebalance
-    elif re.search(r'\b(rebalance|rebalancing)\b', user_message, re.IGNORECASE):
-        print("User message contains rebalance or rebalancing keyword\n")
-        risk_tolerance = 'moderate'
-        context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
-        context_data += 'Q: ' + user_message + '\nA: '
-    
-    
-    # if user want to rebalance portfolio, we reply a suggestion of rebalance
-    elif re.search(r'\b(rebalance|rebalancing)\b', user_message, re.IGNORECASE):
-        print("User message contains rebalance or rebalancing keyword\n")
-        risk_tolerance = 'moderate'
-        context_data += f"Using the user's portfolio above, suggest them a rebalance the quantity of stock base on the {risk_tolerance} risk tolerance using only their current holding stocks. Suggest user the target percentage and details the quantity of buy or sell to achieve that rebalance.\n"
-        context_data += 'Q: ' + user_message + '\nA: '
-    
-    # if user ask for stock recommendation, we reply a bot response with stock recommendation
-    elif prompt_recommend[1]:
-        print("Stock recommendation information detected in context_data\n")
-        context_data += 'Q: ' + (prompt_recommend[0]) + '\nA: '
+        print("messages:", messages)
 
-    # user want to change risk tolerance
-    elif re.search(r'\b((?!what|[\?\s])risk tolerance)\b', user_message, re.IGNORECASE) and re.search(r'\b(high|aggressive|moderate|medium|low|conservative)\b', user_message, re.IGNORECASE):
-        print("User message contains risk tolerance keyword\n")
-        if re.search(r'\b(high|aggressive)\b', user_message, re.IGNORECASE):
-            print("User message contains high or aggressive keyword\n")
-            risk_tolerance = 'High'
-        elif re.search(r'\b(moderate|medium)\b', user_message, re.IGNORECASE):
-            print("User message contains moderate or medium keyword\n")
-            risk_tolerance = 'Moderate'
-        elif re.search(r'\b(low|conservative)\b', user_message, re.IGNORECASE):
-            print("User message contains low or conservative keyword\n")
-            risk_tolerance = 'Low'
-        # update user's risk tolerance
-        sql.update_risk_tolerance(email, risk_tolerance)
-        logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
-        context_data += 'Please confirmed to the user that risk tolerance has been changed for them.\nA: '
+        # add user message to database
+        sql.add_message(email, user_message, datetime.now(), False)
+        logger.info('User ' + email + ' asked: ' + user_message)
 
-    # normal bot reply
-    else:
-        print("No stock information detected in context_data\n")
-        context_data += 'Q: ' + user_message + '\nA: '
+        # add bot response to database
+        sql.add_message(email, result, datetime.now(), True)
+        logger.info('Bot responded: ' + result)
 
-    result = gpt.open_ai_with_info(context_data)
-    context_data += result + '\n\n'
+        return jsonify({'response': result})
 
-    return jsonify({'response': result})
+    except openai.error.RateLimitError:
+        return jsonify({'response': 'Sorry, chatbot is currently overloaded. Please try again after a few seconds.'})
 
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
-    """Get recent messages from database and return to frontend
+    """
+    Get recent 2 messages from database and return to frontend for display
 
     Returns:
         json: recent messages
@@ -164,6 +205,30 @@ def get_messages():
 #     if search_query:
 #         chats = chats.filter(models.messages.body.contains(search_query))
 #     return jsonify(chats)
+
+def record(role, message):
+    """
+    Record messages into a global variable
+
+    Args:
+        role (string): user or assistant
+        message (string): message content
+    """
+    global messages
+    messages.append({"role": role, "content": message})
+    
+
+def record(role, message):
+    """
+    Record messages into a global variable
+
+    Args:
+        role (string): user or assistant
+        message (string): message content
+    """
+    global messages
+    messages.append({"role": role, "content": message})
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1:5001')

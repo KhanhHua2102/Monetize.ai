@@ -62,7 +62,7 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
     total = float(total)
 
     stock = models.portfolio.query.filter_by(
-        user_id=user_id, ticker=ticker).first()
+        user_id=user_id, ticker=ticker, date_added=date).first()
     if stock:
         stock.quantity += quantity
         stock.current_price = current_price
@@ -89,6 +89,15 @@ def update_stock(email, ticker, quantity):
         models.db.session.delete(stock)
     else:
         stock.quantity = str(int(stock.quantity) + int(quantity))
+    models.db.session.commit()
+    models.db.session.close()
+
+# reset stock table in database
+def reset_portfolio(email):
+    user_id = get_user_id(email)
+    stocks = models.portfolio.query.filter_by(user_id=user_id).all()
+    for stock in stocks:
+        models.db.session.delete(stock)
     models.db.session.commit()
     models.db.session.close()
 

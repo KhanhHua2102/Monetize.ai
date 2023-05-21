@@ -2,10 +2,10 @@ from datetime import datetime
 
 import finnhub
 import pandas as pd
+import requests
 import yfinance as yf
 from dateutil import parser
 
-import gpt
 from config import Config
 
 CLIENT = finnhub.Client(api_key=Config.FINNHUB_API_KEY)
@@ -106,56 +106,38 @@ def get_stock_data(num_shares, ticker, start_date, end_date):
     return response, (start_date, ticker, num_shares, start_price, end_price, return_percent, return_amount, total)
 
 
-def prompt_profit(input):
-    # input = "Based on a user's input, you have to determine if they want to calculate profit. If their information does include the stock name, date added, the quantity of stock and bought price, convert those data so that it is able to input into yfinance function, must not calculate profit: {number of Shares} {Ticker} {Start-Date} {End-Date} .\nResponse must follow formats of conversion only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word today no need to assume. Otherwise, please response exactly the word 'False'.\nUser message: " + input
-    input = "Based on a user's message, you have to determine if the users want to caculate profit or want to buy the stocks with a date, convert those input using this exact template: '{bought/sold} {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}' .\nResponse must follow formats of the template only and no need any comments or punctuation, the dates must be converted to dd/mm/yyyy, default end date is the word 'today' no need to assume. If the user's message does not have enought stock's related input, please response exactly the word 'False'.\nUser message: " + input
-    
-    response_values = gpt.open_ai(input, 0.1).split()
-
-    print(response_values[0])
-
-    check_profit = (response_values[0] != "False")
-
-    if len(response_values) == 5:
-        buy_sell = response_values[0]
-        num_shares, ticker, start_date, end_date, error_msg = parse_input(response_values[1:])
+def prompt_profit(input_list):
+    if len(input_list) == 4:
+        num_shares, ticker, start_date, end_date, error_msg = parse_input(input_list)
         if error_msg:
             return error_msg
-        
         stock_data = get_stock_data(num_shares, ticker, start_date, end_date)
-        response = 'Using this information to give me a response on my stock details including start price, end price and profit if they sell it on the end date: ' + \
+        response = 'Assume that I bought or sold the stock, using this information to give me a response on my stock details including start price, end price and profit if I sell it on the end date: ' + \
             stock_data[0]
 
-        return response, check_profit, stock_data[1], buy_sell
-    return None, False
+        return response, stock_data[1]
+    return None, None
 
-def prompt_recomendation(prompt_input):
-    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive analyst recommendations on a specific stock or not. If the user want analyst recommendations, extract the message exactly in to this format: {Ticker Symbol} Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
-    recommendation_result = gpt.open_ai(prompt_input, 0.1)
+def prompt_recomendation(ticker):
+    analystical = analyst(ticker)
+    result = 'Using this information to give the me an appropriate stocks recommendation: ' + analystical
+
+    return result
+
+
+def stock_price_target(symbol):
+    api_key = 'MWQ9WK5A5KFZA5U6'
+
+    # Make a request to the Alpha Vantage API
+    url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={api_key}'
+    response = requests.get(url)
+    data = response.json()
+
+    # Check if the request was successful
+    if 'Error Message' not in data:
+        target_price = data.get('AnalystTargetPrice', 'N/A')
     
-    print(recommendation_result + '\n')
-    
-    if "False" in recommendation_result:
-        check_reccomendation = False
-        result = ""
+    if target_price != 'N/A':
+        return target_price
     else:
-        check_reccomendation = True
-        no_spaces = recommendation_result.replace(" ", "")
-        analystical = analyst(no_spaces)
-        result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
- 
-    return result, check_reccomendation
-    
-
-# check if user message contains information about stocks, shares, and dates
-# def containsStockInfo(userMessage):
-#      regex = r"\b(stocks|shares|tickers)\b.*\b(\d{1,2}(st|nd|rd|th)?\s(of)?\s[A-Z][a-z]{2,8}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{2,4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}\s[A-Z][a-z]{2,8}\s\d{2,4}|\d{2,4}\s[A-Z][a-z]{2,8}\s\d{1,2}|\b(today|yesterday|tomorrow)\b)\b"
-#      return bool(re.search(regex, userMessage, re.IGNORECASE))
-
-
-# string="Convert this data so that it is able to input into:
-# {number of Shares} {Ticker} {Start-Date} {End-Date} User message:
-# I bought 200 google shares on 14/03/2022, what is my profit?
-# Noted no need of comment and only pure Convertsion and make sure space in between,
-# which mean you dont need to comment just the convertsion itself.
-# The date  must be in dd/mm/yyyy, default endate is today date, Ticker Symbols can be input to Yfinance"
+        return 'No price target found for this stock'
