@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}"/> 
-{% if mobileCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}"/> 
-{% endif %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css')}}" /> {% if mobileCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu-mobile.css')}}" /> {% endif %}
 
-<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo"/>
+<img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo" />
 <img id="menu-icon" src="{{ url_for('static', filename='img/menu.svg') }}" alt="menu-icon">
 <table class="menu">
     <tr>

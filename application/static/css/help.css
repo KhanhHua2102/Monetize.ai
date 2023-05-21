@@ -1,4 +1,4 @@
-/* For desktop devices */
+/* Default Style */
 * {
   margin: 0;
   padding: 0;
@@ -71,7 +71,6 @@ button {
     width: 25%;
     height: 90%;
     border-radius: 30px;
-
   }
 
   .contents {
@@ -113,7 +112,4 @@ button {
     max-width: 100%;
     height: auto;
   }
-
-
-
 }

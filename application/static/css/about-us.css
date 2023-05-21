@@ -1,5 +1,4 @@
-/* For desktop devices */
-
+/* Default Style */
 * {
     margin: 0;
     padding: 0;
@@ -108,9 +107,7 @@ body {
 
 .teamImages img {
     width: 600px;
-    /* Adjust the width to your desired size */
     height: auto;
-    /* Let the height adjust proportionally */
     margin-left: 20%;
 }
 
@@ -152,9 +149,7 @@ body {
     }
     .teamImages img {
         width: 800px;
-        /* Adjust the width to your desired size */
         height: auto;
-        /* Let the height adjust proportionally */
         margin-left: 0%;
     }
 }

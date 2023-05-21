@@ -1,5 +1,4 @@
-/* For desktop devices */
-
+/* Default Style */
 body {
     margin: 0;
     padding: 0;
@@ -251,9 +250,7 @@ small {
     font-size: 1em;
 }
 
-
-/* For mobile devices */
-
+/* Mobile Styles */
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
     .container {
         height: 100vh;
