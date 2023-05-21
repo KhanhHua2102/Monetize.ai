@@ -1,13 +1,12 @@
 import unittest
-import os
-from application import app, db
-from application.models import user, portfolio, messages
-from config import TestingConfig
-import bcrypt
-
-from werkzeug.security import generate_password_hash, check_password_hash
-
 from datetime import datetime
+
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from application import app, db
+from application.models import messages, portfolio, user
+from config import TestingConfig
+
 
 class UserModelCase(unittest.TestCase):
 
