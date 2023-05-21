@@ -1027,3 +1027,44 @@ Overall, your portfolio is worth $282,631.20. [in /Users/khanhhua/Documents/Codi
 2023-05-21 14:21:52,910 INFO: Bot responded: The current price target for AAPL is $178.88. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:150]
 2023-05-21 14:22:30,289 INFO: User henry@mail.com asked: stock recommendations on apple [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:146]
 2023-05-21 14:22:30,297 INFO: Bot responded: Based on the latest analyst recommendation of Buy: 27, Hold: 8, Sell: 1, Strong Buy: 12, Strong Sell: 0, it appears that most analysts are currently recommending a Buy or Strong Buy for AAPL. However, it's important to remember that stock recommendations are subjective and should be taken with a grain of salt. It's always a good idea to do your own research and seek the advice of a financial professional before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:150]
+2023-05-21 14:29:22,294 INFO: User henry@gmail.com bought 200 shares of AAPL at $144.49 on 12-12-2022 endprice: 175.16 return percent: 21.23 return amount: 6134.0 total: 35032.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:79]
+2023-05-21 14:29:37,074 INFO: User henry@gmail.com asked: i bought 200 apple shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:147]
+2023-05-21 14:29:37,076 INFO: Bot responded: Based on the information you provided, you purchased 200 shares of AAPL on December 12, 2022 at a starting price of $144.49 for a total cost of $28,898. During the holding period, the price of AAPL increased to $175.16 on May 21, 2023, resulting in a final value of $35,032 for your investment. Your return percentage was 21.23%, and your profit was $6,134.00.
+
+If you decide to sell your AAPL shares on May 21, 2023 at the end price of $175.16, you would realize a profit of $6,134.00 ($35,032 - $28,898). It's important to note that this profit does not include any fees or commissions that may be associated with buying or selling securities. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:151]
+2023-05-21 14:31:29,672 INFO: User henry@gmail.com reset portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:127]
+2023-05-21 14:31:51,538 INFO: User henry@gmail.com bought 200 shares of AAPL at $144.49 on 12-12-2022 endprice: 175.16 return percent: 21.23 return amount: 6134.0 total: 35032.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
+2023-05-21 14:32:09,146 INFO: User henry@gmail.com asked: i bought 200 apple shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
+2023-05-21 14:32:09,153 INFO: Bot responded: Based on the information you provided, it looks like you made a profit of $6134.00 on your investment in Apple Inc. (AAPL), between the dates 12-12-2022 to 21-05-2023. 
+
+You bought 200 shares of AAPL at a start price of $144.49, which had a total cost of $28,898.00. You then sold the same number of shares at an end price of $175.16, which gave you a total revenue of $35,032.00. 
+
+After subtracting the initial cost, your profit amounts to $6134.00. This is an impressive return of 21.23% over this period. 
+
+If you decide to sell your shares on the end date, based on these figures, you can expect to make a profit of $6134.00 on your investment. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-21 14:32:14,158 INFO: User henry@gmail.com bought 200 shares of AMD at $70.67 on 12-12-2022 endprice: 105.82 return percent: 49.74 return amount: 7030.0 total: 21164.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
+2023-05-21 14:32:34,066 INFO: User henry@gmail.com asked: i bought 200 amd shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
+2023-05-21 14:32:34,072 INFO: Bot responded: Based on the information you provided, it looks like you made a profit of $7030.00 on your investment in Advanced Micro Devices, Inc. (AMD), between the dates 12-12-2022 to 21-05-2023. 
+
+You bought 200 shares of AMD at a start price of $70.67, which had a total cost of $14,134.00. You then sold the same number of shares at an end price of $105.82, which gave you a total revenue of $21,164.00. 
+
+After subtracting the initial cost, your profit amounts to $7030.00. This is an impressive return of 49.74% over this period. 
+
+If you decide to sell your shares on the end date, based on these figures, you can expect to make a profit of $7030.00 on your investment. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-21 14:33:00,952 INFO: User henry@gmail.com reset portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:127]
+2023-05-21 14:34:53,510 INFO: User henry@gmail.com bought 200 shares of AMD at $70.67 on 12-12-2022 endprice: 105.82 return percent: 49.74 return amount: 7030.0 total: 21164.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
+2023-05-21 14:34:56,574 INFO: User henry@gmail.com asked: i bought 200 amd shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
+2023-05-21 14:34:56,576 INFO: Bot responded: I apologize! I already provided the response to the same question earlier. If you have any other query, please let me know. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-21 14:34:59,723 INFO: User henry@gmail.com bought 200 shares of NVDA at $175.35 on 12-12-2022 endprice: 312.64 return percent: 78.29 return amount: 27458.0 total: 62528.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
+2023-05-21 14:35:16,736 INFO: User henry@gmail.com asked: i bought 200 nvidia shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
+2023-05-21 14:35:16,740 INFO: Bot responded: Based on the information you provided, it looks like you made a profit of $27,458.00 on your investment in NVIDIA Corporation (NVDA), between the dates 12-12-2022 to 21-05-2023.
+
+You bought 200 shares of NVDA at a start price of $175.35, which had a total cost of $35,070.00. You then sold the same number of shares at an end price of $312.64, which gave you a total revenue of $62,528.00. 
+
+After subtracting the initial cost, your profit amounts to $27,458.00. This is an impressive return of 78.29% over this period.
+
+If you decide to sell your shares on the end date, based on these figures, you can expect to make a profit of $27,458.00 on your investment. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-21 14:35:20,589 INFO: User henry@gmail.com bought 200 shares of AAPL at $144.49 on 12-12-2022 endprice: 175.16 return percent: 21.23 return amount: 6134.0 total: 35032.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
+2023-05-21 14:35:23,825 INFO: User henry@gmail.com asked: i bought 200 aapple shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
+2023-05-21 14:35:23,829 INFO: Bot responded: I'm sorry! I already provided the response to the same question earlier. If you have any other query, please let me know. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-21 14:35:42,174 INFO: User henry@gmail.com reset portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:127]

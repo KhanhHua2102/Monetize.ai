@@ -48,11 +48,6 @@ def generate():
         print("user message received:")
         print(user_message + '\n')
 
-        # if user message contains reset, we reset the context
-        if re.search(r'reset', user_message, re.IGNORECASE):
-            messages = [{}]
-            return jsonify({'response': "Chatbot's context cleared."})
-
         # decide which prompt to use based on user message
         with open('prompt.txt', 'r') as prompt:
             prompt_input = prompt.read()
@@ -125,12 +120,19 @@ def generate():
             record("user", user_message)
 
         # user want to reset portfolio
-        elif case == 'reset':
+        elif case == 'reset_portfolio':
             print("\nReset user's portfolio\n")
             # reset user's portfolio
             sql.reset_portfolio(email)
             logger.info('User ' + email + ' reset portfolio')
-            record("user", user_message)
+            return jsonify({'response': "Your portfolio has been reset."})
+        
+        # if user message contains reset, we reset the context
+        elif user_message == 'reset':
+            print("\nReset chatbot's context\n")
+            messages = [{}]
+            logger.info('User ' + email + ' reset context')
+            return jsonify({'response': "Chatbot's context cleared."})
 
         # normal bot reply
         else:

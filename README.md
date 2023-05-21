@@ -188,7 +188,15 @@ Ask the chatbot for a price target for a specific stock. For example:
 
 You: What is the price target for AAPL?
 
+Bot: The current price target for AAPL is $178.88.
 
+### Reset portfolio data:
+
+Ask the chatbot to reset your portfolio data. This will clear your portfolio data. For example:
+
+You: reset portfolio
+
+Bot: Your portfolio has been reset.
 
 ### Reset chatbot context data:
 
