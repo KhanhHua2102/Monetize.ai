@@ -38,7 +38,7 @@
 }
 
 /* For mobile devices */
-@media only screen and (min-width: 320px) and (max-width: 500px) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
     #logo {
         display: none;
     }
