@@ -19,10 +19,8 @@ def davinci_003(query, temperature=0.2):
     presence_penalty=0.0,
     stop=["|"])
 
-    output = response.choices[0].text.replace("\n", "")
-    if output.split(" ")[0] == "Output:":
-        return output[8:]
-    return output.strip("'")
+    response = response.choices[0].text.strip("'").strip(' ')
+    return response
 
 def gpt_3(message_list, temperature=0.2):
     """Uses OpenAI's GPT-3.5-turbo API to generate a response to a query

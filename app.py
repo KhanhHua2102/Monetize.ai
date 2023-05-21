@@ -56,7 +56,7 @@ def generate():
         # decide which prompt to use based on user message
         with open('prompt.txt', 'r') as prompt:
             prompt_input = prompt.read()
-            result = open_ai_call.davinci_003(prompt_input + user_message + '|', 0)
+            result = open_ai_call.davinci_003(prompt_input + user_message + "\nOutput: |", 0)
             
             output_list = result.split(' ')
             case = output_list[0]
