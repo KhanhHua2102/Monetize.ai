@@ -1164,3 +1164,9 @@ A: Sure, some popular budgeting apps include Mint, YNAB (You Need a Budget), and
 2023-05-21 21:23:40,436 INFO: User this@gmail.com asked: heoahiesfa [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
 2023-05-21 21:23:40,439 INFO: Bot responded: I'm sorry, I didn't understand what you're trying to ask. Could you please provide a valid question or query so that I can assist you better? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
 >>>>>>> ivan
+2023-05-22 00:15:00,930 INFO: User henry@mail.com asked: hello [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-22 00:15:00,934 INFO: Bot responded: Hello there! How can I assist you today? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:157]
+2023-05-22 00:15:12,892 INFO: User henry@mail.com bought 100 shares of AMD at $70.67 on 12-12-2022 endprice: 105.82 return percent: 49.74 return amount: 3515.0 total: 10582.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:73]
+2023-05-22 00:15:27,108 INFO: User henry@mail.com asked: i buy 100 amd shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
+2023-05-22 00:15:27,110 INFO: Bot responded: Great, I can help you with that. Based on the information you provided, it looks like you made a profit of $3515.00 over the period December 12, 2022 to May 22, 2023. You bought 100 shares of Advanced Micro Devices, Inc. (AMD) at a start price of $70.67 and sold it at an end price of $105.82, resulting in a return percent of 49.74%. Congratulations on the profitable investment! [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:157]
+2023-05-22 00:15:59,594 INFO: User henry@mail.com reset portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:138]

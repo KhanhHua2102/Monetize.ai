@@ -229,7 +229,6 @@ def signup():
 
         try:
             sql.add_user(name, email, hashed_password, phone)
-            sql.add_user(name, email, hashed_password, phone)
         except ValueError as e:
             error_message = str(e)
             return render_template("signup.html", form=form, error_message=error_message)

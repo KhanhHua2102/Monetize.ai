@@ -146,8 +146,6 @@ def generate():
         result = open_ai_call.gpt_with_info(messages)
         record("assistant", result)
 
-        print("messages:", messages)
-
         # add user message to database
         sql.add_message(email, user_message, datetime.datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
