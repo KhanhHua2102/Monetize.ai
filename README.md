@@ -107,7 +107,7 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
 
     On Window:
     ```sh
-    myenv\Scripts\activate.bat
+    env\Scripts\activate.bat
     ```
     On Mac/Linux:
     ```sh
@@ -174,14 +174,6 @@ You: Can you rebalance my portfolio?
 
 Bot: Sure, I'd be happy to help you rebalance your portfolio. Based on your current holdings, a moderate risk tolerance portfolio would consist of approximately 40% AAPL, 30% AMZN, and 30% TSLA. To achieve this, you would need to sell some of your TSLA shares and buy more AAPL and AMZN shares. Specifically, you would need to sell 50 TSLA shares and buy 67 AAPL shares and 33 AMZN shares. This would bring your portfolio to a target allocation of approximately 40% AAPL, 30% AMZN, and 30% TSLA. Please note that this is just a suggestion and you should always consult with a financial advisor before making any investment decisions.
 
-### Change your risk tolerance:
-
-Ask the chatbot to change your preferred risk tolerance to either low, moderate, or high. For example:
-
-You: Please change my risk tolerance to high.
-
-Bot: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with?
-
 ### Get a stock price target:
 
 Ask the chatbot for a price target for a specific stock. For example:
@@ -189,6 +181,22 @@ Ask the chatbot for a price target for a specific stock. For example:
 You: What is the price target for AAPL?
 
 Bot: The current price target for AAPL is $178.88.
+
+### Ask for Recommendations:
+
+Inquire about stocks you are interested in or request general stock recommendations, the recommendation is based on analysts either buy, hold or sell the stock.
+
+You: Please give me stock recommendation of Tesla.
+
+Bot: Based on the latest analyst recommendation for TSLA, it seems that there are more "Buy" and "Strong Buy" recommendations than "Hold" and "Sell" recommendations. However, it's important to note that past performance does not guarantee future results and it's always important to do your own research and consult with a financial advisor before making any investment decisions.
+
+### Change your risk tolerance:
+
+Ask the chatbot to change your preferred risk tolerance to either low, moderate, or high. For example:
+
+You: Please change my risk tolerance to high.
+
+Bot: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with?
 
 ### Reset portfolio data:
 
@@ -228,6 +236,8 @@ Bot: Chatbot's context data cleared.
 - Change user’s information in settings page
 - Upload profile picture
 - Change to Dark mode
+- Create a base legit financial knowledge for more accure chatbot answers
+- More features comming soon..
 
 See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) for a full list of proposed features (and known issues).
 

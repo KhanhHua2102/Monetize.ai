@@ -8,10 +8,19 @@
     display: none;
 }
 
-body {
+@font-face {
     font-family: "Inter";
     src: url("assets/Inter.ttf") format("truetype");
     font-weight: bold;
+}
+
+body {
+    font-family: "Inter";
+    font-weight: bold;
+}
+
+#title {
+    color: #abd699;
 }
 
 .allparts {
@@ -105,7 +114,7 @@ body {
 }
 
 /* For mobile devices */
-@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
     #logo {
         position: fixed;
         left: 35%;
@@ -153,6 +162,4 @@ body {
         /* Let the height adjust proportionally */
         margin-left: 0%;
     }
-
-
 }

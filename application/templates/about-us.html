@@ -5,7 +5,6 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about-us.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <!-- extra css -->
 {% endblock %}
 
@@ -13,11 +12,11 @@
 {% block content %}
 <div class="allparts">
 
-    <h2 class="pageheader">About Us and Monetize.ai</h2>
+    <h2 id="title" class="pageheader">About Us and Monetize.ai</h2>
     <div class="underheader">
 
         {% include "includes/menu.html" %}
-        
+
         <div class="contents">
             <div class="images">
                 <img src="{{ url_for('static',filename='img/project.png')}}" alt="">
@@ -28,8 +27,15 @@
 
             <div class="texts">
                 <p class="intro">
-                    Monetize.ai is an app that aims to simplify the investment process by using the latest advances in technology to provide users with personalized investment advice. By combining AI with real-life financial data, Monetize.ai can help investors of all levels to make informed decisions, reduce risk, and maximize returns.
-                    Moreover, Monetize.ai offers a portfolio calculator that allows users to track their investments and evaluate the performance of their portfolio over time. The app uses advanced analytics and reporting tools to provide users with a comprehensive view of their investments, including detailed performance metrics and risk analysis. With Monetize.ai, investors can stay on top of their portfolios and make informed decisions to achieve their financial objectives.
+                    Monetize.ai is an app that aims to simplify the investment process by using the latest advances in
+                    technology to provide users with personalized investment advice. By combining AI with real-life
+                    financial data, Monetize.ai can help investors of all levels to make informed decisions, reduce
+                    risk, and maximize returns.
+                    Moreover, Monetize.ai offers a portfolio calculator that allows users to track their investments and
+                    evaluate the performance of their portfolio over time. The app uses advanced analytics and reporting
+                    tools to provide users with a comprehensive view of their investments, including detailed
+                    performance metrics and risk analysis. With Monetize.ai, investors can stay on top of their
+                    portfolios and make informed decisions to achieve their financial objectives.
                 </p>
 
                 <p class="instruction">
@@ -38,61 +44,97 @@
             </div>
 
             <div class="menus">
-                <button class="collapsible">
-                    <p>About Our Project</p>
-                </button>
-              
+                <button class="collapsible">About Our Project</button>
+
                 <div class="section">
                     <div class="images">
                         <img src="{{ url_for('static',filename='img/istockphoto-868618142-170667a.jpg')}}" alt="">
                         <img src="{{ url_for('static',filename='img/flask-python.png')}}" alt="">
-                        <img src="{{ url_for('static',filename='img/develop-websites-html5-css3-javascript-php-and-mysql.jpg')}}" alt="">
+                        <img src="{{ url_for('static',filename='img/develop-websites-html5-css3-javascript-php-and-mysql.jpg')}}"
+                            alt="">
                         <img src="{{ url_for('static',filename='img/API-1080x675-10.jpg')}}" alt="">
-                       
+
                     </div>
                     <section id="overview">
                         <h2>Overview</h2>
-                        <p>Monetize.ai is an innovative project that aims to make financial data more accessible and understandable for everyone. The platform uses a chat-based interface powered by OpenAI's ChatGPT language model to allow users to ask questions about stocks, market trends, and other financial topics in plain language. The system provides accurate and up-to-date information in real-time.</p>
-                      </section>
-                      
-                      <section id="user-interface">
+                        <p>Monetize.ai is an innovative project that aims to make financial data more accessible and
+                            understandable for everyone. The platform uses a chat-based interface powered by OpenAI's
+                            ChatGPT language model to allow users to ask questions about stocks, market trends, and
+                            other financial topics in plain language. The system provides accurate and up-to-date
+                            information in real-time.</p>
+                    </section>
+
+                    <section id="user-interface">
                         <h2>User Interface</h2>
-                        <p>To create a user-friendly experience, the platform features a modern and responsive interface built with HTML, CSS, and Javascript. Various Javascript features are used to enhance the user experience and improve the performance of the platform. Cookies are also utilized to remember users' preferences and provide personalized recommendations based on their past interactions with the system.</p>
-                      </section>
-                      
-                      <section id="technology-stack">
+                        <p>To create a user-friendly experience, the platform features a modern and responsive interface
+                            built with HTML, CSS, and Javascript. Various Javascript features are used to enhance the
+                            user experience and improve the performance of the platform. Cookies are also utilized to
+                            remember users' preferences and provide personalized recommendations based on their past
+                            interactions with the system.</p>
+                    </section>
+
+                    <section id="technology-stack">
                         <h2>Technology Stack</h2>
-                        <p>To power the chat features and AI capabilities, Flask and Python are used as web development frameworks. Flask handles HTTP requests and responses, while Python runs the AI algorithms that process the financial data. The financial data and users data itself is stored and managed using SQL, a popular and efficient database management system.</p>
-                      </section>
-                      
-                      <section id="goal">
+                        <p>To power the chat features and AI capabilities, Flask and Python are used as web development
+                            frameworks. Flask handles HTTP requests and responses, while Python runs the AI algorithms
+                            that process the financial data. The financial data and users data itself is stored and
+                            managed using SQL, a popular and efficient database management system.</p>
+                    </section>
+
+                    <section id="goal">
                         <h2>Goal</h2>
-                        <p>The goal of the Monetize.ai project is to democratize access to financial information and empower people to make better investment decisions. The platform aims to bridge the gap between experts and non-experts in the financial world by providing a conversational and easy-to-use interface that anyone can understand. By combining the power of chat features, AI, and financial data, the team hopes to make a positive impact on the world and inspire others to use technology for the greater good.</p>
-                      </section>
+                        <p>The goal of the Monetize.ai project is to democratize access to financial information and
+                            empower people to make better investment decisions. The platform aims to bridge the gap
+                            between experts and non-experts in the financial world by providing a conversational and
+                            easy-to-use interface that anyone can understand. By combining the power of chat features,
+                            AI, and financial data, the team hopes to make a positive impact on the world and inspire
+                            others to use technology for the greater good.</p>
+                    </section>
                 </div>
 
-
-                <button class="collapsible">
-                    <p>About Our Team</p>
-                </button>
+                <button class="collapsible">About Our Team</button>
                 <div class="section">
                     <div class="teamImages">
                         <img src="{{ url_for('static',filename='img/teamImage.jpg')}}" alt="">
-                        
+
                     </div>
                     <h1>The Team</h1>
-                    <p>The team comprises three highly skilled individuals, each bringing their unique set of skills and expertise to the table.</p>
+                    <p>The team comprises three highly skilled individuals, each bringing their unique set of skills and
+                        expertise to the table.</p>
                     <h2>Quang Khanh Hua (Henry)</h2>
-                    <p>Quang Khanh Hua, the team leader, is a highly organized individual who ensures that the team functions smoothly. He is responsible for organizing meetings for team members, managing and fixing up codes, and assisting with the making of the ChatScreen and portfolio sites. Khanh also downloaded the ChatGPT API and updated users' information on the chatscreen based on the databases and stocks database to update on the Users Portfolio. He is also responsible for creating the menu button and ensuring that it is updated on all pages, making navigation a breeze for users.He works closely with the team to ensure that the chat function is seamlessly integrated into the platform, allowing users to change the values of their stocks data easily. He also helps create a recommendation system for users based on their risk tolerance, ensuring that the platform caters to the unique needs of each user.</p>
+                    <p>Quang Khanh Hua, the team leader, is a highly organized individual who ensures that the team
+                        functions smoothly. He is responsible for organizing meetings for team members, managing and
+                        fixing up codes, and assisting with the making of the ChatScreen and portfolio sites. Khanh also
+                        downloaded the ChatGPT API and updated users' information on the chatscreen based on the
+                        databases and stocks database to update on the Users Portfolio. He is also responsible for
+                        creating the menu button and ensuring that it is updated on all pages, making navigation a
+                        breeze for users.He works closely with the team to ensure that the chat function is seamlessly
+                        integrated into the platform, allowing users to change the values of their stocks data easily.
+                        He also helps create a recommendation system for users based on their risk tolerance, ensuring
+                        that the platform caters to the unique needs of each user.</p>
                     <h2>Thai Hoang Long Nguyen</h2>
-                    <p>Thai Hoang Long Nguyen is responsible for the crucial features of login and sign up for users, ensuring that all validations and cookies are in place to provide a secure and seamless experience. Additionally, he also oversees the Settings page, enabling users to update their information, and provides recommendations based on analysts for the chatbot. Thai also adds profits based on stocks data information provided by the Financial API of multiple Stocks Exchange free API, which is crucial for the overall success of the platform. Furthermore, he assists with rendering html and CSS for mobile/website apps of Sign Up, Login, and Settings pages.</p>
+                    <p>Thai Hoang Long Nguyen is responsible for the crucial features of login and sign up for users,
+                        ensuring that all validations and cookies are in place to provide a secure and seamless
+                        experience. Additionally, he also oversees the Settings page, enabling users to update their
+                        information, and provides recommendations based on analysts for the chatbot. Thai also adds
+                        profits based on stocks data information provided by the Financial API of multiple Stocks
+                        Exchange free API, which is crucial for the overall success of the platform. Furthermore, he
+                        assists with rendering html and CSS for mobile/website apps of Sign Up, Login, and Settings
+                        pages.</p>
                     <h2>Yin Ming Aung (Ivan)</h2>
-                    <p>Yin Ming Aung is responsible for rendering History, Help, and About Us Pages on both websites and mobile devices. He created the users' database to store information for login, sign up, and settings pages, which plays a crucial role in providing a seamless experience. Furthermore, he is responsible for creating the financial stocks data database to update the users' portfolios and creating search features for users, making it easy to find the information they need. Yin also stores strings of history messages for users, ensuring that they can refer back to them at any time.</p>
-                    <p>Overall, the team works in tandem, each playing a crucial role in providing a seamless and intuitive experience for users. With their diverse set of skills, they bring their unique perspective and expertise, enabling them to create an exceptional product that caters to the needs of its users.</p>
+                    <p>Yin Ming Aung is responsible for rendering History, Help, and About Us Pages on both websites and
+                        mobile devices. He created the users' database to store information for login, sign up, and
+                        settings pages, which plays a crucial role in providing a seamless experience. Furthermore, he
+                        is responsible for creating the financial stocks data database to update the users' portfolios
+                        and creating search features for users, making it easy to find the information they need. Yin
+                        also stores strings of history messages for users, ensuring that they can refer back to them at
+                        any time.</p>
+                    <p>Overall, the team works in tandem, each playing a crucial role in providing a seamless and
+                        intuitive experience for users. With their diverse set of skills, they bring their unique
+                        perspective and expertise, enabling them to create an exceptional product that caters to the
+                        needs of its users.</p>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -100,8 +142,5 @@
 
 <!-- adding javascript for the side bar -->
 {% block script %}
-<script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
 <script src="{{ url_for('static', filename='js/about-us.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 {% endblock %}

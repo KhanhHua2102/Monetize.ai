@@ -4,10 +4,14 @@
   padding: 0;
 }
 
-body {
+@font-face {
   font-family: "Inter";
   src: url("assets/Inter.ttf") format("truetype");
   font-weight: bold;
+}
+
+body {
+  font-family: "Inter", sans-serif;
   padding-bottom: 100px;
 }
 
@@ -60,7 +64,7 @@ button {
 }
 
 /* For mobile devices */
-@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
   #logo {
     position: fixed;
     left: 35%;
