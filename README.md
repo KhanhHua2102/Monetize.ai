@@ -60,7 +60,13 @@ The Monetize.ai GitHub repository contains all the source code for the web-based
 
 The repository is organized into several modules, each responsible for a specific aspect of the application. The main module is the chat bot itself, which handles user queries and provides advice based on the user's portfolio data. Other modules include the Yahoo Finance API integration, database management, and modern portfolio theory calculations.
 
-Monetize.ai is an open-source project, which means that anyone can contribute to it and help improve its functionality and features. The repository includes detailed documentation to help developers get started with the project and contribute code to it. There is also an active community of developers and users who can provide support and guidance on using the application.
+Additionally, the application features a secure login and sign-up functionality with email validations using Flask WTF. This ensures that only authorized users can access the application and their personal portfolio data. Password hashing is implemented to enhance security and protect user passwords from unauthorized access.
+
+The databases are regularly updated to provide users with the latest financial data from the Yahoo Finance API. The updated data is then displayed in the application's settings pages, where users can view and manage their personal information, including their investment portfolios and other relevant details. The settings pages offer a convenient way for users to customize their experience and make changes to their account settings.
+
+Monetize.ai is an open-source project, welcoming contributions from developers who want to improve its functionality and features. The repository includes comprehensive documentation to assist developers in getting started with the project and contributing code. An active community of developers and users is available to provide support and guidance on using the application effectively.
+
+Overall, Monetize.ai provides a powerful and user-friendly platform for personalized financial advisory services, integrating AI-powered chat bot capabilities with real-time financial data, all within a secure and accessible web-based application.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -208,6 +214,10 @@ Bot: Chatbot's context data cleared.
 ## History
 - User can search for old conversations using keywords
 
+![Alt Text](application/static/img/database_schema.jpeg)
+
+This is our database schema used for our project, including three tables in the database ensuring user's experiences in login, ability to search through previous chat records and change details. In the three tables provided, we have user, portfolio and message. Each table has their own primary key which is an id number. For portfolio and message table, we have user_id as a foreign key keeping track of which portfolio and message are under which user.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -257,3 +267,44 @@ Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+
+
+## Image References
+
+- `180700.png`: by favicon.io, https://favicon.io/.
+- `High.jpg`: Image related to the app Monetize.AI.
+- `menu.svg`: Image related to the app Monetize.AI.
+- `Rebalancing.jpg`: Image related to the app Monetize.AI.
+- `2021_Facebook_icon.svg.png`: Facebook logo, https://commons.wikimedia.org/wiki/File:2021_Facebook_icon.svg
+- `HighRisk.jpg`: Image related to the app Monetize.AI.
+- `minus.png`: by Freepik, https://www.flaticon.com/free-icon/minus-sign_43625?term=minus&page=1&position=2&origin=search&related_id=43625
+- `ResetContext.jpg`: Image related to the app Monetize.AI.
+- `831682.png`: by favicon.io, https://favicon.io/.
+- `Image_placeholder.png`: Image related to the app Monetize.AI taken using vs code extension
+- `MonetizeAI-logo.png`: Monetize.AI logo.
+- `ResetPortfolio.jpg`: Image related to the app Monetize.AI.
+- `API-1080x675-10.jpg`: by WorldFinancialView,https://worldfinancialreview.com/3-benefits-of-open-banking-apis/
+- `innovation.png`: by Freepik, https://www.flaticon.com/free-icon/innovation_912278?term=innovation&page=1&position=1&origin=search&related_id=912278
+- `Portfolio.jpg`: Image related to the app Monetize.AI.
+- `Starting.jpg`: Image related to the app Monetize.AI.
+- `database_schema.jpeg`: Image related to the app Monetize.AI, database design creation.
+- `InvestingStrat.jpg`: Image related to the app Monetize.AI.
+- `PriceTarget.jpg`: Image related to the app Monetize.AI.
+- `StartingPortfolio.jpg`: Image related to the app Monetize.AI.
+- `develop-websites-html5-css3-javascript-php-and-mysql.jpg`: by Aptech, https://www.aptech.ae/wp-content/uploads/2021/06/develop-websites-html5-css3-javascript-php-and-mysql.jpg
+- `istockphoto-868618142-170667a.jpg`: Image from iStockphoto.
+- `Profit.jpg`: Image related to the app Monetize.AI.
+- `StockRecommendation.png`: Image related to the app Monetize.AI.
+- `flask-python.png`: by Codersera, https://codersera.com/blog/wp-content/uploads/2019/06/flask-python.png
+- `line.png`: by roundicons premimum, https://www.flaticon.com/free-icon/line_649686?term=line&page=1&position=6&origin=search&related_id=649686
+- `ProfitPortfolio.jpg`: Image related to the app Monetize.AI.
+- `teamImage.jpg`: Image related to the app Monetize.AI.
+- `third-party.png`: by HAJICON, https://www.flaticon.com/free-icon/third-party_10008174?term=third-party&page=1&position=5&origin=search&related_id=10008174
+- `'Frame 1.png'`: by favicon.io, https://favicon.io/.
+
+- `logo.svg`: Image related to the app Monetize.AI.
+- `profits.png`: by nawnicon, https://www.flaticon.com/free-icon/profit_2672392?term=profit&page=1&position=3&origin=search&related_id=2672392
+- `Google__G__Logo.svg.png`: by Google, https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg
+- `menu.png`: by feen, https://www.flaticon.com/free-icon/more_6015685?term=menu&page=1&position=5&origin=search&related_id=6015685
+- `project.png`: by dDara, https://www.flaticon.com/free-icon/project_5956597?term=project&page=1&position=3&origin=search&related_id=5956597
+
