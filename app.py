@@ -1,5 +1,4 @@
 import logging
-import re
 from datetime import datetime
 
 import openai
@@ -31,16 +30,15 @@ messages = [{}]
 def generate():
     """
     Generates a response to a user message from chat screen.
-    First use GPT-3.5 to analyze the user's input, then use the output to decide which case scenario.
+    First use davinci_003 text completion model to analyze the user's input, then use the output to decide which case scenario.
     Depend on each case, different processing will be done including calling other APIs for external data.
-    These data will be used to make another GPT-3.5 call to generate a response to the user.
+    These data will be used to make GPT-3.5 chat completion call to generate a response to the user.
 
     Returns:
         response: The response from the API in JSON format
     """
     try:
         global messages
-
         email = request.cookies.get('email')
 
         data = request.get_json()
@@ -48,7 +46,7 @@ def generate():
         print("user message received:")
         print(user_message + '\n')
 
-        # decide which prompt to use based on user message
+        # decide which action to use based on user message input
         with open('prompt.txt', 'r') as prompt:
             prompt_input = prompt.read()
             result = open_ai_call.davinci_003(prompt_input + user_message + "\nOutput: |", 0)
@@ -61,12 +59,10 @@ def generate():
 
         # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
         if case == 'buy':
-            print("User message contains buy or bought keyword\n")
+            print("User bought stock\n")
             
             prompt_result = stk.prompt_profit(output_data)
             start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[1]
-
-            print(start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total)
 
             # add or update stock in portfolio
             sql.add_stock(email, start_date, ticker, quantity, start_price,
@@ -77,7 +73,7 @@ def generate():
 
         # if user sell stock, we update user's portfolio and reply a normal bot response
         elif case == 'sell':
-            print("\nUser message contains sell or sold keyword\n")
+            print("\nUser sold stock\n")
             
             prompt_result = stk.prompt_profit(output_data)
             start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[1]
@@ -93,6 +89,7 @@ def generate():
         elif case == 'rebalance':
             print("\nSuggest user portfolio rebalancing\n")
             query = "Using the my portfolio and risk tolerance above, suggest me a rebalance the quantity of stock base on the risk tolerance using only my current holding stocks. Suggest with the target percentage and details the quantity of buy or sell to achieve that rebalancing."
+            
             record("user", query)
         
         # user want to receive stock recommendation
@@ -100,6 +97,7 @@ def generate():
             print("\nGive user stock recommendations\n")
             ticker = output_data[0].strip()
             prompt_recomendation = stk.prompt_recomendation(ticker)
+            
             record("user", prompt_recomendation)
 
         # user want to know stock target price
@@ -108,16 +106,26 @@ def generate():
             ticker = output_data[0].strip()
             price_target = stk.stock_price_target(ticker)
             query = f'This is the up-to-date price target: {price_target} for {ticker}. Using the price target to give me an answer: {user_message}'
+            
             record("user", query)
 
         # user want to change risk tolerance
         elif case == 'risk':
             print("\nChange user's risk tolerance\n")
             risk_tolerance = output_data[0].strip()
+            
             # update user's risk tolerance
             sql.update_risk_tolerance(email, risk_tolerance)
             logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
+            
             record("user", user_message)
+
+        # if user message contains reset, we reset the context
+        elif user_message == 'reset':
+            print("\nReset chatbot's context\n")
+            messages = [{}]
+            logger.info('User ' + email + ' reset context')
+            return jsonify({'response': "Chatbot's context cleared."})
 
         # user want to reset portfolio
         elif case == 'reset_portfolio':
@@ -126,13 +134,6 @@ def generate():
             sql.reset_portfolio(email)
             logger.info('User ' + email + ' reset portfolio')
             return jsonify({'response': "Your portfolio has been reset."})
-        
-        # if user message contains reset, we reset the context
-        elif user_message == 'reset':
-            print("\nReset chatbot's context\n")
-            messages = [{}]
-            logger.info('User ' + email + ' reset context')
-            return jsonify({'response': "Chatbot's context cleared."})
 
         # normal bot reply
         else:

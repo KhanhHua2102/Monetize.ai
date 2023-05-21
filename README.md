@@ -50,8 +50,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 # About The Project
 Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 language model and integrates with the Yahoo Finance API to crawl financial data such as stocks and cryptocurrencies. The application is built using the Flask framework and SQLite for the database on the server side. The client side is built using HTML, CSS, JavaScript with Bootstrap framework and jQuery for the client-side rendering.
@@ -66,8 +64,6 @@ Monetize.ai is an open-source project, which means that anyone can contribute to
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -143,47 +139,40 @@ This will run the Flask app on your local host, typically http://127.0.0.1:5000.
 # Usage
 
 ## Sign Up and Login
-
 To get started, you will need to create an account by signing up on the website. Provide an email address and password to register. Once your account is created, you can login with your email and password.
 
 ## Interacting with the Chatbot
-
 You can interact with the [Monetize.ai](http://monetize.ai/) chatbot by sending it messages through the chat interface. The chatbot understands a variety of finance-related questions and commands. Here are a few examples:
 
 ### General Questions:
-
-Ask the chatbot broad questions about investing strategies, financial concepts, and stock markets. For example:
+Ask the chatbot broad questions about investing strategies, financial concepts, and stock markets.
 
 You: What are some common investing strategies?
 
 Bot: There are many different investment strategies, including value investing, growth investing, income investing, and momentum investing. Each strategy has its own unique approach to selecting investments and managing risk. It's important to do your research and choose a strategy that aligns with your financial goals and risk tolerance.
 
 ### Update Your Portfolio:
-
-Tell the chatbot when you buy or sell stocks by providing details like the stock ticker, number of shares, date, and price. The chatbot will update your portfolio and provide metrics like profits/losses. For example:
+Tell the chatbot when you buy or sell stocks by providing details like the stock ticker, number of shares, date, and price. The chatbot will update your portfolio and provide metrics like profits/losses.
 
 You: I bought 200 shares of Apple (AAPL) on 01/02/2020 at $300 per share.
 
 Bot: Based on the information you provided, if you had purchased 200 shares of Apple Inc. (AAPL) on 01-02-2002 at a start price of $0.44 and sold them on 04-05-2023 at an end price of $167.45, you would have made a profit of $33,402.00. This is a significant return on investment, and it's important to note that past performance does not guarantee future results. It's always a good idea to diversify your investments and consult with a financial advisor before making any investment decisions.
 
 ### Rebalance Your Portfolio:
-
-Ask the chatbot to rebalance your portfolio using modern portfolio theory. It will adjust the weights of your stock holdings to match your desired risk tolerance. For example:
+Ask the chatbot to rebalance your portfolio using modern portfolio theory. It will adjust the weights of your stock holdings to match your desired risk tolerance.
 
 You: Can you rebalance my portfolio?
 
 Bot: Sure, I'd be happy to help you rebalance your portfolio. Based on your current holdings, a moderate risk tolerance portfolio would consist of approximately 40% AAPL, 30% AMZN, and 30% TSLA. To achieve this, you would need to sell some of your TSLA shares and buy more AAPL and AMZN shares. Specifically, you would need to sell 50 TSLA shares and buy 67 AAPL shares and 33 AMZN shares. This would bring your portfolio to a target allocation of approximately 40% AAPL, 30% AMZN, and 30% TSLA. Please note that this is just a suggestion and you should always consult with a financial advisor before making any investment decisions.
 
 ### Get a stock price target:
-
-Ask the chatbot for a price target for a specific stock. For example:
+Ask the chatbot for a price target for a specific stock.
 
 You: What is the price target for AAPL?
 
 Bot: The current price target for AAPL is $178.88.
 
 ### Ask for Recommendations:
-
 Inquire about stocks you are interested in or request general stock recommendations, the recommendation is based on analysts either buy, hold or sell the stock.
 
 You: Please give me stock recommendation of Tesla.
@@ -191,44 +180,35 @@ You: Please give me stock recommendation of Tesla.
 Bot: Based on the latest analyst recommendation for TSLA, it seems that there are more "Buy" and "Strong Buy" recommendations than "Hold" and "Sell" recommendations. However, it's important to note that past performance does not guarantee future results and it's always important to do your own research and consult with a financial advisor before making any investment decisions.
 
 ### Change your risk tolerance:
-
-Ask the chatbot to change your preferred risk tolerance to either low, moderate, or high. For example:
+Ask the chatbot to change your preferred risk tolerance to either low, moderate, or high.
 
 You: Please change my risk tolerance to high.
 
 Bot: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with?
-
 ### Reset portfolio data:
-
-Ask the chatbot to reset your portfolio data. This will clear your portfolio data. For example:
+Ask the chatbot to reset your portfolio data. This will clear your portfolio data.
 
 You: reset portfolio
 
 Bot: Your portfolio has been reset.
 
 ### Reset chatbot context data:
-
-Ask the chatbot to reset your context data. This will clear your portfolio and risk tolerance. For example:
+Ask the chatbot to reset your context data.
 
 You: reset
 
 Bot: Chatbot's context data cleared.
 
 ## Settings
-
 - Display user’s informations
 - Change user’s information  (coming soon)
 - Upload profile picture  (coming soon)
 - Change to Dark mode (coming soon)
 
 ## History
-
 - User can search for old conversations using keywords
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -243,8 +223,6 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
 ## Contributing
 **Quang Khanh Hua (22928469)**
@@ -255,7 +233,6 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- CONTACT -->
 ## Contact
 
@@ -265,9 +242,7 @@ Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.
 
 [![linkedin-shield]][linkedin-url]
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

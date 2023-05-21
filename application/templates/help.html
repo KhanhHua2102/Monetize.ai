@@ -11,154 +11,178 @@
 <!-- content of the page here -->
 {% block content %}
 <div class="allparts">
-  <h2 class="pageheader">Help Center</h2>
-  <div class="underheader">
+    <h2 class="pageheader">Help Center</h2>
+    <div class="underheader">
 
-    {% include "includes/menu.html" %}
+        {% include "includes/menu.html" %}
 
-    <div class="contents">
+        <div class="contents">
 
-      <h2>Getting Started</h2>
-      <p>
-        To get started with Monetize.ai, follow these steps:
-      </p>
-      <ol>
-        <li>Sign Up: Create an account by providing your email address and password.</li>
-        <li>Login: Use your email and password to log into the application.</li>
-      </ol>
+            <h2>Getting Started</h2>
+            <p>
+                To get started with Monetize.ai, follow these steps:
+            </p>
+            <ul>
+                <li><strong>Sign Up: </strong>Create an account by providing your email address and password.</li>
+                <li><strong>Login: </strong>Use your email and password to log into the application.</li>
+            </ul>
 
-      <h2>Using the Chatbot</h2>
-      <p>The Monetize.ai chatbot provides personalized financial advisory services. Here are some tips on using the
-        chatbot effectively:</p>
-      <ul>
-        <li>
-          Starting with an Empty Portfolio: You begin with an empty portfolio, and your risk tolerance is set to
-          moderate by default. You can ask the chatbot any questions or seek advice related to investing, financial
-          concepts, or stock markets.
-          <br>
-          <strong>Example:</strong> "What are some common investing strategies?"
-        </li>
-        <li>
-          <button onclick="toggleImageSection(1)">Demonstration Picture</button>
-          <div id="image-section-1" style="display:none;" class="image-section">
-            <img src="{{ url_for('static', filename='img/StartingPortfolio.jpg') }}" alt="Chatbot Image">
-          </div>
-        </li>
-        <li>
-          Updating Your Portfolio: Tell the chatbot when you buy or sell stocks. Provide details like the stock ticker,
-          number of shares, date, and price.
-          <br>
-          <strong>Example:</strong> "I bought 200 shares of Apple (AAPL) on 01/02/2020 at $300 per share."
-        </li>
-        <li>
-          <button onclick="toggleImageSection(2)">Demonstration Picture</button>
-          <div id="image-section-2" style="display:none;" class="image-section">
-            <img src="{{ url_for('static', filename='img/Starting.jpg') }}" alt="Chatbot Image">
-            <img src="{{ url_for('static', filename='img/InvestingStrat.jpg') }}" alt="Chatbot Image">
-          </div>
-        </li>
-        <li>
-          Rebalancing Your Portfolio: Ask the chatbot to rebalance your portfolio using modern portfolio theory. It will
-          adjust the weights of your stock holdings to match your desired risk tolerance.
-          <br>
-          <strong>Example:</strong> "Can you rebalance my portfolio?"
-        </li>
-        <li>
-          <button onclick="toggleImageSection(3)">Demonstration Picture</button>
-          <div id="image-section-3" style="display:none;" class="image-section">
-            <img src="{{ url_for('static', filename='img/Rebalancing.jpg') }}" alt="Chatbot Image">
-          </div>
-        </li>
-        <li>
-          Changing Risk Tolerance: Request the chatbot to change your preferred risk tolerance to low, moderate, or
-          high.
-          <br>
-          <strong>Example:</strong> "Please change my risk tolerance to high."
-        </li>
-        <li>
-          <button onclick="toggleImageSection(4)">Demonstration Picture</button>
-          <div id="image-section-4" style="display:none;" class="image-section">
-            <img src="{{ url_for('static', filename='img/High.jpg') }}" alt="Chatbot Image">
-            <img src="{{ url_for('static', filename='img/HighRisk.jpg') }}" alt="Chatbot Image">
-          </div>
-        </li>
-        <li>
-          Ask for Recommendations: Inquire about stocks you are interested in or request general stock recommendations,
-          the recommendation is based on analysts either buy, hold or sell the stock.
-          <br>
-          <strong>Example:</strong> "Please give me stock recommendation of Tesla."
-        </li>
-        <li>
-          <button onclick="toggleImageSection(5)">Demonstration Picture</button>
-          <div id="image-section-5" style="display:none;" class="image-section">
-            <img src="{{ url_for('static', filename='img/StockRecommendation.png') }}" alt="Chatbot Image">
-          </div>
-        </li>
-        <li>
-          Get a stock price target: Ask the chatbot for a price target for a specific stock.
-          <br>
-          <strong>Example:</strong> "What is the price target for AAPL?"
-          "Bot: The current price target for AAPL is $178.88."
-        </li>
+            <h2>Using the Chatbot</h2>
+            <p>The Monetize.ai chatbot provides personalized financial advisory services. Here are some tips on using
+                the
+                chatbot effectively:
+            </p>
+            <img src="{{ url_for('static', filename='img/Starting.jpg') }}" alt="Chatbot Image" class="img-fluid">
+            <ul>
+                <li>
+                    <strong>Starting with an Empty Portfolio:</strong>
+                    <br>
+                    You begin with an empty portfolio, and your risk tolerance is set to
+                    moderate by default. You can ask the chatbot any questions or seek advice related to investing,
+                    financial
+                    concepts, or stock markets.
+                    <br>
+                    <strong>User: </strong>What are some common investing strategies?
+                    <br>
+                    <img src="{{ url_for('static', filename='img/InvestingStrat.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                    <img src="{{ url_for('static', filename='img/StartingPortfolio.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                </li>
+                <li>
+                    <strong>Updating Your Portfolio:</strong>
+                    <br>
+                    Tell the chatbot when you buy or sell stocks. Provide details like the stock ticker,
+                    number of shares, date, and price.
+                    <br>
+                    <strong>User: </strong>I bought 200 shares of Apple (AAPL) on 01/02/2020 at $300 per share.
+                    <br>
+                    <img src="{{ url_for('static', filename='img/Profit.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                    <img src="{{ url_for('static', filename='img/ProfitPortfolio.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                </li>
+                <li>
+                    <strong>Rebalancing Your Portfolio:</strong>
+                    <br>
+                    Ask the chatbot to rebalance your portfolio using modern portfolio theory. It will
+                    adjust the weights of your stock holdings to match your desired risk tolerance.
+                    <br>
+                    <strong>User: </strong>Can you rebalance my portfolio?
+                    <br>
+                    <img src="{{ url_for('static', filename='img/Rebalancing.jpg') }}" alt="Chatbot Image"
+                        class="img-fluid">
+                </li>
+                <li>
+                    <strong>Ask for Recommendations:</strong>
+                    <br>
+                    Inquire about stocks you are interested in or request general stock recommendations,
+                    the recommendation is based on analysts either buy, hold or sell the stock.
+                    <br>
+                    <strong>User: </strong>Please give me stock recommendation of Tesla.
+                    <br>
+                    <img src="{{ url_for('static', filename='img/StockRecommendation.png') }}" alt="Chatbot Image"
+                        class="img-fluid">
+                </li>
+                <li>
+                    <strong>Get a stock price target:</strong>
+                    <br>
+                    Ask the chatbot for a price target for a specific stock.
+                    <br>
+                    <strong>User: </strong>What is the price target for AAPL?
+                    <br>
+                    <img src="{{ url_for('static', filename='img/PriceTarget.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                </li>
+                <li>
+                    <strong>Changing Risk Tolerance:</strong>
+                    <br>
+                    Request the chatbot to change your preferred risk tolerance to low, moderate, or
+                    high.
+                    <br>
+                    <strong>User: </strong>Please change my risk tolerance to high.
+                    <br>
+                    <img src="{{ url_for('static', filename='img/High.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                    <img src="{{ url_for('static', filename='img/HighRisk.jpg') }}" alt="Chatbot Image"
+                        class="img-fluid">
+                </li>
+                <li>
+                    <strong>Reset portfolio data:</strong>
+                    <br>
+                    Ask the chatbot to reset your portfolio data. This will clear your portfolio data.
+                    <br>
+                    <strong>User: </strong>Can you help me reset my portfolio?
+                    <br>
+                    <img src="{{ url_for('static', filename='img/Portfolio.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                    <img src="{{ url_for('static', filename='img/ResetPortfolio.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                    <img src="{{ url_for('static', filename='img/StartingPortfolio.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                </li>
+                <li>
+                    <strong>Reset chatbot context data:</strong>
+                    <br>
+                    Ask the chatbot to reset your context data.
+                    <br>
+                    <strong>User: </strong>reset
+                    <br>
+                    <img src="{{ url_for('static', filename='img/ResetContext.jpg') }}" alt="Chatbot Image" class="img-fluid">
+                </li>
+            </ul>
 
-      </ul>
+            <h2>Viewing Portfolio and History</h2>
+            <p>
+                Monetize.ai provides features to view your portfolio and conversation history:
+            </p>
+            <ul>
+                <li>
+                    <strong>Portfolio: </strong>Check your investment portfolio, including balances, profits/losses, and
+                    other metrics. This
+                    information is stored in the Portfolio section for future reference.
+                </li>
+                <li>
+                    <strong>History: </strong>Search for old conversations using keywords to quickly find past
+                    interactions with the chatbot.
+                </li>
+            </ul>
 
-      <h2>Viewing Portfolio and History</h2>
-      <p>
-        Monetize.ai provides features to view your portfolio and conversation history:
-      </p>
-      <ul>
-        <li>
-          Portfolio: Check your investment portfolio, including balances, profits/losses, and other metrics. This
-          information is stored in the Portfolio section for future reference.
-        </li>
-        <li>
-          History: Search for old conversations using keywords to quickly find past interactions with the chatbot.
-        </li>
-      </ul>
+            <h2>Settings</h2>
+            <p>
+                In the settings page, you can access the following options:
+            </p>
+            <ul>
+                <li>
+                    <strong>Display User Information: </strong>View your account details and make changes if necessary.
+                </li>
+                <li>
+                    <strong>Change User Information: </strong>Update your personal information such as name, email, and
+                    password.
+                </li>
+                <li>
+                    <strong>Upload Profile Picture: </strong>Customize your profile by uploading a profile picture.
+                </li>
+                <li>
+                    <strong>Change to Dark Mode: </strong>Switch to a dark mode theme for a different visual experience.
+                </li>
+            </ul>
 
-      <h2>Settings</h2>
-      <p>
-        In the settings page, you can access the following options:
-      </p>
-      <ul>
-        <li>
-          Display User Information: View your account details and make changes if necessary.
-        </li>
-        <li>
-          Change User Information: Update your personal information such as name, email, and password.
-        </li>
-        <li>
-          Upload Profile Picture: Customize your profile by uploading a profile picture.
-        </li>
-        <li>
-          Change to Dark Mode: Switch to a dark mode theme for a different visual experience.
-        </li>
-      </ul>
+            <h2>Roadmap</h2>
+            <p>
+                The Monetize.ai team is continuously working on improving the application. Here are some upcoming
+                features:
+            </p>
+            <ul>
+                <li>
+                    Change User Information
+                    in Settings page.
+                </li>
+                <li>
+                    Upload Profile Picture.
+                </li>
+                <li>
+                    Dark Mode: Enable a dark mode theme for the application.
+                </li>
 
-      <h2>Roadmap</h2>
-      <p>
-        The Monetize.ai team is continuously working on improving the application. Here are some upcoming features:
-      </p>
-      <ul>
-        <li>
-          Change User Information
-          in Settings page.
-        </li>
-        <li>
-          Upload Profile Picture.
-        </li>
-        <li>
-          Dark Mode: Enable a dark mode theme for the application.
-        </li>
-
-      </ul>
-      <footer>
-        <p>For more information and updates, visit the <a
-            href="https://github.com/KhanhHua2102/CITS3403-Project">Monetize.ai GitHub repository</a>.</p>
-      </footer>
+            </ul>
+            <footer>
+                <p>For more information and updates, visit the <a
+                        href="https://github.com/KhanhHua2102/CITS3403-Project">Monetize.ai GitHub repository</a>.</p>
+            </footer>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}
 
