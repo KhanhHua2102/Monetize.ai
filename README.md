@@ -242,6 +242,35 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- TESTING -->
+## Testing, Unitest and selenium testing
+### Testing for the Web Application
+1. Unit Test
+ Run this command in the root directory of the project folder
+```sh
+  python3 -W ignore -m unittest tests.unittest
+```
+The sample test we have for this file include checking if new users and stocks can be added succuessfully to the database. Testing for the hashed passsword being added to the database is also inlcuded. As for the rest, we have a few tests that make sure we are going to the correct routes by checking keywords contained in the html files.
+
+Succuessful sample tests will get printed out in the terminal
+
+2. Selenium tests
+Install require packages and softwares
+
+packages such as selenium, werkzeug will be installed by installing the requirements.txt. Additionally Install the Chrome WebDriver (webdriver.Chrome) suitable for your operating system and browser version.
+
+Run this command in the root directory of the project folder
+
+```sh
+  python3 -W ignore -m unittest tests.systemtest
+```
+
+The sample test for this part include testing whether the new user can be registered correctly to the database and to see if the password sharing and password storing are done correctly.
+
+Successful sample tests will be printed in the terminal
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 ## Contributing
 **Quang Khanh Hua (22928469)**
@@ -277,8 +306,10 @@ Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Image References (refer to the git_logs.txt)
+<!-- MATERIALS REFERENCES -->
+## Materials References
 
 - `180700.png`: by favicon.io, https://favicon.io/.
 - `High.jpg`: Image related to the app Monetize.AI.
@@ -317,7 +348,8 @@ Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.
 - `menu.png`: by feen, https://www.flaticon.com/free-icon/more_6015685?term=menu&page=1&position=5&origin=search&related_id=6015685
 - `project.png`: by dDara, https://www.flaticon.com/free-icon/project_5956597?term=project&page=1&position=3&origin=search&related_id=5956597
 
-## Git commit logs
+<!-- GIT COMMIT LOGS -->
+## Git commit logs (refer to the git_logs.txt)
 * commit d576a0c5a5034ccd4e14071143bb9f4fc59ccb87 (HEAD -> main, tag: v0.5, origin/test-app, origin/main, origin/HEAD, test-app)
 | Author: Quang Khanh Hua (Henry) <22928469@student.uwa.edu.au>
 | Date:   Mon May 22 01:30:48 2023 +0800
@@ -2016,3 +2048,5 @@ Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.
   Date:   Fri Mar 17 21:57:34 2023 +0800
   
       Initial commit
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
