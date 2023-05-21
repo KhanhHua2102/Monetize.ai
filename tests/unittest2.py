@@ -30,8 +30,7 @@ class UserModelCase(unittest.TestCase):
             user3.password = 'password3'
             user3.phone_number = '1234567890'
 
-            # stock1_user1 = sql.add_stock(email='user1', date=datetime.now(), ticker='AAPL', quantity=10, start_price=100, current_price=200, return_percent=100, return_amount=1000, total=2000)
-            # stock2_user1 = sql.add_stock(email='user1', date=datetime.now(), ticker='TSLA', quantity=10, start_price=100, current_price=200, return_percent=100, return_amount=1000, total=2000)
+            
 
     def tearDown(self):
         with app.app_context():
