@@ -126,7 +126,6 @@ def prompt_recomendation(ticker):
 
 
 def stock_price_target(symbol):
-    # Replace 'YOUR_API_KEY' with your actual Alpha Vantage API key
     api_key = 'MWQ9WK5A5KFZA5U6'
 
     # Make a request to the Alpha Vantage API

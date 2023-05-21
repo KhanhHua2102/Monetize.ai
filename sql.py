@@ -91,6 +91,15 @@ def update_stock(email, ticker, quantity):
     models.db.session.commit()
     models.db.session.close()
 
+# reset stock table in database
+def reset_portfolio(email):
+    user_id = get_user_id(email)
+    stocks = models.portfolio.query.filter_by(user_id=user_id).all()
+    for stock in stocks:
+        models.db.session.delete(stock)
+    models.db.session.commit()
+    models.db.session.close()
+
 # return stock data from stock table in database as JSON object
 def get_stock_data(email):
     user_id = get_user_id(email)

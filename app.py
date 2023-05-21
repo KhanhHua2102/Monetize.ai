@@ -62,7 +62,7 @@ def generate():
             case = output_list[0]
             print("case:", case)
             output_data = output_list[1:]
-            print(output_data)
+            print("output data: ", output_data)
 
         # if user buy stock, we add stock to user's portfolio and reply a bot response with profit information
         if case == 'buy':
@@ -82,7 +82,7 @@ def generate():
 
         # if user sell stock, we update user's portfolio and reply a normal bot response
         elif case == 'sell':
-            print("User message contains sell or sold keyword\n")
+            print("\nUser message contains sell or sold keyword\n")
             
             prompt_result = stk.prompt_profit(output_data)
             start_date, ticker, quantity, start_price, end_price, return_percent, return_amount, total = prompt_result[1]
@@ -96,36 +96,45 @@ def generate():
 
         # user want to receive portfolio rebalancing suggestion
         elif case == 'rebalance':
-            print("User message contains rebalance or rebalancing keyword\n")
+            print("\nSuggest user portfolio rebalancing\n")
             query = "Using the my portfolio and risk tolerance above, suggest me a rebalance the quantity of stock base on the risk tolerance using only my current holding stocks. Suggest with the target percentage and details the quantity of buy or sell to achieve that rebalancing."
             record("user", query)
         
         # user want to receive stock recommendation
         elif case == 'recommendation':
-            print("Stock recommendation information detected in context_data\n")
+            print("\nGive user stock recommendations\n")
             ticker = output_data[0].strip()
             prompt_recomendation = stk.prompt_recomendation(ticker)
             record("user", prompt_recomendation)
 
         # user want to know stock target price
         elif case == 'target':
-            print("User message contains price target or target keyword\n")
-            price_target = stk.stock_price_target(output_data)
-            query = f'Using this price target to response: {price_target}. Q: {user_message}'
+            print("\nGive user stock price target\n")
+            ticker = output_data[0].strip()
+            price_target = stk.stock_price_target(ticker)
+            query = f'This is the up-to-date price target: {price_target} for {ticker}. Using the price target to give me an answer: {user_message}'
             record("user", query)
 
         # user want to change risk tolerance
         elif case == 'risk':
-            print("User message contains risk tolerance keyword\n")
+            print("\nChange user's risk tolerance\n")
             risk_tolerance = output_data[0].strip()
             # update user's risk tolerance
             sql.update_risk_tolerance(email, risk_tolerance)
             logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
             record("user", user_message)
 
+        # user want to reset portfolio
+        elif case == 'reset':
+            print("\nReset user's portfolio\n")
+            # reset user's portfolio
+            sql.reset_portfolio(email)
+            logger.info('User ' + email + ' reset portfolio')
+            record("user", user_message)
+
         # normal bot reply
-        elif case == 'normal':
-            print("No stock information detected in context_data\n")
+        else:
+            print("\nReply with normal chatbot response\n")
             record("user", user_message)
         
         result = open_ai_call.gpt_with_info(messages)

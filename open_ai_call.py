@@ -4,20 +4,30 @@ from flask import request
 import sql
 from config import Config
 
+import time
+
 openai.api_key = Config.OPENAI_API_KEY
 
 
-def davinci_003(query, temperature=0.2):
+def davinci_003(query, temperature=0):
     print("Starting text-davinci-003...\n")
+
+    start_time = time.time()
+
     response = openai.Completion.create(
     model="text-davinci-003",
     prompt=query,
     temperature=temperature,
     max_tokens=100,
-    top_p=0.2,
+    top_p=0,
     frequency_penalty=0.0,
     presence_penalty=0.0,
     stop=["|"])
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    print("\nTime elapsed: " + str(elapsed_time) + " seconds\n")
 
     response = response.choices[0].text.strip("'").strip(' ')
     return response
@@ -35,10 +45,19 @@ def gpt_3(message_list, temperature=0.2):
     """
 
     print("Starting GPT-3.5-turbo...\n")
+
+    start_time = time.time()
+
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=message_list,
         temperature=temperature,)
+    
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("\nTime elapsed: " + str(elapsed_time) + " seconds\n")
+
     response = completion.choices[0].message.content
     return response
 
