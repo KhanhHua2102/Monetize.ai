@@ -182,6 +182,22 @@ You: Please change my risk tolerance to high.
 
 Bot: Hello Quang Khanh Hua, I am happy to inform you that your risk tolerance has been updated. Is there anything else I can help you with?
 
+### Get a stock price target:
+
+Ask the chatbot for a price target for a specific stock. For example:
+
+You: What is the price target for AAPL?
+
+
+
+### Reset chatbot context data:
+
+Ask the chatbot to reset your context data. This will clear your portfolio and risk tolerance. For example:
+
+You: reset
+
+Bot: Chatbot's context data cleared.
+
 ## Settings
 
 - Display user’s informations

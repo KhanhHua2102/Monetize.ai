@@ -6,7 +6,6 @@ import requests
 import yfinance as yf
 from dateutil import parser
 
-import gpt
 from config import Config
 
 CLIENT = finnhub.Client(api_key=Config.FINNHUB_API_KEY)
@@ -113,7 +112,7 @@ def prompt_profit(input_list):
         if error_msg:
             return error_msg
         stock_data = get_stock_data(num_shares, ticker, start_date, end_date)
-        response = 'Assume that I bought or sold the stock, using this information to give me a response on my stock details including start price, end price and profit if they sell it on the end date: ' + \
+        response = 'Assume that I bought or sold the stock, using this information to give me a response on my stock details including start price, end price and profit if I sell it on the end date: ' + \
             stock_data[0]
 
         return response, stock_data[1]
@@ -121,7 +120,7 @@ def prompt_profit(input_list):
 
 def prompt_recomendation(ticker):
     analystical = analyst(ticker)
-    result = 'Using this information to give the user an appropriate stocks recommendation: ' + analystical
+    result = 'Using this information to give the me an appropriate stocks recommendation: ' + analystical
 
     return result
 
@@ -142,22 +141,4 @@ def stock_price_target(symbol):
     if target_price != 'N/A':
         return target_price
     else:
-        return 'No price target found for this stock.'
-    
-
-def prompt_price_target(prompt_input):
-    prompt_input = "Based on the user's question, you have to strictly determine if the user want to receive price target for a specific stock or not. \
-        If the user want stock price target, extract the message exactly in to this format: {Ticker Symbol} \
-            Otherwise, please response exactly the word 'False'.\nUser question: " + prompt_input
-    
-    ticker = gpt.open_ai(prompt_input, 0.1)
-    
-    print(ticker + '\n')
-    
-    ticker = ticker.replace(" ", "")
-    ticker = ticker.replace(".", "")
-    ticker = stock_price_target(ticker)
-    
-    price_target = 'Using this information to give the user an appropriate stocks price target: ' + ticker
- 
-    return price_target
+        return 'No price target found for this stock'

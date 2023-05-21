@@ -4,7 +4,7 @@ Based on the user's message, you need to decide whether the user wants to do spe
 - Receive a recommendation for a stock: 'recommendation {Ticker-Symbols}'
 - Receive price target for a stock: 'target {Ticker-Symbols}'
 - Rebalance their portfolio: 'rebalance'
-- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {aggressive/moderate/conservative}'
+- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {Aggressive/Moderate/Conservative}'
 - Normal conversation: 'normal'
 Output must follow the exact formats above inside the single quotation marks only for each case, and no need for any comments or punctuation.
 The dates must be converted to dd/mm/yyyy, default start date for selling stock can be extract from user's portfolio provided above, default end date is the word 'today'; no need to assume.
