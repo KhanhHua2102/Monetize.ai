@@ -1,7 +1,7 @@
 from application import app, models
 from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request,jsonify
 from datetime import timedelta
-from flask_paginate import Pagination,get_page_args
+# from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
@@ -46,26 +46,11 @@ def portfolio():
     portfolio = sql.get_stock_data(email)[0]
     return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
 
-
-# @app.route('/history')
-# def history():
-#     # chats_test = models.messages.query.all().paginate(per_page=3)
-#     email = request.cookies.get('email')
-#     page = request.args.get('page',1,type=int)
-#     # mypage_num = int(request.args.get('mypage_num'))
-
-#     if request.args.get('mypage_num') is None:
-#         mypage_num = 5
-#     else:
-#         mypage_num = int(request.args.get('mypage_num'))
-#     print(email)
-#     user_id = sql.getUserId(email)
-#     chats = models.messages.query.filter_by(user_id=user_id)
-#     # chats_test = models.messages.query.all().paginate(per_page=3)
-#     chats_test = models.messages.query.filter_by(user_id=user_id).paginate(page=page,per_page = mypage_num)
-
-#     print(chats_test.items)
-#     return render_template('history.html',chats=chats_test)
+def message_id_exists(data,message_id):
+    for item in data:
+        if item["id"] == message_id:
+            return True
+    return False
 
 
 @app.route('/history')
@@ -73,55 +58,171 @@ def history():
     email = request.cookies.get('email')
     user_id = sql.get_user_id(email)
     search_query = request.args.get('contains')
-    all_chats = models.messages.query.filter_by(user_id=user_id)
-    
-    if search_query is None:
-        search_query = ""
-    if search_query:
-        chats = all_chats.filter(models.messages.body.contains(search_query))
 
-        # print(chat.body)
-    chats_data = []
-    filtered_chats = all_chats.all()
-    complete_chat = all_chats.all()
-    for i in range(len(all_chats.all())):
-        chat = complete_chat[i]
-    
-        # Check if the current chat is a bot message
-        if not chat.is_bot:
-            # Print the current user message
-            print("User Message:", chat.body,"\n")
-            
-            next_bot_message = "No message from bot is stored yet..."
-            # Find the next bot message from the same user
-            for j in range(i+1, len(all_chats.all())):
-                next_message = all_chats[j]
-                print(next_message)
-                if next_message.is_bot and next_message.user_id == user_id:
-                    print("Next Bot Message:", next_message.body)
+    user_chats = models.messages.query.filter_by(user_id=user_id)
+
+    return_data = []
+    if search_query is None or search_query == "":
+        chats_data = user_chats.all()
+        
+        for i in range(len(chats_data)):
+            chat = chats_data[i]
+
+            if not chat.is_bot and i< len(chats_data)-1:
+                next_bot_message = "(No message from bot is stored for this message...)"
+                next_message = chats_data[i+1]
+                if next_message.is_bot:
                     next_bot_message = next_message.body
-                    break  # Stop searching for next user message
-            chats_data.append({'created_at': chat.created_at, 'body': chat.body})
-            chats_data.append({'created_at': chat.created_at, 'body': next_bot_message})
+                    # i+=1
+                if not message_id_exists(return_data,chat.message_id) and not message_id_exists(return_data,next_message.message_id):
+                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
+                    return_data.append({'created_at': next_message.created_at, 'body': next_bot_message , 'id':next_message.message_id})
 
-        elif chat.is_bot:
-            # Print the current user message
-            print("Bot Message:", chat.body,"\n")
+            elif not chat.is_bot and i>=len(chats_data)-1:
+                next_bot_message = "(No message from bot is stored for this message...)"
+                if not message_id_exists(return_data,chat.message_id):
+                    return_data.append({'created_at': chat.created_at, 'body': chat.body ,'id' : chat.message_id})
+                    return_data.append({'created_at': chat.created_at, 'body': next_bot_message,'id':chat.message_id} )
 
-            previous_user_message = "No message from user is stored yet..."
-            #Find the previous user message from the same user
-            for j in range(i-1,0,-1):
-                previous_message = all_chats[j]
-                print("Previous Message from user : ",previous_message)
-                if previous_message.is_bot and previous_message.user_id == user_id:
-                    print("Previous User Message:", previous_message.body)
-                    previous_user_message = previous_message.body
-                    break
+            elif chat.is_bot and i>0:
+                prev_user_message = "(No message from user is stored for this message...)"
+                prev_message = chats_data[i-1]
+                if not prev_message.is_bot:
+                    prev_user_message = prev_message.body
+                if not message_id_exists(return_data,chat.message_id) and not message_id_exists(return_data,prev_message.message_id):
+                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
+                    return_data.append({'created_at': next_message.created_at, 'body': prev_user_message , 'id':prev_message.message_id})
+
+            elif chat.is_bot and i==0:
+                prev_user_message = "(No message from user is stored for this message...)"
+                if not message_id_exists(return_data,chat.message_id):
+                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
+                    return_data.append({'created_at': chat.created_at, 'body': prev_user_message , 'id':chat.message_id})
+
+
+    else:
+        filtered_chats = user_chats.filter(models.messages.body.contains(search_query)).all()
+        print(filtered_chats)
+        list_user_chats = user_chats.all()
+        for chat_item in filtered_chats:
+            # hi = chat_item.message_id
+            for i in range(len(list_user_chats)):
+                if list_user_chats[i].message_id == chat_item.message_id:
+                    if not list_user_chats[i].is_bot and i < len(list_user_chats)-1:
+                        next_bot_message = "(No message from bot is stored for this message...)"
+                        next_message = list_user_chats[i+1]
+                        if next_message.is_bot:
+                            next_bot_message = next_message.body
+                            # i+=1
+                        if not message_id_exists(return_data,chat_item.message_id) and not message_id_exists(return_data,next_message.message_id): 
+                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id' : chat_item.message_id})
+                            return_data.append({'created_at': next_message.created_at, 'body': next_bot_message , 'id':next_message.message_id})
+                    elif not list_user_chats[i].is_bot and i>=len(list_user_chats)-1:
+                        next_bot_message = "(No message from bot is stored for this message...)"
+                        if not message_id_exists(return_data,chat_item.message_id):
+                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': chat_item.message_id})
+                            return_data.append({'created_at': chat.created_at, 'body': next_bot_message , 'id':chat_item.message_id})
+                    elif list_user_chats[i].is_bot and i>0:
+                        prev_user_message = "(No message from user is stored for this message...)"
+                        prev_message = list_user_chats[i-1]
+                        if not prev_message.is_bot:
+                            prev_user_message = prev_message.body
+
+                        if not message_id_exists(return_data,chat_item.message_id) and not message_id_exists(return_data,prev_message.message_id):
+                            return_data.append({'created_at': chat_item.created_at, 'body': prev_user_message , 'id': chat_item.message_id})
+                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': prev_message.message_id})
+                    elif chat.is_bot and i==0:
+                        prev_user_message = "(No message from user is stored for this message...)"
+
+                        if not message_id_exists(return_data,chat_item.message_id):
+                            return_data.append({'created_at': chat_item.created_at, 'body': prev_user_message , 'id': chat_item.message_id})
+                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': chat_item.message_id})
+
+    return render_template('history.html', chats=return_data,search = True)
+
+
+
+# @app.route('/history')
+# def history():
+#     email = request.cookies.get('email')
+#     user_id = sql.get_user_id(email)
+#     search_query = request.args.get('contains')
+#     all_chats = models.messages.query.filter_by(user_id=user_id)
+#     # complete_chat = all_chats.all()
+#     # if search_query is None or search_query == "":
+#     #     chats_data = [{"created_at": chat.created_at, "body": chat.body} for chat in complete_chat]
+#     #     print("hereeee")
+#     #     return render_template('history.html', chats=complete_chat , search = False)
+
+#     # for chat in complete_chat:
+#     #     print(chat.body)
+#     if search_query is not None and search_query != "": 
+#         all_chats = all_chats.filter(models.messages.body.contains(search_query))
+
+#         # print(chat.body)
+#     chats_data = []
+#     complete_chat = all_chats.all()
+
+#     for i in range(len(all_chats.all())):
+#         print(complete_chat[i].body)
+#     i =0
+#     for i in range(len(all_chats.all())):
+#         chat = complete_chat[i]
+#         print(i)
+#         print("This is the chat:")
+#         print(chat.body)
+    
+#         # Check if the current chat is a bot message
+#         if not chat.is_bot:
+#             # Print the current user message
+#             print("User Message:", chat.body,"\n")
+#             print(chat.message_id)
             
-            chats_data.append({'created_at': chat.created_at, 'body': previous_user_message})
-            chats_data.append({'created_at': chat.created_at, 'body': chat.body})
+#             next_bot_message = "(No message from bot is stored for this message...)"
+#             # Find the next bot message from the same user
+#             # for j in range(i+1, len(complete_chat)):
+#             #     next_message = all_chats[j]
+#             #     print("Next Message in database: ",next_message)
+#             #     # print(next_message)
+#             #     if next_message.is_bot:
+#             #         # print("Next Bot Message:", next_message.body)
+#             #         next_bot_message = next_message.body
+#             #         break  # Stop searching for next user message
+#             print(i+1)
+#             next_message = complete_chat[i+1]
+#             print(next_message.body)
+#             if next_message.is_bot:
+#                 next_bot_message = next_message.body
+#                 i+=1
+#             print("Response from Bot:", next_bot_message)
+#             # print(next_bot_message)
+#             chats_data.append({'created_at': chat.created_at, 'body': chat.body})
+#             chats_data.append({'created_at': chat.created_at, 'body': next_bot_message})
 
-    return render_template('history.html',chats=chats_data)
+#         elif chat.is_bot:
+#             # Print the current user message
+#             print("Bot Message:", chat.body,"\n")
+
+#             previous_user_message = "(No message from user is stored for this response...)"
+#             #Find the previous user message from the same user
+#             # for j in range(i-1,0,-1):
+#             #     previous_message = all_chats[j]
+#             #     # print("Previous Message from user : ",previous_message)
+#             #     if previous_message.is_bot:
+#             #         print("Previous User Message:", previous_message.body)
+#             #         previous_user_message = previous_message.body
+#             #         break
+
+#             if i != 0:
+#                 previous_message = complete_chat[i-1]
+#                 if not previous_message.is_bot:
+#                     previous_user_message = previous_message.body
+            
+#             chats_data.append({'created_at': chat.created_at, 'body': previous_user_message})
+#             chats_data.append({'created_at': chat.created_at, 'body': chat.body})
+#     print(len(chats_data))
+#     print(chats_data)
+#     return render_template('history.html',chats=chats_data,search = True)
 
 # @app.route('/get_history', methods=['GET']) 
 def get_history():

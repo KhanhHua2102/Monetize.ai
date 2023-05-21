@@ -148,11 +148,11 @@ def generate():
         print("messages:", messages)
 
         # add user message to database
-        sql.add_message(email, user_message, datetime.now(), False)
+        sql.add_message(email, user_message, datetime.datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
-        sql.add_message(email, result, datetime.now(), True)
+        sql.add_message(email, result, datetime.datetime.now(), True)
         logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
@@ -189,22 +189,6 @@ def get_messages():
     jsonify(msg_result)
 
     return jsonify({'messages': msg_result})
-
-# @app.route('/get_history')
-# def get_history():
-#     email = request.cookies.get('email')
-#     user_id = sql.get_user_id(email)
-#     search_query = request.args.get('contains')
-#     chats = models.messages.query.filter_by(user_id=user_id)
-#     if search_query is None:
-#         search_query = ""
-#     if search_query:
-#         chats = chats.filter(models.messages.body.contains(search_query))
-
-
-#     if search_query:
-#         chats = chats.filter(models.messages.body.contains(search_query))
-#     return jsonify(chats)
 
 def record(role, message):
     """

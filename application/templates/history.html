@@ -17,9 +17,7 @@
     <h2 class="pageheader">Chat History</h2>
 
     <div class="underheader">
-        <!-- <div class="side-bar">
-            <img id="mymenu-icon" src="{{ url_for('static', filename='img/menu.svg') }}" alt="">
-            <img id="mylogo" src="{{ url_for('static', filename='img/logo.svg') }}" alt=""> -->
+        <!-- <div class="side-bar"> -->
         <!-- implementation for the side bar  -->
         {% include "includes/menu.html" %}
         <!-- </div> -->
@@ -32,7 +30,6 @@
             <div class="container ">
 
                 <div class="card-deck " id="hey">
-
 
                     {% for i in range(0,chats|length,2) %}
 
@@ -53,6 +50,7 @@
                         </div>
                     </div>
                     {% endfor %}
+
                 </div>
             </div>
         </div>
