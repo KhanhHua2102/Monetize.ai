@@ -35,7 +35,7 @@
 
                     <div class="card border ">
                         <div class="card-body">
-                            <p class="time">{{ chats[i].created_at }}</p>
+                            <p class="time">{{ chats[i].created_at.strftime("%Y-%m-%d") }}</p>
                             <img src="{{ url_for('static', filename='img/line.png') }}" alt="">
                             <div class="preview">
                                 {% if chats[i] is not none and chats[i+1] is not none %}

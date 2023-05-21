@@ -1,7 +1,6 @@
 from application import app, models
 from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request,jsonify
 from datetime import timedelta
-# from flask_paginate import Pagination,get_page_args
 
 from forms import LoginForm, SignupForm
 import secrets
@@ -55,10 +54,15 @@ def message_id_exists(data,message_id):
 
 @app.route('/history')
 def history():
+    """
+    renders the history.html template. either displays all messages or only messages that contain a search query. 
+    transform into appropriate format list to give to frontend to display.
+    """
     email = request.cookies.get('email')
     user_id = sql.get_user_id(email)
     search_query = request.args.get('contains')
 
+    # user_chats = models.messages.query.filter_by(user_id=user_id)
     user_chats = models.messages.query.filter_by(user_id=user_id)
 
     return_data = []
@@ -139,114 +143,6 @@ def history():
                             return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': chat_item.message_id})
 
     return render_template('history.html', chats=return_data,search = True)
-
-
-
-# @app.route('/history')
-# def history():
-#     email = request.cookies.get('email')
-#     user_id = sql.get_user_id(email)
-#     search_query = request.args.get('contains')
-#     all_chats = models.messages.query.filter_by(user_id=user_id)
-#     # complete_chat = all_chats.all()
-#     # if search_query is None or search_query == "":
-#     #     chats_data = [{"created_at": chat.created_at, "body": chat.body} for chat in complete_chat]
-#     #     print("hereeee")
-#     #     return render_template('history.html', chats=complete_chat , search = False)
-
-#     # for chat in complete_chat:
-#     #     print(chat.body)
-#     if search_query is not None and search_query != "": 
-#         all_chats = all_chats.filter(models.messages.body.contains(search_query))
-
-#         # print(chat.body)
-#     chats_data = []
-#     complete_chat = all_chats.all()
-
-#     for i in range(len(all_chats.all())):
-#         print(complete_chat[i].body)
-#     i =0
-#     for i in range(len(all_chats.all())):
-#         chat = complete_chat[i]
-#         print(i)
-#         print("This is the chat:")
-#         print(chat.body)
-    
-#         # Check if the current chat is a bot message
-#         if not chat.is_bot:
-#             # Print the current user message
-#             print("User Message:", chat.body,"\n")
-#             print(chat.message_id)
-            
-#             next_bot_message = "(No message from bot is stored for this message...)"
-#             # Find the next bot message from the same user
-#             # for j in range(i+1, len(complete_chat)):
-#             #     next_message = all_chats[j]
-#             #     print("Next Message in database: ",next_message)
-#             #     # print(next_message)
-#             #     if next_message.is_bot:
-#             #         # print("Next Bot Message:", next_message.body)
-#             #         next_bot_message = next_message.body
-#             #         break  # Stop searching for next user message
-#             print(i+1)
-#             next_message = complete_chat[i+1]
-#             print(next_message.body)
-#             if next_message.is_bot:
-#                 next_bot_message = next_message.body
-#                 i+=1
-#             print("Response from Bot:", next_bot_message)
-#             # print(next_bot_message)
-#             chats_data.append({'created_at': chat.created_at, 'body': chat.body})
-#             chats_data.append({'created_at': chat.created_at, 'body': next_bot_message})
-
-#         elif chat.is_bot:
-#             # Print the current user message
-#             print("Bot Message:", chat.body,"\n")
-
-#             previous_user_message = "(No message from user is stored for this response...)"
-#             #Find the previous user message from the same user
-#             # for j in range(i-1,0,-1):
-#             #     previous_message = all_chats[j]
-#             #     # print("Previous Message from user : ",previous_message)
-#             #     if previous_message.is_bot:
-#             #         print("Previous User Message:", previous_message.body)
-#             #         previous_user_message = previous_message.body
-#             #         break
-
-#             if i != 0:
-#                 previous_message = complete_chat[i-1]
-#                 if not previous_message.is_bot:
-#                     previous_user_message = previous_message.body
-            
-#             chats_data.append({'created_at': chat.created_at, 'body': previous_user_message})
-#             chats_data.append({'created_at': chat.created_at, 'body': chat.body})
-#     print(len(chats_data))
-#     print(chats_data)
-#     return render_template('history.html',chats=chats_data,search = True)
-
-# @app.route('/get_history', methods=['GET']) 
-def get_history():
-    email = request.cookies.get('email')
-    user_id = sql.get_user_id(email)
-    search_query = request.args.get('contains')
-    chats = models.messages.query.filter_by(user_id=user_id)
-    if search_query is None:
-        search_query = ""
-    if search_query:
-        chats = chats.filter(models.messages.body.contains(search_query))
-
-
-    if search_query:
-        chats = chats.filter(models.messages.body.contains(search_query))
-
-    print(chats[-1].body)
-    chats_data = [{'created_at': chat.created_at, 'body': chat.body} for chat in chats]
-
-
-    # image_url = url_for('static', filename='img/line.png')
-    return jsonify(chats_data = chats_data)
-
-
 
 
 @app.route("/settings")
@@ -339,17 +235,6 @@ def signup():
             return render_template("signup.html", form=form, error_message=error_message)
         return redirect(url_for("login"))
     return render_template("signup.html", form=form)
-
-# def search():
-#     string = request.args.get('contains')
-
-#     if string:
-#         chats = models.messages.query.filter(models.messages.body.contains(string))
-#     else:
-#         chats = models.messages.query.all()
-#     return render_template('history.html',chats = chats)
-
-
 
 ## HASH PASSWORD FUNCTION USING BCRYPT
 def hash_password(password):

@@ -224,7 +224,15 @@ Bot: Chatbot's context data cleared.
 ## History
 
 - User can search for old conversations using keywords
+- Depending on the keyword searched either previous user message (if keyword is found inside the bot's reply) or next bot message (if keyword is found inside the user's      message)
+- Able to select the number of pages they can see at one time (coming soon)
+- The message box will change depending on the message inside (coming soon)
 
+## Database schema
+![Alt Text](application/static/img/database_schema.jpeg)
+
+This is our database schema used for our project, including three tables in the database ensuring user's experiences in login, ability to search through previous chat records and change details. In the three tables provided, we have user, portfolio and message. Each table has their own primary key which is an id number. For portfolio and message table, we have user_id as a foreign key keeping track of which portfolio and message are under which user.
+ 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

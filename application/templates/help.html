@@ -4,7 +4,6 @@
 <!-- extra css file for this page -->
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- extra css -->
 {% endblock %}
@@ -27,14 +26,6 @@
                 <li>Sign Up: Create an account by providing your email address and password.</li>
                 <li>Login: Use your email and password to log into the application.</li>
             </ol>
-            <h2>Getting Started</h2>
-            <p>
-                To get started with Monetize.ai, follow these steps:
-            </p>
-            <ol>
-                <li>Sign Up: Create an account by providing your email address and password.</li>
-                <li>Login: Use your email and password to log into the application.</li>
-            </ol>
 
             <h2>Using the Chatbot</h2>
             <p>The Monetize.ai chatbot provides personalized financial advisory services. Here are some tips on using the chatbot effectively:</p>
@@ -46,7 +37,7 @@
                 </li>
                 <li>
                     <button onclick="toggleImageSection(1)">Demonstration Picture</button>
-                    <div id="image-section-1" style="display:none;" class="image-section">
+                    <div id="image-section-1" style="display: none;" class="image-section">
                         <img src="{{ url_for('static', filename='img/StartingPortfolio.jpg') }}" alt="Chatbot Image">
                     </div>
                 </li>
@@ -57,7 +48,7 @@
                 </li>
                 <li>
                     <button onclick="toggleImageSection(2)">Demonstration Picture</button>
-                    <div id="image-section-2" style="display:none;" class="image-section">
+                    <div id="image-section-2" style="display: none;" class="image-section">
                         <img src="{{ url_for('static', filename='img/Starting.jpg') }}" alt="Chatbot Image">
                         <img src="{{ url_for('static', filename='img/InvestingStrat.jpg') }}" alt="Chatbot Image">
                     </div>
@@ -69,7 +60,7 @@
                 </li>
                 <li>
                     <button onclick="toggleImageSection(3)">Demonstration Picture</button>
-                    <div id="image-section-3" style="display:none;" class="image-section">
+                    <div id="image-section-3" style="display: none;" class="image-section">
                         <img src="{{ url_for('static', filename='img/Rebalancing.jpg') }}" alt="Chatbot Image">
                     </div>
                 </li>
@@ -80,7 +71,7 @@
                 </li>
                 <li>
                     <button onclick="toggleImageSection(4)">Demonstration Picture</button>
-                    <div id="image-section-4" style="display:none;" class="image-section">
+                    <div id="image-section-4" style="display: none;" class="image-section">
                         <img src="{{ url_for('static', filename='img/High.jpg') }}" alt="Chatbot Image">
                         <img src="{{ url_for('static', filename='img/HighRisk.jpg') }}" alt="Chatbot Image">
                     </div>
@@ -92,15 +83,11 @@
                 </li>
                 <li>
                     <button onclick="toggleImageSection(5)">Demonstration Picture</button>
-                    <div id="image-section-5" style="display:none;" class="image-section">
+                    <div id="image-section-5" style="display: none;" class="image-section">
                         <img src="{{ url_for('static', filename='img/StockRecommendation.png') }}" alt="Chatbot Image">
+
                     </div>
                 </li>
-                <li>
-                    Get a stock price target: Ask the chatbot for a price target for a specific stock.
-                    <br>
-                    <strong>Example:</strong> "What is the price target for AAPL?" "Bot: The current price target for AAPL is $178.88."
-                </li>
 
             </ul>
 
@@ -116,37 +103,7 @@
                     History: Search for old conversations using keywords to quickly find past interactions with the chatbot.
                 </li>
             </ul>
-            <h2>Viewing Portfolio and History</h2>
-            <p>
-                Monetize.ai provides features to view your portfolio and conversation history:
-            </p>
-            <ul>
-                <li>
-                    Portfolio: Check your investment portfolio, including balances, profits/losses, and other metrics. This information is stored in the Portfolio section for future reference.
-                </li>
-                <li>
-                    History: Search for old conversations using keywords to quickly find past interactions with the chatbot.
-                </li>
-            </ul>
 
-            <h2>Settings</h2>
-            <p>
-                In the settings page, you can access the following options:
-            </p>
-            <ul>
-                <li>
-                    Display User Information: View your account details and make changes if necessary.
-                </li>
-                <li>
-                    Change User Information: Update your personal information such as name, email, and password.
-                </li>
-                <li>
-                    Upload Profile Picture: Customize your profile by uploading a profile picture.
-                </li>
-                <li>
-                    Change to Dark Mode: Switch to a dark mode theme for a different visual experience.
-                </li>
-            </ul>
             <h2>Settings</h2>
             <p>
                 In the settings page, you can access the following options:
@@ -180,25 +137,12 @@
                 <li>
                     Dark Mode: Enable a dark mode theme for the application.
                 </li>
-                <h2>Roadmap</h2>
-                <p>
-                    The Monetize.ai team is continuously working on improving the application. Here are some upcoming features:
-                </p>
-                <ul>
-                    <li>
-                        Change User Information in Settings page.
-                    </li>
-                    <li>
-                        Upload Profile Picture.
-                    </li>
-                    <li>
-                        Dark Mode: Enable a dark mode theme for the application.
-                    </li>
 
-                </ul>
-                <footer>
-                    <p>For more information and updates, visit the <a href="https://github.com/KhanhHua2102/CITS3403-Project">Monetize.ai GitHub repository</a>.</p>
-                </footer>
+            </ul>
+            <footer>
+                <p>For more information and updates, visit the <a href="https://github.com/KhanhHua2102/CITS3403-Project">Monetize.ai GitHub repository</a>.</p>
+            </footer>
+
         </div>
     </div>
 </div>

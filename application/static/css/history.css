@@ -7,7 +7,8 @@
 
 body {
     font-family: "Inter";
-    src: url("assets/Inter.ttf") format("truetype");
+    /* src: url("assets/Inter.ttf") format("truetype"); */
+    /* src: url("assets/Inter.ttf"); */
     font-weight: bold;
     padding-bottom: 500px;
 }
@@ -113,11 +114,6 @@ body {
     font-size: 25px;
 }
 
-
-/* .preview-content {
-    visibility: visible;
-} */
-
 .times {
     font-size: 20px;
 }
@@ -136,7 +132,7 @@ body {
 
 /* For mobile devices */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
+@media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
     #mymenu-icon {
         margin-top: 180px;
     }
