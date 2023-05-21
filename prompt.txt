@@ -2,9 +2,9 @@ Based on the user's message, you need to decide whether the user wants to do spe
 - Buy/bought a stock and checking this stock profit: 'buy {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
 - Sell/sold a stock and checking this stock profit: 'sell {number of Shares} {Ticker-Symbols} {Start-Date} {End-Date}'
 - Receive a recommendation for a stock: 'recommendation {Ticker-Symbols}'
-- Receive price target for a stock: 'target {Ticker-Symbols}'
+- Receive price target for a stock, extract the ticker: 'target {Ticker-Symbols}'
 - Rebalance their portfolio: 'rebalance'
-- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {Aggressive/Moderate/Conservative}'
+- Change their risk tolerance (Aggressive, Moderate, Conservative): 'risk {risk_tolerance}'
 - Reset their portfolio: 'reset_portfolio'
 - Normal conversation: 'normal'
 Output must follow the exact formats above inside the single quotation marks only for each case, and no need for any comments or punctuation.
