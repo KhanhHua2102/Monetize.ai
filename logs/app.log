@@ -421,6 +421,8 @@ Please note that this is just a suggestion and it's important to consider your p
 2023-05-19 17:02:20,832 INFO: Bot responded: Your risk tolerance is low, according to the information provided. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:115]
 2023-05-19 17:04:51,947 INFO: User henry@gmail.com asked: what is my risk tolerance [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:111]
 2023-05-19 17:04:51,951 INFO: Bot responded: Your risk tolerance is low, according to the information provided. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:115]
+<<<<<<< HEAD
+=======
 2023-05-20 08:52:59,024 INFO: User henry@mail.com asked: what is the price target for apple? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:118]
 2023-05-20 08:52:59,027 INFO: Bot responded: Based on the latest analyst recommendation for AAPL, it seems that the majority of analysts recommend buying the stock. However, it's important to note that past performance is not a guarantee of future results and it's always important to do your own research and consult with a financial advisor before making any investment decisions. Additionally, it's important to consider your own risk tolerance and investment goals before investing in any particular stock. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:122]
 2023-05-20 08:55:47,066 INFO: User henry@mail.com asked: finnhub.exceptions.FinnhubAPIException: FinnhubAPIException(status_code: 403): You don't have access to this resource. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:118]
@@ -624,6 +626,7 @@ Sure, Henry! Based on the information you provided, your portfolio has a total v
 2023-05-20 22:30:21,027 INFO: User henry@mail.com bought 200 shares of AAPL at $0.69 on 10-10-2004 endprice: 175.16 return percent: 25285.51 return amount: 34894.0 total: 35032.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
 2023-05-20 22:30:27,321 INFO: User henry@mail.com asked: Hi I want to calculate my profit of the stocks Apple which I buy in 10th of October 2004 I have 200 shares of it [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:133]
 2023-05-20 22:30:27,323 INFO: Bot responded: Based on the information you provided, it seems that you have already sold your 200 shares of AAPL. Your portfolio shows that you sold the shares at an end price of $175.16, resulting in a profit of $34,894.00. Please let me know if you have any other questions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:137]
+>>>>>>> origin/test-app
 =======
 2023-05-19 22:48:27,466 INFO: User hoanglongnt@gmail.com asked: Please give me a stock recommendations of Tesla company [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:105]
 2023-05-19 22:48:27,473 INFO: Bot responded: Based on the latest analyst recommendation for TSLA, it seems that the majority of analysts are recommending a buy or hold position. However, it's important to do your own research and consider your own investment goals before making any decisions. [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:109]
@@ -678,6 +681,9 @@ A: According to the information you provided, the return amount for your investm
 2023-05-20 07:20:10,606 INFO: User hoanglongnt@gmail.com asked: Hi I want to caculate the profit of the stocks Tesla which I buy in 10th Of January 2004 [in C:\Users\Admin\Desktop\Agile Web Development Project\CITS3403-Project\app.py:105]
 2023-05-20 07:20:10,614 INFO: Bot responded: Based on the information you provided, it seems that you have not held any shares of Tesla, Inc. (TSLA) from 01-10-2004 to 20-05-2023. However, I can see that you have held 201 shares of TSLA from 20-02-2020 to an unknown end date, with a start price of $59.96 and an end price of $180.14. Your return percent is 11,229.56% and your return amount is $178.55. If you sell your shares at the end date, your total profit would be $180.14 per share. Is there anything else I can help you with? [in C:\Users\Admin\Desktop\Agile Web Development Project\CITS3403-Project\app.py:109]
 >>>>>>> 048f9fcad67639e2d5a915cde07c12458e0b7e01
+<<<<<<< HEAD
+>>>>>>> origin/linux
+=======
 >>>>>>> linux
 <<<<<<< HEAD
 2023-05-21 10:14:11,312 INFO: User henry@mail.com bought 200 shares of AAPL at $0.69 on 10-10-2004 endprice: 175.16 return percent: 25285.51 return amount: 34894.0 total: 35032.0 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:80]
@@ -1069,6 +1075,7 @@ If you decide to sell your shares on the end date, based on these figures, you c
 2023-05-21 14:35:23,825 INFO: User henry@gmail.com asked: i bought 200 aapple shares on 12/12/2022 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
 2023-05-21 14:35:23,829 INFO: Bot responded: I'm sorry! I already provided the response to the same question earlier. If you have any other query, please let me know. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
 2023-05-21 14:35:42,174 INFO: User henry@gmail.com reset portfolio [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:127]
+<<<<<<< HEAD
 2023-05-21 21:02:59,203 INFO: User henry@gmail.com asked: What is the price target for Apple shares? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:149]
 2023-05-21 21:02:59,205 INFO: Bot responded: Based on your input, the price target for Apple shares is 178.88. It is important to note that the price target may change over time based on market conditions and analyst ratings. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:153]
 2023-05-21 21:06:10,647 INFO: User henry@gmail.com bought 10 shares of AAPL at $0.44 on 01-02-2002 endprice: 175.16 return percent: 39709.09 return amount: 1747.2 total: 1751.6 [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:74]
@@ -1140,3 +1147,20 @@ A: Sure, some popular budgeting apps include Mint, YNAB (You Need a Budget), and
 2023-05-20 23:04:42,456 INFO: User hoanglong@gmail.com asked: hi [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:134]
 2023-05-20 23:04:42,464 INFO: Bot responded: Hello Thai Thi Bao! How can I assist you today? [in /home/long/Desktop/Agile Web/CITS3403-Project/app.py:138]
 >>>>>>> origin/document
+=======
+>>>>>>> origin/test-app
+2023-05-21 17:38:46,140 INFO: User new@gmail.com asked: hello [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 17:38:46,141 INFO: Bot responded: Hello there! How can I assist you today? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 17:48:08,338 INFO: User ivan@gmail.com asked: hi there [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 17:48:08,344 INFO: Bot responded: Hello! How can I assist you today? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 17:48:19,817 INFO: User ivan@gmail.com asked: what is my name [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 17:48:19,819 INFO: Bot responded: Your name is Yin Min. Is there anything else I can help you with? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 20:35:41,863 INFO: User okay@gmail.com asked: foasjdfad [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 20:35:41,869 INFO: Bot responded: I'm sorry, I didn't understand what you are trying to say. Can you please rephrase or ask a question related to personal finance? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 20:35:59,579 INFO: User okay@gmail.com asked: how are you today [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 20:35:59,586 INFO: Bot responded: As an AI language model, I don't have feelings, but I'm functioning properly and ready to assist you with any question you have related to personal finance. How can I help you today? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 20:36:15,369 INFO: User okay@gmail.com asked: can you tell me my password? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 20:36:15,376 INFO: Bot responded: I'm sorry, but for security reasons, I don't have access to your password. If you forgot your password, you can reset it through the login page on the website or application you're trying to access. [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+2023-05-21 21:23:40,436 INFO: User this@gmail.com asked: heoahiesfa [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:152]
+2023-05-21 21:23:40,439 INFO: Bot responded: I'm sorry, I didn't understand what you're trying to ask. Could you please provide a valid question or query so that I can assist you better? [in /Users/tinsein/Desktop/University of Western Australia/Semester 1,2023/Agile Web Development CITS3403/Project/CITS3403-Project/app.py:156]
+>>>>>>> ivan

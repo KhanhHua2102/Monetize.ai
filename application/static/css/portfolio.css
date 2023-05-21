@@ -15,6 +15,46 @@
     display: block;
     position: fixed;
     top: 5%;
+    /* left: 5%; */
+    width: 50px;
+    height: 50px;
+    /* margin-left: 6%; */
+}
+
+.menu {
+    z-index: 1;
+    position: fixed;
+    float: left;
+    top: 10%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.menu button {
+    position: relative;
+    display: none;
+    width: 100px;
+    height: 45px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: #75C9B7;
+    border-radius: 12px;
+}
+
+#logo {
+    display: none;
+}
+
+#menu-icon {
+    display: block;
+    position: fixed;
+    top: 5%;
     width: 50px;
     height: 50px;
 }
@@ -50,26 +90,21 @@
     margin-left: 40px;
 }
 
-
-
 /* Mobile Styles */ 
 @media only screen and (min-width: 320px) and (max-width: 500px) and (orientation: portrait) {
     body {
         font-size: 21px;
     }
-
     h1 {
         font-size: 60px;
     }
-
     #logo {
         display: none;
     }
-
-    .download-csv h4, .download-csv button {
+    .download-csv h4,
+    .download-csv button {
         font-size: 35px;
     }
-    
     #portfolio-chart {
         margin-left: 0px;
         margin-top: 150px;

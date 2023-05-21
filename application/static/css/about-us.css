@@ -83,6 +83,7 @@ body {
     text-align: center;
     font-size: 30px;
     margin: 5px;
+    padding-bottom: 10px;
     border-style: solid;
     border-color: rgb(116, 206, 206);
     border-radius: 20px;
@@ -97,7 +98,6 @@ body {
 .section {
     max-height: 0;
     overflow: hidden;
-
 }
 
 .section p {
@@ -111,7 +111,9 @@ body {
     margin-left: 20%;
 }
 
+
 /* For mobile devices */
+
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
     #logo {
         position: fixed;
@@ -120,39 +122,31 @@ body {
         height: 90%;
         border-radius: 30px;
     }
-
     .contents {
         width: 90%;
         margin-left: 8%;
         margin-top: 20%;
     }
-
     .intro {
         font-size: 35px;
         margin-top: 50px;
         margin-bottom: 100px;
         font-weight: bold;
-
     }
-
     .instruction {
         font-weight: lighter;
         font-size: 40px;
     }
-
     .section img {
         width: 50%;
         padding: 10px;
     }
-
     .section h2 {
         font-size: 50px;
     }
-
     .section p {
         font-size: 30px;
     }
-
     .teamImages img {
         width: 800px;
         height: auto;

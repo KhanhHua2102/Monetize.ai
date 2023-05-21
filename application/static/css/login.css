@@ -1,453 +1,399 @@
 /* Default Style */
 body {
-	margin: 0;
-	padding: 0;
-	font-family: "Open Sans", sans-serif;
-	background-color: #fffefe;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    background-color: #fffefe;
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	height: 100vh;
-	max-width: 310px;
-	/* add max-width to limit the width of the container */
-	margin: 0 auto;
-	padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    max-width: 310px;
+    /* add max-width to limit the width of the container */
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 .member {
-	width: 260px;
-	height: 70px;
-	left: 81px;
-	top: 192px;
-	font-family: 'Arial';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 36px;
-	line-height: 44px;
-	text-align: center;
+    width: 260px;
+    height: 70px;
+    left: 81px;
+    top: 192px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
 }
 
 .logo {
-	width: 200px;
-	margin-bottom: 10px;
+    width: 200px;
+    margin-bottom: 10px;
 }
-
 
 input[type="text"],
 input[type="password"] {
-	box-sizing: border-box;
-	display: block;
-	width: 310px;
-	height: 48px;
-	left: calc(50% - 310px/2 + 0.5px);
-	top: 371px;
-
-	background: #EDEFEE;
-	/* Color 1 */
-
-	border: 1px solid #ABD699;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 10px;
-	font-family: 'Arial';
-	font-style: normal;
-
-	font-size: 20px;
-	line-height: 25px;
+    box-sizing: border-box;
+    display: block;
+    width: 310px;
+    height: 48px;
+    left: calc(50% - 310px/2 + 0.5px);
+    top: 371px;
+    background: #EDEFEE;
+    /* Color 1 */
+    border: 1px solid #ABD699;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 25px;
 }
 
 input::placeholder {
-	color: #A6A4A4;
+    color: #A6A4A4;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-	outline: none;
-	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-
+    outline: none;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 button {
-	background-color: #2c3e50;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	padding: 10px;
-	cursor: pointer;
-	width: 100%;
-	font-size: 16px;
-	transition: background-color 0.2s ease-in-out;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
 }
 
 button:hover {
-	background-color: #34495e;
+    background-color: #34495e;
 }
 
-
-
 form input {
-	border: none;
-	border-bottom: 2px solid #eaeaea;
-	margin-bottom: 20px;
-	width: 100%;
+    border: none;
+    border-bottom: 2px solid #eaeaea;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 form input:focus {
-	border-bottom-color: #3498db;
-	outline: none;
+    border-bottom-color: #3498db;
+    outline: none;
 }
 
 form button[type="submit"] {
-	box-sizing: border-box;
-
-	width: 310px;
-	height: 52px;
-	left: calc(50% - 310px/2);
-	top: 558px;
-
-	/* Color 5 */
-
-	background: #16123F;
-	/* Color 5 */
-
-	border: 1px solid #16123F;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 10px;
-
-	font-family: 'Arial';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 21px;
-	line-height: 25px;
-	text-align: center;
-
-	color: #FFFFFF;
+    box-sizing: border-box;
+    position: block;
+    width: 310px;
+    height: 52px;
+    left: calc(50% - 310px/2);
+    top: 558px;
+    /* Color 5 */
+    background: #16123F;
+    /* Color 5 */
+    border: 1px solid #16123F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 form button[type="submit"]:hover {
-	background-color: #2980b9;
+    background-color: #2980b9;
 }
 
 .social-btns {
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-btns button {
-	box-sizing: border-box;
-
-	display: block;
-	width: 310px;
-	height: 52px;
-	left: calc(50% - 310px/2 - 2px);
-	top: 732px;
-
-	border: 1px solid #16123F;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-	border-radius: 10px;
-	font-family: 'Arial';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 21px;
-	line-height: 25px;
-	text-align: center;
-	color: #100e0e;
-	text-transform: none;
+    box-sizing: border-box;
+    display: block;
+    width: 310px;
+    height: 52px;
+    left: calc(50% - 310px/2 - 2px);
+    top: 732px;
+    border: 1px solid #16123F;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25px;
+    text-align: center;
+    color: #100e0e;
+    text-transform: none;
 }
 
 .social-btns button:hover {
-	background-color: #ABD699;
-	;
+    background-color: #ABD699;
+    ;
 }
 
 .facebook-btn,
 .google-btn {
-	display: flex;
-
-	background-color: #fff;
-	color: #555;
-	border: 2px solid #ccc;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-top: 20px;
-	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    background-color: #fff;
+    color: #555;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .google-btn img {
-	height: 20px;
-	margin-right: 5px;
-	margin-left: 5px;
-	text-align: left;
-	float: left;
-	width: 25px;
-	height: 25px;
-
+    height: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: left;
+    float: left;
+    width: 25px;
+    height: 25px;
 }
 
 .facebook-btn img {
-	height: 20px;
-	width: 25px;
-	height: 25px;
-	text-align: left;
-	float: left;
-	margin-right: 5px;
-	margin-left: 5px;
-
+    height: 20px;
+    width: 25px;
+    height: 25px;
+    text-align: left;
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .facebook-btn span,
 .google-btn span {
-
-	text-align: left;
-	float: left
+    text-align: left;
+    float: left
 }
 
 .facebook-btn:hover,
 .google-btn:hover {
-	background-color: #3b5998;
-	color: #ececec;
-	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: #3b5998;
+    color: #ececec;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-footer {
-	margin-top: 20px;
-	padding: 0 0 20px 0;
-	display: block;
-	justify-content: space-between;
-	align-items: center;
-	font-family: 'Arial';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 13px;
-	line-height: 17px;
+    margin-top: 20px;
+    padding: 0 0 20px 0;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 17px;
 }
 
 .form-footer .sign-Up {
-	display: inline-block;
-
+    display: inline-block;
 }
 
 .no-underline {
-	text-decoration: none;
-	color: #1276EC;
+    text-decoration: none;
+    color: #1276EC;
 }
 
 .form-footer .forgot-password {
-	display: inline-block;
-	font-size: 13px;
-	color: #1276EC;
-	margin-left: 45px;
+    display: inline-block;
+    font-size: 13px;
+    color: #1276EC;
+    margin-left: 45px;
 }
 
-
 .line-or-container {
-	margin-top: 10px;
-	display: flex;
-	align-items: center;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .line {
-	height: 1px;
-	border: none;
-	background-color: #ccc;
-	flex-grow: 1;
-	margin-right: 10px;
-	margin-left: 10px;
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+    flex-grow: 1;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .or {
-	font-size: 12px;
-	color: #333;
-	font-weight: 800;
+    font-size: 12px;
+    color: #333;
+    font-weight: 800;
 }
 
 small {
-	font-size: 1em;
+    font-size: 1em;
 }
 
 /* Mobile Styles */
-
 @media only screen and (min-width: 320px) and (max-width: 600px) and (orientation: portrait) {
-	.container {
-		height: 100vh;
-		max-width: 700px;
-		/* add max-width to limit the width of the container */
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-
-	.member {
-		width: 700px;
-		height: 90px;
-		left: 81px;
-		top: 192px;
-		font-family: 'Arial';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 70px;
-		line-height: 44px;
-		text-align: center;
-		padding-top: 20px;
-		/* add text alignment */
-	}
-
-	#logo {
-		width: 200px;
-		margin-top: 40px;
-		margin-bottom: 10px;
-	}
-
-	form button[type="submit"] {
-		box-sizing: border-box;
-
-		width: 800px;
-		height: 100px;
-		left: calc(50% - 800px/2);
-		top: 558px;
-
-		/* Color 5 */
-
-		background: #16123F;
-		/* Color 5 */
-
-		border: 1px solid #16123F;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
-
-		font-family: 'Arial';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 55px;
-		line-height: 25px;
-		text-align: center;
-		margin-bottom: 30px;
-		color: #FFFFFF;
-	}
-
-
-	.social-btns button {
-		box-sizing: border-box;
-
-		display: block;
-		width: 800px;
-		height: 100px;
-		left: calc(50% - 800px/2 - 2px);
-		top: 732px;
-
-		border: 1px solid #16123F;
-		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-		border-radius: 20px;
-		font-family: 'Arial';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 50px;
-		line-height: 50px;
-		text-align: center;
-		color: #100e0e;
-		text-transform: none;
-		clear: both;
-	}
-
-	.google-btn img,
-	.facebook-btn img {
-		margin-right: 25px;
-		margin-left: 30px;
-		text-align: left;
-		float: left;
-		width: 55px;
-		height: 55px;
-
-	}
-
-	.line {
-		height: 2px;
-		border: none;
-		background-color: #a9a9a9;
-		flex-grow: 1;
-		margin-right: 10px;
-		margin-left: 10px;
-	}
-
-	.or {
-		font-size: 25px;
-		color: #333;
-		font-weight: 800;
-	}
-
-	input[type="text"],
-	input[type="password"] {
-		box-sizing: border-box;
-		display: block;
-		width: 800px;
-		height: 85px;
-		left: calc(50% - 800px/2 + 0.5px);
-		top: 371px;
-
-		background: #EDEFEE;
-		/* Color 1 */
-
-		border: 1px solid #ABD699;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
-		font-family: 'Arial';
-		font-style: normal;
-
-		font-size: 40px;
-		line-height: 25px;
-		padding-left: 30px;
-	}
-
-	.form-footer .sign-Up {
-		display: inline-block;
-		font-size: 25px;
-		margin-left: 20px;
-
-	}
-
-	.no-underline {
-		text-decoration: none;
-		color: #1276EC;
-	}
-
-	.form-footer .forgot-password {
-		display: inline-block;
-		font-size: 25px;
-		color: #1276EC;
-		margin-left: 250px;
-
-	}
-
-	label {
-		font-size: 30px;
-		margin-bottom: 10px;
-	}
-
-	form input {
-		margin-bottom: 40px;
-	}
-
-	.facebook-btn,
-	.google-btn {
-		margin-top: 40px;
-	}
-
-	.form-footer {
-		margin-top: 20px;
-		margin-bottom: 30px;
-	}
-
-	small {
-		font-size: 2em;
-
-	}
-
-	.alert-danger {
-		font-size: 30px;
-	}
+    .container {
+        height: 100vh;
+        max-width: 700px;
+        /* add max-width to limit the width of the container */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .member {
+        width: 700px;
+        height: 90px;
+        left: 81px;
+        top: 192px;
+        font-family: 'Arial';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 70px;
+        line-height: 44px;
+        text-align: center;
+        padding-top: 20px;
+        /* add text alignment */
+    }
+    #logo {
+        width: 200px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+    form button[type="submit"] {
+        box-sizing: border-box;
+        width: 800px;
+        height: 100px;
+        left: calc(50% - 800px/2);
+        top: 558px;
+        /* Color 5 */
+        background: #16123F;
+        /* Color 5 */
+        border: 1px solid #16123F;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        font-family: 'Arial';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 25px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #FFFFFF;
+    }
+    .social-btns button {
+        box-sizing: border-box;
+        display: block;
+        width: 800px;
+        height: 100px;
+        left: calc(50% - 800px/2 - 2px);
+        top: 732px;
+        border: 1px solid #16123F;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 20px;
+        font-family: 'Arial';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: #100e0e;
+        text-transform: none;
+        clear: both;
+    }
+    .google-btn img,
+    .facebook-btn img {
+        margin-right: 25px;
+        margin-left: 30px;
+        text-align: left;
+        float: left;
+        width: 55px;
+        height: 55px;
+    }
+    .line {
+        height: 2px;
+        border: none;
+        background-color: #a9a9a9;
+        flex-grow: 1;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .or {
+        font-size: 25px;
+        color: #333;
+        font-weight: 800;
+    }
+    input[type="text"],
+    input[type="password"] {
+        box-sizing: border-box;
+        display: block;
+        width: 800px;
+        height: 85px;
+        left: calc(50% - 800px/2 + 0.5px);
+        top: 371px;
+        background: #EDEFEE;
+        /* Color 1 */
+        border: 1px solid #ABD699;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        font-family: 'Arial';
+        font-style: normal;
+        font-size: 40px;
+        line-height: 25px;
+        padding-left: 30px;
+    }
+    .form-footer .sign-Up {
+        display: inline-block;
+        font-size: 25px;
+        margin-left: 20px;
+    }
+    .no-underline {
+        text-decoration: none;
+        color: #1276EC;
+    }
+    .form-footer .forgot-password {
+        display: inline-block;
+        font-size: 25px;
+        color: #1276EC;
+        margin-left: 250px;
+    }
+    label {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    form input {
+        margin-bottom: 40px;
+    }
+    .facebook-btn,
+    .google-btn {
+        margin-top: 40px;
+    }
+    .form-footer {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    small {
+        font-size: 2em;
+    }
+    .alert-danger {
+        font-size: 30px;
+    }
 }

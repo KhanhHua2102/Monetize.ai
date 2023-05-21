@@ -7,6 +7,9 @@ from flask_cors import CORS
 
 import open_ai_call
 import sql
+import datetime
+
+# import json
 import stock as stk
 from application import app
 
@@ -146,11 +149,11 @@ def generate():
         print("messages:", messages)
 
         # add user message to database
-        sql.add_message(email, user_message, datetime.now(), False)
+        sql.add_message(email, user_message, datetime.datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
-        sql.add_message(email, result, datetime.now(), True)
+        sql.add_message(email, result, datetime.datetime.now(), True)
         logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
@@ -188,6 +191,17 @@ def get_messages():
 
     return jsonify({'messages': msg_result})
 
+def record(role, message):
+    """
+    Record messages into a global variable
+
+    Args:
+        role (string): user or assistant
+        message (string): message content
+    """
+    global messages
+    messages.append({"role": role, "content": message})
+    
 
 def record(role, message):
     """

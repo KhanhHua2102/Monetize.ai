@@ -37,7 +37,8 @@ def add_user(user_name, email, password, phone_number):
 # return user data from user table in database as JSON object
 def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
-    
+    # if user:
+    #     user_data = {"user_id":user.user_id ,"user_name":user.user_name ,"email":user.email,"phone_number":user.phonenumber,"password":user.password,"risk_tolerence":user.risk_tolerence}
     if user is not None:
         return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
     return None
@@ -137,8 +138,8 @@ def add_message(email, message, date, is_bot=False):
     existing_message = models.messages.query.filter_by(
         user_id=user_id, body=message).first()
     if not existing_message:
-        new_message = models.messages(
-            user_id=user_id, body=message, created_at=date, is_bot=is_bot)
+        print(message)
+        new_message = models.messages(user_id=user_id, body=message, created_at=date, is_bot=is_bot)
         models.db.session.add(new_message)
     models.db.session.commit()
     models.db.session.close()
@@ -152,6 +153,8 @@ def update_risk_tolerance(email, risk_tolerance):
     user.risk_tolerance = risk_tolerance
     models.db.session.commit()
     models.db.session.close()
+
+
 
 
 with app.app_context():

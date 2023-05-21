@@ -213,6 +213,9 @@ Bot: Chatbot's context data cleared.
 
 ## History
 - User can search for old conversations using keywords
+- Depending on the keyword searched either previous user message (if keyword is found inside the bot's reply) or next bot message (if keyword is found inside the user's      message)
+- Able to select the number of pages they can see at one time (coming soon)
+- The message box will change depending on the message inside (coming soon)
 
 ![Alt Text](application/static/img/database_schema.jpeg)
 
@@ -237,7 +240,7 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 ## Contributing
 **Quang Khanh Hua (22928469)**
 
-**Yin Ming Aung (23176841)**
+**Yin Min Aung (23176841)**
 
 **Hoang Long Nguyen (23147438)**
 

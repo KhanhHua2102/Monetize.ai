@@ -3,8 +3,11 @@
 
 <!-- extra css file for this page -->
 {% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/history.css')}}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
 <!-- extra css -->
 {% endblock %}
 
@@ -14,68 +17,47 @@
     <h2 class="pageheader">Chat History</h2>
 
     <div class="underheader">
-
+        <!-- <div class="side-bar"> -->
+        <!-- implementation for the side bar  -->
         {% include "includes/menu.html" %}
-
+        <!-- </div> -->
         <div class="contents">
-            <form class="searchbar">
-                <input type="text" placeholder="Search for your history here">
+            <form class="searchbar" method="GET" action="{{ url_for('history') }}">
+                <input type="text" placeholder="Search for your history here" name="contains">
+                <input type="submit" value="Search">
             </form>
 
-            <div class="container">
+            <div class="container ">
 
-                <div class="card-deck">
-                    <div class="card border">
+                <div class="card-deck " id="hey">
+
+                    {% for i in range(0,chats|length,2) %}
+
+                    <div class="card border ">
                         <div class="card-body">
-                            <p class="time">Last edited: 09/04/2023 15:00
-                            </p>
-                            <img src="{{ url_for('static',filename='img/line.png')}}" alt="">
+                            <p class="time">{{ chats[i].created_at.strftime("%Y-%m-%d") }}</p>
+                            <img src="{{ url_for('static', filename='img/line.png') }}" alt="">
                             <div class="preview">
-                                <p class="preview-title">How to buy crypto</p>
-                                <p class="preview-content">Some of the stuffs from the chat..</p>
+                                {% if chats[i] is not none and chats[i+1] is not none %}
+                                <p class="preview-content">Q: {{ chats[i].body[:50] }} ...<br>A: {{ chats[i+1].body[:50] }} ... </p>
+                                {% else %} {% if chats[i] is not none %}
+                                <p class="preview-content">{{ chats[i].body[:50] }} ...</p>
+                                {% else %}
+                                <p class="preview-content">{{ chats[i+1].body[:50] }}...</p>
+
+                                {% endif %} {% endif %}
                             </div>
                         </div>
                     </div>
-                    <div class="card border">
-                        <div class="card-body">
-                            <p class="time">Last edited: 09/04/2023 22:00
-                            </p>
-                            <img src="{{ url_for('static',filename='img/line.png')}}" alt="">
-                            <div class="preview">
-                                <p class="preview-title">How to get a girlfriend</p>
-                                <p class="preview-content">Some of the stuffs from the chat..</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
             </div>
-            <div class="paging">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-
-                <div class="chatnumber">
-                    <button class="btn btn-secondary dropdown-toggle" type="button">
-                        Items per Page
-                </button>
-
-                </div>
-            </div>
-
-
         </div>
-
     </div>
 </div>
 
 {% endblock %}
 
 <!-- adding javascript for the side bar -->
-{% block script %}
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="{{ url_for('static', filename='js/chat-screen.js') }}"></script>
-{% endblock %}
+{% block script %} {% endblock %}

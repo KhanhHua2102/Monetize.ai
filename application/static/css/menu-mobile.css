@@ -1,5 +1,6 @@
 /* Default Style
     Toggle dropdown menu */
+
 #logo {
     position: fixed;
     float: left;
@@ -41,11 +42,11 @@
 
 
 /* For mobile devices */
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 500px) and (orientation: portrait) {
     #logo {
         display: none;
     }
-
     #menu-icon {
         display: block;
         position: fixed;
@@ -54,7 +55,6 @@
         width: 50px;
         height: 50px;
     }
-
     .menu {
         position: fixed;
         left: 10px;
@@ -70,7 +70,6 @@
         text-align: center;
         justify-content: space-between;
     }
-
     .menu a {
         display: none;
         width: 160px;
