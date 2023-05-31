@@ -244,11 +244,11 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 
 <!-- CONTRIBUTING -->
 ## Contributing
-**Quang Khanh Hua (22928469)**
+**Quang Khanh Hua (Henry)**
 
-**Yin Min Aung (23176841)**
+**Yin Min Aung (Ivan)**
 
-**Hoang Long Nguyen (23147438)**
+**Hoang Long Nguyen**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

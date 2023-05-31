@@ -1,6 +1,5 @@
 from application import app, models
 from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request,jsonify
-from datetime import timedelta
 
 from forms import LoginForm, SignupForm
 import secrets

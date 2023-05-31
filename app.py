@@ -201,17 +201,5 @@ def record(role, message):
     messages.append({"role": role, "content": message})
     
 
-def record(role, message):
-    """
-    Record messages into a global variable
-
-    Args:
-        role (string): user or assistant
-        message (string): message content
-    """
-    global messages
-    messages.append({"role": role, "content": message})
-    
-
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1:5001')
