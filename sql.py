@@ -41,6 +41,25 @@ def get_user_data(email):
         return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
     return None
 
+def out_of_trials(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        return user.trials == 0
+    return None
+
+def update_trials(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.trials -= 1
+        models.db.session.commit()
+        models.db.session.close()
+
+def increase_trials(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.trials += 999
+        models.db.session.commit()
+        models.db.session.close()
 
 def get_user_id(email):
     user = models.user.query.filter_by(email=email).first()

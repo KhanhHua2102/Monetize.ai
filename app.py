@@ -49,6 +49,13 @@ def generate():
         print("user message received:")
         print(user_message + '\n')
 
+        # Check if user has run out of trial messages
+        if sql.out_of_trials(email):
+            print("User has run out of trials\n")
+            return jsonify({'out_of_trials': "True"})
+        else:
+            sql.update_trials(email)
+
         # decide which action to use based on user message input
         with open('prompt.txt', 'r') as prompt:
             prompt_input = prompt.read()
@@ -199,6 +206,34 @@ def record(role, message):
     """
     global messages
     messages.append({"role": role, "content": message})
+
+
+@app.route('/update_openai_key', methods=['POST'])
+def update_openai_key():
+    """
+    Update OpenAI key
+
+    Args:
+        key (string): new OpenAI key
+    """
+    data = request.get_json()
+    email = request.cookies.get('email')
+    key = data['key']
+    print("user key received:")
+    print(key + '\n')
+
+    print("updating key\n")
+    open_ai_call.update_openai_key(key)
+    print("key updated\n")
+
+    # update_success = open_ai_call.test_openai_key()
+    update_success = True
+    
+    if update_success:
+        sql.increase_trials(email)
+        return jsonify({'response': 'OpenAI key updated.'})
+    else:
+        return jsonify({'response': 'Invalid OpenAI key.'})
     
 
 if __name__ == '__main__':

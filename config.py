@@ -7,7 +7,7 @@ DEBUG = True
 class Config(object):
 
     # Enter your Open API Key here
-    OPENAI_API_KEY = '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'
+    OPENAI_API_KEY = ''
 
     FINNHUB_API_KEY = 'ch4k2vpr01quc2n4rj5gch4k2vpr01quc2n4rj60'
 

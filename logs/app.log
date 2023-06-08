@@ -21,3 +21,11 @@ It's important to keep in mind that investing always comes with a certain level 
 2023-05-30 23:34:38,031 INFO: Bot responded: Based on the information you provided, it appears that you have made a profit on your investment in AMD. You had purchased 150 shares at a starting price of $85.16 per share and sold them at an ending price of $127.43 per share. This indicates that you have made a profit of $6340.50.
 
 If you were to sell your shares today, you would make a profit of $6340.50. It's important to keep in mind that selling your shares now may not be the best investment decision as AMD's future performance is uncertain and past performance does not guarantee future results. It's always a good practice to re-evaluate your portfolio and investment goals regularly and consider seeking professional advice before making any investment decisions. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:155]
+2023-06-08 12:21:35,077 INFO: User quang.khanh2102@gmail.com asked: hello whats my name? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:157]
+2023-06-08 12:21:35,081 INFO: Bot responded: Your name is Quang Khanh Hua. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:161]
+2023-06-08 12:21:40,102 INFO: User quang.khanh2102@gmail.com asked: hello whats my name? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:157]
+2023-06-08 12:21:40,104 INFO: Bot responded: Your name is Quang Khanh Hua. [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:161]
+2023-06-08 12:53:23,627 INFO: User quang.khanh2102@gmail.com asked: hello how are you? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:158]
+2023-06-08 12:53:23,630 INFO: Bot responded: Hello! I'm just a machine, but I'm programmed to be helpful and polite. Thank you for asking! How can I assist you today? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:162]
+2023-06-08 12:54:11,329 INFO: User quang.khanh2102@gmail.com asked: hellow [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:158]
+2023-06-08 12:54:11,331 INFO: Bot responded: Hi! How can I assist you today? [in /Users/khanhhua/Documents/Coding/CITS3403-Project/app.py:162]

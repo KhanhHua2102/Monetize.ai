@@ -9,6 +9,17 @@ import time
 openai.api_key = Config.OPENAI_API_KEY
 
 
+def update_openai_key(key):
+    """
+    Update OpenAI key
+
+    Args:
+        key (string): new OpenAI key
+    """
+    Config.OPENAI_KEY = key
+    openai.api_key = Config.OPENAI_KEY
+
+
 def davinci_003(query, temperature=0):
     print("Starting text-davinci-003...\n")
 
