@@ -52,22 +52,15 @@
 
 <!-- ABOUT THE PROJECT -->
 # About The Project
-Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 language model and integrates with the Yahoo Finance API to crawl financial data such as stocks and cryptocurrencies. The application is built using the Flask framework and SQLite for the database on the server side. The client side is built using HTML, CSS, JavaScript with Bootstrap framework and jQuery for the client-side rendering.
+Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 and Davinci_003 language model and integrates with the Yahoo Finance, Alpha Vantage and Finnhub API to crawl financial data such as stocks and cryptocurrencies.
 
-The main objective of this project is to provide users with a personalized financial advisory service that can help them manage their investment portfolios in an efficient and effective manner. Users can declare their investment portfolios to the chat bot and receive advice on how to balance their portfolios using modern portfolio theory. The chat bot can also calculate profits/losses and provide other useful metrics related to the user's portfolio. All of the user's portfolio data is stored in the Portfolio section for future reference.
+The main objective of this project is to provide users with a personalized financial advisory service that can help them manage their investment portfolios in an efficient and effective manner. The targeted users are people who works in the financial industry and have a good understanding of the financial market. The application is also suitable for people who are interested in investing and want to learn more about the financial market. Users can declare their investment portfolios to the chat bot and receive advice on how to balance their portfolios using modern portfolio theory. The chat bot can also calculate profits/losses and provide other useful metrics related to the user's portfolio. All of the user's portfolio data is stored in the Portfolio section for future reference.
 
-The Monetize.ai GitHub repository contains all the source code for the web-based application, including the chat bot implementation and the integration with the Yahoo Finance API. The application is built using Flask, a popular Python web framework, and the SQLite database for efficient and scalable data storage. The client-side rendering is done using HTML, CSS, JavaScript, and Bootstrap, making it easy to use and accessible across different devices.
+The application is built using Flask, a popular Python web framework, and the SQLite database for efficient and scalable data storage. The client-side rendering is done using HTML, CSS, JavaScript, and Bootstrap, making it easy to use and accessible across different devices.
 
 The repository is organized into several modules, each responsible for a specific aspect of the application. The main module is the chat bot itself, which handles user queries and provides advice based on the user's portfolio data. Other modules include the Yahoo Finance API integration, database management, and modern portfolio theory calculations.
 
-Additionally, the application features a secure login and sign-up functionality with email validations using Flask WTF. This ensures that only authorized users can access the application and their personal portfolio data. Password hashing is implemented to enhance security and protect user passwords from unauthorized access.
-
-The databases are regularly updated to provide users with the latest financial data from the Yahoo Finance API. The updated data is then displayed in the application's settings pages, where users can view and manage their personal information, including their investment portfolios and other relevant details. The settings pages offer a convenient way for users to customize their experience and make changes to their account settings.
-
 Monetize.ai is an open-source project, welcoming contributions from developers who want to improve its functionality and features. The repository includes comprehensive documentation to assist developers in getting started with the project and contributing code. An active community of developers and users is available to provide support and guidance on using the application effectively.
-
-Overall, Monetize.ai provides a powerful and user-friendly platform for personalized financial advisory services, integrating AI-powered chat bot capabilities with real-time financial data, all within a secure and accessible web-based application.
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -252,8 +245,6 @@ See the [open issues](https://github.com/KhanhHua2102/CITS3403-Project/issues) f
 ## Contact
 
 Quang Khanh Hua - henry@khanhhua2102.com
-
-Project Link: [https://github.com/KhanhHua2102/CITS3403-Project](https://github.com/KhanhHua2102/CITS3403-Project)
 
 [![linkedin-shield]][linkedin-url]
 
