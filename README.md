@@ -24,7 +24,6 @@
   </p>
 </div>
 
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -51,6 +50,8 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+![Project Screenshot](application/static/img/AppShowcase.png)
+
 # About The Project
 Monetize.ai is a web-based chat bot application that utilizes the GPT-3.5 and Davinci_003 language model and integrates with the Yahoo Finance, Alpha Vantage and Finnhub API to crawl financial data such as stocks and cryptocurrencies.
 
