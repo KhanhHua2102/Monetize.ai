@@ -102,3 +102,5 @@ yarl==1.8.2
 yfinance==0.2.17
 zipp==3.15.0
 gunicorn==20.0.4
+flask_cors==3.0.10
+```
