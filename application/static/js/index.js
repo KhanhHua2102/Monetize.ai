@@ -11,20 +11,36 @@ $(document).ready(function () {
 	});
 
 	// Event handler for button click
-	$(".chat-action button").click(function (event) {
-		event.preventDefault();
-		console.log("submit button clicked");
-		sendQuery();
-	});
+	// $(".chat-action button").click(function (event) {
+	// 	event.preventDefault();
+	// 	console.log("submit button clicked");
+	// 	sendQuery();
+	// });
 
-	// Event handler for Enter key press
-	$(".chat-action input").on("keypress", function (event) {
-		if (event.which === 13) {
+	// // Event handler for Enter key press
+	// $(".chat-action input").on("keypress", function (event) {
+	// 	if (event.which === 13) {
+	// 		event.preventDefault();
+	// 		console.log("enter pressed");
+	// 		sendQuery();
+	// 	}
+	// });
+
+	$(".chat-action button, .chat-action input").on(
+		"click keypress",
+		function (event) {
+			if (event.type === "keypress" && event.which !== 13) {
+				return; // Ignore keypress events other than Enter key
+			}
 			event.preventDefault();
-			console.log("enter pressed");
+			if (event.type === "click") {
+				console.log("submit button clicked");
+			} else {
+				console.log("enter pressed");
+			}
 			sendQuery();
 		}
-	});
+	);
 });
 
 // Displays a loading animation and initial bot message
@@ -195,3 +211,5 @@ function findApiKey(text) {
 		return null;
 	}
 }
+
+export { findApiKey };

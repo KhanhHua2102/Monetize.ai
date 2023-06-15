@@ -45,21 +45,17 @@ body {
     width: 30px;
 }
 
-
-
 form {
     display: flex;
     flex-direction: column;
-    grid-template-columns: max-content 1fr;
-    grid-gap: 10px 20px;
-    justify-items: end;
+    justify-items: center;
     padding-top: 100px;
 
     align-items: center;
 }
 
 form * {
-    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 label {
@@ -142,7 +138,6 @@ input[type="text"],
 input[type="email"] {
     box-sizing: border-box;
 
-
     width: 500px;
     height: 30px;
     left: 308px;
@@ -154,19 +149,23 @@ input[type="email"] {
     border-radius: 10px;
 }
 
-.Firstname,
-.Lastname,
-.email {
+.label-list {
     margin-right: 5px;
+}
+
+.api-key {
+    margin-left: 55px;
+}
+
+#api-button {
+    height: 35px;
+    background: rgba(255, 226, 106, 0.71);
+    border: 0px;
+    border-radius: 10px;
 }
 
 .Lighting {
     margin-right: 145px;
-}
-
-#profilepic {
-    margin-left: 100px;
-    padding-right: 100px;
 }
 
 .Lighting label {
@@ -174,11 +173,16 @@ input[type="email"] {
     margin-right: 10px;
 }
 
+#profilepic {
+    margin-left: 100px;
+    padding-right: 100px;
+}
+
+
 .Light,
 .Dark {
     display: inline-block;
     vertical-align: middle;
-    /* Add any other styles you need */
 }
 
 .Light {
@@ -204,8 +208,6 @@ input[type="email"] {
 
     padding-top: 3px;
 
-    /* Color 5 */
-
     background: #16123F;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -226,7 +228,6 @@ input[type="email"] {
 
 /* Mobile Styles */
 @media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (orientation: portrait) {
-
     .title {
         left: 27.19%;
         right: 38.19%;
@@ -346,7 +347,6 @@ input[type="email"] {
     input[type="text"],
     input[type="email"] {
         box-sizing: border-box;
-
 
         width: 600px;
         height: 55px;

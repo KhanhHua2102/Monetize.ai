@@ -217,6 +217,9 @@ def update_openai_key():
         key (string): new OpenAI key
     """
     data = request.get_json()
+
+    print(data)
+
     email = request.cookies.get('email')
     key = data['key']
     print("user key received:")
@@ -231,9 +234,9 @@ def update_openai_key():
     
     if update_success:
         sql.increase_trials(email)
-        return jsonify({'response': 'OpenAI key updated.'})
+        return jsonify({'response': 'success'})
     else:
-        return jsonify({'response': 'Invalid OpenAI key.'})
+        return jsonify({'response': 'error'})
     
 
 if __name__ == '__main__':
