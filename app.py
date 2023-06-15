@@ -13,6 +13,7 @@ import datetime
 import stock as stk
 from application import app
 
+
 CORS(app)
 
 logger = logging.getLogger(__name__)

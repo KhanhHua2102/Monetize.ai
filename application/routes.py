@@ -14,6 +14,7 @@ import sql
 from application import app
 from forms import LoginForm, SignupForm
 
+
 secrets_key = secrets.token_bytes(32)
 app.config["SECRET_KEY"] = secrets_key
 
@@ -233,6 +234,7 @@ def signup():
             return render_template("signup.html", form=form, error_message=error_message)
         return redirect(url_for("login"))
     return render_template("signup.html", form=form)
+
 
 ## HASH PASSWORD FUNCTION USING BCRYPT
 def hash_password(password):
