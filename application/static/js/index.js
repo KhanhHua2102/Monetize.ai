@@ -211,5 +211,3 @@ function findApiKey(text) {
 		return null;
 	}
 }
-
-export { findApiKey };
