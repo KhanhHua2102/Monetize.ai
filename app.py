@@ -1,3 +1,4 @@
+import datetime
 import logging
 from datetime import datetime
 
@@ -7,12 +8,10 @@ from flask_cors import CORS
 
 import open_ai_call
 import sql
-import datetime
-
 # import json
 import stock as stk
 from application import app
-
+from config import Config
 
 CORS(app)
 
@@ -50,12 +49,11 @@ def generate():
         print("user message received:")
         print(user_message + '\n')
 
-        # Check if user has run out of trial messages
-        if sql.out_of_trials(email):
-            print("User has run out of trials\n")
-            return jsonify({'out_of_trials': "True"})
-        else:
-            sql.update_trials(email)
+        # check if user has set up API key
+        print(sql.check_api_key(email))
+
+        if  sql.check_api_key(email) == False:
+            return jsonify({'response': 'You have not set up your API key yet. Please go to the settings page to set up your API key.'})
 
         # decide which action to use based on user message input
         with open('prompt.txt', 'r') as prompt:
@@ -227,14 +225,10 @@ def update_openai_key():
     print(key + '\n')
 
     print("updating key\n")
-    open_ai_call.update_openai_key(key)
+    update_success = open_ai_call.update_openai_key(email, key)
     print("key updated\n")
-
-    # update_success = open_ai_call.test_openai_key()
-    update_success = True
     
     if update_success:
-        sql.increase_trials(email)
         return jsonify({'response': 'success'})
     else:
         return jsonify({'response': 'error'})

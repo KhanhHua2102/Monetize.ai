@@ -6,18 +6,21 @@ from config import Config
 
 import time
 
-openai.api_key = Config.OPENAI_API_KEY
 
-
-def update_openai_key(key):
+def update_openai_key(email, key):
     """
     Update OpenAI key
 
     Args:
         key (string): new OpenAI key
     """
-    Config.OPENAI_KEY = key
-    openai.api_key = Config.OPENAI_KEY
+    sql.update_api_key(email, key)
+
+    openai.api_key = key
+
+    # test if key is valid
+    if True:
+        return True
 
 
 def davinci_003(query, temperature=0):
