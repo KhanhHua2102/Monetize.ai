@@ -6,13 +6,16 @@
     <form method="POST">
         {{ form.hidden_tag() }}
         <div class="form-group">
-            {{ form.email.label() }} {{ form.email(class_="form-control", placeholder="Enter Email Address Here") }} {% if form.email.errors %}
+            {{ form.email.label() }} {{ form.email(class_="form-control", placeholder="Enter Email Address Here") }} {%
+            if form.email.errors %}
             <small class="text-danger">{{ form.email.errors[0] }}</small> {% endif %}
 
         </div>
         <div class="form-group">
-            {{ form.password.label() }} {{ form.password(class_="form-control", placeholder="Enter Your Password Here") }} {% if form.password.errors %}
-            <small class="text-danger">{{ form.password.errors[0] }}</small> {% endif %} {% with messages = get_flashed_messages() %} {% if messages %}
+            {{ form.password.label() }} {{ form.password(class_="form-control", placeholder="Enter Your Password Here")
+            }} {% if form.password.errors %}
+            <small class="text-danger">{{ form.password.errors[0] }}</small> {% endif %} {% with messages =
+            get_flashed_messages() %} {% if messages %}
             <div class="alert alert-danger">
                 {% for message in messages %} {{ message }} {% endfor %}
             </div>
@@ -33,13 +36,11 @@
 
         <div class="social-btns">
             <button class="facebook-btn"><img src="{{ url_for('static', filename='img/2021_Facebook_icon.svg.png') }}"
-					alt="Facebook logo"><span>Continue with Facebook</span></button>
+                    alt="Facebook logo"><span>Continue with Facebook</span></button>
             <button class="google-btn"><img src="{{ url_for('static', filename='img/Google__G__Logo.svg.png') }}"
-					alt="Google logo"><span>Continue with Google</span></button>
+                    alt="Google logo"><span>Continue with Google</span></button>
         </div>
 
     </form>
 </div>
-{% endblock %} {% block script %}
-<script src="{{ url_for('static', filename='js/login.js') }}"></script>
 {% endblock %}

@@ -12,21 +12,26 @@
         <img src="{{ url_for('static', filename='img/Frame 1.png') }}" alt="profile picture">
         <button class="Change-Profile">Change Profile Picture</button>
     </div>
-    <div class="Firstname">
+    <div class="label-list">
         <label for="firstname">First Name:</label>
         <input type="text" id="firstname" name="firstname" value="{{ ' '.join(user_data.user_name.split()[0:-1]) }}" />
     </div>
-    <div class="Lastname">
+    <div class="label-list">
         <label for="lastname">Last Name:</label>
         <input type="text" id="lastname" name="lastname" value="{{ ' '.join(user_data.user_name.split()[-1:]) }}" />
     </div>
-    <div class="email">
+    <div class="label-list">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="{{ user_data.email }}">
     </div>
     <div class="Phone">
         <label for="phone">Phone:</label>
         <input type="text" id="phone" name="phone" value="{{ user_data.phone_number }}">
+    </div>
+    <div class="label-list api-key">
+        <label for="openai">OpenAI key:</label>
+        <input type="text" id="openai-key" name="openai-key" value="{{ user_data.openai_key if user_data.openai_key else 'Register your api key here' }}">
+        <button id="api-button" type="button">save</button>
     </div>
     <div class="Lighting">
         <label id="Mode">Lighting Mode:</label>

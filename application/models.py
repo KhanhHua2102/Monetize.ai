@@ -26,7 +26,7 @@ class user(db.Model):
     phone_number = db.Column(db.Unicode(255))
     password = db.Column(db.String(100), nullable = False)
     risk_tolerance = db.Column(db.String(10), default = "Moderate")
-    trials = db.Column(db.Integer, default = 5)
+    openai_key = db.Column(db.String(100), nullable = True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

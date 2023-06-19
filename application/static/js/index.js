@@ -67,6 +67,11 @@ function sendQuery() {
 			"<div class='messages user-messages'>" + input + "</div>"
 		);
 		$(".user-messages").css("visibility", "visible");
+
+		// scroll to bottom of chat box
+		$("#conversation-window")[0].scrollTop = $(
+			"#conversation-window"
+		)[0].scrollHeight;
 	}
 	console.log(input);
 
@@ -79,6 +84,11 @@ function sendQuery() {
     </div>
   `;
 	$("#messages-box").append(animation);
+
+	// scroll to bottom of chat box
+	$("#conversation-window")[0].scrollTop = $(
+		"#conversation-window"
+	)[0].scrollHeight;
 
 	// Post request to gpt
 	postRequest(input);
@@ -124,12 +134,16 @@ function postRequest(input) {
 				);
 				$(".bot-messages").css("visibility", "visible");
 				return;
+			} else {
+				$("#messages-box").append(
+					"<div class='messages bot-messages'>" + data.response + "</div>"
+				);
+				$(".bot-messages").css("visibility", "visible");
 			}
-
-			$("#messages-box").append(
-				"<div class='messages bot-messages'>" + data.response + "</div>"
-			);
-			$(".bot-messages").css("visibility", "visible");
+			// scroll to bottom of chat box
+			$("#conversation-window")[0].scrollTop = $(
+				"#conversation-window"
+			)[0].scrollHeight;
 		});
 	}
 }

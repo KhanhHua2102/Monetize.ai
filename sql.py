@@ -34,6 +34,7 @@ def add_user(user_name, email, password, phone_number):
     models.db.session.commit()
     models.db.session.close()
 
+
 # return user data from user table in database as JSON object
 def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
@@ -41,25 +42,23 @@ def get_user_data(email):
         return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
     return None
 
-def out_of_trials(email):
-    user = models.user.query.filter_by(email=email).first()
-    if user is not None:
-        return user.trials == 0
-    return None
 
-def update_trials(email):
+def check_api_key(email):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
-        user.trials -= 1
+        print(user.openai_key)
+        return user.openai_key is not None
+    
+
+def update_api_key(email, key):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.openai_key = key
         models.db.session.commit()
         models.db.session.close()
+        return True
+    return False
 
-def increase_trials(email):
-    user = models.user.query.filter_by(email=email).first()
-    if user is not None:
-        user.trials += 999
-        models.db.session.commit()
-        models.db.session.close()
 
 def get_user_id(email):
     user = models.user.query.filter_by(email=email).first()
@@ -67,6 +66,7 @@ def get_user_id(email):
         return user.user_id
     else:
         return None
+
 
 def add_stock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
     user_id = get_user_id(email)
@@ -93,6 +93,7 @@ def add_stock(email, date, ticker, quantity, start_price, current_price, return_
     models.db.session.commit()
     models.db.session.close()
 
+
 # update stock in stock table in database, if quantity is 0, delete stock
 # add change stock price if have time?
 def update_stock(email, ticker, quantity):
@@ -109,6 +110,7 @@ def update_stock(email, ticker, quantity):
     models.db.session.commit()
     models.db.session.close()
 
+
 # reset stock table in database
 def reset_portfolio(email):
     user_id = get_user_id(email)
@@ -117,6 +119,7 @@ def reset_portfolio(email):
         models.db.session.delete(stock)
     models.db.session.commit()
     models.db.session.close()
+
 
 # return stock data from stock table in database as JSON object
 def get_stock_data(email):
@@ -131,6 +134,7 @@ def get_stock_data(email):
         stock_data.append([stock.date_added.strftime('%d-%m-%Y'), stock.ticker, stock.quantity, stock.price_bought, stock.current_price, stock.return_percent, stock.return_amount, stock.total])
 
     return stocks, stock_data
+
 
 # return message data from message table in database as JSON object
 def get_messages(email):
@@ -149,6 +153,7 @@ def get_messages(email):
     
     return messages, messages_data
 
+
 # add new message to message table in database
 def add_message(email, message, date, is_bot=False):
     user_id = get_user_id(email)
@@ -160,6 +165,7 @@ def add_message(email, message, date, is_bot=False):
         models.db.session.add(new_message)
     models.db.session.commit()
     models.db.session.close()
+
 
 # update user's risk tolerance in user table in database
 def update_risk_tolerance(email, risk_tolerance):
