@@ -153,11 +153,11 @@ def generate():
         record("assistant", result)
 
         # add user message to database
-        sql.add_message(email, user_message, datetime.datetime.now(), False)
+        sql.add_message(email, user_message, datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
-        sql.add_message(email, result, datetime.datetime.now(), True)
+        sql.add_message(email, result, datetime.now(), True)
         logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
@@ -226,9 +226,9 @@ def update_openai_key():
 
     print("updating key\n")
     update_success = open_ai_call.update_openai_key(email, key)
-    print("key updated\n")
     
     if update_success:
+        print("key updated\n")
         return jsonify({'response': 'success'})
     else:
         return jsonify({'response': 'error'})
