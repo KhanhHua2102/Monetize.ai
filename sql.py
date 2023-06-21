@@ -38,9 +38,9 @@ def add_user(user_name, email, password, phone_number):
 # return user data from user table in database as JSON object
 def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
-    # if user is not None:
-    return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
-    # return None
+    if user is not None:
+        return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
+    return None,None
 
 
 def check_api_key(email):
