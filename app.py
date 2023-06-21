@@ -17,11 +17,11 @@ CORS(app)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler('logs/app.log')
-handler.setLevel(logging.DEBUG)
+# handler = logging.FileHandler('logs/app.log')
+# handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+# handler.setFormatter(formatter)
+# logger.addHandler(handler)
 
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
@@ -153,11 +153,11 @@ def generate():
         record("assistant", result)
 
         # add user message to database
-        sql.add_message(email, user_message, datetime.datetime.now(), False)
+        sql.add_message(email, user_message, datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
-        sql.add_message(email, result, datetime.datetime.now(), True)
+        sql.add_message(email, result, datetime.now(), True)
         logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
