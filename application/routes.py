@@ -43,7 +43,11 @@ def portfolio():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
     portfolio = sql.get_stock_data(email)[0]
-    return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
+
+    if user_data is not None and portfolio is not None:
+        return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
+    else:
+        return render_template("portfolio.html", mobileCSS=True)
 
 def message_id_exists(data,message_id):
     for item in data:
@@ -152,7 +156,9 @@ def settings():
     """
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    return render_template("settings.html", mobileCSS=False, user_data=user_data)
+
+    if user_data is not None:
+        return render_template("settings.html", mobileCSS=False, user_data=user_data)
 
 
 @app.route("/help")
