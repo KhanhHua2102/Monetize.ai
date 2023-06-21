@@ -159,6 +159,8 @@ def settings():
 
     if user_data is not None:
         return render_template("settings.html", mobileCSS=False, user_data=user_data)
+    
+    return render_template("settings.html", mobileCSS=False)
 
 
 @app.route("/help")
