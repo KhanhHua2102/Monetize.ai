@@ -177,5 +177,5 @@ def update_risk_tolerance(email, risk_tolerance):
     models.db.session.commit()
     models.db.session.close()
 
-with app.app_context():
-    models.db.create_all()
+# with app.app_context():
+    # models.db.create_all()
