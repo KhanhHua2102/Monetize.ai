@@ -8,7 +8,6 @@ from flask_cors import CORS
 
 import open_ai_call
 import sql
-# import json
 import stock as stk
 from application import app
 from config import Config

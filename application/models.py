@@ -27,6 +27,7 @@ class user(db.Model):
     password = db.Column(db.String(100), nullable = False)
     risk_tolerance = db.Column(db.String(10), default = "Moderate")
     openai_key = db.Column(db.String(100), nullable = True)
+    query_count = db.Column(db.Integer, default = 100)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
