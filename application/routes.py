@@ -47,7 +47,7 @@ def portfolio():
     if user_data is not None and portfolio is not None:
         return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
     else:
-        return render_template("portfolio.html", mobileCSS=True)
+        return render_template("portfolio.html", mobileCSS=True,user_data = "" , portfolio = "")
 
 def message_id_exists(data,message_id):
     for item in data:
@@ -160,7 +160,7 @@ def settings():
     if user_data is not None:
         return render_template("settings.html", mobileCSS=False, user_data=user_data)
     
-    return render_template("settings.html", mobileCSS=False)
+    return render_template("settings.html", mobileCSS=False,user_data = "")
 
 
 @app.route("/help")
