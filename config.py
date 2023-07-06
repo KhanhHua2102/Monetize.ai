@@ -11,6 +11,8 @@ class Config(object):
     # OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
     # FINNHUB_API_KEY = os.environ["FINNHUB_API_KEY"]
 
+    #
+
     OPENAI_API_KEY = os.getenv("OPEN_AI_key")
     FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
 
