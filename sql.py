@@ -43,6 +43,7 @@ def get_user_data(email):
     return None,None
 
 
+# check if user has an API key
 def check_api_key(email):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
@@ -50,6 +51,7 @@ def check_api_key(email):
         return user.openai_key is not None
     
 
+# update user's API key
 def update_api_key(email, key):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
@@ -60,6 +62,26 @@ def update_api_key(email, key):
     return False
 
 
+# check if user has enough queries left
+def check_query_count(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        return user.query_count > 0
+    return False
+
+
+# reduce user's query count by 1
+def reduce_query_count(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.query_count -= 1
+        models.db.session.commit()
+        models.db.session.close()
+        return True
+    return False
+
+
+# get user's ID
 def get_user_id(email):
     user = models.user.query.filter_by(email=email).first()
     if user:
@@ -68,6 +90,7 @@ def get_user_id(email):
         return None
 
 
+# add new stock record to portfolio table
 def add_stock(email, date, ticker, quantity, start_price, current_price, return_percent, return_amount, total):
     user_id = get_user_id(email)
 
