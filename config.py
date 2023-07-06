@@ -7,7 +7,7 @@ DEBUG = True
 class Config(object):
 
     # Enter your Open API Key here
-    OPENAI_API_KEY = ''
+    OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
     FINNHUB_API_KEY = os.environ["FINNHUB_API_KEY"]
 

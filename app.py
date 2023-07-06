@@ -10,7 +10,6 @@ import open_ai_call
 import sql
 import stock as stk
 from application import app
-from config import Config
 
 CORS(app)
 
@@ -48,11 +47,11 @@ def generate():
         print("user message received:")
         print(user_message + '\n')
 
-        # check if user has set up API key
-        print(sql.check_api_key(email))
 
-        if  sql.check_api_key(email) == False:
+        # check if user has enough queries left
+        if sql.check_query_count(email) == False and sql.check_api_key(email) == False:
             return jsonify({'response': 'You have not set up your API key yet. Please go to the settings page to set up your API key.'})
+
 
         # decide which action to use based on user message input
         with open('prompt.txt', 'r') as prompt:
@@ -151,12 +150,15 @@ def generate():
         result = open_ai_call.gpt_with_info(messages)
         record("assistant", result)
 
+        # reduce the query count for this user by 1
+        sql.reduce_query_count(email)
+
         # add user message to database
-        sql.add_message(email, user_message, datetime.datetime.now(), False)
+        sql.add_message(email, user_message, datetime.now(), False)
         logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
-        sql.add_message(email, result, datetime.datetime.now(), True)
+        sql.add_message(email, result, datetime.now(), True)
         logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
