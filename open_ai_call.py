@@ -7,6 +7,9 @@ import sql
 from config import Config
 
 
+openai.api_key = Config.OPENAI_API_KEY
+
+
 def update_openai_key(email, key):
     """
     Update OpenAI key
