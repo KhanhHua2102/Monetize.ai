@@ -96,56 +96,37 @@ function sendQuery() {
 
 // Sends POST request to generate a response
 function postRequest(input) {
-	if (findApiKey(input)) {
-		console.log("found api key");
-		$.post({
-			url: "/update_openai_key",
-			data: JSON.stringify({ key: input }),
-			contentType: "application/json",
-			dataType: "json",
-		}).done(function (data) {
-			console.log("finished update api key");
-			console.log(data);
-			$(".loading-messages").remove();
+	console.log("posting request");
+	$.post({
+		url: "/generate",
+		data: JSON.stringify({ prompt: input }),
+		contentType: "application/json",
+		dataType: "json",
+	}).done(function (data) {
+		console.log("finished query");
+		console.log(data);
+		$(".loading-messages").remove();
 
+		if (data.out_of_trials == "True") {
+			console.log("out of trials");
+			$("#messages-box").append(
+				"<div class='messages bot-messages'>" +
+					"You have run out of trial messages. Please get a free OpenAI key at: https://platform.openai.com/account/api-keys and send it through in the chatbox." +
+					"</div>"
+			);
+			$(".bot-messages").css("visibility", "visible");
+			return;
+		} else {
 			$("#messages-box").append(
 				"<div class='messages bot-messages'>" + data.response + "</div>"
 			);
 			$(".bot-messages").css("visibility", "visible");
-		});
-	} else {
-		console.log("posting request");
-		$.post({
-			url: "/generate",
-			data: JSON.stringify({ prompt: input }),
-			contentType: "application/json",
-			dataType: "json",
-		}).done(function (data) {
-			console.log("finished query");
-			console.log(data);
-			$(".loading-messages").remove();
-
-			if (data.out_of_trials == "True") {
-				console.log("out of trials");
-				$("#messages-box").append(
-					"<div class='messages bot-messages'>" +
-						"You have run out of trial messages. Please get a free OpenAI key at: https://platform.openai.com/account/api-keys and send it through in the chatbox." +
-						"</div>"
-				);
-				$(".bot-messages").css("visibility", "visible");
-				return;
-			} else {
-				$("#messages-box").append(
-					"<div class='messages bot-messages'>" + data.response + "</div>"
-				);
-				$(".bot-messages").css("visibility", "visible");
-			}
-			// scroll to bottom of chat box
-			$("#conversation-window")[0].scrollTop = $(
-				"#conversation-window"
-			)[0].scrollHeight;
-		});
-	}
+		}
+		// scroll to bottom of chat box
+		$("#conversation-window")[0].scrollTop = $(
+			"#conversation-window"
+		)[0].scrollHeight;
+	});
 }
 
 // Retrieves recent messages and displays them in the chat box
@@ -193,19 +174,10 @@ function getRecentMessages() {
 	});
 }
 
+
 // Sends a request to fetch the portfolio
 function portfolio() {
 	$.get("/portfolio", function (response) {
 		// Handle the response
 	});
-}
-
-function findApiKey(text) {
-	const pattern = /([A-Za-z0-9]{32})/;
-	const matches = text.match(pattern);
-	if (matches) {
-		return matches[0];
-	} else {
-		return null;
-	}
 }
