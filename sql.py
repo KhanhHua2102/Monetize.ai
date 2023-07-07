@@ -204,4 +204,5 @@ def update_risk_tolerance(email, risk_tolerance):
 with app.app_context():
     inspector = inspect(models.db.engine)
     if not inspector.has_table('user'):
+        
         models.db.create_all()
