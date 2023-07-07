@@ -205,6 +205,6 @@ with app.app_context():
     # inspector = inspect(models.db.engine)
     # if not inspector.has_table('user'):
 
-    # models.db.create_all()
+    models.db.create_all()
 
     print("hello")
