@@ -1,5 +1,5 @@
 import os
-from boto.s3.connection import S3Connection
+
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 FLASK_APP = 'app.py'
@@ -10,10 +10,6 @@ class Config(object):
     # Enter your Open API Key here
     OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
     FINNHUB_API_KEY = os.environ["FINNHUB_API_KEY"]
-
-    # S3 = S3Connection(os.environ['OPEN_AI_key'], os.environ['FINNHUB_API_KEY'])
-    # OPENAI_API_KEY = S3.get_bucket('OPEN_AI_key')
-    # FINNHUB_API_KEY = S3.get_bucket('FINNHUB_API_KEY')
 
     # FINNHUB_API_KEY = 'ch4k2vpr01quc2n4rj5gch4k2vpr01quc2n4rj60'
 
