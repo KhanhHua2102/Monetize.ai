@@ -8,15 +8,15 @@ DEBUG = True
 class Config(object):
 
     # Enter your Open API Key here
-    # OPENAI_API_KEY = os.environ.get(("OPENAI_API_KEY"))
+    OPENAI_API_KEY = os.environ.get(("OPENAI_API_KEY"))
     # FINNHUB_API_KEY = os.environ["FINNHUB_API_KEY"]
-    # FINNHUB_API_KEY = os.environ.get(("FINNHUB_API_KEY"))
+    FINNHUB_API_KEY = os.environ.get(("FINNHUB_API_KEY"))
 
 
     # OPENAI_API_KEY = os.getenv("OPEN_AI_key")
     # FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
 
-    S3 = S3Connection(os.environ['OPENAI_API_KEY'], os.environ['FINNHUB_API_KEY'])
+    # S3 = S3Connection(os.environ['OPENAI_API_KEY'], os.environ['FINNHUB_API_KEY'])
     # OPENAI_API_KEY = S3.get_bucket('OPEN_AI_key')
     # FINNHUB_API_KEY = S3.get_bucket('FINNHUB_API_KEY')
 
