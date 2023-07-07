@@ -13,14 +13,6 @@ from application import app
 
 CORS(app)
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler('logs/app.log')
-handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-
 
 context_data = 'You are a friendly financial chatbot named Monetize.ai. The user will ask you questions, and you will provide polite responses.\n\n'
 
@@ -74,7 +66,6 @@ def generate():
             # add or update stock in portfolio
             sql.add_stock(email, start_date, ticker, quantity, start_price,
                             end_price, return_percent, return_amount, total)
-            logger.info('User ' + email + ' bought ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
             record("user", prompt_result[0])
 
@@ -88,7 +79,6 @@ def generate():
             # update stock in portfolio
             if sql.get_stock_data(email) is not None:
                 sql.update_stock(email, ticker, (0 - int(quantity)))
-                logger.info('User ' + email + ' sold ' + str(quantity) + ' shares of ' + ticker + ' at $' + str(start_price) + ' on ' + start_date.strftime('%d-%m-%Y') + ' endprice: ' + str(end_price) + ' return percent: ' + str(return_percent) + ' return amount: ' + str(return_amount) + ' total: ' + str(total))
 
             record("user", prompt_result[0])
 
@@ -123,7 +113,6 @@ def generate():
             
             # update user's risk tolerance
             sql.update_risk_tolerance(email, risk_tolerance)
-            logger.info('User ' + email + ' changed risk tolerance to ' + risk_tolerance)
             
             record("user", user_message)
 
@@ -131,7 +120,6 @@ def generate():
         elif user_message == 'reset':
             print("\nReset chatbot's context\n")
             messages = [{}]
-            logger.info('User ' + email + ' reset context')
             return jsonify({'response': "Chatbot's context cleared."})
 
         # user want to reset portfolio
@@ -139,7 +127,6 @@ def generate():
             print("\nReset user's portfolio\n")
             # reset user's portfolio
             sql.reset_portfolio(email)
-            logger.info('User ' + email + ' reset portfolio')
             return jsonify({'response': "Your portfolio has been reset."})
 
         # normal bot reply
@@ -155,11 +142,9 @@ def generate():
 
         # add user message to database
         sql.add_message(email, user_message, datetime.now(), False)
-        logger.info('User ' + email + ' asked: ' + user_message)
 
         # add bot response to database
         sql.add_message(email, result, datetime.now(), True)
-        logger.info('Bot responded: ' + result)
 
         return jsonify({'response': result})
 
