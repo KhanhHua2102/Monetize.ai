@@ -202,7 +202,7 @@ def update_risk_tolerance(email, risk_tolerance):
     models.db.session.close()
 
 with app.app_context():
-    inspector = inspect(models.db.engine)
-    if not inspector.has_table('user'):
-        
-        models.db.create_all()
+    # inspector = inspect(models.db.engine)
+    # if not inspector.has_table('user'):
+
+    #     models.db.create_all()
