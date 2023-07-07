@@ -206,3 +206,5 @@ with app.app_context():
     # if not inspector.has_table('user'):
 
     # models.db.create_all()
+
+    print("hello")
