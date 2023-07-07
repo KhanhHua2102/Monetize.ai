@@ -23,8 +23,11 @@ def update_openai_key(email, key):
     openai.api_key = key
 
     # test if key is valid
-    if True:
+    if davinci_003("test api key") is not None:
         return True
+    else:
+        return False
+
 
 
 def davinci_003(query, temperature=0):

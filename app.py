@@ -212,9 +212,9 @@ def update_openai_key():
 
     print("updating key\n")
     update_success = open_ai_call.update_openai_key(email, key)
-    print("key updated\n")
     
     if update_success:
+        print("key updated\n")
         return jsonify({'response': 'success'})
     else:
         return jsonify({'response': 'error'})
