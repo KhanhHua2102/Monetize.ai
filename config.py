@@ -1,15 +1,16 @@
 import os
 
+
 base_dir = os.path.abspath(os.path.dirname(__file__))
 FLASK_APP = 'app.py'
 DEBUG = True
 
 class Config(object):
 
-    # Enter your Open API Key here
-    OPENAI_API_KEY = ''
-
-    FINNHUB_API_KEY = 'ci6tas1r01quivobson0ci6tas1r01quivobsong'
+    # Enter your Open API Key here or setup environment variables
+    OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+    FINNHUB_API_KEY = os.environ["FINNHUB_API_KEY"]
+    
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(base_dir, 'app.db')
@@ -22,4 +23,3 @@ class ProductionConfig(Config):
 class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(base_dir, 'test.db')
-    

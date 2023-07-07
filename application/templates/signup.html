@@ -1,50 +1,29 @@
-{% extends 'layout.html' %}
-
-{% block stylesheet %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}">
-{% endblock %}
-
-{% block content %}
+{% extends 'layout.html' %} {% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sign-up.css') }}"> {% endblock %} {% block content %}
 <div class="container">
-    <img id="logo" class="" src="{{ url_for('static', filename='img/logo.svg') }}" alt ="">
+    <img id="logo" class="" src="{{ url_for('static', filename='img/MonetizeAI-logo.png') }}" alt="">
     <div class="member">Create a Monetize.ai account</div>
     <form method="POST">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.name.label }}
-            {{ form.name(class="form-control") }}
-            {% if form.name.errors %}
-            <small class="text-danger">{{ form.name.errors[0] }}</small>
-            {% endif %}
+            {{ form.name.label }} {{ form.name(class="form-control") }} {% if form.name.errors %}
+            <small class="text-danger">{{ form.name.errors[0] }}</small> {% endif %}
         </div>
         <div class="form-group">
-            {{ form.email.label }}
-            {{ form.email(class="form-control") }}
-            {% if form.email.errors %}
-            <small class="text-danger">{{ form.email.errors[0] }}</small>
-            {% endif %}
+            {{ form.email.label }} {{ form.email(class="form-control") }} {% if form.email.errors %}
+            <small class="text-danger">{{ form.email.errors[0] }}</small> {% endif %}
         </div>
         <div class="form-group">
-            {{ form.phone.label }}
-            {{ form.phone(class="form-control") }}
-            {% if form.phone.errors %}
-            <small class="text-danger">{{ form.phone.errors[0] }}</small>
-            {% endif %}
+            {{ form.phone.label }} {{ form.phone(class="form-control") }} {% if form.phone.errors %}
+            <small class="text-danger">{{ form.phone.errors[0] }}</small> {% endif %}
         </div>
         <div class="form-group">
-            {{ form.password.label }}
-            {{ form.password(class="form-control") }}
-            {% if form.password.errors %}
-            <small class="text-danger">{{ form.password.errors[0] }}</small>
-            {% endif %}
+            {{ form.password.label }} {{ form.password(class="form-control") }} {% if form.password.errors %}
+            <small class="text-danger">{{ form.password.errors[0] }}</small> {% endif %}
         </div>
         <div class="form-group">
-            {{ form.confirm_password.label }}
-            {{ form.confirm_password(class="form-control") }}
-            {% if form.confirm_password.errors %}
-            <small class="text-danger">Confirm Password must be the same as Password</small>
-            {% endif %}
-            {% if error_message %}
+            {{ form.confirm_password.label }} {{ form.confirm_password(class="form-control") }} {% if form.confirm_password.errors %}
+            <small class="text-danger">Confirm Password must be the same as Password</small> {% endif %} {% if error_message %}
             <div class="alert alert-danger" role="alert">
                 {{ error_message }}
             </div>

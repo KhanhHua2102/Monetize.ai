@@ -1,10 +1,13 @@
+import time
+
 import openai
 from flask import request
 
 import sql
 from config import Config
 
-import time
+
+openai.api_key = Config.OPENAI_API_KEY
 
 
 def update_openai_key(email, key):
@@ -15,6 +18,7 @@ def update_openai_key(email, key):
         key (string): new OpenAI key
     """
     sql.update_api_key(email, key)
+    Config.OPENAI_API_KEY = key
 
     openai.api_key = key
 

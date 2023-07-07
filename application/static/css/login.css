@@ -20,9 +20,8 @@ body {
 .member {
     width: 260px;
     height: 70px;
-    left: 81px;
     top: 192px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: 'Arial';
     font-style: normal;
     font-weight: 700;
@@ -31,10 +30,10 @@ body {
     text-align: center;
 }
 
-.logo {
-    width: 200px;
+#logo {
+    width: 150px;
     margin: 30px;
-    padding: 20px;
+    border-radius: 30px;
 }
 
 input[type="text"],
