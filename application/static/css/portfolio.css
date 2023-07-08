@@ -8,14 +8,17 @@
 }
 /* 
 #logo {
-    position: fixed;
-    float: left;
-    top: 5%;
-    width: 108px;
-    height: 103px;
-    margin-left: 6%;
-    border-radius: 30px;
+    display: none;
 } */
+
+/* #menu-icon {
+    display: block;
+    position: fixed;
+    top: 5%;
+    width: 50px;
+    height: 50px;
+} */
+
 
 .underheader {
     display: flex;
@@ -26,12 +29,8 @@
     margin: 5% 10% 0 20%;
 }
 
-#menu-icon {
-    display: none;
-    /* position: fixed;
-    top: 5%;
-    width: 50px;
-    margin-left: 6%;  */
+.menu {
+    margin-right: 50%;
 }
 /* 
 .menu {
@@ -47,9 +46,9 @@
     align-items: center;
     text-align: center;
     justify-content: space-between;
-} */
+}
 
-/* .menu button {
+.menu button {
     position: relative;
     display: none;
     width: 100px;
@@ -60,17 +59,6 @@
     border-radius: 12px;
 } */
 
-/* #logo {
-    display: none;
-} */
-
-/* #menu-icon {
-    display: block;
-    position: fixed;
-    top: 5%;
-    width: 50px;
-    height: 50px;
-} */
 
 #portfolio-chart {
     width: 100%;

@@ -47,7 +47,7 @@ def portfolio():
     if user_data is not None and portfolio is not None:
         return render_template("portfolio.html", mobileCSS=False, user_data=user_data, portfolio=portfolio)
     else:
-        return render_template("portfolio.html", mobileCSS=True,user_data = "" , portfolio = "")
+        return render_template("portfolio.html", mobileCSS=False,user_data = "" , portfolio = "")
 
 def message_id_exists(data,message_id):
     for item in data:
