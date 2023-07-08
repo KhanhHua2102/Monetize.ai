@@ -1,7 +1,6 @@
 from flask import jsonify
 
 from application import app, models
-from sqlalchemy import inspect
 
 
 # query to get data from the database
@@ -41,7 +40,7 @@ def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
         return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
-    return None,None
+    return None, None
 
 
 # check if user has an API key

@@ -154,6 +154,10 @@ def settings():
     """
     Renders the settings.html template and fetches user data to be displayed on the page.
     """
+
+    if "email" not in request.cookies:
+        return redirect(url_for("login"))
+
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
 
@@ -192,7 +196,7 @@ def login():
         password = form.password.data
 
         user_data = sql.get_user_data(email)
-        if not user_data or user_data is None:
+        if not user_data[0] or user_data[0] is None:
             flash("User not found", "error")
             return redirect(url_for("login"))
 
