@@ -6,21 +6,34 @@
 #risk-tolerance {
     color: #ff0505;
 }
-
+/* 
 #logo {
-    display: none;
+    position: fixed;
+    float: left;
+    top: 5%;
+    width: 108px;
+    height: 103px;
+    margin-left: 6%;
+    border-radius: 30px;
+} */
+
+.underheader {
+    display: flex;
+}
+
+.contents {
+    width: 80%;
+    margin: 5% 10% 0 20%;
 }
 
 #menu-icon {
-    display: block;
-    position: fixed;
+    display: none;
+    /* position: fixed;
     top: 5%;
-    /* left: 5%; */
     width: 50px;
-    height: 50px;
-    /* margin-left: 6%; */
+    margin-left: 6%;  */
 }
-
+/* 
 .menu {
     z-index: 1;
     position: fixed;
@@ -34,9 +47,9 @@
     align-items: center;
     text-align: center;
     justify-content: space-between;
-}
+} */
 
-.menu button {
+/* .menu button {
     position: relative;
     display: none;
     width: 100px;
@@ -45,45 +58,19 @@
     margin-bottom: 10px;
     background: #75C9B7;
     border-radius: 12px;
-}
+} */
 
-#logo {
+/* #logo {
     display: none;
-}
+} */
 
-#menu-icon {
+/* #menu-icon {
     display: block;
     position: fixed;
     top: 5%;
     width: 50px;
     height: 50px;
-}
-
-.menu {
-    z-index: 1;
-    position: fixed;
-    float: left;
-    top: 10%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: bold;
-    line-height: 36px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-}
-
-.menu button {
-    position: relative;
-    display: none;
-    width: 100px;
-    height: 45px;
-    font-size: 15px;
-    margin-bottom: 10px;
-    background: #75C9B7;
-    border-radius: 12px;
-}
+} */
 
 #portfolio-chart {
     width: 100%;

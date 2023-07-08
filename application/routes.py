@@ -45,7 +45,7 @@ def portfolio():
     portfolio = sql.get_stock_data(email)[0]
 
     if user_data is not None and portfolio is not None:
-        return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
+        return render_template("portfolio.html", mobileCSS=False, user_data=user_data, portfolio=portfolio)
     else:
         return render_template("portfolio.html", mobileCSS=True,user_data = "" , portfolio = "")
 
