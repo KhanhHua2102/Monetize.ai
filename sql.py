@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, make_response, render_template, redirect, url_for
 
 from application import app, models
 
@@ -40,7 +40,7 @@ def get_user_data(email):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
         return user, [user.user_name, user.email, user.phone_number, user.risk_tolerance]
-    return None,None
+    return None, None
 
 
 # check if user has an API key
@@ -56,6 +56,44 @@ def update_api_key(email, key):
     user = models.user.query.filter_by(email=email).first()
     if user is not None:
         user.openai_key = key
+        models.db.session.commit()
+        models.db.session.close()
+        return True
+    return False
+
+
+def update_name(email, new_value):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.user_name = new_value
+        models.db.session.commit()
+        models.db.session.close()
+        return True
+    return False
+
+
+def update_email(email, new_value):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        # modify email in database
+        user.email = new_value
+        models.db.session.commit()
+        models.db.session.close()
+
+        # modify email cookie in browser
+        response = make_response(render_template("settings.html"))
+        response.delete_cookie(key='email')
+        response.set_cookie(key="email", value=new_value)
+        print("cookie changed")
+        return response
+
+    return False
+
+
+def update_phone(email, new_value):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.phone_number = new_value
         models.db.session.commit()
         models.db.session.close()
         return True

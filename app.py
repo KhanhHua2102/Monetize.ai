@@ -19,6 +19,19 @@ context_data = 'You are a friendly financial chatbot named Monetize.ai. The user
 # Create a message list to pass into GPT-3
 messages = [{}]
 
+
+def record(role, message):
+    """
+    Record messages into a global variable
+
+    Args:
+        role (string): user or assistant
+        message (string): message content
+    """
+    global messages
+    messages.append({"role": role, "content": message})
+
+
 @app.route('/generate', methods=['POST'])
 def generate():
     """
@@ -146,6 +159,7 @@ def generate():
     except openai.error.RateLimitError:
         return jsonify({'response': 'Sorry, chatbot is currently overloaded. Please try again after a few seconds.'})
 
+
 @app.route('/get_messages', methods=['GET', 'POST'])
 def get_messages():
     """
@@ -176,17 +190,6 @@ def get_messages():
 
     return jsonify({'messages': msg_result})
 
-def record(role, message):
-    """
-    Record messages into a global variable
-
-    Args:
-        role (string): user or assistant
-        message (string): message content
-    """
-    global messages
-    messages.append({"role": role, "content": message})
-
 
 @app.route('/update_openai_key', methods=['POST'])
 def update_openai_key():
@@ -214,6 +217,26 @@ def update_openai_key():
     else:
         return jsonify({'response': 'error'})
     
+
+@app.route('/update_field', methods=['POST'])
+def update_field():
+    data = request.get_json()
+    print(data)
+    field = data['field']
+    new_value = data['newValue']
+
+    try:
+        if field == 'name':
+            sql.update_name(request.cookies.get('email'), new_value)
+        elif field == 'email':
+            sql.update_email(request.cookies.get('email'), new_value)
+        elif field == 'phone':
+            sql.update_phone(request.cookies.get('email'), new_value)
+    except:
+        return jsonify({'response': 'error'})
+
+    return jsonify({'response': 'success'})
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1:5001')

@@ -13,13 +13,10 @@
         <button class="Change-Profile">Change Profile Picture</button>
     </div>
     <div class="label-list">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" value="{{ ' '.join(user_data.user_name.split()[0:-1]) }}" />
+        <label for="name">Display Name:</label>
+        <input type="text" id="name" name="name" value="{{ user_data.user_name }}" />
     </div>
-    <div class="label-list">
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" value="{{ ' '.join(user_data.user_name.split()[-1:]) }}" />
-    </div>
+
     <div class="label-list">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="{{ user_data.email }}">
@@ -30,20 +27,18 @@
     </div>
     <div class="label-list api-key">
         <label for="openai">OpenAI key:</label>
-        <input type="text" id="openai-key" name="openai-key" value="{{ user_data.openai_key if user_data.openai_key else 'Register your api key here' }}">
-        <button id="api-button" type="button">save</button>
+        <input type="text" id="openai-key" name="openai-key"
+            value="{{ user_data.openai_key if user_data.openai_key else 'Register your api key here' }}">
     </div>
+    <button id="save-button" type="button">save</button>
     <div class="Lighting">
         <label id="Mode">Lighting Mode:</label>
         <button class="Light">
-			<img src="{{ url_for('static', filename='img/831682.png') }}" alt="sun">
-		</button>
+            <img src="{{ url_for('static', filename='img/831682.png') }}" alt="sun">
+        </button>
         <button class="Dark">
-			<img
-				src="{{ url_for('static', filename='img/180700.png') }}"
-				alt="profile picture"
-			>
-		</button>
+            <img src="{{ url_for('static', filename='img/180700.png') }}" alt="profile picture">
+        </button>
     </div>
 
     <a href="{{ url_for('logout') }}" class="logout">Log Out</a>

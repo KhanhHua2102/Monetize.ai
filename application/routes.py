@@ -192,19 +192,20 @@ def login():
         password = form.password.data
 
         user_data = sql.get_user_data(email)
-        if not user_data or user_data is None:
+
+        if not user_data or user_data == (None, None):
             flash("User not found", "error")
             return redirect(url_for("login"))
+        else:
+            if not check_password_hash(user_data[0].password, password):
+                flash("Incorrect Password", "error")
+                return redirect(url_for("login"))
+            else:
+                # Add the email cookie
+                response = make_response(redirect(url_for("index")))
+                response.set_cookie("email", email)
 
-        if not check_password_hash(user_data[0].password, password):
-            flash("Incorrect Password", "error")
-            return redirect(url_for("login"))
-
-        # Add the email cookie
-        response = make_response(redirect(url_for("index")))
-        response.set_cookie("email", email)
-
-        return response
+                return response
 
     return render_template("login.html", form=form)
 

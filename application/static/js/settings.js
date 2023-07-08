@@ -1,10 +1,50 @@
 $(document).ready(function () {
-	$(".api-key button").click(function (event) {
+	var fieldChanged = [];
+	$("#name").change(function () {
+		console.log("changed to: ", $(this).val().trim());
+		fieldChanged.push("name");
+	});
+	$("#email").change(function () {
+		console.log("changed to: ", $(this).val().trim());
+		fieldChanged.push("email");
+	});
+	$("#phone").change(function () {
+		console.log("changed to: ", $(this).val().trim());
+		fieldChanged.push("phone");
+	});
+
+	$("#save-button").click(function (event) {
 		event.preventDefault();
-		apiKey = $(".api-key input").val().trim();
-		updateKey(apiKey);
+		fieldChanged.forEach((field) => {
+			updateField(field);
+		});
+		// apiKey = $("#openai-key").val().trim();
+		// updateKey(apiKey);
 	});
 });
+
+function updateField(field) {
+	var newValue = $("#" + field)
+		.val()
+		.trim();
+	console.log(field, newValue);
+
+	$.post({
+		url: "/update_field",
+		data: JSON.stringify({ field: field, newValue: newValue }),
+		contentType: "application/json",
+		dataType: "json",
+	}).done(function (data) {
+		if (data.response === "success") {
+			alert("Update successfully");
+			console.log("Update successfully");
+			return true;
+		} else {
+			alert("Error updating fields");
+			return false;
+		}
+	});
+}
 
 function findApiKey(text) {
 	const pattern = /([A-Za-z0-9]{32})/;
