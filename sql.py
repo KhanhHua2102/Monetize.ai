@@ -60,7 +60,7 @@ def update_api_key(email, key):
         models.db.session.commit()
         models.db.session.close()
         return True
-    return False
+    raise ValueError("Can not update api key in database")
 
 
 def update_name(email, new_value):
@@ -70,7 +70,7 @@ def update_name(email, new_value):
         models.db.session.commit()
         models.db.session.close()
         return True
-    return False
+    raise ValueError("Can not update name in database")
 
 
 def update_email(email, new_value):
@@ -80,10 +80,8 @@ def update_email(email, new_value):
         user.email = new_value
         models.db.session.commit()
         models.db.session.close()
-
         return True
-
-    return False
+    raise ValueError("Can not update email in database")
 
 
 def update_phone(email, new_value):
@@ -93,7 +91,7 @@ def update_phone(email, new_value):
         models.db.session.commit()
         models.db.session.close()
         return True
-    return False
+    raise ValueError("Can not update phone in database")
 
 
 # check if user has enough queries left

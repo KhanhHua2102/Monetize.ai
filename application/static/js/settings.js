@@ -12,16 +12,31 @@ $(document).ready(function () {
 		console.log("changed to: ", $(this).val().trim());
 		fieldChanged.push("phone");
 	});
-
-	$("#save-button").click(function (event) {
-		event.preventDefault();
-		fieldChanged.forEach((field) => {
-			updateField(field);
-		});
-		alert("Update successfully");
-		// apiKey = $("#openai-key").val().trim();
-		// updateKey(apiKey);
+	$("#openai-key").change(function () {
+		console.log("changed to: ", $(this).val().trim());
+		fieldChanged.push("openai-key");
 	});
+
+	$("#save-button").click(async function (event) {
+		event.preventDefault();
+		var success = true;
+
+		try {
+			for (const field of fieldChanged) {
+				await updateField(field);
+			}
+		} catch (error) {
+			console.log(error.message);
+			alert(error.message);
+			success = false;
+		}
+
+		if (success) {
+			console.log("Update successful");
+			alert("Update successful");
+		}
+	});
+
 });
 
 async function updateField(field) {
@@ -29,6 +44,11 @@ async function updateField(field) {
 		.val()
 		.trim();
 	console.log(field, newValue);
+
+	// validating api key
+	if (field == "openai-key" && findApiKey(newValue) == null) {
+		throw new Error("Invalid API key!");
+	}
 
 	response = await $.post({
 		url: "/update_field",
@@ -44,10 +64,9 @@ async function updateField(field) {
 			console.log("udpated cookie");
 		}
 
-		console.log("Update successfully");
 		return true;
 	} else {
-		return false;
+		throw new Error(response.error);
 	}
 }
 
@@ -61,7 +80,7 @@ function findApiKey(text) {
 	}
 }
 
-function updateKey(apiKey) {
+async function updateKey(apiKey) {
 	// check if valid key
 	if (!findApiKey(apiKey)) {
 		// invalid key
@@ -70,19 +89,18 @@ function updateKey(apiKey) {
 	}
 
 	console.log("updating api key");
-	$.post({
+	var response = await $.post({
 		url: "/update_openai_key",
 		data: JSON.stringify({ key: apiKey }),
 		contentType: "application/json",
 		dataType: "json",
-	}).done(function (data) {
-		if (data.response === "success") {
-			alert("OpenAI key updated");
-			console.log("updated key");
-			return true;
-		} else {
-			alert("Error updating OpenAI key");
-			return false;
-		}
 	});
+	if (response.response === "success") {
+		alert("OpenAI key updated");
+		console.log("updated key");
+		return true;
+	} else {
+		alert("Error updating OpenAI key");
+		return false;
+	}
 }

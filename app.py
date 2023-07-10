@@ -1,6 +1,7 @@
 import datetime
 import logging
 from datetime import datetime
+import re
 
 import openai
 from flask import jsonify, request
@@ -217,6 +218,7 @@ def update_openai_key():
 
 @app.route('/update_field', methods=['POST'])
 def update_field():
+    email = request.cookies.get('email')
     data = request.get_json()
     print(data)
     field = data['field']
@@ -224,14 +226,20 @@ def update_field():
 
     try:
         if field == 'name':
-            sql.update_name(request.cookies.get('email'), new_value)
+            sql.update_name(email, new_value)
         elif field == 'email':
-            sql.update_email(request.cookies.get('email'), new_value)
+            sql.update_email(email, new_value)
         elif field == 'phone':
-            sql.update_phone(request.cookies.get('email'), new_value)
+            sql.update_phone(email, new_value)
+        elif field == 'openai-key':
+            open_ai_call.update_openai_key(email, new_value)
+    
+    except ValueError as error:
+        print("Error: ", error)
+        return jsonify({'error': error})
     except:
         print("error in app.py")
-        return jsonify({'response': 'error'})
+        return jsonify({'error': 'unknown error'})
 
     return jsonify({'response': 'success'})
 

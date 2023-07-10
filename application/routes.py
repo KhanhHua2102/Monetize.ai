@@ -66,7 +66,7 @@ def history():
 
     return_data = sql.chat_data_list(user_chats, search_query)
 
-    return render_template('history.html', chats=return_data,search = True)
+    return render_template('history.html', chats=return_data, search=True)
 
 
 @app.route("/settings")
@@ -80,7 +80,7 @@ def settings():
     if user_data is not None:
         return render_template("settings.html", mobileCSS=False, user_data=user_data)
     
-    return render_template("settings.html", mobileCSS=False,user_data = "")
+    return render_template("settings.html", mobileCSS=False, user_data = "")
 
 
 @app.route("/help")
