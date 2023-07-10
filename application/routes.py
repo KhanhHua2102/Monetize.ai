@@ -1,19 +1,12 @@
-from application import app, models
-from flask import render_template, redirect, url_for, session, make_response, flash, get_flashed_messages,request,jsonify
-
-from forms import LoginForm, SignupForm
 import secrets
-import bcrypt
-from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask import (flash, make_response, redirect, render_template, request,
-                   url_for)
+from flask import (flash, get_flashed_messages, jsonify, make_response,
+                   redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
 import sql
-from application import app
+from application import app, models
 from forms import LoginForm, SignupForm
-
 
 secrets_key = secrets.token_bytes(32)
 app.config["SECRET_KEY"] = secrets_key
@@ -42,7 +35,10 @@ def portfolio():
     """
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
-    portfolio = sql.get_stock_data(email)[0]
+    
+    stock_data = sql.get_stock_data(email)
+    if stock_data is not None:
+        portfolio = stock_data[0]
 
     if user_data is not None and portfolio is not None:
         return render_template("portfolio.html", mobileCSS=True, user_data=user_data, portfolio=portfolio)
@@ -64,87 +60,11 @@ def history():
     """
     email = request.cookies.get('email')
     user_id = sql.get_user_id(email)
+    
     search_query = request.args.get('contains')
-
-    # user_chats = models.messages.query.filter_by(user_id=user_id)
     user_chats = models.messages.query.filter_by(user_id=user_id)
 
-    return_data = []
-    if search_query is None or search_query == "":
-        chats_data = user_chats.all()
-        
-        for i in range(len(chats_data)):
-            chat = chats_data[i]
-
-            if not chat.is_bot and i< len(chats_data)-1:
-                next_bot_message = "(No message from bot is stored for this message...)"
-                next_message = chats_data[i+1]
-                if next_message.is_bot:
-                    next_bot_message = next_message.body
-                    # i+=1
-                if not message_id_exists(return_data,chat.message_id) and not message_id_exists(return_data,next_message.message_id):
-                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
-                    return_data.append({'created_at': next_message.created_at, 'body': next_bot_message , 'id':next_message.message_id})
-
-            elif not chat.is_bot and i>=len(chats_data)-1:
-                next_bot_message = "(No message from bot is stored for this message...)"
-                if not message_id_exists(return_data,chat.message_id):
-                    return_data.append({'created_at': chat.created_at, 'body': chat.body ,'id' : chat.message_id})
-                    return_data.append({'created_at': chat.created_at, 'body': next_bot_message,'id':chat.message_id} )
-
-            elif chat.is_bot and i>0:
-                prev_user_message = "(No message from user is stored for this message...)"
-                prev_message = chats_data[i-1]
-                if not prev_message.is_bot:
-                    prev_user_message = prev_message.body
-                if not message_id_exists(return_data,chat.message_id) and not message_id_exists(return_data,prev_message.message_id):
-                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
-                    return_data.append({'created_at': next_message.created_at, 'body': prev_user_message , 'id':prev_message.message_id})
-
-            elif chat.is_bot and i==0:
-                prev_user_message = "(No message from user is stored for this message...)"
-                if not message_id_exists(return_data,chat.message_id):
-                    return_data.append({'created_at': chat.created_at, 'body': chat.body , 'id': chat.message_id})
-                    return_data.append({'created_at': chat.created_at, 'body': prev_user_message , 'id':chat.message_id})
-
-
-    else:
-        filtered_chats = user_chats.filter(models.messages.body.contains(search_query)).all()
-        print(filtered_chats)
-        list_user_chats = user_chats.all()
-        for chat_item in filtered_chats:
-            # hi = chat_item.message_id
-            for i in range(len(list_user_chats)):
-                if list_user_chats[i].message_id == chat_item.message_id:
-                    if not list_user_chats[i].is_bot and i < len(list_user_chats)-1:
-                        next_bot_message = "(No message from bot is stored for this message...)"
-                        next_message = list_user_chats[i+1]
-                        if next_message.is_bot:
-                            next_bot_message = next_message.body
-                            # i+=1
-                        if not message_id_exists(return_data,chat_item.message_id) and not message_id_exists(return_data,next_message.message_id): 
-                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id' : chat_item.message_id})
-                            return_data.append({'created_at': next_message.created_at, 'body': next_bot_message , 'id':next_message.message_id})
-                    elif not list_user_chats[i].is_bot and i>=len(list_user_chats)-1:
-                        next_bot_message = "(No message from bot is stored for this message...)"
-                        if not message_id_exists(return_data,chat_item.message_id):
-                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': chat_item.message_id})
-                            return_data.append({'created_at': chat.created_at, 'body': next_bot_message , 'id':chat_item.message_id})
-                    elif list_user_chats[i].is_bot and i>0:
-                        prev_user_message = "(No message from user is stored for this message...)"
-                        prev_message = list_user_chats[i-1]
-                        if not prev_message.is_bot:
-                            prev_user_message = prev_message.body
-
-                        if not message_id_exists(return_data,chat_item.message_id) and not message_id_exists(return_data,prev_message.message_id):
-                            return_data.append({'created_at': chat_item.created_at, 'body': prev_user_message , 'id': chat_item.message_id})
-                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': prev_message.message_id})
-                    elif chat.is_bot and i==0:
-                        prev_user_message = "(No message from user is stored for this message...)"
-
-                        if not message_id_exists(return_data,chat_item.message_id):
-                            return_data.append({'created_at': chat_item.created_at, 'body': prev_user_message , 'id': chat_item.message_id})
-                            return_data.append({'created_at': chat_item.created_at, 'body': chat_item.body , 'id': chat_item.message_id})
+    return_data = sql.chat_data_list(user_chats, search_query)
 
     return render_template('history.html', chats=return_data,search = True)
 
@@ -243,12 +163,4 @@ def signup():
             return render_template("signup.html", form=form, error_message=error_message)
         return redirect(url_for("login"))
     return render_template("signup.html", form=form)
-
-
-## HASH PASSWORD FUNCTION USING BCRYPT
-def hash_password(password):
-    password = bytes(password, 'utf-8')
-    salt = bytes('$2b$12$kfVMHDkl3udwMUIvngFwI.', 'utf-8')
-    hashed = bcrypt.hashpw(password, salt)
-    return hashed.decode('utf-8')
 

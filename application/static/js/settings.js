@@ -18,32 +18,37 @@ $(document).ready(function () {
 		fieldChanged.forEach((field) => {
 			updateField(field);
 		});
+		alert("Update successfully");
 		// apiKey = $("#openai-key").val().trim();
 		// updateKey(apiKey);
 	});
 });
 
-function updateField(field) {
+async function updateField(field) {
 	var newValue = $("#" + field)
 		.val()
 		.trim();
 	console.log(field, newValue);
 
-	$.post({
+	response = await $.post({
 		url: "/update_field",
 		data: JSON.stringify({ field: field, newValue: newValue }),
 		contentType: "application/json",
 		dataType: "json",
-	}).done(function (data) {
-		if (data.response === "success") {
-			alert("Update successfully");
-			console.log("Update successfully");
-			return true;
-		} else {
-			alert("Error updating fields");
-			return false;
-		}
 	});
+
+	if (response.response === "success") {
+		// if the updated field is an email, update browser cookie
+		if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue)) {
+			document.cookie = "email=" + newValue;
+			console.log("udpated cookie");
+		}
+
+		console.log("Update successfully");
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function findApiKey(text) {

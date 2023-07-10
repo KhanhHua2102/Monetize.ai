@@ -145,9 +145,6 @@ def generate():
         result = open_ai_call.gpt_with_info(messages)
         record("assistant", result)
 
-        # reduce the query count for this user by 1
-        sql.reduce_query_count(email)
-
         # add user message to database
         sql.add_message(email, user_message, datetime.now(), False)
 
@@ -233,6 +230,7 @@ def update_field():
         elif field == 'phone':
             sql.update_phone(request.cookies.get('email'), new_value)
     except:
+        print("error in app.py")
         return jsonify({'response': 'error'})
 
     return jsonify({'response': 'success'})
