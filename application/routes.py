@@ -1,5 +1,6 @@
 import secrets
 
+import base64
 from flask import (flash, get_flashed_messages, jsonify, make_response,
                    redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -77,10 +78,14 @@ def settings():
     email = request.cookies.get("email")
     user_data = sql.get_user_data(email)[0]
 
+    picture_binary = sql.get_profile_pic(email)
+
+    picture_data = base64.b64encode(picture_binary).decode("utf-8")
+
     if user_data is not None:
-        return render_template("settings.html", mobileCSS=False, user_data=user_data)
+        return render_template("settings.html", mobileCSS=False, user_data=user_data, profile_pic=picture_data)
     
-    return render_template("settings.html", mobileCSS=False, user_data = "")
+    return render_template("settings.html", mobileCSS=False, user_data = "", profile_pic=picture_data)
 
 
 @app.route("/help")

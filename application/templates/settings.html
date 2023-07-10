@@ -6,12 +6,11 @@
 
 {% include "includes/menu.html" %}
 
-<form>
-    <div class="picture">
-        <label id="profilepic">Profile Picture:</label>
-        <img src="{{ url_for('static', filename='img/Frame 1.png') }}" alt="profile picture">
-        <button class="Change-Profile">Change Profile Picture</button>
-    </div>
+<form class="picture" method="POST" action="/upload_profile_pic" enctype="multipart/form-data">
+    <img src="data:image/jpeg;base64, {{ profile_pic }}" alt="profile picture">
+    <input type="file" name="picture">
+    <input class="Change-Profile" type="submit" value="Upload">
+</form>
     <div class="label-list">
         <label for="name">Display Name:</label>
         <input type="text" id="name" name="name" value="{{ user_data.user_name }}" />

@@ -4,7 +4,7 @@ from datetime import datetime
 import re
 
 import openai
-from flask import jsonify, request
+from flask import jsonify, request, redirect, url_for
 from flask_cors import CORS
 
 import open_ai_call
@@ -242,6 +242,20 @@ def update_field():
         return jsonify({'error': 'unknown error'})
 
     return jsonify({'response': 'success'})
+
+
+@app.route('/upload_profile_pic', methods=['POST'])
+def update_profile_pic():
+    uploaded_file = request.files['picture']
+    picture_data = uploaded_file.read()
+    email = request.cookies.get('email')
+
+    try:
+        sql.update_profile_pic(email, picture_data)
+    except ValueError as error:
+        print(error)
+
+    return redirect(url_for("settings")) 
 
 
 if __name__ == '__main__':

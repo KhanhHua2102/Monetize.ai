@@ -94,6 +94,24 @@ def update_phone(email, new_value):
     raise ValueError("Can not update phone in database")
 
 
+def get_profile_pic(email):
+    user = models.user.query.filter_by(email=email).first()
+    if user:
+        return user.profile_pic
+    else:
+        return None
+
+
+def update_profile_pic(email, picture):
+    user = models.user.query.filter_by(email=email).first()
+    if user is not None:
+        user.profile_pic = picture
+        models.db.session.commit()
+        models.db.session.close()
+        return True
+    raise ValueError("Can not update profile picture in database")
+
+
 # check if user has enough queries left
 def check_query_count(email):
     user = models.user.query.filter_by(email=email).first()
