@@ -1,11 +1,10 @@
 import time
 
 import openai
-from flask import request
+from flask import request, session
 
 import sql
 from config import Config
-
 
 openai.api_key = Config.OPENAI_API_KEY
 
@@ -92,8 +91,8 @@ def gpt_with_info(message_list, temperature=1):
     Returns:
         response: The response from the API
     """
+    email = session.get('email')
 
-    email = request.cookies.get('email')
     user_data = sql.get_user_data(email)[1]
     user_info = "User information: Username: " + user_data[0] + ", Email: " + user_data[1] + ", Phone number: " + str(user_data[2]) + "."
 

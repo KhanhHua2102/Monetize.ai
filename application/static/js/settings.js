@@ -58,12 +58,6 @@ async function updateField(field) {
 	});
 
 	if (response.response === "success") {
-		// if the updated field is an email, update browser cookie
-		if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue)) {
-			document.cookie = "email=" + newValue;
-			console.log("udpated cookie");
-		}
-
 		return true;
 	} else {
 		throw new Error(response.error);

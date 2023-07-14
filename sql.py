@@ -1,4 +1,4 @@
-from flask import jsonify, make_response, render_template, redirect, url_for
+from flask import jsonify, session
 
 from application import app, models
 from application.routes import message_id_exists
@@ -80,6 +80,7 @@ def update_email(email, new_value):
         user.email = new_value
         models.db.session.commit()
         models.db.session.close()
+        session['email'] = new_value
         return True
     raise ValueError("Can not update email in database")
 

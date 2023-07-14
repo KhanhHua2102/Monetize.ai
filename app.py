@@ -1,10 +1,9 @@
 import datetime
 import logging
 from datetime import datetime
-import re
 
 import openai
-from flask import jsonify, request
+from flask import jsonify, request, session
 from flask_cors import CORS
 
 import open_ai_call
@@ -46,7 +45,7 @@ def generate():
     """
     try:
         global messages
-        email = request.cookies.get('email')
+        email = session.get('email')
 
         data = request.get_json()
         user_message = data['prompt']
@@ -167,7 +166,7 @@ def get_messages():
         json: recent messages
     """
 
-    email = request.cookies.get('email')
+    email = session.get('email')
     messages = sql.get_messages(email)[1]
     messages_len = len(messages)
 
@@ -201,7 +200,7 @@ def update_openai_key():
 
     print(data)
 
-    email = request.cookies.get('email')
+    email = session.get('email')
     key = data['key']
     print("user key received:")
     print(key + '\n')
@@ -218,7 +217,7 @@ def update_openai_key():
 
 @app.route('/update_field', methods=['POST'])
 def update_field():
-    email = request.cookies.get('email')
+    email = session.get('email')
     data = request.get_json()
     print(data)
     field = data['field']
