@@ -1,4 +1,9 @@
 /* Default Style */
+*{
+    margin: 0;
+    padding: 0;
+}
+
 #title {
     color: #ABD699;
 }
@@ -6,46 +11,26 @@
 #risk-tolerance {
     color: #ff0505;
 }
-/* 
-#logo {
-    display: none;
-} */
-
-/* #menu-icon {
-    display: block;
-    position: fixed;
-    top: 5%;
-    width: 50px;
-    height: 50px;
-} */
 
 
 .underheader {
     display: flex;
 }
 
-.contents {
-    width: 80%;
-    margin: 5% 10% 0 20%;
+.pageheader{
+    text-align: center;
+    color: rgb(101, 187, 114, 60%);
+    margin-top:25px;
 }
 
-.menu {
-    margin-right: 50%;
+.mymenu{
+    padding-right:300px; 
 }
-/* 
-.menu {
-    z-index: 1;
-    position: fixed;
-    float: left;
-    top: 10%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: bold;
-    line-height: 36px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
+
+.contents {
+    /* position:absolute; */
+    width:80%;
+    margin: 5% 10% 0 20%;
 }
 
 .menu button {
